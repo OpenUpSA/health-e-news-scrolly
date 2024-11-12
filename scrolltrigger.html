@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScrollTrigger Background Change with Pinning</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2em;
+            transition: background-color 0.5s ease;
+            position: relative; /* Added to help with pinning */
+        }
+
+        .pinned-section {
+            display: block !important;
+        }
+
+        /* Sticky background container */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            transition: background-image 0.5s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Styles for pinned section inner stages */
+        .pinned-section .inner {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: block;
+        }
+
+        .slide-inner {
+            background-color: #000;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Layer -->
+    <div class="background" id="background"></div>
+
+    <!-- Scrolling Content Sections -->
+    <div class="section section1" data-background="url('img/toilets2.jpg')">
+        <div class="slide-inner">Slide 1</div>
+    </div>
+    <div class="section section2" data-background="url('img/toilets1.jpg')">
+        <div class="slide-inner">Slide 2</div>
+    </div>
+    <div class="section section4" data-background="url('img/map-base.jpg')">
+        <div class="slide-inner">Slide 3</div>
+    </div>
+    <div class="section section5" data-background="url('img/map.jpg')"></div>
+    <div class="section section6" data-background="url('img/map-base.jpg')">
+        <div class="slide-inner">Slide 4</div>
+    </div>
+    <div class="section section7" data-background="url('img/pit-latrine1.jpg')">
+        <div class="slide-inner">Slide 5</div>
+    </div>
+    <div class="section section8" data-background="url('img/toilets1.jpg')">
+        <div class="slide-inner">Slide 6</div>
+    </div>
+
+    <script>
+        // GSAP and ScrollTrigger setup
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Background change for each standard section
+        document.querySelectorAll('.section').forEach((section, index) => {
+            const background = section.getAttribute('data-background');
+
+            // ScrollTrigger for changing background on enter
+            ScrollTrigger.create({
+                trigger: section,
+                start: 'top 50%',
+                onEnter: () => {
+                    document.getElementById('background').style.backgroundImage = background;
+                },
+                onLeaveBack: () => {
+                    // Get the background of the previous section or default if it's the first
+                    const prevSection = document.querySelectorAll('.section')[index - 1];
+                    const prevBackground = prevSection ? prevSection.getAttribute('data-background') : background;
+                    document.getElementById('background').style.backgroundImage = prevBackground;
+                }
+            });
+        });
+
+        // Pin "Slide 3" until the next section comes into view
+        ScrollTrigger.create({
+            trigger: '.section4 .slide-inner',
+            pin: true,
+            start: 'center center',
+            endTrigger: '.section5',
+            end: 'top top',
+            pinSpacing: false, // Adjust if you need space after pinning
+            // markers: true // Uncomment to see markers during development
+        });
+    </script>
+</body>
+</html>
