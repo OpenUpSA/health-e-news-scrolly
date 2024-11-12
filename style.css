@@ -48,6 +48,9 @@ body {
 .panel {
     position: relative;
     height: 100vh;
+    left: 50%;
+    transform: translate(-50%);
+    width: 1140px;
 }
 
 .slide {
@@ -68,29 +71,38 @@ body {
 
 
 
+.panel-1 {
+    margin-top: 35vh;
+}
+
 .caption-box {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(252, 252, 249, 0.966);
     padding: 2em;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     text-align: left;
     position: absolute;
     opacity: 1;
+    width: 500px;
+    left: 5%;
+
 }
+
+
 
 
 
 
 
 h1 {
-    font-size: 40px;
+    font-size: 36px;
     font-weight: 500;
     margin: 0;
 }
 
 p {
-    font-size: 24px;
-    line-height: 1.2em;
+    font-size: 20px;
+    line-height: 1.4em;
 }
 
 p:last-of-type {
@@ -252,11 +264,12 @@ p:last-of-type {
     transform: translate(-50%, -50%);
 }
 
-.slide-2 .caption-box, .slide-3 .caption-box, .slide-4 .caption-box {
+.caption-box-2, .caption-box-3, .caption-box-4 {
     top: 50%;
     left: 5%;
     transform: translateY(-50%);
     max-width: 500px;
+    width: unset;
 }
 
 .slide-3 .chart-label-1 {
