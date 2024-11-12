@@ -29,56 +29,62 @@
             position: relative;
         }
 
-        .pinned-section {
-            display: block !important;
-        }
-
         .background {
             position: fixed;
             top: 0;
             left: 0;
-            width: 110%;
-            height: 110%;
+            width: 100%;
+            height: 100%;
             z-index: -1;
-            transition: background-image 0.5s ease;
-            background-size: cover;
-            background-position: center;
+            overflow: hidden;
+        }
+        
+        #bgImage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform-origin: center center;
         }
 
         .slide-inner {
+            display: inline-block;
             background-color: #000;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
     </style>
 </head>
 <body>
 
-    <div class="background" id="background"></div>
+    <div class="background" id="background">
+        <img src="img/toilets2.jpg" alt="Background Image" id="bgImage">
+    </div>
 
-    <div class="section section1" data-background="url('img/toilets2.jpg')">
+    <div class="section section1" data-background="img/toilets2.jpg">
         <div class="slide-inner">Slide 1</div>
     </div>
-    <div class="section section2" data-background="url('img/toilets1.jpg')">
+    <div class="section section2" data-background="img/toilets1.jpg">
         <div class="slide-inner">Slide 2</div>
     </div>
-    <div class="section section4" data-background="url('img/map-base.jpg')">
+    <div class="section section4" data-background="img/map-base.jpg">
         <div class="slide-inner">Slide 3</div>
     </div>
-    <div class="section section5" data-background="url('img/map.jpg')"></div>
-    <div class="section section6" data-background="url('img/map-base.jpg')">
+    <div class="section section5" data-background="img/map.jpg"></div>
+    <div class="section section6" data-background="img/map-base.jpg">
         <div class="slide-inner">Slide 4</div>
     </div>
-    <div class="section section7" data-background="url('img/pit-latrine1.jpg')">
+    <div class="section section7" data-background="img/pit-latrine1.jpg">
         <div class="slide-inner">Slide 5</div>
     </div>
-    <div class="section section8" data-background="url('img/toilets1.jpg')">
+    <div class="section section8" data-background="img/toilets1.jpg">
         <div class="slide-inner">Slide 6</div>
     </div>
 
     <script>
+        function updateBackgroundImage(src) {
+            const bgImage = document.getElementById('bgImage');
+            bgImage.src = src;
+            bgImage.style.transform = 'scale(1)';
+        }
+
         gsap.registerPlugin(ScrollTrigger);
 
         document.querySelectorAll('.section').forEach((section, index) => {
@@ -88,12 +94,12 @@
                 trigger: section,
                 start: 'top 50%',
                 onEnter: () => {
-                    document.getElementById('background').style.backgroundImage = background;
+                    updateBackgroundImage(background);
                 },
                 onLeaveBack: () => {
                     const prevSection = document.querySelectorAll('.section')[index - 1];
                     const prevBackground = prevSection ? prevSection.getAttribute('data-background') : background;
-                    document.getElementById('background').style.backgroundImage = prevBackground;
+                    updateBackgroundImage(prevBackground);
                 }
             });
         });
@@ -109,15 +115,29 @@
         });
 
         gsap.fromTo(
-            "#background",
-            { backgroundSize: '110%' },
+            "#bgImage",
+            { scale: 1 },
             {
-                backgroundSize: "150%",
+                scale: 1.5,
                 ease: "none",
                 scrollTrigger: {
                     trigger: ".section4",
                     start: "top center",
                     end: "bottom center",
+                    scrub: true,
+                },
+            }
+        );
+        gsap.fromTo(
+            "#bgImage",
+            { scale: 1.5 },
+            {
+                scale: 1,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".section5",
+                    start: "top bottom",
+                    end: "bottom top",
                     scrub: true,
                 },
             }
