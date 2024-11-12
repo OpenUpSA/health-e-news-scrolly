@@ -8,6 +8,7 @@ document.querySelector('.slide-1').style.backgroundImage = "url('img/toilets2.jp
 document.querySelector('.slide-2').style.backgroundImage = "url('img/map-base.jpg')";
 document.querySelector('.slide-3').style.backgroundImage = "url('img/map.jpg')";
 document.querySelector('.slide-4').style.backgroundImage = "url('img/pit-latrine1.jpg')";
+document.querySelector('.slide-5').style.backgroundImage = "url('img/toilets1.jpg')";
 
 // INIT
 window.onload = () => {
@@ -17,9 +18,9 @@ window.onload = () => {
         y: 20,
         duration: 1,
     });
-    gsap.from(".slide-1 .caption-box-1", {
+    gsap.from(".caption-box-1", {
         opacity: 0,
-        y: -40,
+        y: 40,
         duration: 1,
         ease: "power3.out",
         delay: 1
@@ -29,7 +30,7 @@ window.onload = () => {
 // SLIDE 2
 
 var timeline = new TimelineMax();
-var tween1 = TweenMax.fromTo('.slide-2', { opacity: 0 }, { opacity: 1 });
+var tween1 = TweenMax.fromTo('.slide-2', { opacity: 0 }, { opacity: 1, duration: 0.5 });
 
 timeline
     .add(tween1);
@@ -558,7 +559,7 @@ const dirty_toilets_lp = new Chart(ctx21, {
 
 var timeline = new TimelineMax();
 
-var tween1 = TweenMax.fromTo('.slide-4', { opacity: 0 }, { opacity: 1, duration: 1, delay: 2 });
+var tween1 = TweenMax.fromTo('.slide-4', { opacity: 0 }, { opacity: 1, duration: 0.5 });
 
 
 
@@ -573,17 +574,17 @@ new ScrollMagic.Scene({
 
 // SLIDE 5
 
-// var timeline = new TimelineMax();
+var timeline = new TimelineMax();
 
-// var tween1 = TweenMax.fromTo('.slide-5', { opacity: 0 }, { opacity: 1, duration: 1, delay: 2 });
+var tween1 = TweenMax.fromTo('.slide-5', { opacity: 0 }, { opacity: 1, duration: 0.5 });
 
 
 
-// timeline
-//     .add(tween1);
+timeline
+    .add(tween1);
 
-// new ScrollMagic.Scene({
-//     triggerElement: '.caption-box-3',
-// })
-// .setTween(timeline)
-// .addTo(controller);
+new ScrollMagic.Scene({
+    triggerElement: '.caption-box-13',
+})
+.setTween(timeline)
+.addTo(controller);

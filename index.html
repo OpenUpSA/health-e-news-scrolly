@@ -6,355 +6,387 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
 	<title>Health-E News</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
-	<!-- indicators -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
+	<div class="scrolly-embed">
+		
+		<div class="slide slide-1"></div>
+		<div class="slide slide-2"></div>
+		<div class="slide slide-3">
+			<div class="chart-label chart-label-1">
+				<div class="arrow arrow-down-right"></div>
+				<div class="label hand">Limpopo</div>
+			</div>
+			<div class="chart-label chart-label-2">
+				<div class="arrow arrow-down-right"></div>
+				<div class="label hand">Free State</div>
+			</div>
+			<div class="chart-label chart-label-3">
+				<div class="arrow arrow-up-left"></div>
+				<div class="label hand">Kwazulu Natal</div>
+			</div>
+			
+			
+		</div>
+		<div class="slide slide-4"></div>
+		<div class="slide slide-5"></div>
 
-	<div class="slide slide-1"></div>
-	<div class="slide slide-2"></div>
-	<div class="slide slide-3">
-		<div class="chart-label chart-label-1">
-			<div class="arrow arrow-down-right"></div>
-			<div class="label hand">Limpopo</div>
+		<div class="panel panel-1">
+			<div class="caption-box caption-box-1">
+				<h1 class="primary">What we did</h1>
+				<p>To better understand the state of <span class="primary fw-500">sanitation in our primary healthcare system</span>, we asked our network of <span class="primary fw-500">citizen journalists</span> to tell us what the bathrooms are like in their local clinics. We also also asked them to interview people who had recently used the clinics.</p>
+			</div>
 		</div>
-		<div class="chart-label chart-label-2">
-			<div class="arrow arrow-down-right"></div>
-			<div class="label hand">Free State</div>
-		</div>
-		<div class="chart-label chart-label-3">
-			<div class="arrow arrow-up-left"></div>
-			<div class="label hand">Kwazulu Natal</div>
+
+		<div class="panel">
+			<div class="caption-box caption-box-2">
+				<p>They visited <span class="primary fw-500 big">31 clinics</span> in <span class="primary fw-500 big">3 provinces</span></p>
+			</div>
 		</div>
 		
 		
-	</div>
-	<!-- SLIDE 4 -->
-	<div class="slide slide-4"></div>
-
-	<div class="panel panel-1">
-		<div class="caption-box caption-box-1">
-			<h1 class="primary">What we did</h1>
-			<p>To better understand the state of <span class="primary fw-500">sanitation in our primary healthcare system</span>, we asked our network of <span class="primary fw-500">citizen journalists</span> to tell us what the bathrooms are like in their local clinics. We also also asked them to interview people who had recently used the clinics.</p>
-		</div>
-	</div>
-
-	<div class="panel">
-		<div class="caption-box caption-box-2">
-			<p>They visited <span class="primary fw-500 big">31 clinics</span> in <span class="primary fw-500 big">3 provinces</span></p>
-		</div>
-	</div>
-	
-	
-	<div class="panel">
-		<div class="caption-box caption-box-3">
-			<p>And interviewed <span class="primary fw-500 big">313 recent users</span> of those clinics.</p>
-		</div>
-	</div>
-	
-	<div class="panel">
-		<div class="caption-box caption-box-4">
-			<p>Interviewees were fairly <span class="primary fw-500">evenly split between age and gender</span>.</p>
-			<div class="chart-legend mt-2 mb-2">
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #85c6f0;"></div>
-					<div class="legend-text">Male</div>
-				</div>
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #ff3d3b;"></div>
-					<div class="legend-text">Female</div>
-				</div>
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #ffd06c;"></div>
-					<div class="legend-text">Other</div>
-				</div>
-			</div>
-			<div class="chart-container">
-				<canvas id="age-gender"></canvas>
+		<div class="panel">
+			<div class="caption-box caption-box-3">
+				<p>And interviewed <span class="primary fw-500 big">313 recent users</span> of those clinics.</p>
 			</div>
 		</div>
-	</div>
-
-	<div class="panel">
-		<div class="caption-box caption-box-5">
-			<p>Many clinics in Limpopo and KZN rely on <span class="primary fw-500">outdoor facilities</span>.</p>
-
-
-			<div class="chart-legend mt-2 mb-2">
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #FFC107;"></div>
-					<div class="legend-text">Inside</div>
-				</div>
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #FF5722;"></div>
-					<div class="legend-text">Outside</div>
-				</div>
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #999999;"></div>
-					<div class="legend-text">Both</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="inside-outside-fs"></canvas>
-						<div class="chart-label">Free State</div>
+		
+		<div class="panel">
+			<div class="caption-box caption-box-4">
+				<p>Interviewees were fairly <span class="primary fw-500">evenly split between age and gender</span>.</p>
+				<div class="chart-legend mt-2 mb-2">
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #85c6f0;"></div>
+						<div class="legend-text">Male</div>
+					</div>
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #ff3d3b;"></div>
+						<div class="legend-text">Female</div>
+					</div>
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #ffd06c;"></div>
+						<div class="legend-text">Other</div>
 					</div>
 				</div>
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="inside-outside-lp"></canvas>
-						<div class="chart-label">Limpopo</div>
+				<div class="chart-container">
+					<canvas id="age-gender"></canvas>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel">
+			<div class="caption-box caption-box-5">
+				<p>Many clinics in Limpopo and KZN rely on <span class="primary fw-500">outdoor facilities</span>.</p>
+
+
+				<div class="chart-legend mt-2 mb-2">
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #FFC107;"></div>
+						<div class="legend-text">Inside</div>
+					</div>
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #FF5722;"></div>
+						<div class="legend-text">Outside</div>
+					</div>
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #999999;"></div>
+						<div class="legend-text">Both</div>
 					</div>
 				</div>
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="inside-outside-kzn"></canvas>
-						<div class="chart-label">KZN</div>
+
+				<div class="se-row">
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="inside-outside-fs"></canvas>
+							<div class="chart-label">Free State</div>
+						</div>
+					</div>
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="inside-outside-lp"></canvas>
+							<div class="chart-label">Limpopo</div>
+						</div>
+					</div>
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="inside-outside-kzn"></canvas>
+							<div class="chart-label">KZN</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="panel">
-		<div class="caption-box caption-box-6">
-			<p><span class="primary fw-500 big">Seven</span> clinics in Limpopo had some sort of <span class="primary fw-500">pit latrine</span>.</p>
-		</div>
-	</div>
-
-	<div class="panel">
-		<div class="caption-box caption-box-6">
-			<p>But while all the clinics we visited in the Free State had bathrooms inside the clinics, they were also the <span class="primary fw-500">least accessible to patients with a disability</span>.</p>
-
-			<div class="chart-legend mt-2 mb-2">
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #FFC107;"></div>
-					<div class="legend-text">Yes</div>
-				</div>
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #FF5722;"></div>
-					<div class="legend-text">No</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="disabled-access-fs"></canvas>
-						<div class="chart-label">Free State</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="disabled-access-lp"></canvas>
-						<div class="chart-label">Limpopo</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="disabled-access-kzn"></canvas>
-						<div class="chart-label">KZN</div>
-					</div>
-				</div>
+		<div class="panel">
+			<div class="caption-box caption-box-6">
+				<p><span class="primary fw-500 big">Seven</span> clinics in Limpopo had some sort of <span class="primary fw-500">pit latrine</span>.</p>
 			</div>
 		</div>
-	</div>
 
+		<div class="panel">
+			<div class="caption-box caption-box-6">
+				<p>But while all the clinics we visited in the Free State had bathrooms inside the clinics, they were also the <span class="primary fw-500">least accessible to patients with a disability</span>.</p>
 
-	<div class="panel">
-		<div class="caption-box caption-box-7">
-			<p><span class="primary fw-500 big">75.4%</span> of people we spoke to said that at some point, <span class="primary fw-500">the toilets had been out of order</span> when then visited the clinic.</p>
-		</div>
-	</div>
-
-	<div class="panel">
-		<div class="caption-box caption-box-8">
-			<p>Broken bathrooms were experienced much more in <span class="primary fw-500">KZN</span> and <span class="primary fw-500">Limpopo</span> than in the Free State.</p>
-			
-			<div class="chart-legend mt-2 mb-2">
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #FFC107;"></div>
-					<div class="legend-text">Usable</div>
-				</div>
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #FF5722;"></div>
-					<div class="legend-text">Unusable</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="unusable-fs"></canvas>
-						<div class="chart-label">Free State</div>
+				<div class="chart-legend mt-2 mb-2">
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #FFC107;"></div>
+						<div class="legend-text">Yes</div>
+					</div>
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #FF5722;"></div>
+						<div class="legend-text">No</div>
 					</div>
 				</div>
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="unusable-lp"></canvas>
-						<div class="chart-label">Limpopo</div>
+
+				<div class="se-row">
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="disabled-access-fs"></canvas>
+							<div class="chart-label">Free State</div>
+						</div>
 					</div>
-				</div>
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="unusable-kzn"></canvas>
-						<div class="chart-label">KZN</div>
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="disabled-access-lp"></canvas>
+							<div class="chart-label">Limpopo</div>
+						</div>
+					</div>
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="disabled-access-kzn"></canvas>
+							<div class="chart-label">KZN</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="panel">
-		<div class="caption-box caption-box-9">
-			<p>Even when patients could visit the bathroom, however, both male and female toilets were <span class="primary fw-500">unlikely to be stocked  with basics such as toilet paper or soap</span>.</p>
-			<div class="chart-legend mt-2 mb-2">
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #FFC107;"></div>
-					<div class="legend-text">Had toilet paper</div>
-				</div>
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #FF5722;"></div>
-					<div class="legend-text">No toilet paper</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="toilet-paper-fs"></canvas>
-						<div class="chart-label">Free State</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="toilet-paper-lp"></canvas>
-						<div class="chart-label">Limpopo</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="toilet-paper-kzn"></canvas>
-						<div class="chart-label">KZN</div>
-					</div>
-				</div>
+
+		<div class="panel">
+			<div class="caption-box caption-box-7">
+				<p><span class="primary fw-500 big">75.4%</span> of people we spoke to said that at some point, <span class="primary fw-500">the toilets had been out of order</span> when then visited the clinic.</p>
 			</div>
 		</div>
-	</div>
 
-	<div class="panel">
-		<div class="caption-box caption-box-10">
-			
-			<div class="chart-legend mt-2 mb-2">
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #FFC107;"></div>
-					<div class="legend-text">Had toilet paper</div>
-				</div>
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #FF5722;"></div>
-					<div class="legend-text">No toilet paper</div>
-				</div>
-			</div>
-			<div class="row row-2-up">
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="toilet-paper-female"></canvas>
-						<div class="chart-label">Female</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="toilet-paper-male"></canvas>
-						<div class="chart-label">Male</div>
-					</div>
-				</div>
+		<div class="panel">
+			<div class="caption-box caption-box-8">
+				<p>Broken bathrooms were experienced much more in <span class="primary fw-500">KZN</span> and <span class="primary fw-500">Limpopo</span> than in the Free State.</p>
 				
-			</div>
-		</div>
-	</div>
-
-	<div class="panel">
-		<div class="caption-box caption-box-11">
-			<div class="chart-legend mt-2 mb-2">
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #FFC107;"></div>
-					<div class="legend-text">Had soap/sanitiser</div>
-				</div>
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #FF5722;"></div>
-					<div class="legend-text">No soap/sanitiser</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="hand-washing-fs"></canvas>
-						<div class="chart-label">Free State</div>
+				<div class="chart-legend mt-2 mb-2">
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #FFC107;"></div>
+						<div class="legend-text">Usable</div>
+					</div>
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #FF5722;"></div>
+						<div class="legend-text">Unusable</div>
 					</div>
 				</div>
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="hand-washing-lp"></canvas>
-						<div class="chart-label">Limpopo</div>
+				<div class="se-row">
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="unusable-fs"></canvas>
+							<div class="chart-label">Free State</div>
+						</div>
 					</div>
-				</div>
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="hand-washing-kzn"></canvas>
-						<div class="chart-label">KZN</div>
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="unusable-lp"></canvas>
+							<div class="chart-label">Limpopo</div>
+						</div>
+					</div>
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="unusable-kzn"></canvas>
+							<div class="chart-label">KZN</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="panel">
-		<div class="caption-box caption-box-12">
-			<p>Unsurprising, then, that our CJs found the state of the toilets to be <span class="primary fw-500">very unhygienic</span>, with urine or feacal matter on the seats in 13 clinics, including nine in Limpopo.</p>
-			<div class="chart-legend mt-2 mb-2">
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #FFC107;"></div>
-					<div class="legend-text">Dirty Seat</div>
-				</div>
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #FF5722;"></div>
-					<div class="legend-text">Dirty Toilet</div>
-				</div>
-				<div class="legend-item">
-					<div class="legend-color" style="background-color: #940e0e;"></div>
-					<div class="legend-text">Dirty Wall</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="dirty-toilets-fs"></canvas>
-						<div class="chart-label">Free State</div>
+		<div class="panel">
+			<div class="caption-box caption-box-9">
+				<p>Even when patients could visit the bathroom, however, both male and female toilets were <span class="primary fw-500">unlikely to be stocked  with basics such as toilet paper or soap</span>.</p>
+				<div class="chart-legend mt-2 mb-2">
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #FFC107;"></div>
+						<div class="legend-text">Had toilet paper</div>
+					</div>
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #FF5722;"></div>
+						<div class="legend-text">No toilet paper</div>
 					</div>
 				</div>
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="dirty-toilets-lp"></canvas>
-						<div class="chart-label">Limpopo</div>
+				<div class="se-row">
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="toilet-paper-fs"></canvas>
+							<div class="chart-label">Free State</div>
+						</div>
 					</div>
-				</div>
-				<div class="col">
-					<div class="chart-container">
-						<canvas id="dirty-toilets-kzn"></canvas>
-						<div class="chart-label">KZN</div>
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="toilet-paper-lp"></canvas>
+							<div class="chart-label">Limpopo</div>
+						</div>
+					</div>
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="toilet-paper-kzn"></canvas>
+							<div class="chart-label">KZN</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<div class="panel">
+			<div class="caption-box caption-box-10">
+				
+				<div class="chart-legend mt-2 mb-2">
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #FFC107;"></div>
+						<div class="legend-text">Had toilet paper</div>
+					</div>
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #FF5722;"></div>
+						<div class="legend-text">No toilet paper</div>
+					</div>
+				</div>
+				<div class="se-row se-row-2-up">
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="toilet-paper-female"></canvas>
+							<div class="chart-label">Female</div>
+						</div>
+					</div>
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="toilet-paper-male"></canvas>
+							<div class="chart-label">Male</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<div class="panel">
+			<div class="caption-box caption-box-11">
+				<div class="chart-legend mt-2 mb-2">
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #FFC107;"></div>
+						<div class="legend-text">Had soap/sanitiser</div>
+					</div>
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #FF5722;"></div>
+						<div class="legend-text">No soap/sanitiser</div>
+					</div>
+				</div>
+				<div class="se-row">
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="hand-washing-fs"></canvas>
+							<div class="chart-label">Free State</div>
+						</div>
+					</div>
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="hand-washing-lp"></canvas>
+							<div class="chart-label">Limpopo</div>
+						</div>
+					</div>
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="hand-washing-kzn"></canvas>
+							<div class="chart-label">KZN</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel">
+			<div class="caption-box caption-box-12">
+				<p>Unsurprising, then, that our CJs found the state of the toilets to be <span class="primary fw-500">very unhygienic</span>, with urine or feacal matter on the seats in 13 clinics, including nine in Limpopo.</p>
+				<div class="chart-legend mt-2 mb-2">
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #FFC107;"></div>
+						<div class="legend-text">Dirty Seat</div>
+					</div>
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #FF5722;"></div>
+						<div class="legend-text">Dirty Toilet</div>
+					</div>
+					<div class="legend-item">
+						<div class="legend-color" style="background-color: #940e0e;"></div>
+						<div class="legend-text">Dirty Wall</div>
+					</div>
+				</div>
+				<div class="se-row">
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="dirty-toilets-fs"></canvas>
+							<div class="chart-label">Free State</div>
+						</div>
+					</div>
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="dirty-toilets-lp"></canvas>
+							<div class="chart-label">Limpopo</div>
+						</div>
+					</div>
+					<div class="se-col">
+						<div class="chart-container">
+							<canvas id="dirty-toilets-kzn"></canvas>
+							<div class="chart-label">KZN</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="panel">
+			<div class="caption-box caption-box-13">
+				<p>In addition to the basic state of hygiene, in some larger facilities our reporters witnessed people queuing for up to an hour to use the bathroom. </p>
+			</div>
+		</div>
+
+		<div class="panel">
+			<div class="caption-box caption-box-14">
+				<p>No wonder then that so many people told us that they didn’t feel safe using the toilets. </p>
+			</div>
+		</div>
+
+		<div class="panel">
+			<div class="caption-box caption-box-15">
+				<p>This included more than half of all women interviewed. Surprisingly, two thirds of 18-25-year-olds said they didn’t feel safe, compared to around 40% of those aged 26-40 or older than 60.</p>
+			</div>
+		</div>
+
+		<div class="panel">
+			<div class="caption-box caption-box-16">
+				<p>Apart from the obvious implications to health, and our expectations of germ control in a medical centre, 83 patients we spoke to told us that the state of the bathrooms put them off visiting again. The implications of this - people avoiding primary health care facilities - are severe.</p>
+			</div>
+		</div>
+
+		<div class="panel">
+			<div class="caption-box caption-box-17">
+				<p>And all for the sake of a usable bathroom.</p>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<script src="script.js"></script>
+
 	</div>
-
-	<script src="script.js"></script>
-
 
 </body>
 
