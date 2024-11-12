@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Health-E News</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+	<!-- indicators -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+	<!-- SLIDES -->
+	<div class="slide slide-1">
+		<div class="caption-box caption-box-1">
+			<h1 class="primary">What we did</h1>
+			<p>To better understand the state of <span class="primary fw-500">sanitation in our primary healthcare
+					system</span>, we asked our network of <span class="primary fw-500">citizen journalists</span> to
+				tell us what
+				the bathrooms are like in their local clinics. We also also asked them to interview people who had
+				recently used
+				the clinics.</p>
+		</div>
+	</div>
+	<!-- SLIDE 2 -->
+	<div class="slide slide-2">
+		<div class="caption-box caption-box-1">
+			<p>They visited<br /><span class="primary fw-500 big">31 clinics</span><br />in <span
+					class="primary fw-500 big">3 provinces</span></p>
+		</div>
+	</div>
+	<!-- SLIDE 3 -->
+	<div class="slide slide-3">
+		<div class="caption-box caption-box-1">
+			<p>They visited<br /><span class="primary fw-500 big">31 clinics</span><br />in <span
+					class="primary fw-500 big">3 provinces</span></p>
+		</div>
+		<div class="chart-label chart-label-1">
+			<div class="arrow arrow-down-right"></div>
+			<div class="label hand">Limpopo</div>
+		</div>
+		<div class="chart-label chart-label-2">
+			<div class="arrow arrow-down-right"></div>
+			<div class="label hand">Free State</div>
+		</div>
+		<div class="chart-label chart-label-3">
+			<div class="arrow arrow-up-left"></div>
+			<div class="label hand">Kwazulu Natal</div>
+		</div>
+		
+		<div class="caption-box caption-box-2">
+			<p>And interviewed<br/><span class="primary fw-500 big">313 recent users</span><br/>of those clinics.</p>
+		</div>
+		<div class="caption-box caption-box-3">
+			<p>Interviewees were fairly <span class="primary fw-500">evenly<br/>split between age and gender</span>.</p>
+			<div class="chart-container">
+				<canvas id="age-gender"></canvas>
+			</div>
+		</div>
+	</div>
+	<!-- SLIDE 4 -->
+	<div class="slide slide-4">
+		<div class="caption-box caption-box-1">
+			<p><span class="primary fw-500 big">75.4%</span> of people we spoke to said that at some point, <span class="primary fw-500">the toilets had been out of order</span> when then visited the clinic.</p>
+		</div>
+		<div class="caption-box caption-box-2">
+			<p>Broken bathrooms were experienced much more in <span class="primary fw-500">KZN</span> and <span class="primary fw-500">Limpopo</span> than in the Free State.</p>
+			
+			<div class="chart-legend mt-2 mb-2">
+				<div class="legend-item">
+					<div class="legend-color" style="background-color: #FFC107;"></div>
+					<div class="legend-text">Usable</div>
+				</div>
+				<div class="legend-item">
+					<div class="legend-color" style="background-color: #FF5722;"></div>
+					<div class="legend-text">Unusable</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="chart-container">
+						<canvas id="unusable-fs"></canvas>
+					</div>
+				</div>
+				<div class="col">
+					<div class="chart-container">
+						<canvas id="unusable-lp"></canvas>
+					</div>
+				</div>
+				<div class="col">
+					<div class="chart-container">
+						<canvas id="unusable-kzn"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+	</div>
+
+	
+
+	<script src="script.js"></script>
+
+
+</body>
+
+</html>
