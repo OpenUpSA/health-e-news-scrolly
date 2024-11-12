@@ -40,14 +40,13 @@
     color: #474747;
 }
 
-
-
 .panel {
     position: relative;
     height: 100vh;
     left: 50%;
     transform: translate(-50%);
     width: 1140px;
+    outline: 1px solid red;
 }
 
 .slide {
@@ -76,10 +75,7 @@
 }
 
 .caption-box {
-    background: rgba(252, 252, 249, 0.95);
-    padding: 2em;
     border-radius: 5px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     text-align: left;
     position: absolute;
     opacity: 1;
