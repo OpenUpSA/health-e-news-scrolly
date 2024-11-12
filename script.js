@@ -574,17 +574,224 @@ new ScrollMagic.Scene({
 
 // SLIDE 5
 
+const ctx22 = document.getElementById('bathroom-usage').getContext('2d');
+const bathroomUsageChart = new Chart(ctx22, {
+    type: 'bar',
+    data: {
+        labels: ['100+', '21-50', '51-70', '71-100'],
+        datasets: [
+            {
+                label: '0-10 mins',
+                data: [11, 1, 1, 3],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            },
+            {
+                label: '10-20 mins',
+                data: [10, 6, 10, 8],
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1
+            },
+            {
+                label: '20-40 mins',
+                data: [2, 2, 2, 2],
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                borderColor: 'rgba(255, 159, 64, 1)',
+                borderWidth: 1
+            },
+            {
+                label: '40-60 mins',
+                data: [0, 0, 1, 1],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                stacked: true,
+            },
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: false,
+                    text: 'Number of People'
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top'
+            }
+        }
+    }
+});
+
+const ctx23 = document.getElementById('safety-gender').getContext('2d');
+const genderChart = new Chart(ctx23, {
+    type: 'bar',
+    data: {
+        labels: ['Female', 'Male'],
+        datasets: [
+            {
+                label: 'No',
+                data: [57, 53],
+                backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            },
+            {
+                label: 'Yes',
+                data: [55, 67],
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        // indexAxis: 'y', 
+        responsive: true,
+        scales: {
+            x: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Number of People'
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: 'Gender'
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top'
+            }
+        }
+    }
+});
+
+
+const ctx24 = document.getElementById('safety-female-age').getContext('2d');
+const ageChart = new Chart(ctx24, {
+    type: 'bar',
+    data: {
+        labels: ['18-25 y/o', '26-40 y/o', '41-60 y/o', '60+ y/o'],
+        datasets: [
+            {
+                label: 'No',
+                data: [24, 29, 32, 26],
+                backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            },
+            {
+                label: 'Yes',
+                data: [13, 46, 27, 36],
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: 'Age Group'
+                }
+            },
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Number of People'
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top'
+            }
+        }
+    }
+});
+
+const ctx25 = document.getElementById('clinic-visit').getContext('2d');
+const genderColumnChart = new Chart(ctx25, {
+    type: 'bar',
+    data: {
+        labels: ['Female', 'Male'],
+        datasets: [
+            {
+                label: 'No',
+                data: [73, 76],
+                backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            },
+            {
+                label: 'Yes',
+                data: [39, 44],
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: 'Gender'
+                }
+            },
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Number of People'
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top'
+            }
+        }
+    }
+});
+
 var timeline = new TimelineMax();
 
 var tween1 = TweenMax.fromTo('.slide-5', { opacity: 0 }, { opacity: 1, duration: 0.5 });
-
-
 
 timeline
     .add(tween1);
 
 new ScrollMagic.Scene({
     triggerElement: '.caption-box-13',
+    triggerHook: 'onLeave', 
 })
 .setTween(timeline)
+.on("leave", function () {
+    controller.destroy(true);
+})
 .addTo(controller);

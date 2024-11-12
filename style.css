@@ -51,7 +51,6 @@
 }
 
 .slide {
-    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -66,6 +65,10 @@
     transition: all 0.5s;
 }
 
+.sticky {
+    position: fixed;
+}
+
 
 
 .panel-1 {
@@ -73,7 +76,7 @@
 }
 
 .caption-box {
-    background: rgba(252, 252, 249, 0.7);
+    background: rgba(252, 252, 249, 0.95);
     padding: 2em;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
