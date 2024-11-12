@@ -41,9 +41,7 @@ html {
     color: #474747;
 }
 
-body {
-    height: 10000px;
-}
+
 
 .panel {
     position: relative;
@@ -76,7 +74,7 @@ body {
 }
 
 .caption-box {
-    background: rgba(252, 252, 249, 0.966);
+    background: rgba(252, 252, 249, 0.7);
     padding: 2em;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
@@ -177,6 +175,10 @@ p:last-of-type {
    
 }
 
+.row-2-up .col {
+    max-width: 50% !important
+}
+
 /* CHART.JS */
 
 .chart-container {
@@ -204,6 +206,12 @@ p:last-of-type {
 
 .legend-text {
     display: inline-block;
+}
+
+.chart-label {
+    font-size: 0.8em;
+    text-align: center;
+    margin-top: 1em;
 }
 
 /* CHART LABELS */
@@ -268,8 +276,7 @@ p:last-of-type {
     top: 50%;
     left: 5%;
     transform: translateY(-50%);
-    max-width: 500px;
-    width: unset;
+   
 }
 
 .slide-3 .chart-label-1 {
