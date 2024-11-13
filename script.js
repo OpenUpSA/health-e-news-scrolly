@@ -7,8 +7,9 @@ const controller = new ScrollMagic.Controller({
 document.querySelector('.slide-1').style.backgroundImage = "url('img/toilets2.jpg')";
 document.querySelector('.slide-2').style.backgroundImage = "url('img/map-base.jpg')";
 document.querySelector('.slide-3').style.backgroundImage = "url('img/map.jpg')";
-document.querySelector('.slide-4').style.backgroundImage = "url('img/pit-latrine1.jpg')";
-document.querySelector('.slide-5').style.backgroundImage = "url('img/toilets1.jpg')";
+// document.querySelector('.slide-4').style.backgroundImage = "url('img/pit-latrine1.jpg')";
+// document.querySelector('.slide-5').style.backgroundImage = "url('img/toilets1.jpg')";
+
 
 // INIT
 window.onload = () => {
@@ -18,7 +19,7 @@ window.onload = () => {
         y: 20,
         duration: 1,
     });
-    gsap.from(".caption-box-1", {
+    gsap.from(".panel-1", {
         opacity: 0,
         y: 40,
         duration: 1,
@@ -30,18 +31,52 @@ window.onload = () => {
 // SLIDE 2
 
 var timeline = new TimelineMax();
-var tween1 = TweenMax.fromTo('.slide-2', { opacity: 0 }, { opacity: 1, duration: 0.5 });
+var tween1 = TweenMax.fromTo('.slide-2', { opacity: 0 }, { opacity: 1, duration: 0.2 });
 
 timeline
     .add(tween1);
 
 new ScrollMagic.Scene({
-    triggerElement: '.caption-box-2',
+    triggerElement: '.panel-2',
+    duration: document.querySelector('.panel-4').offsetTop - document.querySelector('.panel-2').offsetTop,
+})
+    .setTween(timeline)
+    .setPin('.panel-2')
+    .addTo(controller);
+
+
+
+// SLIDE 3
+
+var timeline = new TimelineMax();
+var tween1 = TweenMax.fromTo('.slide-3', { opacity: 0 }, { opacity: 1, duration: 0.2 });
+
+timeline
+    .add(tween1);
+
+new ScrollMagic.Scene({
+    triggerElement: '.panel-3',
+    
 })
     .setTween(timeline)
     .addTo(controller);
 
-// SLIDE 3
+// SLIDE 4
+
+var timeline = new TimelineMax();
+var tween1 = TweenMax.fromTo('.slide-4', { opacity: 0 }, { opacity: 1, duration: 0.2 });
+
+timeline
+    .add(tween1);
+
+new ScrollMagic.Scene({
+    triggerElement: '.panel-3',
+    
+})
+    .setTween(timeline)
+    .addTo(controller);
+
+// CHARTS
 
 // AGE AND GENDER BREAKDOWN
 
@@ -228,23 +263,6 @@ const disabled_access_lp = new Chart(ctx7, {
     }
 });
 
-
-var timeline = new TimelineMax();
-
-var tween1 = TweenMax.fromTo('.slide-3', { opacity: 0 }, { opacity: 1 });
-
-
-timeline
-    .add(tween1);
-
-new ScrollMagic.Scene({
-    triggerElement: '.caption-box-2',
-})
-    .setTween(timeline)
-    .addTo(controller);
-
-
-// SLIDE 4
 
 // UNUSABLE TOILETS BREAKDOWN
 
@@ -557,22 +575,6 @@ const dirty_toilets_lp = new Chart(ctx21, {
     }
 });
 
-var timeline = new TimelineMax();
-
-var tween1 = TweenMax.fromTo('.slide-4', { opacity: 0 }, { opacity: 1, duration: 0.5 });
-
-
-
-timeline
-    .add(tween1);
-
-new ScrollMagic.Scene({
-    triggerElement: '.caption-box-3',
-})
-.setTween(timeline)
-.addTo(controller);
-
-// SLIDE 5
 
 const ctx22 = document.getElementById('bathroom-usage').getContext('2d');
 const bathroomUsageChart = new Chart(ctx22, {
@@ -778,20 +780,3 @@ const genderColumnChart = new Chart(ctx25, {
         }
     }
 });
-
-var timeline = new TimelineMax();
-
-var tween1 = TweenMax.fromTo('.slide-5', { opacity: 0 }, { opacity: 1, duration: 0.5 });
-
-timeline
-    .add(tween1);
-
-new ScrollMagic.Scene({
-    triggerElement: '.caption-box-13',
-    triggerHook: 'onLeave', 
-})
-.setTween(timeline)
-.on("leave", function () {
-    controller.destroy(true);
-})
-.addTo(controller);
