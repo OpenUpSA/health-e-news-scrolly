@@ -5,12 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scrolly</title>
+    <!-- boostrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
+    <div class="container">
+    <div class="row">
+
+    <div class="col-lg-9">
+
+    <h1>sfffdas</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+
+
 
     <!-- START SCROLLY -->
-
     <div class="scrolly">
         <style>
             @font-face {
@@ -41,45 +60,7 @@
                 font-style: italic;
             }
 
-            .scrolly {
-                width: 100%;
-                position: relative;
-            }
-
-            .scrolly * {
-                box-sizing: border-box;
-                font-family: 'Balto', sans-serif;
-            }
-
-            .scrolly-bg {
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: -1;
-                width: 100%;
-                height: 100%;
-            }
-
-            .scrolly-indicator {
-                position: fixed;
-                top: 0;
-                right: 0;
-            }
-
-
-            .scrolly .scrolly-sections-container,
-            .scrolly .scrolly-sections-container * {
-                pointer-events: none;
-            }
-
-            .scrolly .scrolly-section {
-                height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                transition: background-color 0.5s ease;
-                position: relative;
-            }
+            /* DEBUG */
 
             .scrolly .scrolly-section.debug {
                 outline: 1px solid red;
@@ -96,17 +77,55 @@
                 font-weight: bold;
             }
 
+            /* END DEBUG STYLES */
+
+            body {
+                transition: background-color 0.5s ease !important;
+            }
+
+            .scrolly-showing {
+                background-color: #000 !important
+
+            }
+
+            .scrolly {
+                width: 100%;
+                position: relative;
+            }
+
+            .scrolly * {
+                box-sizing: border-box;
+                font-family: 'Balto', sans-serif;
+            }
+
             .scrolly .scrolly-background {
-                position: absolute;
-                top: 50vh;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                position: sticky;
+                top: 5vh;
+                left: 0;
                 width: 1000px;
                 max-width: 100%;
-                aspect-ratio: 16 / 16;
+                aspect-ratio: 9 / 12;
                 z-index: -1;
                 overflow: hidden;
             }
+
+            .scrolly .scrolly-sections-container {
+                position: relative;
+            }
+
+          
+
+            .scrolly .scrolly-section {
+                height: 100%;
+                aspect-ratio: 9 / 12;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: background-color 0.5s ease;
+                position: relative;
+            }
+
+            
 
             .scrolly .scrolly-annotations {
                 position: absolute;
@@ -141,7 +160,7 @@
                 width: 1000px;
                 max-width: 100%;
                 display: inline-block;
-                padding: 0 2em;
+                padding: 0;
             }
 
             .scrolly .scrolly-row {
@@ -203,6 +222,11 @@
             }
 
             /* CUSTOMISATION STARTS HERE */
+
+            .scrolly {
+                font-family: 'Balto', sans-serif;
+                font-size: var(--dynamic-font-size, 18px);
+            }
 
             .scrolly .scrolly-chart-container {
                 width: 100%;
@@ -274,15 +298,7 @@
                 padding: 0.5em 1em;
             }
 
-
-            .scrolly .scrolly-background {
-                border: 1px solid #eee;
-            }
-
-            .scrolly {
-                font-family: 'Balto', sans-serif;
-                font-size: 16px;
-            }
+            
 
             .scrolly h1 {
                 font-size: 1.5em;
@@ -310,7 +326,7 @@
             }
 
             .scrolly p {
-                line-height: 1.2em;
+                line-height: 1.3em;
             }
 
             .scrolly p:first-child {
@@ -390,7 +406,7 @@
             .scrolly-chart-1 .scrolly-caption-box, .scrolly-chart-2 .scrolly-caption-box, .scrolly-chart-3 .scrolly-caption-box, .scrolly-chart-4 .scrolly-caption-box, .scrolly-chart-5 .scrolly-caption-box, .scrolly-chart-6 .scrolly-caption-box {
                 position: absolute;
                 top: 2em;
-                left: 2em;
+                left: 0;
                 max-width: 800px;
             }
 
@@ -406,11 +422,36 @@
 
             /* RESPONSIVENESS */
 
-            @media (min-width: 768px) {
+            @media (orientation: landscape) and (max-width: 825px) {
+                .scrolly .scrolly-section {
+                    aspect-ratio: 16 / 9;
+                }
+
+                .scrolly .scrolly-background {
+                    aspect-ratio: 16 / 9;
+                }
 
                 .scrolly {
-                    font-size: 22px;
+                    font-size: 14px;
                 }
+            }
+
+
+            @media (min-width: 768px) {
+
+                .scrolly .scrolly-slide-inner {
+                    padding: 0 2em;
+                    
+                }
+
+                .scrolly-chart-1 .scrolly-caption-box, .scrolly-chart-2 .scrolly-caption-box, .scrolly-chart-3 .scrolly-caption-box, .scrolly-chart-4 .scrolly-caption-box, .scrolly-chart-5 .scrolly-caption-box, .scrolly-chart-6 .scrolly-caption-box {
+                    padding: 0 3em;
+                }
+
+                .scrolly .scrolly-section {
+                    aspect-ratio: 16 / 9;
+                }
+                
 
                 .scrolly .scrolly-background {
                     aspect-ratio: 16 / 9;
@@ -420,16 +461,20 @@
                     font-size: 0.7em;
                 }
 
+               
+
 
 
             }
 
+            /* DEBUG */
+
+            .scrolly-annotation-inner {
+                display: none;
+            }
+
 
         </style>
-
-        <div class="scrolly-indicator"></div>
-
-        <div class="scrolly-bg-color"></div>
 
         <div class="scrolly-background">
             <img src="https://openupsa.github.io/health-e-news-scrolly/img/toilets1.jpg" alt="Background Image" class="scrolly-bg-image">
@@ -564,7 +609,7 @@
 
             <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/toilets1.jpg" data-section-label="start">
                 <div class="scrolly-slide-inner">
-                    <div class="scrolly-caption-box">
+                    <div class="scrolly-caption-box" style="opacity: 0">
                         <h1 class="scrolly-secondary">What we did</h1>
                         <p>To better understand the state of <span class="scrolly-secondary scrolly-fw-500">sanitation in
                                 our primary healthcare system</span>, we asked our network of <span
@@ -577,7 +622,7 @@
 
             <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/map-base.jpg" data-section-label="they-visited">
                 <div class="scrolly-slide-inner">
-                    <div class="scrolly-caption-box">
+                    <div class="scrolly-caption-box" style="opacity: 0">
                         <p>They visited <span class="scrolly-secondary scrolly-fw-500 scrolly-big">31 clinics</span><br />in <span class="scrolly-secondary scrolly-fw-500 scrolly-big">3 provinces</span></p>
                     </div>
                 </div>
@@ -585,7 +630,7 @@
 
             <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/map.jpg" data-section-label="313-users">
                 <div class="scrolly-slide-inner">
-                    <div class="scrolly-caption-box">
+                    <div class="scrolly-caption-box" style="opacity: 0">
                         <p>And interviewed<br /><span class="scrolly-secondary scrolly-fw-500 scrolly-big">313 recent users</span><br />of those clinics.</p>
                     </div>
                 </div>
@@ -600,7 +645,7 @@
 
             <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/pit-latrine1.jpg" data-section-label="pit-latrine">
                 <div class="scrolly-slide-inner">
-                    <div class="scrolly-caption-box scrolly-caption-box-overlay">
+                    <div class="scrolly-caption-box scrolly-caption-box-overlay" style="opacity: 0">
                         <p><span class="scrolly-secondary scrolly-fw-500 scrolly-big">Seven</span> clinics in Limpopo<br/>had some sort of <span class="scrolly-secondary scrolly-fw-500 scrolly-big">pit latrine</span>.</p>
                     </div>
                 </div>
@@ -614,7 +659,7 @@
 
             <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/broken-toilets.jpg" data-section-label="broken-toilets-kzn-lp">
                 <div class="scrolly-slide-inner">
-                    <div class="scrolly-caption-box scrolly-caption-box-overlay">
+                    <div class="scrolly-caption-box scrolly-caption-box-overlay" style="opacity: 0">
                         <p>Broken bathrooms were experienced much more in <span class="scrolly-secondary scrolly-fw-500">KZN</span> and <span class="scrolly-secondary scrolly-fw-500">Limpopo</span> than in the Free State.</p>
                     </div>
                 </div>
@@ -642,14 +687,11 @@
 
             <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/toilets1.jpg" data-section-label="conclusion">
                 <div class="scrolly-slide-inner">
-                    <div class="scrolly-caption-box">
-                        <p>And all for the sake of a <span class="scrolly-secondary scrolly-fw-500 scrolly-big">usable bathroom</span>.</p>
+                    <div class="scrolly-caption-box" style="opacity: 0">
+                        <p>And all for the sake of a <br/><span class="scrolly-secondary scrolly-fw-500 scrolly-big">usable bathroom</span>.</p>
                     </div>
                 </div>
             </div>
-
-            <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/toilets1.jpg" data-section-label="conclusion2"></div>
-            <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/toilets1.jpg" data-section-label="end"></div>
 
 
         </div>
@@ -657,10 +699,33 @@
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+        
+        
+        
         <script>
 
-            DEBUG = false;
-            
+            DEBUG = true;
+
+            /*const container = document.querySelector('.scrolly');
+            const baseWidth = 825; // Known width for 18px font
+            const baseFontSize = 18; // Font size at baseWidth
+
+            // Function to calculate font size based on container's width
+            function adjustFontSize() {
+                const containerWidth = container.offsetWidth;
+                const newFontSize = (containerWidth * baseFontSize) / baseWidth;
+                container.style.setProperty('--dynamic-font-size', `${newFontSize}px`);
+            }
+
+            // Create a ResizeObserver to adjust font size on container resize
+            const resizeObserver = new ResizeObserver(adjustFontSize);
+            resizeObserver.observe(container);
+
+            // Initial call to set font size on load
+            adjustFontSize();*/
+
+
+          
 
             function updateBackgroundImage(src) {
                 const bgImage = document.querySelector('.scrolly-bg-image');
@@ -681,7 +746,7 @@
             
                 gsap.to(overlayImage, {
                     opacity: 1,
-                    duration: 0.5,
+                    duration: 0.8,
                     onComplete: () => {
                         bgImage.remove();
                     }
@@ -691,7 +756,6 @@
             gsap.registerPlugin(ScrollTrigger);
             
             document.querySelectorAll('.scrolly-section').forEach((section, index) => {
-                const background = section.getAttribute('data-background');
 
                 // DEBUG
                 const section_label = section.getAttribute('data-section-label');
@@ -702,14 +766,34 @@
                     label.textContent = section_label;
                     section.classList.add('debug');
                 }
+
+                const background = section.getAttribute('data-background');
             
                 ScrollTrigger.create({
                     trigger: section,
                     start: 'top center',
                     onEnter: () => {
+
+                        if(section_label == 'start') {
+                            document.body.classList.add('scrolly-showing');
+                        }
+
+                        if(section_label == 'conclusion') {
+                            document.body.classList.remove('scrolly-showing');
+                        }
+
+
                         updateBackgroundImage(background);
                     },
                     onLeaveBack: () => {
+
+                        if(section_label == 'start' || section_label == 'conclusion') {
+                            if(section_label == 'start') {
+                                document.body.classList.remove('scrolly-showing');
+                            }
+                        }
+
+
                         const prevSection = document.querySelectorAll('.scrolly-section')[index - 1];
                         const prevBackground = prevSection ? prevSection.getAttribute('data-background') : background;
                         updateBackgroundImage(prevBackground);
@@ -721,27 +805,32 @@
 
             const background = document.querySelector('.scrolly-background');
 
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='start']",
-                start: "top top",
-                endTrigger: ".scrolly-section[data-section-label='end']",
-                end: "bottom bottom",
-                toggleClass: { targets: background, className: 'fixed' },
+            const offsetInPixels = window.innerHeight * 0.05;
+           
+            gsap.utils.toArray('.scrolly-section .scrolly-caption-box').forEach((caption) => {
+                gsap.to(caption, {
+                    opacity: 1, 
+                    duration: 0.2, 
+                    scrollTrigger: {
+                        trigger: caption,
+                        start: () => {
+                            const backgroundRect = background.getBoundingClientRect();
+                            return `top ${backgroundRect.height + offsetInPixels}px`; 
+                        },
+                        end: () => {
+                            const backgroundRect = background.getBoundingClientRect();
+                            return `top ${offsetInPixels + backgroundRect.height/2}px`; 
+                        },
+                        scrub: true
+                    }
+                });
             });
+
+            
 
             /// CUSTOMISATION STARTS HERE
 
             /// PINS
-            
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='conclusion']",
-                pin: true,
-                start: "center center",
-                endTrigger: ".scrolly-section[data-section-label='end']",
-                end: 'top top',
-                pinSpacing: false
-            });
-
 
             /// ANNOTATIONS
 
@@ -1328,34 +1417,7 @@
             const fs_dirty_toilets = [2, 3, 0];
             const lp_dirty_toilets = [9, 8, 3];
             const kzn_dirty_toilets = [2, 4, 2];
-
-            // ADD: CLINIC VISIT
-
-
-
-
-            function updateChartLegend(legend) {
-                const legendContainer = document.querySelector('.scrolly-chart-legend');
-                legendContainer.innerHTML = '';
-                legend.forEach((item) => {
-                    const legendItem = document.createElement('div');
-                    legendItem.classList.add('scrolly-legend-item');
-                    legendItem.innerHTML = `
-                        <div class="scrolly-legend-color" style="background-color: ${item.color};"></div>
-                        <div class="scrolly-legend-text">${item.text}</div>
-                    `;
-                    legendContainer.appendChild(legendItem);
-                });
-            }
-
-            function pinChartTitle(label) {
-                gsap.to('.scrolly-caption-box[data-annotation-label]', { opacity: 0, ease: "none" });
-                gsap.fromTo(
-                    `.scrolly-caption-box[data-annotation-label='${label}']`,
-                    { opacity: 0 },
-                    { opacity: 1, ease: "none" }
-                );
-            }
+            
 
             function titleFadeIn(label, trigger) {
                 gsap.fromTo(
@@ -1366,8 +1428,14 @@
                     ease: "none",
                     scrollTrigger: {
                         trigger: `.scrolly-section[data-section-label='${label}']`,
-                        start: "top bottom",
-                        end: "top center",
+                        start: () => {
+                            const backgroundRect = background.getBoundingClientRect();
+                            return `top ${backgroundRect.height + offsetInPixels}px`; 
+                        },
+                        end: () => {
+                            const backgroundRect = background.getBoundingClientRect();
+                            return `bottom ${backgroundRect.height + offsetInPixels}px`; 
+                        },
                         scrub: true
                     }
                 }
@@ -1381,10 +1449,16 @@
                     opacity: 0,
                     ease: "none",
                     scrollTrigger: {
+                        scrub: true,
                         trigger: `.scrolly-section[data-section-label='${trigger}']`,
-                        start: "top 50%",
-                        end: "top center",
-                        scrub: true
+                        start: () => {
+                            const backgroundRect = background.getBoundingClientRect();
+                            return `top ${backgroundRect.height + offsetInPixels}px`; 
+                        },
+                        end: () => {
+                            const backgroundRect = background.getBoundingClientRect();
+                            return `bottom ${backgroundRect.height + offsetInPixels}px`; 
+                        }
                     }
                 });
             }
@@ -1396,10 +1470,16 @@
                         opacity: 0,
                         ease: "none",
                         scrollTrigger: {
+                            scrub: true,
                             trigger: `.scrolly-section[data-section-label='${trigger}']`,
-                            start: "top 50%",
-                            end: "top center",
-                            scrub: true
+                            start: () => {
+                                const backgroundRect = background.getBoundingClientRect();
+                                return `top ${backgroundRect.height + offsetInPixels}px`; 
+                            },
+                            end: () => {
+                                const backgroundRect = background.getBoundingClientRect();
+                                return `top ${offsetInPixels}px`; 
+                            }
                         }
                     });
             }
@@ -1453,14 +1533,24 @@
             // CHART ANIMATION
 
             
+            // GENDER BREAKDOWN
 
-
+            /*
             gsap.timeline({
+               
                 scrollTrigger: {
                     trigger: ".scrolly-section[data-section-label='gender-breakdown']",
-                    start: "top bottom",
-                    end: "top center",
+                    start: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `center ${backgroundRect.height + offsetInPixels}px`; 
+                    },
+                    end: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `bottom ${backgroundRect.height + offsetInPixels}px`; 
+                    },
                     scrub: true
+                    
+                    
                 }
             })
                 .fromTo(
@@ -1471,7 +1561,6 @@
                 .to(population_chart.data.datasets[0].data, { endArray: female_age_distribution, ease: "none", onUpdate: function () { population_chart.update(); } }, 0)
                 .to(population_chart.data.datasets[1].data, { endArray: male_age_distribution, ease: "none", onUpdate: function () { population_chart.update(); } }, 0)
                 .add(() => {
-                    // Set annotation opacity to 1 after the chart animation completes
                     population_chart.options.plugins.annotation.annotations.diagonalLine1.opacity = 1;
                     population_chart.options.plugins.annotation.annotations.textAnnotation1.opacity = 1;
                     population_chart.options.plugins.annotation.annotations.diagonalLine2.opacity = 1;
@@ -1480,24 +1569,30 @@
                 },1);
                 
             fadeOutChart('scrolly-chart-2', 'outdoor-facilities');
-                       
+            */         
 
             
 
             // PROVINCE BREAKDOWN CHART ANIMATION
 
-           // INSIDE/OUTSIDE
+            // INSIDE/OUTSIDE
            
             
            
-            
+            /*
             
             gsap
             .timeline({
                 scrollTrigger: {
                     trigger: ".scrolly-section[data-section-label='outdoor-facilities']",
-                    start: "top bottom",
-                    end: "top center",
+                    start: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `center ${backgroundRect.height + offsetInPixels}px`; 
+                    },
+                    end: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `bottom ${backgroundRect.height + offsetInPixels}px`; 
+                    },
                     scrub: true
                 }
             })
@@ -1522,8 +1617,14 @@
             .timeline({
                 scrollTrigger: {
                     trigger: ".scrolly-section[data-section-label='disabled-access']",
-                    start: "top center",
-                    end: "top top",
+                    start: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `center ${backgroundRect.height + offsetInPixels}px`; 
+                    },
+                    end: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `bottom ${backgroundRect.height + offsetInPixels}px`; 
+                    },
                     scrub: true
                 }
             })
@@ -1543,8 +1644,14 @@
             .timeline({
                 scrollTrigger: {
                     trigger: ".scrolly-section[data-section-label='broken-toilets']",
-                    start: "top center",
-                    end: "top top",
+                    start: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `center ${backgroundRect.height + offsetInPixels}px`; 
+                    },
+                    end: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `bottom ${backgroundRect.height + offsetInPixels}px`; 
+                    },
                     scrub: true
                 }
             })
@@ -1563,8 +1670,14 @@
             .timeline({
                 scrollTrigger: {
                     trigger: ".scrolly-section[data-section-label='no-toilet-paper']",
-                    start: "top center",
-                    end: "top top",
+                    start: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `center ${backgroundRect.height + offsetInPixels}px`; 
+                    },
+                    end: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `bottom ${backgroundRect.height + offsetInPixels}px`; 
+                    },
                     scrub: true
                 }
             })
@@ -1579,8 +1692,14 @@
             .timeline({
                 scrollTrigger: {
                     trigger: ".scrolly-section[data-section-label='no-sanitiser']",
-                    start: "top center",
-                    end: "top top",
+                    start: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `center ${backgroundRect.height + offsetInPixels}px`; 
+                    },
+                    end: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `bottom ${backgroundRect.height + offsetInPixels}px`; 
+                    },
                     scrub: true
                 }
             })
@@ -1597,8 +1716,14 @@
             .timeline({
                 scrollTrigger: {
                     trigger: ".scrolly-section[data-section-label='unhygenic-toilets']",
-                    start: "top center",
-                    end: "top top",
+                    start: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `center ${backgroundRect.height + offsetInPixels}px`; 
+                    },
+                    end: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `bottom ${backgroundRect.height + offsetInPixels}px`; 
+                    },
                     scrub: true
                 }
             })
@@ -1619,8 +1744,14 @@
             .timeline({
                 scrollTrigger: {
                     trigger: ".scrolly-section[data-section-label='queues']",
-                    start: "top bottom",
-                    end: "top center",
+                    start: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `center ${backgroundRect.height + offsetInPixels}px`; 
+                    },
+                    end: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `bottom ${backgroundRect.height + offsetInPixels}px`; 
+                    },
                     scrub: true
                 }
             })
@@ -1638,8 +1769,14 @@
             .timeline({
                 scrollTrigger: {
                     trigger: ".scrolly-section[data-section-label='unsafe']",
-                    start: "top bottom",
-                    end: "top center",
+                    start: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `center ${backgroundRect.height + offsetInPixels}px`; 
+                    },
+                    end: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `bottom ${backgroundRect.height + offsetInPixels}px`; 
+                    },
                     scrub: true
                 }
             })
@@ -1657,8 +1794,14 @@
             .timeline({
                 scrollTrigger: {
                     trigger: ".scrolly-section[data-section-label='women-unsafe']",
-                    start: "top bottom",
-                    end: "top center",
+                    start: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `center ${backgroundRect.height + offsetInPixels}px`; 
+                    },
+                    end: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `bottom ${backgroundRect.height + offsetInPixels}px`; 
+                    },
                     scrub: true
                 }
             })
@@ -1677,8 +1820,14 @@
             .timeline({
                 scrollTrigger: {
                     trigger: ".scrolly-section[data-section-label='return-visits']",
-                    start: "top bottom",
-                    end: "top center",
+                    start: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `center ${backgroundRect.height + offsetInPixels}px`; 
+                    },
+                    end: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `bottom ${backgroundRect.height + offsetInPixels}px`; 
+                    },
                     scrub: true
                 }
             })
@@ -1690,16 +1839,28 @@
 
             fadeOutChart('scrolly-chart-6', 'conclusion');
                 
-
+            */
 
         </script>
     </div>
 
     <!-- END SCROLLY -->
 
+    
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis incidunt facere, ad fugiat expedita repudiandae voluptate laudantium autem quasi adipisci maiores veniam deleniti ab? Vel voluptatum minima possimus tempora?</p>
 
+    </div>
 
+    <div class="col-lg-3"><h3>sfffdas</h3></div>
 
+</div>
 
 </body>
 
