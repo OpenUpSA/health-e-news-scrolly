@@ -398,20 +398,7 @@
                     </div>
                     
                     <div class="scrolly-chart-legend-container">
-                        <div class="scrolly-chart-legend scrolly-mt-2 scrolly-mb-2">
-                            <div class="scrolly-legend-item">
-                                <div class="scrolly-legend-color" style="background-color: #FFC107;"></div>
-                                <div class="scrolly-legend-text">Inside</div>
-                            </div>
-                            <div class="scrolly-legend-item">
-                                <div class="scrolly-legend-color" style="background-color: #FF5722;"></div>
-                                <div class="scrolly-legend-text">Outside</div>
-                            </div>
-                            <div class="scrolly-legend-item">
-                                <div class="scrolly-legend-color" style="background-color: #999999;"></div>
-                                <div class="scrolly-legend-text">Both</div>
-                            </div>
-                        </div>
+                        <div class="scrolly-chart-legend scrolly-mt-2 scrolly-mb-2"></div>
                     </div>
 
                     <div class="scrolly-row">
@@ -994,23 +981,23 @@
             const lp_inside_outside = [8, 0, 12];
             const kzn_inside_outside = [9, 7, 4];
 
-            const fs_disabled_access = [16, 4, 0];
-            const lp_disabled_access = [6, 14, 0];
-            const kzn_disabled_access = [4, 16, 0];
+            const fs_disabled_access = [0, 4,16];
+            const lp_disabled_access = [0, 16, 6];
+            const kzn_disabled_access = [0, 16, 4];
 
-            const fs_unusable_toilets = [44, 65, 0];
-            const lp_unusable_toilets = [6, 95, 0];
-            const kzn_unusable_toilets = [27, 76, 0];
+            const fs_unusable_toilets = [0, 44, 65];
+            const lp_unusable_toilets = [0, 6, 95];
+            const kzn_unusable_toilets = [0, 27, 76];
 
-            const fs_toilet_paper = [7, 3, 0];
-            const lp_toilet_paper = [10, 0, 0];
-            const kzn_toilet_paper = [7, 3, 0];
+            const fs_toilet_paper = [0, 3, 7];
+            const lp_toilet_paper = [0, 0, 10];
+            const kzn_toilet_paper = [0, 3, 7];
 
             // ADD: TOILET PAPER BREAKDOWN BY GENDER
 
-            const fs_no_sanitiser = [14, 6, 0];
-            const lp_no_sanitiser = [18, 2, 0];
-            const kzn_no_sanitiser = [13, 7, 0];
+            const fs_no_sanitiser = [0, 6, 14];
+            const lp_no_sanitiser = [0, 2, 18];
+            const kzn_no_sanitiser = [0, 7, 13];
 
             const fs_dirty_toilets = [2, 3, 0];
             const lp_dirty_toilets = [9, 8, 3];
@@ -1035,6 +1022,21 @@
 
 
             // POPULATION CHART ANIMATION
+
+            function updateChartLegend(legend) {
+                const legendContainer = document.querySelector('.scrolly-chart-legend');
+                legendContainer.innerHTML = '';
+                legend.forEach((item) => {
+                    const legendItem = document.createElement('div');
+                    legendItem.classList.add('scrolly-legend-item');
+                    legendItem.innerHTML = `
+                        <div class="scrolly-legend-color" style="background-color: ${item.color};"></div>
+                        <div class="scrolly-legend-text">${item.text}</div>
+                    `;
+                    legendContainer.appendChild(legendItem);
+                });
+            }
+
 
             gsap.timeline({
                 scrollTrigger: {
@@ -1090,7 +1092,23 @@
                 .to('.scrolly-chart-1 .scrolly-chart-title ', { 
                     textContent: "Are the toilets inside, outside or both?", 
                     ease: "none" 
-                }, 0);
+                }, 0)
+                .call(() => {
+                    updateChartLegend([
+                        {
+                            color: '#ffd06c',
+                            text: 'Inside'
+                        },
+                        {
+                            color: '#ff3d3b',
+                            text: 'Outside'
+                        },
+                        {
+                            color: '#999999',
+                            text: 'Both'
+                        }
+                    ])
+                });
 
             
             // FADE OUT CHART
@@ -1131,7 +1149,20 @@
                 .to('.scrolly-chart-1 .scrolly-chart-title', { 
                     textContent: "Are the toilets accessible to all patients, including those with disabilities?", 
                     ease: "none" 
-                }, 0);
+                }, 0)
+                .call(() => {
+                    updateChartLegend([
+                        {
+                            color: '#ffd06c',
+                            text: 'Yes'
+                        },
+                        {
+                            color: '#ff3d3b',
+                            text: 'No'
+                        },
+                       
+                    ])
+                });
 
             
             // UNUSABLE
@@ -1150,9 +1181,22 @@
                 .to(lp.data.datasets[0].data, { endArray: lp_unusable_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
                 .to(kzn.data.datasets[0].data, { endArray: kzn_unusable_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
                 .to('.scrolly-chart-1 .scrolly-chart-title', { 
-                    textContent: "Have you ever encountered a situation where the bathroom facilities were unusable?", 
+                    textContent: "Have you ever found the bathroom facilities unusable?", 
                     ease: "none" 
-                }, 0);
+                }, 0)
+                .call(() => {
+                    updateChartLegend([
+                        {
+                            color: '#ffd06c',
+                            text: 'No'
+                        },
+                        {
+                            color: '#ff3d3b',
+                            text: 'Yes'
+                        },
+                       
+                    ])
+                });
 
                 // TOILET PAPER
 
@@ -1171,7 +1215,20 @@
                 .to('.scrolly-chart-1 .scrolly-chart-title', { 
                     textContent: "Is toilet paper available?", 
                     ease: "none" 
-                }, 0);
+                }, 0)
+                .call(() => {
+                    updateChartLegend([
+                        {
+                            color: '#ffd06c',
+                            text: 'Yes'
+                        },
+                        {
+                            color: '#ff3d3b',
+                            text: 'No'
+                        },
+                       
+                    ])
+                });
 
                 // SANITISER
 
@@ -1190,7 +1247,20 @@
                 .to('.scrolly-chart-1 .scrolly-chart-title', { 
                     textContent: "Is soap and/or hand sanitiser available?", 
                     ease: "none" 
-                }, 0);
+                }, 0)
+                .call(() => {
+                    updateChartLegend([
+                        {
+                            color: '#ffd06c',
+                            text: 'Yes'
+                        },
+                        {
+                            color: '#ff3d3b',
+                            text: 'No'
+                        },
+                       
+                    ])
+                });
 
             // FADE OUT
 
@@ -1230,7 +1300,23 @@
                 .to('.scrolly-chart-1 .scrolly-chart-title ', { 
                     textContent: "State of toilets", 
                     ease: "none" 
-                }, 0);
+                }, 0)
+                .call(() => {
+                    updateChartLegend([
+                        {
+                            color: '#ffd06c',
+                            text: 'Dirty Toilet'
+                        },
+                        {
+                            color: '#ff3d3b',
+                            text: 'Dirty Wall'
+                        },
+                        {
+                            color: '#999999',
+                            text: 'Dirty Seat'
+                        }
+                    ])
+                });
             
             
             // FADE OUT PROVINCE CHART
