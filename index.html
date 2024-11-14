@@ -366,14 +366,14 @@
 
             /* CHARTS */
 
-            .scrolly-chart-1, .scrolly-chart-2, .scrolly-chart-3, .scrolly-chart-4 {
+            .scrolly-chart-1, .scrolly-chart-2, .scrolly-chart-3, .scrolly-chart-4, .scrolly-chart-5, .scrolly-chart-6 {
                 width: 100%;
                 height: 100%;
                 top: 0;
                 left: 0;
             }
 
-            .scrolly-chart-1 .scrolly-annotation-inner, .scrolly-chart-2 .scrolly-annotation-inner, .scrolly-chart-3 .scrolly-annotation-inner, .scrolly-chart-4 .scrolly-annotation-inner {
+            .scrolly-chart-1 .scrolly-annotation-inner, .scrolly-chart-2 .scrolly-annotation-inner, .scrolly-chart-3 .scrolly-annotation-inner, .scrolly-chart-4 .scrolly-annotation-inner, .scrolly-chart-5 .scrolly-annotation-inner, .scrolly-chart-6 .scrolly-annotation-inner {
                 width: 600px;
                 max-width: 80%;
                 position: absolute;
@@ -387,10 +387,18 @@
                 transform: translate(-50%, -25%);
             }
 
-            .scrolly-chart-1 .scrolly-caption-box, .scrolly-chart-2 .scrolly-caption-box, .scrolly-chart-3 .scrolly-caption-box, .scrolly-chart-4 .scrolly-caption-box {
+            .scrolly-chart-1 .scrolly-caption-box, .scrolly-chart-2 .scrolly-caption-box, .scrolly-chart-3 .scrolly-caption-box, .scrolly-chart-4 .scrolly-caption-box, .scrolly-chart-5 .scrolly-caption-box, .scrolly-chart-6 .scrolly-caption-box {
                 position: absolute;
                 top: 2em;
                 left: 2em;
+                max-width: 800px;
+            }
+
+           
+
+            .scrolly-chart-6 .scrolly-annotation-inner {
+                width: 700px;
+                transform: translate(-50%, -25%);
             }
 
             
@@ -511,13 +519,7 @@
                         <p>No wonder then that so many people told us that they <span class="scrolly-secondary scrolly-fw-500 scrolly-big">didn’t feel safe using the toilets.</span></p>
                     </div>
 
-                    <div class="scrolly-caption-box" data-annotation-label="women-unsafe" style="opacity: 0">
-                        <p>This included <span class="scrolly-secondary scrolly-fw-500 scrolly-big">more than half of all women interviewed</span>. Surprisingly, <span class="scrolly-secondary scrolly-fw-500">two thirds of 18-25-year-olds</span> said they didn’t feel safe, compared to around <span class="scrolly-secondary scrolly-fw-500">40% of those aged 26-40 or older than 60</span>.</p>
-                    </div>
-
-                    <div class="scrolly-caption-box" data-annotation-label="return-visits" style="opacity: 0">
-                        <p>Apart from the obvious implications to health, and our expectations of germ control in a medical centre, <span class="scrolly-secondary scrolly-fw-500 scrolly-big">83 patients</span> we spoke to told us that the state of the bathrooms <span class="scrolly-secondary scrolly-fw-500 scrolly-big">put them off visiting again</span>. The implications of this - people avoiding primary health care facilities - are severe.</p>
-                    </div>
+                    
 
                     <div class="scrolly-annotation-inner">
                         <canvas id="safety-chart"></canvas>
@@ -525,6 +527,31 @@
 
 
                 </div>
+
+                <div class="scrolly-annotation scrolly-chart-5">
+
+                    <div class="scrolly-caption-box" data-annotation-label="women-unsafe" style="opacity: 0">
+                        <p>This included <span class="scrolly-secondary scrolly-fw-500 scrolly-big">more than half of all women interviewed</span>. Surprisingly, <span class="scrolly-secondary scrolly-fw-500">two thirds of 18-25-year-olds</span> said they didn’t feel safe, compared to around <span class="scrolly-secondary scrolly-fw-500">40% of those aged 26-40 or older than 60</span>.</p>
+                    </div>
+
+
+                    <div class="scrolly-annotation-inner">
+                        <canvas id="women-safety-chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="scrolly-annotation scrolly-chart-6">
+
+                    <div class="scrolly-caption-box" data-annotation-label="return-visits" style="opacity: 0">
+                        <p>Apart from the obvious implications to health, and our expectations of germ control in a medical centre, <span class="scrolly-secondary scrolly-fw-500 scrolly-big">83 patients</span> we spoke to told us that the state of the bathrooms <span class="scrolly-secondary scrolly-fw-500 scrolly-big">put them off visiting again</span>. The implications of this - people avoiding primary health care facilities - are severe.</p>
+                    </div>
+
+                    <div class="scrolly-annotation-inner">
+                        <canvas id="return-visit-chart"></canvas>
+                    </div>
+
+                </div>
+
 
                
 
@@ -1110,6 +1137,164 @@
                 }
             });
 
+            // WOMEN SAFETY CHART
+
+            const women_safety_ctx = document.getElementById('women-safety-chart').getContext('2d');
+            const women_safety_chart = new Chart(women_safety_ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['18-25', '26-40', '41-60', '60+'],
+                    datasets: [
+                        {
+                            label: 'Yes',
+                            data: [13, 46, 27, 36],
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 0
+                        },
+                        {
+                            label: 'No',
+                            data: [24, 29, 32, 26],
+                            backgroundColor: '#FF5722',
+                            borderColor: '#FF5722',
+                            borderWidth: 0
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of People',
+                                color: 'rgba(255,255,255,1)'
+                            },
+                            border: {
+                                color: 'rgba(255,255,255,1)',
+                                width: 2,
+                            },
+                            grid: {
+                                color: 'rgba(255,255,255,0.2)',
+                                lineWidth: 1,
+                                borderDash: [5, 5],
+                            },
+                            ticks: {
+                                color: 'rgba(255,255,255,1)',
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Feels safe',
+                                color: 'rgba(255,255,255,1)',
+                            },
+                            border: {
+                                color: 'rgba(255,255,255,1)',
+                                width: 2,
+                            },
+                            grid: {
+                                color: 'rgba(255,255,255,0.2)',
+                                lineWidth: 1,
+                                borderDash: [5, 5],
+                            },
+                            ticks: {
+                                color: 'rgba(255,255,255,1)',
+                            }
+                        }
+                    },
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: 'rgba(255,255,255,1)',
+                            }
+                        },
+                        title: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // RETURN VISIT
+
+            const return_visit_ctx = document.getElementById('return-visit-chart').getContext('2d');
+            const return_visit_chart = new Chart(return_visit_ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Yes','No'],
+                    datasets: [
+                        {
+                            label: 'Female',
+                            data: [73, 39], 
+                            backgroundColor: '#FF5722' 
+                        },
+                        {
+                            label: 'Male',
+                            data: [76, 44], 
+                            backgroundColor: 'rgba(75, 192, 192, 1)' 
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of People',
+                                color: 'rgba(255,255,255,1)'
+                            },
+                            border: {
+                                color: 'rgba(255,255,255,1)',
+                                width: 2,
+                            },
+                            grid: {
+                                color: 'rgba(255,255,255,0.2)',
+                                lineWidth: 1,
+                                borderDash: [5, 5],
+                            },
+                            ticks: {
+                                color: 'rgba(255,255,255,1)',
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Feels safe',
+                                color: 'rgba(255,255,255,1)',
+                            },
+                            border: {
+                                color: 'rgba(255,255,255,1)',
+                                width: 2,
+                            },
+                            grid: {
+                                color: 'rgba(255,255,255,0.2)',
+                                lineWidth: 1,
+                                borderDash: [5, 5],
+                            },
+                            ticks: {
+                                color: 'rgba(255,255,255,1)',
+                            }
+                        }
+                    },
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: 'rgba(255,255,255,1)',
+                            }
+                        },
+                        title: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
 
             // CHART DATA
 
@@ -1141,10 +1326,6 @@
             const fs_dirty_toilets = [2, 3, 0];
             const lp_dirty_toilets = [9, 8, 3];
             const kzn_dirty_toilets = [2, 4, 2];
-
-            // ADD: SAFETY
-
-            // ADD: SAFETY FEMALE AGE
 
             // ADD: CLINIC VISIT
 
@@ -1468,8 +1649,44 @@
 
             fadeOutChart('scrolly-chart-4', 'women-unsafe');
 
+            // WOMEN SAFETY
 
-            
+            gsap
+            .timeline({
+                scrollTrigger: {
+                    trigger: ".scrolly-section[data-section-label='women-unsafe']",
+                    start: "top bottom",
+                    end: "top center",
+                    scrub: true
+                }
+            })
+            .fromTo(
+                ".scrolly-chart-5",
+                { opacity: 0 },
+                { opacity: 1, ease: "none" }
+            );
+
+            fadeOutChart('scrolly-chart-5', 'return-visits');
+
+
+            // RETURN VISITS
+
+            gsap
+            .timeline({
+                scrollTrigger: {
+                    trigger: ".scrolly-section[data-section-label='return-visits']",
+                    start: "top bottom",
+                    end: "top center",
+                    scrub: true
+                }
+            })
+            .fromTo(
+                ".scrolly-chart-6",
+                { opacity: 0 },
+                { opacity: 1, ease: "none" }
+            );
+
+            fadeOutChart('scrolly-chart-6', 'conclusion');
                 
 
 
