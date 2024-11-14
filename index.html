@@ -81,6 +81,9 @@
                 align-items: center;
                 transition: background-color 0.5s ease;
                 position: relative;
+            }
+
+            .scrolly .scrolly-section.debug {
                 outline: 1px solid red;
             }
 
@@ -590,7 +593,7 @@
 
             <div class="scrolly-section" data-background="img/no-toilet-paper.jpg" data-section-label="not-stocked3"></div>
 
-            <div class="scrolly-section" data-background="img/no-toilet-paper.jpg" data-section-label="unhygenic-toilets">
+            <div class="scrolly-section" data-background="img/dirty-toilets.jpg" data-section-label="unhygenic-toilets">
                 <div class="scrolly-slide-inner">
                     <div class="scrolly-caption-box">
                         <p>Unsurprising, then, that our CJs found the state of the toilets to be <span class="scrolly-secondary scrolly-fw-500 scrolly-big">very unhygienic</span>, with urine or feacal matter on the seats in 13 clinics, including nine in Limpopo.</p>
@@ -598,7 +601,9 @@
                 </div>
             </div>
 
-            <div class="scrolly-section" data-background="img/no-toilet-paper.jpg" data-section-label="unhygenic-toilets2"></div>
+            <div class="scrolly-section" data-background="img/dirty-toilets.jpg" data-section-label="unhygenic-toilets-chart1"></div>
+
+            <div class="scrolly-section" data-background="img/dirty-toilets.jpg" data-section-label="unhygenic-toilets-chart2"></div>
 
             <div class="scrolly-section" data-background="img/toilets2.jpg" data-section-label="queues">
                 <div class="scrolly-slide-inner">
@@ -653,6 +658,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
         <script>
+
+            DEBUG = true;
+
             function updateBackgroundImage(src) {
                 const bgImage = document.querySelector('.scrolly-bg-image');
             
@@ -686,11 +694,13 @@
 
                 // DEBUG
                 const section_label = section.getAttribute('data-section-label');
-
-                // add label in section corner
-                let label = section.appendChild(document.createElement('div'));
-                label.classList.add('scrolly-section-label');
-                label.textContent = section_label;
+                
+                if(DEBUG == true) {
+                    let label = section.appendChild(document.createElement('div'));
+                    label.classList.add('scrolly-section-label');
+                    label.textContent = section_label;
+                    section.classList.add('debug');
+                }
             
                 ScrollTrigger.create({
                     trigger: section,
@@ -896,6 +906,10 @@
                 options: options,
                 data: data
             });
+
+            // WAITING TIME CHART
+
+            
 
 
 
@@ -1162,6 +1176,28 @@
                     }
                 }
             );
+
+            gsap
+                .timeline({
+                    scrollTrigger: {
+                        trigger: ".scrolly-section[data-section-label='unhygenic-toilets-chart1']",
+                        start: "top center",
+                        end: "top top",
+                        scrub: true
+                    }
+                })
+                .fromTo(
+                    ".scrolly-chart-1",
+                    { opacity: 0 },
+                    { opacity: 1, ease: "none" }
+                )
+                .to(fs.data.datasets[0].data, { endArray: fs_unusable_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
+                .to(lp.data.datasets[0].data, { endArray: lp_unusable_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
+                .to(kzn.data.datasets[0].data, { endArray: kzn_unusable_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
+                .to('.scrolly-chart-1 .scrolly-chart-title ', { 
+                    textContent: "State of toilets", 
+                    ease: "none" 
+                }, 0);
             
             
 
