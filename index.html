@@ -366,7 +366,7 @@
 
             /* CHARTS */
 
-            .scrolly-chart-1, .scrolly-chart-2 {
+            .scrolly-chart-1, .scrolly-chart-2, .scrolly-chart-3 {
                 width: 100%;
                 height: 100%;
                 top: 0;
@@ -492,7 +492,7 @@
                 <div class="scrolly-annotation scrolly-chart-3">
 
                     <div class="scrolly-caption-box" data-annotation-label="queues" style="opacity: 0">
-                        <p>In addition to the basic state of hygiene, in some larger facilities our reporters witnessed <span class="scrolly-secondary scrolly-fw-500 scrolly-big">people queuing for up to an hour</span> to use the bathroom. </p>
+                        <p>In addition to the basic state of hygiene, in some larger facilities our reporters witnessed <span class="scrolly-secondary scrolly-fw-500 scrolly-big">people queuing for up to an hour</span> to use the bathroom.</p>
                     </div>
 
                     <div class="scrolly-annotation-inner">
@@ -901,24 +901,52 @@
                             beginAtZero: true,
                             title: {
                                 display: true,
-                                text: 'Number of People'
+                                text: 'Number of People',
+                                color: 'rgba(255,255,255,1)'
+                            },
+                            border: {
+                                color: 'rgba(255,255,255,1)',
+                                width: 2,
+                            },
+                            grid: {
+                                color: 'rgba(255,255,255,0.2)',
+                                lineWidth: 1,
+                                borderDash: [5, 5],
+                            },
+                            ticks: {
+                                color: 'rgba(255,255,255,1)',
                             }
                         },
                         x: {
                             title: {
                                 display: true,
-                                text: 'People Count Range'
+                                text: 'People Count Range',
+                                color: 'rgba(255,255,255,1)',
+                            },
+                            border: {
+                                color: 'rgba(255,255,255,1)',
+                                width: 2,
+                            },
+                            grid: {
+                                color: 'rgba(255,255,255,0.2)',
+                                lineWidth: 1,
+                                borderDash: [5, 5],
+                            },
+                            ticks: {
+                                color: 'rgba(255,255,255,1)',
                             }
                         }
                     },
                     responsive: true,
                     plugins: {
                         legend: {
-                            position: 'top'
+                            position: 'top',
+                            labels: {
+                                color: 'rgba(255,255,255,1)',
+                            }
                         },
                         title: {
-                            display: true,
-                            text: 'Daily Bathroom Usage by Time Spent'
+                            display: false
                         }
                     }
                 }
@@ -1306,18 +1334,21 @@
             // QUEUES CHART
 
             gsap
-                .timeline({
-                    scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='queues']",
-                        start: "top center",
-                        end: "top top",
-                        scrub: true
-                    }
-                }).fromTo(
-                    ".scrolly-chart-3",
-                    { opacity: 0 },
-                    { opacity: 1, ease: "none" }
-                );
+            .timeline({
+                scrollTrigger: {
+                    trigger: ".scrolly-section[data-section-label='queues']",
+                    start: "top bottom",
+                    end: "top center",
+                    scrub: true
+                }
+            })
+            .fromTo(
+                ".scrolly-chart-3",
+                { opacity: 0 },
+                { opacity: 1, ease: "none" }
+            );
+
+            
                 
 
 
