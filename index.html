@@ -690,17 +690,15 @@
             /// CUSTOMISATION STARTS HERE
 
             /// PINS
-
-
-            /*
+            
             ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='they-visited']",
+                trigger: ".scrolly-section[data-section-label='conclusion']",
                 pin: true,
                 start: "center center",
-                endTrigger: ".scrolly-section[data-section-label='map2']",
+                endTrigger: ".scrolly-section[data-section-label='end']",
                 end: 'top top',
                 pinSpacing: false
-            });*/
+            });
 
 
             /// ANNOTATIONS
@@ -864,6 +862,23 @@
                 plugins: {
                     legend: {
                         display: false
+                    },
+                    aannotation: {
+                        annotations: {
+                            textAnnotation: {
+                                type: 'label',
+                                xValue: '50%', 
+                                yValue: '90%', 
+                                content: ['Important Segment'],
+                                color: 'rgba(255, 255, 255, 0.9)',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold',
+                                },
+                                padding: 6,
+                                borderRadius: 4
+                            }
+                        }
                     }
                 },
                 borderWidth: 0
@@ -1051,12 +1066,6 @@
             titleFadeIn('queues', 'queues');
 
             titleFadeOut('queues', 'unsafe');
-
-
-            
-
-
-            
 
 
 
