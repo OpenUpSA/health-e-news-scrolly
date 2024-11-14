@@ -373,7 +373,7 @@
                 left: 0;
             }
 
-            .scrolly-chart-1 .scrolly-annotation-inner, .scrolly-chart-2 .scrolly-annotation-inner {
+            .scrolly-chart-1 .scrolly-annotation-inner, .scrolly-chart-2 .scrolly-annotation-inner, .scrolly-chart-3 .scrolly-annotation-inner {
                 width: 600px;
                 max-width: 80%;
                 position: absolute;
@@ -382,7 +382,7 @@
                 transform: translate(-50%, -30%);
             }
 
-            .scrolly-chart-1 .scrolly-caption-box, .scrolly-chart-2 .scrolly-caption-box {
+            .scrolly-chart-1 .scrolly-caption-box, .scrolly-chart-2 .scrolly-caption-box, .scrolly-chart-3 .scrolly-caption-box {
                 position: absolute;
                 top: 2em;
                 left: 2em;
@@ -445,10 +445,6 @@
                         <p>Unsurprising, then, that our CJs found the state of the toilets to be <span class="scrolly-secondary scrolly-fw-500 scrolly-big">very unhygienic</span>, with urine or feacal matter on the seats in 13 clinics, including nine in Limpopo.</p>
                     </div>
 
-                    <div class="scrolly-caption-box" data-annotation-label="queues" style="opacity: 0">
-                        <p>In addition to the basic state of hygiene, in some larger facilities our reporters witnessed <span class="scrolly-secondary scrolly-fw-500 scrolly-big">people queuing for up to an hour</span> to use the bathroom. </p>
-                    </div>
-
                     <div class="scrolly-annotation-inner">
 
                         <div class="scrolly-row">
@@ -491,6 +487,18 @@
                     <div class="scrolly-annotation-inner">
                         <canvas id="population-chart"></canvas>
                     </div>
+                </div>
+
+                <div class="scrolly-annotation scrolly-chart-3">
+
+                    <div class="scrolly-caption-box" data-annotation-label="queues" style="opacity: 0">
+                        <p>In addition to the basic state of hygiene, in some larger facilities our reporters witnessed <span class="scrolly-secondary scrolly-fw-500 scrolly-big">people queuing for up to an hour</span> to use the bathroom. </p>
+                    </div>
+
+                    <div class="scrolly-annotation-inner">
+                        <canvas id="queues-chart"></canvas>
+                    </div>
+
                 </div>
 
                
@@ -617,7 +625,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
         <script>
 
-            DEBUG = true;
+            DEBUG = false;
             
 
             function updateBackgroundImage(src) {
@@ -851,7 +859,70 @@
             // WAITING TIME CHART
 
             
-
+            const queues_ctx = document.getElementById('queues-chart').getContext('2d');
+            const queues_chart = new Chart(queues_ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['21-50', '51-70', '71-100', '100+'],
+                    datasets: [
+                        {
+                            label: '0-10 mins',
+                            data: [1, 1, 3, 0],
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '10-20 mins',
+                            data: [6, 10, 8, 11],
+                            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '20-40 mins',
+                            data: [2, 2, 2, 10],
+                            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                            borderColor: 'rgba(255, 159, 64, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '40-60 mins',
+                            data: [0, 1, 1, 2],
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of People'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'People Count Range'
+                            }
+                        }
+                    },
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Daily Bathroom Usage by Time Spent'
+                        }
+                    }
+                }
+            });
 
 
             // PROVINCE CHARTS
@@ -1111,7 +1182,8 @@
            
             
             
-            gsap.timeline({
+            gsap
+            .timeline({
                 scrollTrigger: {
                     trigger: ".scrolly-section[data-section-label='outdoor-facilities']",
                     start: "top bottom",
@@ -1119,14 +1191,14 @@
                     scrub: true
                 }
             })
-                .fromTo(
-                    ".scrolly-chart-1",
-                    { opacity: 0 },
-                    { opacity: 1, ease: "none" }
-                )
-                .to(fs.data.datasets[0].data, { endArray: fs_inside_outside, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-                .to(lp.data.datasets[0].data, { endArray: lp_inside_outside, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-                .to(kzn.data.datasets[0].data, { endArray: kzn_inside_outside, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+            .fromTo(
+                ".scrolly-chart-1",
+                { opacity: 0 },
+                { opacity: 1, ease: "none" }
+            )
+            .to(fs.data.datasets[0].data, { endArray: fs_inside_outside, ease: "none", onUpdate: function () { fs.update(); } }, 0)
+            .to(lp.data.datasets[0].data, { endArray: lp_inside_outside, ease: "none", onUpdate: function () { lp.update(); } }, 0)
+            .to(kzn.data.datasets[0].data, { endArray: kzn_inside_outside, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
                 
 
             
@@ -1137,22 +1209,17 @@
             
 
             gsap
-                .timeline({
-                    scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='disabled-access']",
-                        start: "top center",
-                        end: "top top",
-                        scrub: true
-                    }
-                })
-                .fromTo(
-                    ".scrolly-chart-1",
-                    { opacity: 0 },
-                    { opacity: 1, ease: "none" }
-                )
-                .to(fs.data.datasets[0].data, { endArray: fs_disabled_access, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-                .to(lp.data.datasets[0].data, { endArray: lp_disabled_access, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-                .to(kzn.data.datasets[0].data, { endArray: kzn_disabled_access, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+            .timeline({
+                scrollTrigger: {
+                    trigger: ".scrolly-section[data-section-label='disabled-access']",
+                    start: "top center",
+                    end: "top top",
+                    scrub: true
+                }
+            })
+            .to(fs.data.datasets[0].data, { endArray: fs_disabled_access, ease: "none", onUpdate: function () { fs.update(); } }, 0)
+            .to(lp.data.datasets[0].data, { endArray: lp_disabled_access, ease: "none", onUpdate: function () { lp.update(); } }, 0)
+            .to(kzn.data.datasets[0].data, { endArray: kzn_disabled_access, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
 
             
 
@@ -1163,22 +1230,17 @@
 
 
             gsap
-                .timeline({
-                    scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='broken-toilets']",
-                        start: "top center",
-                        end: "top top",
-                        scrub: true
-                    }
-                })
-                .fromTo(
-                    ".scrolly-chart-1",
-                    { opacity: 0 },
-                    { opacity: 1, ease: "none" }
-                )
-                .to(fs.data.datasets[0].data, { endArray: fs_unusable_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-                .to(lp.data.datasets[0].data, { endArray: lp_unusable_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-                .to(kzn.data.datasets[0].data, { endArray: kzn_unusable_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+            .timeline({
+                scrollTrigger: {
+                    trigger: ".scrolly-section[data-section-label='broken-toilets']",
+                    start: "top center",
+                    end: "top top",
+                    scrub: true
+                }
+            })
+            .to(fs.data.datasets[0].data, { endArray: fs_unusable_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
+            .to(lp.data.datasets[0].data, { endArray: lp_unusable_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
+            .to(kzn.data.datasets[0].data, { endArray: kzn_unusable_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
                 
             
 
@@ -1222,17 +1284,17 @@
             // DIRTY TOILETS
 
             gsap
-                .timeline({
-                    scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='unhygenic-toilets']",
-                        start: "top center",
-                        end: "top top",
-                        scrub: true
-                    }
-                })
-                .to(fs.data.datasets[0].data, { endArray: fs_dirty_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-                .to(lp.data.datasets[0].data, { endArray: lp_dirty_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-                .to(kzn.data.datasets[0].data, { endArray: kzn_dirty_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+            .timeline({
+                scrollTrigger: {
+                    trigger: ".scrolly-section[data-section-label='unhygenic-toilets']",
+                    start: "top center",
+                    end: "top top",
+                    scrub: true
+                }
+            })
+            .to(fs.data.datasets[0].data, { endArray: fs_dirty_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
+            .to(lp.data.datasets[0].data, { endArray: lp_dirty_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
+            .to(kzn.data.datasets[0].data, { endArray: kzn_dirty_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
                 
             
             
@@ -1243,7 +1305,20 @@
 
             // QUEUES CHART
 
-            
+            gsap
+                .timeline({
+                    scrollTrigger: {
+                        trigger: ".scrolly-section[data-section-label='queues']",
+                        start: "top center",
+                        end: "top top",
+                        scrub: true
+                    }
+                }).fromTo(
+                    ".scrolly-chart-3",
+                    { opacity: 0 },
+                    { opacity: 1, ease: "none" }
+                );
+                
 
 
         </script>
