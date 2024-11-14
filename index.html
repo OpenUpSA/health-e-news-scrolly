@@ -119,6 +119,10 @@
                 z-index: 3;
             }
 
+            .scrolly-annotation {
+                position: absolute;
+            }
+
             .scrolly .scrolly-background.fixed {
                 position: fixed;
                 top: 50%;
@@ -317,9 +321,7 @@
                 margin-bottom: 0;
             }
 
-            .scrolly .scrolly-annotation {
-                position: absolute;
-            }
+            
 
             .scrolly-caption-box {
                 color: #fff;
@@ -364,21 +366,29 @@
 
             /* CHARTS */
 
-            .scrolly-chart-1 {
-                max-width: 80%;
-                width: 600px;
-                left: 50%;
-                top: 10%;
-                transform: translateX(-50%);
+            .scrolly-chart-1, .scrolly-chart-2 {
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
             }
 
-            .scrolly-chart-2 {
-                max-width: 80%;
+            .scrolly-chart-1 .scrolly-annotation-inner, .scrolly-chart-2 .scrolly-annotation-inner {
                 width: 600px;
+                max-width: 80%;
+                position: absolute;
+                top: 50%;
                 left: 50%;
-                top: 10%;
-                transform: translateX(-50%);
+                transform: translate(-50%, -30%);
             }
+
+            .scrolly-chart-1 .scrolly-caption-box, .scrolly-chart-2 .scrolly-caption-box {
+                position: absolute;
+                top: 2em;
+                left: 2em;
+            }
+
+            
 
 
             /* RESPONSIVENESS */
@@ -411,74 +421,75 @@
         <div class="scrolly-background">
             <img src="img/toilets1.jpg" alt="Background Image" class="scrolly-bg-image">
             <div class="scrolly-annotations">
-                <!-- <div class="scrolly-annotations scrolly-annotations3">
-                    <div class="scrolly-annotation scrolly-annotation-label scrolly-annotation1 scrolly-annotation-fs">Free State</div>
-                    <div class="scrolly-annotation scrolly-annotation-label scrolly-annotation2 scrolly-annotation-kzn">KZN</div>
-                    <div class="scrolly-annotation scrolly-annotation-label scrolly-annotation3 scrolly-annotation-lp">Limpopo</div>
-                </div> -->
+               
 
                 <div class="scrolly-annotation scrolly-chart-1">
 
-                    <div class="scrolly-chart-title-container">
-                        <div class="scrolly-chart-title">Location of toilets</div>
-                    </div>
-                    
-                    <div class="scrolly-chart-legend-container">
-                        <div class="scrolly-chart-legend scrolly-mt-2 scrolly-mb-2"></div>
+                    <div class="scrolly-caption-box" data-annotation-label="outdoor-facilities" style="opacity: 0">
+                        <p>Many clinics in Limpopo and KZN rely on <span class="scrolly-secondary scrolly-fw-500 scrolly-big">outdoor facilities</span>.</p>
                     </div>
 
-                    <div class="scrolly-row">
-                        <div class="scrolly-col">
-                            <div class="scrolly-chart-container">
-                                <canvas id="fs"></canvas>
-                                <div class="scrolly-chart-label-container">
-                                    <div class="scrolly-chart-label">Free State</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="scrolly-col">
-                            <div class="scrolly-chart-container">
-                                <canvas id="lp"></canvas>
-                                <div class="scrolly-chart-label-container">
-                                    <div class="scrolly-chart-label">Limpopo</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="scrolly-col">
-                            <div class="scrolly-chart-container">
-                                <canvas id="kzn"></canvas>
-                                <div class="scrolly-chart-label-container">
-                                    <div class="scrolly-chart-label">KZN</div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="scrolly-caption-box" data-annotation-label="disabled-access" style="opacity: 0">
+                        <p>But while all the clinics we visited in the <span class="scrolly-secondary scrolly-fw-500">Free State</span> had bathrooms inside the clinics, they were also the <span class="scrolly-secondary scrolly-fw-500 scrolly-big">least accessible to patients with a disability</span>.</p>
                     </div>
+
+                    <div class="scrolly-caption-box" data-annotation-label="broken-toilets" style="opacity: 0">
+                        <p><span class="scrolly-secondary scrolly-fw-500 scrolly-big">75.4%</span> of people we spoke to said that at some point, <span class="scrolly-secondary scrolly-fw-500 scrolly-big">the toilets had been out of order</span> when then visited the clinic.</p>
+                    </div>
+
+                    <div class="scrolly-caption-box" data-annotation-label="not-stocked" style="opacity: 0">
+                        <p>Even when patients could visit the bathroom, however, both male and female toilets were <span class="scrolly-secondary scrolly-fw-500 scrolly-big">unlikely to be stocked with basics such as toilet paper or soap</span>.</p>
+                    </div>
+
+                    <div class="scrolly-caption-box" data-annotation-label="unhygenic-toilets" style="opacity: 0">
+                        <p>Unsurprising, then, that our CJs found the state of the toilets to be <span class="scrolly-secondary scrolly-fw-500 scrolly-big">very unhygienic</span>, with urine or feacal matter on the seats in 13 clinics, including nine in Limpopo.</p>
+                    </div>
+
+                    <div class="scrolly-annotation-inner">
+
+                        <div class="scrolly-row">
+                            <div class="scrolly-col">
+                                <div class="scrolly-chart-container">
+                                    <canvas id="fs"></canvas>
+                                    <div class="scrolly-chart-label-container">
+                                        <div class="scrolly-chart-label">Free State</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="scrolly-col">
+                                <div class="scrolly-chart-container">
+                                    <canvas id="lp"></canvas>
+                                    <div class="scrolly-chart-label-container">
+                                        <div class="scrolly-chart-label">Limpopo</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="scrolly-col">
+                                <div class="scrolly-chart-container">
+                                    <canvas id="kzn"></canvas>
+                                    <div class="scrolly-chart-label-container">
+                                        <div class="scrolly-chart-label">KZN</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
 
                 <div class="scrolly-annotation scrolly-chart-2">
 
-                    <div class="scrolly-chart-title-container">
-                        <div class="scrolly-chart-title">Respondents by age and gender</div>
+                    <div class="scrolly-caption-box" data-annotation-label="gender-breakdown" style="opacity: 0">
+                        <p>Interviewees were fairly <span class="scrolly-secondary scrolly-fw-500 scrolly-big">evenly split between age and gender</span>.</p>
                     </div>
-                    <div class="scrolly-chart-legend-container">
-                        <div class="scrolly-chart-legend scrolly-mt-2 scrolly-mb-2">
-                            <div class="scrolly-legend-item">
-                                <div class="scrolly-legend-color" style="background-color: #FFC107;"></div>
-                                <div class="scrolly-legend-text">Female</div>
-                            </div>
-                            <div class="scrolly-legend-item">
-                                <div class="scrolly-legend-color" style="background-color: #FF5722;"></div>
-                                <div class="scrolly-legend-text">Male</div>
-                            </div>
-                        </div>
+                   
+                    <div class="scrolly-annotation-inner">
+                        <canvas id="population-chart"></canvas>
                     </div>
-
-                    <canvas id="population-chart"></canvas>
                 </div>
 
-                <div class="scrolly-annotation scrolly-chart-3">
-                    sdsd
-                </div>
+               
 
 
 
@@ -493,7 +504,7 @@
                         <h1 class="scrolly-secondary">What we did</h1>
                         <p>To better understand the state of <span class="scrolly-secondary scrolly-fw-500">sanitation in
                                 our primary healthcare system</span>, we asked our network of <span
-                                class="scrolly-secondary scrolly-fw-500">citizen journalists</span> to tell us what the
+                                class="scrolly-secondary scrolly-fw-500">community journalists</span> to tell us what the
                             bathrooms are like in their local clinics. We also also asked them to interview people who
                             had recently used the clinics.</p>
                     </div>
@@ -507,7 +518,6 @@
                     </div>
                 </div>
             </div>
-            <div class="scrolly-section" data-background="img/map.jpg" data-section-label="map1"></div>
 
             <div class="scrolly-section" data-background="img/map.jpg" data-section-label="313-users">
                 <div class="scrolly-slide-inner">
@@ -517,58 +527,26 @@
                 </div>
             </div>
 
-            <div class="scrolly-section" data-background="img/toilets-gender1.jpg" data-section-label="gender-breakdown">
-                <div class="scrolly-slide-inner">
-                    <div class="scrolly-caption-box">
-                        <p>Interviewees were fairly <span class="scrolly-secondary scrolly-fw-500 scrolly-big">evenly split between age and gender</span>.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scrolly-section" data-background="img/toilets-gender1.jpg" data-section-label="gender-breakdown-chart1"></div>
+            <div class="scrolly-section" data-background="img/toilets-gender1.jpg" data-section-label="gender-breakdown"></div>
             
 
             <!-- ACCESS -->
 
-            <div class="scrolly-section" data-background="img/outdoor-toilets.jpg" data-section-label="outdoor-facilities">
-                <div class="scrolly-slide-inner">
-                    <div class="scrolly-caption-box">
-                        <p>Many clinics in Limpopo and KZN rely on <span class="scrolly-secondary scrolly-fw-500 scrolly-big">outdoor facilities</span>.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scrolly-section" data-background="img/outdoor-toilets.jpg" data-section-label="outdoor-facilities-chart1"></div>
+            <div class="scrolly-section" data-background="img/outdoor-toilets.jpg" data-section-label="outdoor-facilities"></div>
 
             <div class="scrolly-section" data-background="img/pit-latrine1.jpg" data-section-label="pit-latrine">
                 <div class="scrolly-slide-inner">
-                    <div class="scrolly-caption-box">
+                    <div class="scrolly-caption-box scrolly-caption-box-overlay">
                         <p><span class="scrolly-secondary scrolly-fw-500 scrolly-big">Seven</span> clinics in Limpopo<br/>had some sort of <span class="scrolly-secondary scrolly-fw-500 scrolly-big">pit latrine</span>.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="scrolly-section" data-background="img/disabled.jpg" data-section-label="disabled-access">
-                <div class="scrolly-slide-inner">
-                    <div class="scrolly-caption-box">
-                        <p>But while all the clinics we visited in the <span class="scrolly-secondary scrolly-fw-500">Free State</span> had bathrooms inside the clinics, they were also the <span class="scrolly-secondary scrolly-fw-500 scrolly-big">least accessible to patients with a disability</span>.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scrolly-section" data-background="img/disabled.jpg" data-section-label="disabled-access-chart1"></div>
+            <div class="scrolly-section" data-background="img/disabled.jpg" data-section-label="disabled-access"></div>
 
             <!-- BROKEN TOILETS -->
 
-            <div class="scrolly-section" data-background="img/disabled.jpg" data-section-label="broken-toilets">
-                <div class="scrolly-slide-inner">
-                    <div class="scrolly-caption-box">
-                        <p><span class="scrolly-secondary scrolly-fw-500 scrolly-big">75.4%</span> of people we spoke to said that at some point, <span class="scrolly-secondary scrolly-fw-500 scrolly-big">the toilets had been out of order</span> when then visited the clinic.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scrolly-section" data-background="img/broken-toilets.jpg" data-section-label="broken-toilets-chart-1"></div>
+            <div class="scrolly-section" data-background="img/disabled.jpg" data-section-label="broken-toilets"></div>
 
             <div class="scrolly-section" data-background="img/broken-toilets.jpg" data-section-label="broken-toilets-kzn-lp">
                 <div class="scrolly-slide-inner">
@@ -578,27 +556,13 @@
                 </div>
             </div>
 
-            <div class="scrolly-section" data-background="img/broken-toilets.jpg" data-section-label="not-stocked">
-                <div class="scrolly-slide-inner">
-                    <div class="scrolly-caption-box scrolly-caption-box-overlay">
-                        <p>Even when patients could visit the bathroom, however, both male and female toilets were <span class="scrolly-secondary scrolly-fw-500 scrolly-big">unlikely to be stocked with basics such as toilet paper or soap</span>.</p>
-                    </div>
-                </div>
-            </div>
+            <div class="scrolly-section" data-background="img/broken-toilets.jpg" data-section-label="not-stocked"></div>
 
             <div class="scrolly-section" data-background="img/no-toilet-paper.jpg" data-section-label="no-toilet-paper"></div>
 
             <div class="scrolly-section" data-background="img/no-toilet-paper.jpg" data-section-label="no-sanitiser"></div>
 
-            <div class="scrolly-section" data-background="img/dirty-toilets.jpg" data-section-label="unhygenic-toilets">
-                <div class="scrolly-slide-inner">
-                    <div class="scrolly-caption-box">
-                        <p>Unsurprising, then, that our CJs found the state of the toilets to be <span class="scrolly-secondary scrolly-fw-500 scrolly-big">very unhygienic</span>, with urine or feacal matter on the seats in 13 clinics, including nine in Limpopo.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scrolly-section" data-background="img/dirty-toilets.jpg" data-section-label="unhygenic-toilets-chart1"></div>
+            <div class="scrolly-section" data-background="img/dirty-toilets.jpg" data-section-label="unhygenic-toilets"></div>
 
             <div class="scrolly-section" data-background="img/queue.jpg" data-section-label="queues">
                 <div class="scrolly-slide-inner">
@@ -607,8 +571,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="scrolly-section" data-background="img/queue.jpg" data-section-label="queues-chart1"></div>
 
             <!--SAFETY-->
 
@@ -652,11 +614,13 @@
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
         <script>
 
-            DEBUG = false;
+            DEBUG = true;
+            
 
             function updateBackgroundImage(src) {
                 const bgImage = document.querySelector('.scrolly-bg-image');
@@ -738,100 +702,7 @@
                 endTrigger: ".scrolly-section[data-section-label='map2']",
                 end: 'top top',
                 pinSpacing: false
-            });
-
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='313-users']",
-                pin: true,
-                start: "center center",
-                endTrigger: ".scrolly-section[data-section-label='map3']",
-                end: 'top top',
-                pinSpacing: false
-            });
-
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='gender-breakdown']",
-                pin: true,
-                start: "center center",
-                endTrigger: ".scrolly-section[data-section-label='gender-breakdown2']",
-                end: 'top top',
-                pinSpacing: false
-            });
-
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='outdoor-facilities']",
-                pin: true,
-                start: "center center",
-                endTrigger: ".scrolly-section[data-section-label='outdoor-facilities2']",
-                end: 'top top',
-                pinSpacing: false
-            });
-
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='pit-latrine']",
-                pin: true,
-                start: "center center",
-                endTrigger: ".scrolly-section[data-section-label='pit-latrine2']",
-                end: 'top top',
-                pinSpacing: false
-            });
-
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='disabled-access']",
-                pin: true,
-                start: "center center",
-                endTrigger: ".scrolly-section[data-section-label='disabled-access2']",
-                end: 'top top',
-                pinSpacing: false
-            });
-
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='broken-toilets']",
-                pin: true,
-                start: "center center",
-                endTrigger: ".scrolly-section[data-section-label='broken-toilets2']",
-                end: 'top top',
-                pinSpacing: false
-            });
-
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='broken-toilets-kzn-lp']",
-                pin: true,
-                start: "center center",
-                endTrigger: ".scrolly-section[data-section-label='broken-toilets-kzn-lp2']",
-                end: 'top top',
-                pinSpacing: false
-            });
-
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='not-stocked']",
-                pin: true,
-                start: "center center",
-                endTrigger: ".scrolly-section[data-section-label='not-stocked2']",
-                end: 'top top',
-                pinSpacing: false
-            });
-
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='unhygenic-toilets']",
-                pin: true,
-                start: "center center",
-                endTrigger: ".scrolly-section[data-section-label='unhygenic-toilets2']",
-                end: 'top top',
-                pinSpacing: false
-            }); */
-
-
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='conclusion']",
-                pin: true,
-                start: "center center",
-                endTrigger: ".scrolly-section[data-section-label='end']",
-                end: 'top top',
-                pinSpacing: false
-            });
-
-
+            });*/
 
 
             /// ANNOTATIONS
@@ -847,17 +718,17 @@
                         label: "Female",
                         stack: "Stack 0",
                         backgroundColor: "#FFC107",
-                        data: [0,0,0,0].map((k) => -k),
+                        data: [0, 0, 0, 0].map((k) => -k),
                     },
                     {
                         label: "Male",
                         stack: "Stack 0",
                         backgroundColor: "#FF5722",
-                        data: [0,0,0,0],
+                        data: [0, 0, 0, 0],
                     },
                 ],
             };
-
+            
             var options = {
                 indexAxis: 'y',
                 plugins: {
@@ -870,49 +741,116 @@
                             },
                         },
                     },
-                    legend: false
+                    legend: false,
+                    annotation: {
+                        annotations: {
+                            diagonalLine1: {
+                                type: 'line',
+                                xMin: 10,
+                                yMin: '18-25',
+                                xMax: 50,
+                                yMax: '18-25', 
+                                borderColor: 'white',
+                                borderWidth: 1,
+                                opacity: 0
+
+                            },
+                            textAnnotation1: {
+                                type: 'label',
+                                xValue: 60,
+                                yValue: '18-25',
+                                content: ['Male'],
+                                color: 'rgba(255, 255, 255, 0.9)',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold',
+                                },
+                                position: {
+                                    x: 'center',
+                                    y: 'center'
+                                },
+                                opacity: 0
+                            },
+                            diagonalLine2: {
+                                type: 'line',
+                                xMin: -10,
+                                yMin: '41-60',
+                                xMax: -50,
+                                yMax: '41-60', 
+                                borderColor: 'white',
+                                borderWidth: 1,
+                                opacity: 0
+                            },
+                            textAnnotation2: {
+                                type: 'label',
+                                xValue: -60,
+                                yValue: '41-60',
+                                content: ['Female'],
+                                color: 'rgba(255, 255, 255, 0.9)',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold',
+                                },
+                                position: {
+                                    x: 'center',
+                                    y: 'center'
+                                },
+                                opacity: 0
+                            },
+                        }
+                    }
                 },
                 scales: {
                     x: {
-                        min: -120,
-                        max: 120,
+                        min: -80,
+                        max: 80,
                         ticks: {
                             stepSize: 20,
-                            callback: (v) => v < 0 ? -v : v,
+                            callback: (v) => (v < 0 ? -v : v),
                             color: 'rgba(255,255,255,1)',
                         },
                         border: {
                             color: 'rgba(255,255,255,1)',
-                            width: 2   
+                            width: 2,
                         },
                         grid: {
                             color: 'rgba(255,255,255,0.2)',
-                            lineWidth: 1, 
-                            borderDash: [5, 5], 
+                            lineWidth: 1,
+                            borderDash: [5, 5],
+                        },
+                        title: {
+                            display: true,
+                            text: 'Population Count',
+                            color: 'rgba(255,255,255,1)',
                         },
                     },
                     y: {
                         grid: {
-                            display: false
+                            display: false,
                         },
                         ticks: {
                             color: 'rgba(255,255,255,1)',
                         },
                         border: {
                             color: 'rgba(255,255,255,1)',
-                            width: 2   
+                            width: 2,
                         },
-                    }
-                    
+                        title: {
+                            display: true,
+                            text: 'Age Groups',
+                            color: 'rgba(255,255,255,1)',
+                        },
+                    },
                 },
             };
-
+            
             const population_ctx = document.getElementById('population-chart').getContext('2d');
             const population_chart = new Chart('population-chart', {
                 type: 'bar',
                 options: options,
-                data: data
+                data: data,
             });
+            
 
             // WAITING TIME CHART
 
@@ -1016,13 +954,6 @@
 
 
 
-
-
-
-
-
-            // POPULATION CHART ANIMATION
-
             function updateChartLegend(legend) {
                 const legendContainer = document.querySelector('.scrolly-chart-legend');
                 legendContainer.innerHTML = '';
@@ -1037,10 +968,103 @@
                 });
             }
 
+            function pinChartTitle(label) {
+                gsap.to('.scrolly-caption-box[data-annotation-label]', { opacity: 0, ease: "none" });
+                gsap.fromTo(
+                    `.scrolly-caption-box[data-annotation-label='${label}']`,
+                    { opacity: 0 },
+                    { opacity: 1, ease: "none" }
+                );
+            }
+
+            function titleFadeIn(label, trigger) {
+                gsap.fromTo(
+                `.scrolly-caption-box[data-annotation-label='${label}']`,
+                { opacity: 0 },
+                { 
+                    opacity: 1, 
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: `.scrolly-section[data-section-label='${label}']`,
+                        start: "top bottom",
+                        end: "top center",
+                        scrub: true
+                    }
+                }
+            );
+            }
+
+            function titleFadeOut(label, trigger) {
+                gsap.to(
+                `.scrolly-caption-box[data-annotation-label='${label}']`,
+                { 
+                    opacity: 0,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: `.scrolly-section[data-section-label='${trigger}']`,
+                        start: "top 50%",
+                        end: "top center",
+                        scrub: true
+                    }
+                });
+            }
+
+            function fadeOutChart(label, trigger) {
+                gsap.to(
+                    `.${label} .scrolly-annotation-inner`,
+                    { 
+                        opacity: 0,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: `.scrolly-section[data-section-label='${trigger}']`,
+                            start: "top 50%",
+                            end: "top center",
+                            scrub: true
+                        }
+                    });
+            }
+
+            // TITLES INS AND OUTS
+
+            titleFadeIn('gender-breakdown', 'gender-breakdown');
+
+            titleFadeOut('gender-breakdown', 'outdoor-facilities');
+
+            titleFadeIn('outdoor-facilities', 'outdoor-facilities');
+
+            titleFadeOut('outdoor-facilities', 'disabled-access');
+
+            titleFadeIn('disabled-access', 'disabled-access');
+            
+            titleFadeOut('disabled-access', 'broken-toilets');
+
+            titleFadeIn('broken-toilets', 'broken-toilets');
+
+            titleFadeOut('broken-toilets', 'not-stocked');
+
+            titleFadeIn('not-stocked', 'not-stocked');
+
+            titleFadeOut('not-stocked', 'unhygenic-toilets');
+
+            titleFadeIn('unhygenic-toilets', 'unhygenic-toilets');
+
+
+
+            
+
+
+            
+
+
+
+            // CHART ANIMATION
+
+            
+
 
             gsap.timeline({
                 scrollTrigger: {
-                    trigger: ".scrolly-section[data-section-label='gender-breakdown-chart1']",
+                    trigger: ".scrolly-section[data-section-label='gender-breakdown']",
                     start: "top bottom",
                     end: "top center",
                     scrub: true
@@ -1053,29 +1077,31 @@
                 )
                 .to(population_chart.data.datasets[0].data, { endArray: female_age_distribution, ease: "none", onUpdate: function () { population_chart.update(); } }, 0)
                 .to(population_chart.data.datasets[1].data, { endArray: male_age_distribution, ease: "none", onUpdate: function () { population_chart.update(); } }, 0)
-            
+                .add(() => {
+                    // Set annotation opacity to 1 after the chart animation completes
+                    population_chart.options.plugins.annotation.annotations.diagonalLine1.opacity = 1;
+                    population_chart.options.plugins.annotation.annotations.textAnnotation1.opacity = 1;
+                    population_chart.options.plugins.annotation.annotations.diagonalLine2.opacity = 1;
+                    population_chart.options.plugins.annotation.annotations.textAnnotation2.opacity = 1;
+                    population_chart.update();
+                },1);
+                
+            fadeOutChart('scrolly-chart-2', 'outdoor-facilities');
+                       
 
-            gsap.to(
-                ".scrolly-chart-2",
-                { 
-                    opacity: 0,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='outdoor-facilities']",
-                        start: "top 50%",
-                        end: "top center",
-                        scrub: true
-                    }
-                }
-            );
+            
 
             // PROVINCE BREAKDOWN CHART ANIMATION
 
            // INSIDE/OUTSIDE
+           
+            
+           
+            
             
             gsap.timeline({
                 scrollTrigger: {
-                    trigger: ".scrolly-section[data-section-label='outdoor-facilities-chart1']",
+                    trigger: ".scrolly-section[data-section-label='outdoor-facilities']",
                     start: "top bottom",
                     end: "top center",
                     scrub: true
@@ -1088,51 +1114,20 @@
                 )
                 .to(fs.data.datasets[0].data, { endArray: fs_inside_outside, ease: "none", onUpdate: function () { fs.update(); } }, 0)
                 .to(lp.data.datasets[0].data, { endArray: lp_inside_outside, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-                .to(kzn.data.datasets[0].data, { endArray: kzn_inside_outside, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
-                .to('.scrolly-chart-1 .scrolly-chart-title ', { 
-                    textContent: "Are the toilets inside, outside or both?", 
-                    ease: "none" 
-                }, 0)
-                .call(() => {
-                    updateChartLegend([
-                        {
-                            color: '#ffd06c',
-                            text: 'Inside'
-                        },
-                        {
-                            color: '#ff3d3b',
-                            text: 'Outside'
-                        },
-                        {
-                            color: '#999999',
-                            text: 'Both'
-                        }
-                    ])
-                });
+                .to(kzn.data.datasets[0].data, { endArray: kzn_inside_outside, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+                
 
             
-            // FADE OUT CHART
-
-            gsap.to(
-                ".scrolly-chart-1",
-                { 
-                    opacity: 0,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='pit-latrine']",
-                        start: "top 50%",
-                        end: "top center",
-                        scrub: true
-                    }
-                }
-            );
+            
 
             // DISABLED
+
+            
 
             gsap
                 .timeline({
                     scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='disabled-access-chart1']",
+                        trigger: ".scrolly-section[data-section-label='disabled-access']",
                         start: "top center",
                         end: "top top",
                         scrub: true
@@ -1145,49 +1140,20 @@
                 )
                 .to(fs.data.datasets[0].data, { endArray: fs_disabled_access, ease: "none", onUpdate: function () { fs.update(); } }, 0)
                 .to(lp.data.datasets[0].data, { endArray: lp_disabled_access, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-                .to(kzn.data.datasets[0].data, { endArray: kzn_disabled_access, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
-                .to('.scrolly-chart-1 .scrolly-chart-title', { 
-                    textContent: "Are the toilets accessible to all patients, including those with disabilities?", 
-                    ease: "none" 
-                }, 0)
-                .call(() => {
-                    updateChartLegend([
-                        {
-                            color: '#ffd06c',
-                            text: 'Yes'
-                        },
-                        {
-                            color: '#ff3d3b',
-                            text: 'No'
-                        },
-                       
-                    ])
-                });
+                .to(kzn.data.datasets[0].data, { endArray: kzn_disabled_access, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
 
-            // FADE OUT CHART
-
-            gsap.to(
-                ".scrolly-chart-1",
-                { 
-                    opacity: 0,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='broken-toilets']",
-                        start: "top 50%",
-                        end: "top center",
-                        scrub: true
-                    }
-                }
-            );
+            
 
             
             // UNUSABLE
+
+            
 
 
             gsap
                 .timeline({
                     scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='broken-toilets-chart-1']",
+                        trigger: ".scrolly-section[data-section-label='broken-toilets']",
                         start: "top center",
                         end: "top top",
                         scrub: true
@@ -1200,88 +1166,44 @@
                 )
                 .to(fs.data.datasets[0].data, { endArray: fs_unusable_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
                 .to(lp.data.datasets[0].data, { endArray: lp_unusable_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-                .to(kzn.data.datasets[0].data, { endArray: kzn_unusable_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
-                .to('.scrolly-chart-1 .scrolly-chart-title', { 
-                    textContent: "Have you ever found the bathroom facilities unusable?", 
-                    ease: "none" 
-                }, 0)
-                .call(() => {
-                    updateChartLegend([
-                        {
-                            color: '#ffd06c',
-                            text: 'No'
-                        },
-                        {
-                            color: '#ff3d3b',
-                            text: 'Yes'
-                        },
-                       
-                    ])
-                });
+                .to(kzn.data.datasets[0].data, { endArray: kzn_unusable_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+                
+            
 
-                // TOILET PAPER
+            
 
-                gsap
-                .timeline({
-                    scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='no-toilet-paper']",
-                        start: "top center",
-                        end: "top top",
-                        scrub: true
-                    }
-                })
-                .to(fs.data.datasets[0].data, { endArray: fs_toilet_paper, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-                .to(lp.data.datasets[0].data, { endArray: lp_toilet_paper, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-                .to(kzn.data.datasets[0].data, { endArray: kzn_toilet_paper, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
-                .to('.scrolly-chart-1 .scrolly-chart-title', { 
-                    textContent: "Is toilet paper available?", 
-                    ease: "none" 
-                }, 0)
-                .call(() => {
-                    updateChartLegend([
-                        {
-                            color: '#ffd06c',
-                            text: 'Yes'
-                        },
-                        {
-                            color: '#ff3d3b',
-                            text: 'No'
-                        },
-                       
-                    ])
-                });
 
-                // SANITISER
+            // TOILET PAPER
 
-                gsap
-                .timeline({
-                    scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='no-sanitiser']",
-                        start: "top center",
-                        end: "top top",
-                        scrub: true
-                    }
-                })
-                .to(fs.data.datasets[0].data, { endArray: fs_no_sanitiser, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-                .to(lp.data.datasets[0].data, { endArray: lp_no_sanitiser, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-                .to(kzn.data.datasets[0].data, { endArray: kzn_no_sanitiser, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
-                .to('.scrolly-chart-1 .scrolly-chart-title', { 
-                    textContent: "Is soap and/or hand sanitiser available?", 
-                    ease: "none" 
-                }, 0)
-                .call(() => {
-                    updateChartLegend([
-                        {
-                            color: '#ffd06c',
-                            text: 'Yes'
-                        },
-                        {
-                            color: '#ff3d3b',
-                            text: 'No'
-                        },
-                       
-                    ])
-                });
+            gsap
+            .timeline({
+                scrollTrigger: {
+                    trigger: ".scrolly-section[data-section-label='no-toilet-paper']",
+                    start: "top center",
+                    end: "top top",
+                    scrub: true
+                }
+            })
+            .to(fs.data.datasets[0].data, { endArray: fs_toilet_paper, ease: "none", onUpdate: function () { fs.update(); } }, 0)
+            .to(lp.data.datasets[0].data, { endArray: lp_toilet_paper, ease: "none", onUpdate: function () { lp.update(); } }, 0)
+            .to(kzn.data.datasets[0].data, { endArray: kzn_toilet_paper, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+            
+
+            // SANITISER
+
+            gsap
+            .timeline({
+                scrollTrigger: {
+                    trigger: ".scrolly-section[data-section-label='no-sanitiser']",
+                    start: "top center",
+                    end: "top top",
+                    scrub: true
+                }
+            })
+            .to(fs.data.datasets[0].data, { endArray: fs_no_sanitiser, ease: "none", onUpdate: function () { fs.update(); } }, 0)
+            .to(lp.data.datasets[0].data, { endArray: lp_no_sanitiser, ease: "none", onUpdate: function () { lp.update(); } }, 0)
+            .to(kzn.data.datasets[0].data, { endArray: kzn_no_sanitiser, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+                
 
             // FADE OUT
 
@@ -1304,7 +1226,7 @@
             gsap
                 .timeline({
                     scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='unhygenic-toilets-chart1']",
+                        trigger: ".scrolly-section[data-section-label='unhygenic-toilets']",
                         start: "top center",
                         end: "top top",
                         scrub: true
@@ -1318,12 +1240,8 @@
                 .to(fs.data.datasets[0].data, { endArray: fs_dirty_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
                 .to(lp.data.datasets[0].data, { endArray: lp_dirty_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
                 .to(kzn.data.datasets[0].data, { endArray: kzn_dirty_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
-                .to('.scrolly-chart-1 .scrolly-chart-title ', { 
-                    textContent: "State of toilets", 
-                    ease: "none" 
-                }, 0)
                 .call(() => {
-                    updateChartLegend([
+                    /*updateChartLegend([
                         {
                             color: '#ffd06c',
                             text: 'Dirty Toilet'
@@ -1336,7 +1254,7 @@
                             color: '#999999',
                             text: 'Dirty Seat'
                         }
-                    ])
+                    ])*/
                 });
             
             
@@ -1361,7 +1279,7 @@
 
             gsap.timeline({
                 scrollTrigger: {
-                    trigger: ".scrolly-section[data-section-label='queues-chart1']",
+                    trigger: ".scrolly-section[data-section-label='queues-chart']",
                     start: "top bottom",
                     end: "top center",
                     scrub: true
