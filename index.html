@@ -524,6 +524,8 @@
             <div class="scrolly-section" data-background="img/toilets-gender1.jpg" data-section-label="gender-breakdown-chart2"></div>
             
 
+            <!-- ACCESS -->
+
             <div class="scrolly-section" data-background="img/outdoor-toilets.jpg" data-section-label="outdoor-facilities">
                 <div class="scrolly-slide-inner">
                     <div class="scrolly-caption-box">
@@ -559,6 +561,8 @@
             <div class="scrolly-section" data-background="img/disabled.jpg" data-section-label="disabled-access2"></div>
 
             <div class="scrolly-section" data-background="img/disabled.jpg" data-section-label="disabled-access-chart1"></div>
+
+            <!-- BROKEN TOILETS -->
 
             <div class="scrolly-section" data-background="img/disabled.jpg" data-section-label="broken-toilets">
                 <div class="scrolly-slide-inner">
@@ -831,6 +835,15 @@
                 pinSpacing: false
             });
 
+            ScrollTrigger.create({
+                trigger: ".scrolly-section[data-section-label='conclusion']",
+                pin: true,
+                start: "center center",
+                endTrigger: ".scrolly-section[data-section-label='end']",
+                end: 'top top',
+                pinSpacing: false
+            });
+
 
 
 
@@ -1056,7 +1069,7 @@
 
             // PROVINCE BREAKDOWN CHART ANIMATION
 
-           
+           // INSIDE/OUTSIDE
             
             gsap.timeline({
                 scrollTrigger: {
@@ -1075,7 +1088,7 @@
                 .to(lp.data.datasets[0].data, { endArray: lp_inside_outside, ease: "none", onUpdate: function () { lp.update(); } }, 0)
                 .to(kzn.data.datasets[0].data, { endArray: kzn_inside_outside, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
                 .to('.scrolly-chart-1 .scrolly-chart-title ', { 
-                    textContent: "Toilets Inside or Outside", 
+                    textContent: "Are the toilets inside, outside or both?", 
                     ease: "none" 
                 }, 0);
 
@@ -1096,6 +1109,8 @@
                 }
             );
 
+            // DISABLED
+
             gsap
                 .timeline({
                     scrollTrigger: {
@@ -1113,10 +1128,13 @@
                 .to(fs.data.datasets[0].data, { endArray: fs_disabled_access, ease: "none", onUpdate: function () { fs.update(); } }, 0)
                 .to(lp.data.datasets[0].data, { endArray: lp_disabled_access, ease: "none", onUpdate: function () { lp.update(); } }, 0)
                 .to(kzn.data.datasets[0].data, { endArray: kzn_disabled_access, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
-                .to('.scrolly-chart-1 .scrolly-chart-title ', { 
-                    textContent: "Disability Access", 
+                .to('.scrolly-chart-1 .scrolly-chart-title', { 
+                    textContent: "Are the toilets accessible to all patients, including those with disabilities?", 
                     ease: "none" 
                 }, 0);
+
+            
+            // UNUSABLE
 
 
             gsap
@@ -1131,10 +1149,12 @@
                 .to(fs.data.datasets[0].data, { endArray: fs_unusable_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
                 .to(lp.data.datasets[0].data, { endArray: lp_unusable_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
                 .to(kzn.data.datasets[0].data, { endArray: kzn_unusable_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
-                .to('.scrolly-chart-1 .scrolly-chart-title ', { 
-                    textContent: "Broken Toilets", 
+                .to('.scrolly-chart-1 .scrolly-chart-title', { 
+                    textContent: "Have you ever encountered a situation where the bathroom facilities were unusable?", 
                     ease: "none" 
                 }, 0);
+
+                // TOILET PAPER
 
                 gsap
                 .timeline({
@@ -1148,10 +1168,12 @@
                 .to(fs.data.datasets[0].data, { endArray: fs_toilet_paper, ease: "none", onUpdate: function () { fs.update(); } }, 0)
                 .to(lp.data.datasets[0].data, { endArray: lp_toilet_paper, ease: "none", onUpdate: function () { lp.update(); } }, 0)
                 .to(kzn.data.datasets[0].data, { endArray: kzn_toilet_paper, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
-                .to('.scrolly-chart-1 .scrolly-chart-title ', { 
-                    textContent: "Had Toilet Paper", 
+                .to('.scrolly-chart-1 .scrolly-chart-title', { 
+                    textContent: "Is toilet paper available?", 
                     ease: "none" 
                 }, 0);
+
+                // SANITISER
 
                 gsap
                 .timeline({
@@ -1165,10 +1187,12 @@
                 .to(fs.data.datasets[0].data, { endArray: fs_no_sanitiser, ease: "none", onUpdate: function () { fs.update(); } }, 0)
                 .to(lp.data.datasets[0].data, { endArray: lp_no_sanitiser, ease: "none", onUpdate: function () { lp.update(); } }, 0)
                 .to(kzn.data.datasets[0].data, { endArray: kzn_no_sanitiser, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
-                .to('.scrolly-chart-1 .scrolly-chart-title ', { 
-                    textContent: "Had Sanitiser", 
+                .to('.scrolly-chart-1 .scrolly-chart-title', { 
+                    textContent: "Is soap and/or hand sanitiser available?", 
                     ease: "none" 
                 }, 0);
+
+            // FADE OUT
 
             gsap.to(
                 ".scrolly-chart-1",
@@ -1176,13 +1200,15 @@
                     opacity: 0,
                     ease: "none",
                     scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='not-stocked3']",
+                        trigger: ".scrolly-section[data-section-label='unhygenic-toilets']",
                         start: "top 50%",
                         end: "top center",
                         scrub: true
                     }
                 }
             );
+
+            // DIRTY TOILETS
 
             gsap
                 .timeline({
@@ -1198,17 +1224,18 @@
                     { opacity: 0 },
                     { opacity: 1, ease: "none" }
                 )
-                .to(fs.data.datasets[0].data, { endArray: fs_unusable_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-                .to(lp.data.datasets[0].data, { endArray: lp_unusable_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-                .to(kzn.data.datasets[0].data, { endArray: kzn_unusable_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
+                .to(fs.data.datasets[0].data, { endArray: fs_dirty_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
+                .to(lp.data.datasets[0].data, { endArray: lp_dirty_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
+                .to(kzn.data.datasets[0].data, { endArray: kzn_dirty_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
                 .to('.scrolly-chart-1 .scrolly-chart-title ', { 
                     textContent: "State of toilets", 
                     ease: "none" 
                 }, 0);
             
-                // FADE OUT PROVINCE CHART
+            
+            // FADE OUT PROVINCE CHART
 
-                gsap.to(
+            gsap.to(
                 ".scrolly-chart-1",
                 { 
                     opacity: 0,
@@ -1238,6 +1265,20 @@
                     { opacity: 0 },
                     { opacity: 1, ease: "none" }
                 )
+
+            gsap.to(
+                ".scrolly-chart-3",
+                { 
+                    opacity: 0,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: ".scrolly-section[data-section-label='unsafe']",
+                        start: "top 50%",
+                        end: "top center",
+                        scrub: true
+                    }
+                }
+            );
 
 
         </script>
