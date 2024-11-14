@@ -366,14 +366,14 @@
 
             /* CHARTS */
 
-            .scrolly-chart-1, .scrolly-chart-2, .scrolly-chart-3 {
+            .scrolly-chart-1, .scrolly-chart-2, .scrolly-chart-3, .scrolly-chart-4 {
                 width: 100%;
                 height: 100%;
                 top: 0;
                 left: 0;
             }
 
-            .scrolly-chart-1 .scrolly-annotation-inner, .scrolly-chart-2 .scrolly-annotation-inner, .scrolly-chart-3 .scrolly-annotation-inner {
+            .scrolly-chart-1 .scrolly-annotation-inner, .scrolly-chart-2 .scrolly-annotation-inner, .scrolly-chart-3 .scrolly-annotation-inner, .scrolly-chart-4 .scrolly-annotation-inner {
                 width: 600px;
                 max-width: 80%;
                 position: absolute;
@@ -387,7 +387,7 @@
                 transform: translate(-50%, -25%);
             }
 
-            .scrolly-chart-1 .scrolly-caption-box, .scrolly-chart-2 .scrolly-caption-box, .scrolly-chart-3 .scrolly-caption-box {
+            .scrolly-chart-1 .scrolly-caption-box, .scrolly-chart-2 .scrolly-caption-box, .scrolly-chart-3 .scrolly-caption-box, .scrolly-chart-4 .scrolly-caption-box {
                 position: absolute;
                 top: 2em;
                 left: 2em;
@@ -500,6 +500,13 @@
                         <p>In addition to the basic state of hygiene, in some larger facilities our reporters witnessed <span class="scrolly-secondary scrolly-fw-500 scrolly-big">people queuing for up to an hour</span> to use the bathroom.</p>
                     </div>
 
+                    <div class="scrolly-annotation-inner">
+                        <canvas id="queues-chart"></canvas>
+                    </div>
+
+                </div>
+
+                <div class="scrolly-annotation scrolly-chart-4">
                     <div class="scrolly-caption-box" data-annotation-label="unsafe" style="opacity: 0">
                         <p>No wonder then that so many people told us that they <span class="scrolly-secondary scrolly-fw-500 scrolly-big">didn’t feel safe using the toilets.</span></p>
                     </div>
@@ -513,8 +520,9 @@
                     </div>
 
                     <div class="scrolly-annotation-inner">
-                        <canvas id="queues-chart"></canvas>
+                        <canvas id="safety-chart"></canvas>
                     </div>
+
 
                 </div>
 
@@ -624,7 +632,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
         <script>
 
-            DEBUG = false;
+            DEBUG = true;
             
 
             function updateBackgroundImage(src) {
@@ -1021,6 +1029,88 @@
                 }
             });
 
+            // SAFETY CHART
+
+            const safety_ctx = document.getElementById('safety-chart').getContext('2d');
+            const safety_chart = new Chart(safety_ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Yes', 'No'],
+                    datasets: [
+                        {
+                            label: 'Male',
+                            data: [1, 1, 3, 0],
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 0
+                        },
+                        {
+                            label: 'Female',
+                            data: [6, 10, 8, 11],
+                            backgroundColor: '#ffd06c',
+                            borderColor: '#ffd06c',
+                            borderWidth: 0
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of People',
+                                color: 'rgba(255,255,255,1)'
+                            },
+                            border: {
+                                color: 'rgba(255,255,255,1)',
+                                width: 2,
+                            },
+                            grid: {
+                                color: 'rgba(255,255,255,0.2)',
+                                lineWidth: 1,
+                                borderDash: [5, 5],
+                            },
+                            ticks: {
+                                color: 'rgba(255,255,255,1)',
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'People Count Range',
+                                color: 'rgba(255,255,255,1)',
+                            },
+                            border: {
+                                color: 'rgba(255,255,255,1)',
+                                width: 2,
+                            },
+                            grid: {
+                                color: 'rgba(255,255,255,0.2)',
+                                lineWidth: 1,
+                                borderDash: [5, 5],
+                            },
+                            ticks: {
+                                color: 'rgba(255,255,255,1)',
+                            }
+                        }
+                    },
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: 'rgba(255,255,255,1)',
+                            }
+                        },
+                        title: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+
             // CHART DATA
 
             const female_age_distribution = [21, 57, 36, 33].map((k) => -k);
@@ -1051,10 +1141,6 @@
             const fs_dirty_toilets = [2, 3, 0];
             const lp_dirty_toilets = [9, 8, 3];
             const kzn_dirty_toilets = [2, 4, 2];
-
-            // ADD: QUEUE
-
-            // ADD: BATHROOM USAGE
 
             // ADD: SAFETY
 
@@ -1365,6 +1451,22 @@
 
             // SAFETY
 
+            gsap
+            .timeline({
+                scrollTrigger: {
+                    trigger: ".scrolly-section[data-section-label='unsafe']",
+                    start: "top bottom",
+                    end: "top center",
+                    scrub: true
+                }
+            })
+            .fromTo(
+                ".scrolly-chart-4",
+                { opacity: 0 },
+                { opacity: 1, ease: "none" }
+            );
+
+            fadeOutChart('scrolly-chart-4', 'women-unsafe');
 
 
             
