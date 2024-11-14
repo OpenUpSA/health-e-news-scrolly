@@ -463,6 +463,11 @@
                     <canvas id="population-chart"></canvas>
                 </div>
 
+                <div class="scrolly-annotation scrolly-chart-3">
+                    sdsd
+                </div>
+
+
 
             </div>
         </div>
@@ -605,52 +610,54 @@
 
             <div class="scrolly-section" data-background="img/dirty-toilets.jpg" data-section-label="unhygenic-toilets-chart2"></div>
 
-            <div class="scrolly-section" data-background="img/toilets2.jpg" data-section-label="queues">
+            <div class="scrolly-section" data-background="img/queue.jpg" data-section-label="queues">
                 <div class="scrolly-slide-inner">
                     <div class="scrolly-caption-box">
-                        <p>In addition to the basic state of hygiene, in some larger facilities our reporters witnessed people queuing for up to an hour to use the bathroom. </p>
+                        <p>In addition to the basic state of hygiene, in some larger facilities our reporters witnessed <span class="scrolly-secondary scrolly-fw-500 scrolly-big">people queuing for up to an hour</span> to use the bathroom. </p>
                     </div>
                 </div>
             </div>
+
+            <div class="scrolly-section" data-background="img/queue.jpg" data-section-label="queues-chart1"></div>
 
             <!--SAFETY-->
 
-            <div class="scrolly-section" data-background="img/toilets2.jpg" data-section-label="unsafe">
+            <div class="scrolly-section" data-background="img/no-lock.jpg" data-section-label="unsafe">
                 <div class="scrolly-slide-inner">
                     <div class="scrolly-caption-box">
-                        <p>No wonder then that so many people told us that they didn’t feel safe using the toilets. </p>
+                        <p>No wonder then that so many people told us that they <span class="scrolly-secondary scrolly-fw-500 scrolly-big">didn’t feel safe using the toilets.</span></p>
                     </div>
                 </div>
             </div>
 
-            <div class="scrolly-section" data-background="img/toilets2.jpg" data-section-label="women-unsafe">
+            <div class="scrolly-section" data-background="img/no-lock.jpg" data-section-label="women-unsafe">
                 <div class="scrolly-slide-inner">
                     <div class="scrolly-caption-box">
-                        <p>This included more than half of all women interviewed. Surprisingly, two thirds of 18-25-year-olds said they didn’t feel safe, compared to around 40% of those aged 26-40 or older than 60.</p>
+                        <p>This included <span class="scrolly-secondary scrolly-fw-500 scrolly-big">more than half of all women interviewed</span>. Surprisingly, <span class="scrolly-secondary scrolly-fw-500">two thirds of 18-25-year-olds</span> said they didn’t feel safe, compared to around <span class="scrolly-secondary scrolly-fw-500">40% of those aged 26-40 or older than 60</span>.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="scrolly-section" data-background="img/toilets2.jpg" data-section-label="return-visits">
+            <div class="scrolly-section" data-background="img/people1.jpg" data-section-label="return-visits">
                 <div class="scrolly-slide-inner">
                     <div class="scrolly-caption-box">
-                        <p>Apart from the obvious implications to health, and our expectations of germ control in a medical centre, 83 patients we spoke to told us that the state of the bathrooms put them off visiting again. The implications of this - people avoiding primary health care facilities - are severe.</p>
+                        <p>Apart from the obvious implications to health, and our expectations of germ control in a medical centre, <span class="scrolly-secondary scrolly-fw-500 scrolly-big">83 patients</span> we spoke to told us that the state of the bathrooms <span class="scrolly-secondary scrolly-fw-500 scrolly-big">put them off visiting again</span>. The implications of this - people avoiding primary health care facilities - are severe.</p>
                     </div>
                 </div>
             </div>
 
             <!--CONCLUSION-->
 
-            <div class="scrolly-section" data-background="img/toilets2.jpg" data-section-label="conclusion">
+            <div class="scrolly-section" data-background="img/toilets1.jpg" data-section-label="conclusion">
                 <div class="scrolly-slide-inner">
                     <div class="scrolly-caption-box">
-                        <p>And all for the sake of a usable bathroom.</p>
+                        <p>And all for the sake of a <span class="scrolly-secondary scrolly-fw-500 scrolly-big">usable bathroom</span>.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="scrolly-section" data-background="img/toilets2.jpg" data-section-label="blank5"></div>
-            <div class="scrolly-section" data-background="img/toilets2.jpg" data-section-label="end"></div>
+            <div class="scrolly-section" data-background="img/toilets1.jpg" data-section-label="conclusion2"></div>
+            <div class="scrolly-section" data-background="img/toilets1.jpg" data-section-label="end"></div>
 
 
         </div>
@@ -1199,7 +1206,38 @@
                     ease: "none" 
                 }, 0);
             
+                // FADE OUT PROVINCE CHART
+
+                gsap.to(
+                ".scrolly-chart-1",
+                { 
+                    opacity: 0,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: ".scrolly-section[data-section-label='queues']",
+                        start: "top 50%",
+                        end: "top center",
+                        scrub: true
+                    }
+                }
+            );
             
+
+            // QUEUES CHART
+
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".scrolly-section[data-section-label='queues-chart1']",
+                    start: "top bottom",
+                    end: "top center",
+                    scrub: true
+                }
+            })
+                .fromTo(
+                    ".scrolly-chart-3",
+                    { opacity: 0 },
+                    { opacity: 1, ease: "none" }
+                )
 
 
         </script>
