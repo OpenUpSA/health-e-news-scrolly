@@ -445,6 +445,10 @@
                         <p>Unsurprising, then, that our CJs found the state of the toilets to be <span class="scrolly-secondary scrolly-fw-500 scrolly-big">very unhygienic</span>, with urine or feacal matter on the seats in 13 clinics, including nine in Limpopo.</p>
                     </div>
 
+                    <div class="scrolly-caption-box" data-annotation-label="queues" style="opacity: 0">
+                        <p>In addition to the basic state of hygiene, in some larger facilities our reporters witnessed <span class="scrolly-secondary scrolly-fw-500 scrolly-big">people queuing for up to an hour</span> to use the bathroom. </p>
+                    </div>
+
                     <div class="scrolly-annotation-inner">
 
                         <div class="scrolly-row">
@@ -564,13 +568,7 @@
 
             <div class="scrolly-section" data-background="img/dirty-toilets.jpg" data-section-label="unhygenic-toilets"></div>
 
-            <div class="scrolly-section" data-background="img/queue.jpg" data-section-label="queues">
-                <div class="scrolly-slide-inner">
-                    <div class="scrolly-caption-box">
-                        <p>In addition to the basic state of hygiene, in some larger facilities our reporters witnessed <span class="scrolly-secondary scrolly-fw-500 scrolly-big">people queuing for up to an hour</span> to use the bathroom. </p>
-                    </div>
-                </div>
-            </div>
+            <div class="scrolly-section" data-background="img/queue.jpg" data-section-label="queues"></div>
 
             <!--SAFETY-->
 
@@ -1048,6 +1046,11 @@
 
             titleFadeIn('unhygenic-toilets', 'unhygenic-toilets');
 
+            titleFadeOut('unhygenic-toilets', 'queues');
+
+            titleFadeIn('queues', 'queues');
+
+            titleFadeOut('queues', 'unsafe');
 
 
             
@@ -1205,21 +1208,7 @@
             .to(kzn.data.datasets[0].data, { endArray: kzn_no_sanitiser, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
                 
 
-            // FADE OUT
-
-            gsap.to(
-                ".scrolly-chart-1",
-                { 
-                    opacity: 0,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='unhygenic-toilets']",
-                        start: "top 50%",
-                        end: "top center",
-                        scrub: true
-                    }
-                }
-            );
+            
 
             // DIRTY TOILETS
 
@@ -1232,78 +1221,20 @@
                         scrub: true
                     }
                 })
-                .fromTo(
-                    ".scrolly-chart-1",
-                    { opacity: 0 },
-                    { opacity: 1, ease: "none" }
-                )
                 .to(fs.data.datasets[0].data, { endArray: fs_dirty_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
                 .to(lp.data.datasets[0].data, { endArray: lp_dirty_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-                .to(kzn.data.datasets[0].data, { endArray: kzn_dirty_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0)
-                .call(() => {
-                    /*updateChartLegend([
-                        {
-                            color: '#ffd06c',
-                            text: 'Dirty Toilet'
-                        },
-                        {
-                            color: '#ff3d3b',
-                            text: 'Dirty Wall'
-                        },
-                        {
-                            color: '#999999',
-                            text: 'Dirty Seat'
-                        }
-                    ])*/
-                });
+                .to(kzn.data.datasets[0].data, { endArray: kzn_dirty_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+                
             
             
             // FADE OUT PROVINCE CHART
 
-            gsap.to(
-                ".scrolly-chart-1",
-                { 
-                    opacity: 0,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='queues']",
-                        start: "top 50%",
-                        end: "top center",
-                        scrub: true
-                    }
-                }
-            );
+            fadeOutChart('scrolly-chart-1', 'queues');
             
 
             // QUEUES CHART
 
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".scrolly-section[data-section-label='queues-chart']",
-                    start: "top bottom",
-                    end: "top center",
-                    scrub: true
-                }
-            })
-                .fromTo(
-                    ".scrolly-chart-3",
-                    { opacity: 0 },
-                    { opacity: 1, ease: "none" }
-                )
-
-            gsap.to(
-                ".scrolly-chart-3",
-                { 
-                    opacity: 0,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: ".scrolly-section[data-section-label='unsafe']",
-                        start: "top 50%",
-                        end: "top center",
-                        scrub: true
-                    }
-                }
-            );
+            
 
 
         </script>
