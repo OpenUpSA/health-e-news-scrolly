@@ -439,11 +439,11 @@
 
             .scrolly-chart-annotation-arrow {
                 position: absolute;
-                width: 30px; 
-                height: 40px; 
+                width: 0px; 
+                height: 2px; 
                 background-color: #fff; 
-                transform: rotate(10deg);
-                top: 0;
+                transform: rotate(0deg);
+                top: 100%;
                 left: 50%;
               }
 
@@ -462,16 +462,35 @@
                 left: -15%;
             }
 
+            .scrolly-chart-annotation[data-chart-annotation-label="inside"] .scrolly-chart-annotation-arrow {
+                width: 30px;
+                top: 160%;
+                transform: rotate(60deg);
+            }
+
 
             .scrolly-chart-annotation[data-chart-annotation-label="outside"] {
                 top: 130%;
                 left: -15%;
+            }
 
+            .scrolly-chart-annotation[data-chart-annotation-label="outside"] .scrolly-chart-annotation-arrow {
+                width: 30px;
+                top: -60%;
+                left: 40%;
+                transform: rotate(120deg);
             }
 
             .scrolly-chart-annotation[data-chart-annotation-label="both"] {
                 top: -50%;
                 left: 80%;
+            }
+
+            .scrolly-chart-annotation[data-chart-annotation-label="both"] .scrolly-chart-annotation-arrow {
+                width: 40px;
+                top: 160%;
+                left: -20%;
+                transform: rotate(-60deg);
             }
 
             /* DISABLED ACCESS */
@@ -844,32 +863,32 @@
                                 <div class="scrolly-chart-container">
 
                                     <div class="scrolly-chart-annotation" data-chart-annotation-label="inside">
-                                        <div clas="scrolly-chart-annotation-arrow"></div>
+                                        <div class="scrolly-chart-annotation-arrow"></div>
                                         <div class="scrolly-chart-annotation-label">Inside</div>
                                     </div>
 
                                     <div class="scrolly-chart-annotation" data-chart-annotation-label="usable">
-                                        <div clas="scrolly-chart-annotation-arrow"></div>
+                                        <div class="scrolly-chart-annotation-arrow"></div>
                                         <div class="scrolly-chart-annotation-label">Usable</div>
                                     </div>
 
                                     <div class="scrolly-chart-annotation" data-chart-annotation-label="disabled-access-no">
-                                        <div clas="scrolly-chart-annotation-arrow"></div>
+                                        <div class="scrolly-chart-annotation-arrow"></div>
                                         <div class="scrolly-chart-annotation-label">No Access</div>
                                     </div>
 
                                     <div class="scrolly-chart-annotation" data-chart-annotation-label="toilet-paper-yes">
-                                        <div clas="scrolly-chart-annotation-arrow"></div>
+                                        <div class="scrolly-chart-annotation-arrow"></div>
                                         <div class="scrolly-chart-annotation-label">Has toilet paper</div>
                                     </div>
 
                                     <div class="scrolly-chart-annotation" data-chart-annotation-label="soap-yes">
-                                        <div clas="scrolly-chart-annotation-arrow"></div>
+                                        <div class="scrolly-chart-annotation-arrow"></div>
                                         <div class="scrolly-chart-annotation-label">Has soap</div>
                                     </div>
 
                                     <div class="scrolly-chart-annotation" data-chart-annotation-label="dirty-toilet">
-                                        <div clas="scrolly-chart-annotation-arrow"></div>
+                                        <div class="scrolly-chart-annotation-arrow"></div>
                                         <div class="scrolly-chart-annotation-label">Dirty toilet</div>
                                     </div>
 
@@ -884,32 +903,32 @@
                                 <div class="scrolly-chart-container">
 
                                     <div class="scrolly-chart-annotation" data-chart-annotation-label="outside">
-                                        <div clas="scrolly-chart-annotation-arrow"></div>
+                                        <div class="scrolly-chart-annotation-arrow"></div>
                                         <div class="scrolly-chart-annotation-label">Outside</div>
                                     </div>
 
                                     <div class="scrolly-chart-annotation" data-chart-annotation-label="disabled-access-yes">
-                                        <div clas="scrolly-chart-annotation-arrow"></div>
+                                        <div class="scrolly-chart-annotation-arrow"></div>
                                         <div class="scrolly-chart-annotation-label">Has Access</div>
                                     </div>
 
                                     <div class="scrolly-chart-annotation" data-chart-annotation-label="unusable">
-                                        <div clas="scrolly-chart-annotation-arrow"></div>
+                                        <div class="scrolly-chart-annotation-arrow"></div>
                                         <div class="scrolly-chart-annotation-label">Unusable</div>
                                     </div>
                                     
                                     <div class="scrolly-chart-annotation" data-chart-annotation-label="toilet-paper-no">
-                                        <div clas="scrolly-chart-annotation-arrow"></div>
+                                        <div class="scrolly-chart-annotation-arrow"></div>
                                         <div class="scrolly-chart-annotation-label">No toilet paper</div>
                                     </div>
 
                                     <div class="scrolly-chart-annotation" data-chart-annotation-label="soap-no">
-                                        <div clas="scrolly-chart-annotation-arrow"></div>
+                                        <div class="scrolly-chart-annotation-arrow"></div>
                                         <div class="scrolly-chart-annotation-label">No soap</div>
                                     </div>
 
                                     <div class="scrolly-chart-annotation" data-chart-annotation-label="dirty-seat">
-                                        <div clas="scrolly-chart-annotation-arrow"></div>
+                                        <div class="scrolly-chart-annotation-arrow"></div>
                                         <div class="scrolly-chart-annotation-label">Dirty seat</div>
                                     </div>
 
@@ -930,7 +949,7 @@
                                     
 
                                     <div class="scrolly-chart-annotation" data-chart-annotation-label="both">
-                                        <div clas="scrolly-chart-annotation-arrow"></div>
+                                        <div class="scrolly-chart-annotation-arrow"></div>
                                         <div class="scrolly-chart-annotation-label">Both</div>
                                     </div>
 
