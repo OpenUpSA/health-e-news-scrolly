@@ -497,7 +497,14 @@
 
             .scrolly-chart-annotation[data-chart-annotation-label="disabled-access-yes"] {
                 top: -50%;
-                left: -30%;
+                left: 50%;
+            }
+
+            .scrolly-chart-annotation[data-chart-annotation-label="disabled-access-yes"] .scrolly-chart-annotation-arrow {
+                width: 40px;
+                top: 180%;
+                left: 20%;
+                transform: rotate(-60deg);
             }
 
 
@@ -507,12 +514,28 @@
 
             }
 
+            .scrolly-chart-annotation[data-chart-annotation-label="disabled-access-no"] .scrolly-chart-annotation-arrow {
+                width: 30px;
+                top: -90%;
+                left: 15%;
+                transform: rotate(-120deg);
+            }
+
             /* USABLE/UNUSABLE */
 
             .scrolly-chart-annotation[data-chart-annotation-label="usable"] {
                 top: -40%;
                 left: 80%;
             }
+
+            .scrolly-chart-annotation[data-chart-annotation-label="usable"] .scrolly-chart-annotation-arrow {
+                width: 40px;
+                top: 160%;
+                left: -20%;
+                transform: rotate(-60deg);
+            }
+
+            
 
 
             .scrolly-chart-annotation[data-chart-annotation-label="unusable"] {
@@ -521,9 +544,23 @@
 
             }
 
+            .scrolly-chart-annotation[data-chart-annotation-label="unusable"] .scrolly-chart-annotation-arrow {
+                width: 40px;
+                top: -90%;
+                left: 10%;
+                transform: rotate(70deg);
+            }
+
             .scrolly-chart-annotation[data-chart-annotation-label="toilet-paper-yes"] {
                 top: -50%;
                 left: 80%;
+            }
+
+            .scrolly-chart-annotation[data-chart-annotation-label="toilet-paper-yes"] .scrolly-chart-annotation-arrow {
+                width: 40px;
+                top: 160%;
+                left: -20%;
+                transform: rotate(-60deg);
             }
 
 
@@ -533,9 +570,23 @@
 
             }
 
+            .scrolly-chart-annotation[data-chart-annotation-label="toilet-paper-no"] .scrolly-chart-annotation-arrow {
+                width: 40px;
+                top: -90%;
+                left: 10%;
+                transform: rotate(70deg);
+            }
+
             .scrolly-chart-annotation[data-chart-annotation-label="soap-yes"] {
                 top: -50%;
                 left: 80%;
+            }
+
+            .scrolly-chart-annotation[data-chart-annotation-label="soap-yes"] .scrolly-chart-annotation-arrow {
+                width: 40px;
+                top: 160%;
+                left: -20%;
+                transform: rotate(-60deg);
             }
 
 
@@ -545,10 +596,24 @@
 
             }
 
+            .scrolly-chart-annotation[data-chart-annotation-label="soap-no"] .scrolly-chart-annotation-arrow {
+                width: 40px;
+                top: -90%;
+                left: 10%;
+                transform: rotate(70deg);
+            }
+
             .scrolly-chart-annotation[data-chart-annotation-label="dirty-seat"] {
                 top: 130%;
                 left: 50%;
 
+            }
+
+            .scrolly-chart-annotation[data-chart-annotation-label="dirty-seat"] .scrolly-chart-annotation-arrow {
+                width: 40px;
+                top: -100%;
+                left: 20%;
+                transform: rotate(70deg);
             }
 
             .scrolly-chart-annotation[data-chart-annotation-label="dirty-toilet"] {
@@ -557,10 +622,24 @@
 
             }
 
+            .scrolly-chart-annotation[data-chart-annotation-label="dirty-toilet"] .scrolly-chart-annotation-arrow {
+                width: 40px;
+                top: 160%;
+                left: 20%;
+                transform: rotate(60deg);
+            }
+
             .scrolly-chart-annotation[data-chart-annotation-label="dirty-wall"] {
                 top: -50%;
-                left: 10%;
+                left: 40%;
 
+            }
+
+            .scrolly-chart-annotation[data-chart-annotation-label="dirty-wall"] .scrolly-chart-annotation-arrow {
+                width: 40px;
+                top: 160%;
+                left: -30%;
+                transform: rotate(-60deg);
             }
 
            .scrolly-section-shorter {
@@ -595,92 +674,7 @@
                     
                 }
 
-                .scrolly-chart-annotation[data-chart-annotation-label="inside"] {
-                    top: -30%;
-                    left: -15%;
-                }
-    
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="outside"] {
-                    top: 110%;
-                    left: -15%;
-    
-                }
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="both"] {
-                    top: -30%;
-                    left: 80%;
-                }
-    
-                /* DISABLED ACCESS */
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="disabled-access-yes"] {
-                    top: -30%;
-                    left: -30%;
-                }
-    
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="disabled-access-no"] {
-                    top: 110%;
-                    left: 30%;
-    
-                }
-    
-                /* USABLE/UNUSABLE */
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="usable"] {
-                    top: -30%;
-                    left: 80%;
-                }
-    
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="unusable"] {
-                    top: 120%;
-                    left: 20%;
-    
-                }
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="toilet-paper-yes"] {
-                    top: -30%;
-                    left: 80%;
-                }
-    
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="toilet-paper-no"] {
-                    top: 120%;
-                    left: 10%;
-    
-                }
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="soap-yes"] {
-                    top: -30%;
-                    left: 80%;
-                }
-    
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="soap-no"] {
-                    top: 120%;
-                    left: 10%;
-    
-                }
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="dirty-seat"] {
-                    top: 120%;
-                    left: 50%;
-    
-                }
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="dirty-toilet"] {
-                    top: -30%;
-                    left: -20%;
-    
-                }
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="dirty-wall"] {
-                    top: -30%;
-                    left: 10%;
-    
-                }
+                
             }
 
 
@@ -714,92 +708,201 @@
                     font-size: 0.7em;
                 }
 
+
+
+                .scrolly-chart-annotation-arrow {
+                    width: 60px;
+                    height: 3px;
+                }
+
+                /* INSIDE/OUTSIDE */
+
                 .scrolly-chart-annotation[data-chart-annotation-label="inside"] {
                     top: -30%;
-                    left: -15%;
+                    left: -10%;
                 }
-    
-    
+
+                .scrolly-chart-annotation[data-chart-annotation-label="inside"] .scrolly-chart-annotation-arrow {
+                    width: 60px;
+                    top: 210%;
+                    left: 30%;
+                    transform: rotate(60deg);
+                }
+
+
                 .scrolly-chart-annotation[data-chart-annotation-label="outside"] {
-                    top: 120%;
+                    top: 110%;
                     left: -15%;
-    
                 }
-    
+
+                .scrolly-chart-annotation[data-chart-annotation-label="outside"] .scrolly-chart-annotation-arrow {
+                    width: 60px;
+                    top: -120%;
+                    left: 40%;
+                    transform: rotate(120deg);
+                }
+
                 .scrolly-chart-annotation[data-chart-annotation-label="both"] {
                     top: -30%;
                     left: 80%;
                 }
-    
+
+                .scrolly-chart-annotation[data-chart-annotation-label="both"] .scrolly-chart-annotation-arrow {
+                    width: 60px;
+                    top: 210%;
+                    left: -80%;
+                    transform: rotate(-60deg);
+                }
+
                 /* DISABLED ACCESS */
-    
+
                 .scrolly-chart-annotation[data-chart-annotation-label="disabled-access-yes"] {
                     top: -30%;
-                    left: -30%;
+                    left: 70%;
                 }
-    
-    
+
+                .scrolly-chart-annotation[data-chart-annotation-label="disabled-access-yes"] .scrolly-chart-annotation-arrow {
+                    width: 60px;
+                    top: 210%;
+                    left: 0%;
+                    transform: rotate(-60deg);
+                }
+
+
                 .scrolly-chart-annotation[data-chart-annotation-label="disabled-access-no"] {
-                    top: 120%;
-                    left: 30%;
-    
+                    top: 110%;
+                    left: 70%;
+
                 }
-    
+
+                .scrolly-chart-annotation[data-chart-annotation-label="disabled-access-no"] .scrolly-chart-annotation-arrow {
+                    width: 60px;
+                    top: -120%;
+                    left: -10%;
+                    transform: rotate(-120deg);
+                }
+
                 /* USABLE/UNUSABLE */
-    
+
                 .scrolly-chart-annotation[data-chart-annotation-label="usable"] {
                     top: -30%;
                     left: 80%;
                 }
-    
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="unusable"] {
-                    top: 120%;
-                    left: 20%;
-    
+
+                .scrolly-chart-annotation[data-chart-annotation-label="usable"] .scrolly-chart-annotation-arrow {
+                    width: 60px;
+                    top: 210%;
+                    left: -40%;
+                    transform: rotate(-60deg);
                 }
-    
+
+                .scrolly-chart-annotation[data-chart-annotation-label="unusable"] {
+                    top: 110%;
+                    left: 80%;
+
+                }
+
+                .scrolly-chart-annotation[data-chart-annotation-label="unusable"] .scrolly-chart-annotation-arrow {
+                    width: 60px;
+                    top: -120%;
+                    left: -20%;
+                    transform: rotate(70deg);
+                }
+
+                /* TOILET PAPER */
+
                 .scrolly-chart-annotation[data-chart-annotation-label="toilet-paper-yes"] {
                     top: -30%;
                     left: 80%;
                 }
-    
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="toilet-paper-no"] {
-                    top: 120%;
-                    left: 10%;
-    
+
+                .scrolly-chart-annotation[data-chart-annotation-label="toilet-paper-yes"] .scrolly-chart-annotation-arrow {
+                    width: 60px;
+                    top: 210%;
+                    left: -40%;
+                    transform: rotate(-60deg);
                 }
-    
+
+                .scrolly-chart-annotation[data-chart-annotation-label="toilet-paper-no"] {
+                    top: 110%;
+                    left: 80%;
+
+                }
+
+                .scrolly-chart-annotation[data-chart-annotation-label="toilet-paper-no"] .scrolly-chart-annotation-arrow {
+                    width: 60px;
+                    top: -120%;
+                    left: -20%;
+                    transform: rotate(70deg);
+                }
+
+                /* SOAP */
+
                 .scrolly-chart-annotation[data-chart-annotation-label="soap-yes"] {
                     top: -30%;
                     left: 80%;
                 }
-    
-    
+
+                .scrolly-chart-annotation[data-chart-annotation-label="soap-yes"] .scrolly-chart-annotation-arrow {
+                    width: 60px;
+                    top: 210%;
+                    left: -40%;
+                    transform: rotate(-60deg);
+                }
+
                 .scrolly-chart-annotation[data-chart-annotation-label="soap-no"] {
-                    top: 120%;
-                    left: 10%;
-    
+                    top: 110%;
+                    left: 80%;
+
                 }
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="dirty-seat"] {
-                    top: 120%;
-                    left: 50%;
-    
-                }
-    
-                .scrolly-chart-annotation[data-chart-annotation-label="dirty-toilet"] {
-                    top: -30%;
+
+                .scrolly-chart-annotation[data-chart-annotation-label="soap-no"] .scrolly-chart-annotation-arrow {
+                    width: 60px;
+                    top: -120%;
                     left: -20%;
-    
+                    transform: rotate(70deg);
                 }
-    
+
+                .scrolly-chart-annotation[data-chart-annotation-label="dirty-seat"] {
+                    top: 130%;
+                    left: 50%;
+
+                }
+
+                .scrolly-chart-annotation[data-chart-annotation-label="dirty-seat"] .scrolly-chart-annotation-arrow {
+                    width: 40px;
+                    top: -100%;
+                    left: 20%;
+                    transform: rotate(70deg);
+                }
+
+                .scrolly-chart-annotation[data-chart-annotation-label="dirty-toilet"] {
+                    top: -50%;
+                    left: -20%;
+
+                }
+
+                .scrolly-chart-annotation[data-chart-annotation-label="dirty-toilet"] .scrolly-chart-annotation-arrow {
+                    width: 40px;
+                    top: 160%;
+                    left: 20%;
+                    transform: rotate(60deg);
+                }
+
                 .scrolly-chart-annotation[data-chart-annotation-label="dirty-wall"] {
-                    top: -30%;
-                    left: 10%;
-    
+                    top: -50%;
+                    left: 40%;
+
                 }
+
+                .scrolly-chart-annotation[data-chart-annotation-label="dirty-wall"] .scrolly-chart-annotation-arrow {
+                    width: 40px;
+                    top: 160%;
+                    left: -30%;
+                    transform: rotate(-60deg);
+                }
+
+                
 
 
 
@@ -818,9 +921,10 @@
                 /*display: none;*/
             }
 
-            .scrolly-chart-2 .scrolly-annotation-inner {
+            .scrolly-chart-2 .scrolly-annotation-inner, .scrolly-chart-3 .scrolly-annotation-inner, .scrolly-chart-4 .scrolly-annotation-inner, .scrolly-chart-5 .scrolly-annotation-inner, .scrolly-chart-6 .scrolly-annotation-inner {
                 display: none;
             }
+
 
            
 
@@ -954,7 +1058,7 @@
                                     </div>
 
                                     <div class="scrolly-chart-annotation" data-chart-annotation-label="dirty-wall">
-                                        <div clas="scrolly-chart-annotation-arrow"></div>
+                                        <div class="scrolly-chart-annotation-arrow"></div>
                                         <div class="scrolly-chart-annotation-label">Dirty wall</div>
                                     </div>
 
@@ -1171,7 +1275,7 @@
         
         <script>
 
-            DEBUG = true;
+            DEBUG = false;
 
           
 
@@ -1374,7 +1478,7 @@
                             return `top ${backgroundRect.height + offsetInPixels}px`; 
                         },
                         scrub: true,
-                        markers: true
+                        
                     }
                 }
             );
