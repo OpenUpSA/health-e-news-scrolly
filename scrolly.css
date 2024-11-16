@@ -1,0 +1,109 @@
+body {
+    transition: background-color 0.5s ease !important;
+}
+
+.scrolly-showing {
+    background-color: #000 !important
+}
+
+.scrolly * {
+    all: unset;
+    box-sizing: border-box;
+    display: block;
+}
+
+.scrolly {
+    all: initial; 
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    line-height: 1;
+    color: #333;
+}
+
+.scrolly {
+    width: 100%;
+    position: relative;
+}
+
+/*** SCROLLY BACKGROUND ***/
+
+.scrolly .scrolly-background {
+    position: sticky;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.scrolly .scrolly-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.scrolly .scrolly-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform-origin: center center;
+}
+
+
+/*** SCROLLY SECTIONS ***/
+
+.scrolly .scrolly-sections-container {
+    position: relative;
+}
+
+.scrolly .scrolly-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.scrolly .scrolly-slide-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+/*** SCROLLY ANNOTATIONS ***/
+
+.scrolly .scrolly-annotations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.scrolly-annotation {
+    position: absolute;
+}
+
+/*** SCROLLY DEBUG ***/
+
+.scrolly .scrolly-section.debug {
+    outline: 1px solid red;
+}
+
+.scrolly .scrolly-section-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.5em;
+    background-color: #000;
+    color: #fff;
+    font-size: 0.5em;
+    font-weight: bold;
+}
