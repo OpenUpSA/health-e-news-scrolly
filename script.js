@@ -105,6 +105,30 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    ScrollTrigger.create({
+        trigger: '.scrolly-section[data-section-label="end"]', 
+        start: () => {
+            const backgroundRect = background.getBoundingClientRect();
+            return `top ${offsetInPixels}px`;
+        },
+        onEnter: () => {
+            
+            gsap.to('.scrolly-background', {
+                position: 'relative',
+                duration: 0.5,
+                ease: 'power1.inOut'
+            });
+        },
+        onLeaveBack: () => {
+            
+            gsap.to('.scrolly-background', {
+                position: 'sticky',
+                duration: 0.5,
+                ease: 'power1.inOut'
+            });
+        }
+    });
+
 
     
 
