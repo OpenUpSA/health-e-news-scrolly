@@ -33,76 +33,60 @@
 
     <!-- CANVAS BACKGROUND -->
     <div class="scrolly-background">
-        
+        <div class="scrolly-bg-color-overlay scrolly-bg-1"></div>
         <div class="scrolly-bg-container">
-            <img src="https://openupsa.github.io/health-e-news-scrolly/img/toilets1.jpg" alt="Health-E News" class="scrolly-bg-image">
+            <img src="img/toilets1.jpg" alt="Health-E News" class="scrolly-bg-image">
         </div>
         
         <!-- CANVAS ANNOTATIONS -->
         <div class="scrolly-annotations">
 
-            <div class="scrolly-annotation scrolly-map">
-                <div class="scrolly-annotation-element" data-annotation-label="fs">
-                    <div class="scrolly-map-annotation-arrow"></div>
-                    <div class="scrolly-map-annotation-label">FS</div>
-                </div>
-                <div class="scrolly-annotation-element" data-annotation-label="lp">
-                    <div class="scrolly-map-annotation-arrow"></div>
-                    <div class="scrolly-map-annotation-label">LP</div>
-                </div>
-                <div class="scrolly-annotation-element" data-annotation-label="kzn">
-                    <div class="scrolly-map-annotation-arrow"></div>
-                    <div class="scrolly-map-annotation-label">KZN</div>
-                </div>
+            <!-- ANNOTATIONS -->
+
+            <div class="scrolly-slide-annotation scrolly-pointer-2 scrolly-anchor-tr" data-annotation-label="fs">Free State</div>
+            <div class="scrolly-slide-annotation scrolly-pointer-8 scrolly-anchor-bl" data-annotation-label="lp">Limpopo</div>
+            <div class="scrolly-slide-annotation scrolly-pointer-11 scrolly-anchor-tl" data-annotation-label="kzn">Kwazulu Natal</div>
+
+            <div class="scrolly-slide-annotation scrolly-pointer-10 scrolly-anchor-tl" data-annotation-label="male">Male</div>
+            <div class="scrolly-slide-annotation scrolly-pointer-2 scrolly-anchor-tr" data-annotation-label="female">Female</div>
+
+            <div class="scrolly-slide-annotation scrolly-pointer-4 scrolly-anchor-br" data-annotation-label="inside">Inside</div>
+            <div class="scrolly-slide-annotation scrolly-pointer-2 scrolly-anchor-tr" data-annotation-label="outside">Outside</div>
+            <div class="scrolly-slide-annotation scrolly-pointer-8 scrolly-anchor-bl" data-annotation-label="both">Both</div>
+
+            <div class="scrolly-slide-annotation scrolly-pointer-8 scrolly-anchor-bl" data-annotation-label="disabled-access-yes">Has Access</div>
+            <div class="scrolly-slide-annotation scrolly-pointer-11 scrolly-anchor-tl" data-annotation-label="disabled-access-no">No Access</div>
+
+            <div class="scrolly-slide-annotation scrolly-pointer-8 scrolly-anchor-bl" data-annotation-label="usable">Usable</div>
+            <div class="scrolly-slide-annotation scrolly-pointer-11 scrolly-anchor-tl" data-annotation-label="unusable">Unusable</div>
+
+
+            <div class="scrolly-slide-annotation scrolly-pointer-8 scrolly-anchor-bl" data-annotation-label="toilet-paper-yes">Has toilet paper</div>
+            <div class="scrolly-slide-annotation scrolly-pointer-11 scrolly-anchor-tl" data-annotation-label="toilet-paper-no">No toilet paper</div>
+
+            <div class="scrolly-slide-annotation scrolly-pointer-8 scrolly-anchor-bl" data-annotation-label="soap-yes">Has soap</div>
+            <div class="scrolly-slide-annotation scrolly-pointer-11 scrolly-anchor-tl" data-annotation-label="soap-no">No soap</div>
+
+            <div class="scrolly-slide-annotation scrolly-pointer-4 scrolly-anchor-br" data-annotation-label="dirty-toilet">Dirty toilet</div>
+            <div class="scrolly-slide-annotation scrolly-pointer-11 scrolly-anchor-tl" data-annotation-label="dirty-seat">Dirty seat</div>
+            <div class="scrolly-slide-annotation scrolly-pointer-8 scrolly-anchor-bl" data-annotation-label="dirty-wall">Dirty wall</div>
+
+
+            <div class="scrolly-annotation-element scrolly-annotation-extra-info" data-annotation-label="pit-latrine">
+                <p><span class="scrolly-secondary scrolly-fw-500 scrolly-big">Seven</span> clinics in Limpopo had some sort of <span class="scrolly-secondary scrolly-fw-500 scrolly-big">pit latrine</span>.</p>
+            </div>
+
+            <div class="scrolly-annotation-element scrolly-annotation-extra-info" data-annotation-label="broken-toilets-kzn-lp">
+                <p>Broken bathrooms were experienced much more in <span class="scrolly-secondary scrolly-fw-500">KZN</span> and <span class="scrolly-secondary scrolly-fw-500">Limpopo</span> than in the Free State.</p>
             </div>
 
 
-
+            <!-- CHARTS -->
             <div class="scrolly-annotation scrolly-chart-1">
-
-                <div class="scrolly-annotation-element scrolly-annotation-extra-info" data-annotation-label="pit-latrine">
-                    <p><span class="scrolly-secondary scrolly-fw-500 scrolly-big">Seven</span> clinics in Limpopo had some sort of <span class="scrolly-secondary scrolly-fw-500 scrolly-big">pit latrine</span>.</p>
-                </div>
-
-                <div class="scrolly-annotation-element scrolly-annotation-extra-info" data-annotation-label="broken-toilets-kzn-lp">
-                    <p>Broken bathrooms were experienced much more in <span class="scrolly-secondary scrolly-fw-500">KZN</span> and <span class="scrolly-secondary scrolly-fw-500">Limpopo</span> than in the Free State.</p>
-                </div>
-
-
                 <div class="scrolly-annotation-inner">
                     <div class="scrolly-row">
                         <div class="scrolly-col">
                             <div class="scrolly-chart-container">
-
-                                <div class="scrolly-chart-annotation" data-chart-annotation-label="inside">
-                                    <div class="scrolly-chart-annotation-arrow"></div>
-                                    <div class="scrolly-chart-annotation-label">Inside</div>
-                                </div>
-
-                                <div class="scrolly-chart-annotation" data-chart-annotation-label="usable">
-                                    <div class="scrolly-chart-annotation-arrow"></div>
-                                    <div class="scrolly-chart-annotation-label">Usable</div>
-                                </div>
-
-                                <div class="scrolly-chart-annotation" data-chart-annotation-label="disabled-access-no">
-                                    <div class="scrolly-chart-annotation-arrow"></div>
-                                    <div class="scrolly-chart-annotation-label">No Access</div>
-                                </div>
-
-                                <div class="scrolly-chart-annotation" data-chart-annotation-label="toilet-paper-yes">
-                                    <div class="scrolly-chart-annotation-arrow"></div>
-                                    <div class="scrolly-chart-annotation-label">Has toilet paper</div>
-                                </div>
-
-                                <div class="scrolly-chart-annotation" data-chart-annotation-label="soap-yes">
-                                    <div class="scrolly-chart-annotation-arrow"></div>
-                                    <div class="scrolly-chart-annotation-label">Has soap</div>
-                                </div>
-
-                                <div class="scrolly-chart-annotation" data-chart-annotation-label="dirty-toilet">
-                                    <div class="scrolly-chart-annotation-arrow"></div>
-                                    <div class="scrolly-chart-annotation-label">Dirty toilet</div>
-                                </div>
 
                                 <canvas id="fs"></canvas>
 
@@ -114,37 +98,6 @@
                         <div class="scrolly-col">
                             <div class="scrolly-chart-container">
 
-                                <div class="scrolly-chart-annotation" data-chart-annotation-label="outside">
-                                    <div class="scrolly-chart-annotation-arrow"></div>
-                                    <div class="scrolly-chart-annotation-label">Outside</div>
-                                </div>
-
-                                <div class="scrolly-chart-annotation" data-chart-annotation-label="disabled-access-yes">
-                                    <div class="scrolly-chart-annotation-arrow"></div>
-                                    <div class="scrolly-chart-annotation-label">Has Access</div>
-                                </div>
-
-                                <div class="scrolly-chart-annotation" data-chart-annotation-label="unusable">
-                                    <div class="scrolly-chart-annotation-arrow"></div>
-                                    <div class="scrolly-chart-annotation-label">Unusable</div>
-                                </div>
-
-                                <div class="scrolly-chart-annotation" data-chart-annotation-label="toilet-paper-no">
-                                    <div class="scrolly-chart-annotation-arrow"></div>
-                                    <div class="scrolly-chart-annotation-label">No toilet paper</div>
-                                </div>
-
-                                <div class="scrolly-chart-annotation" data-chart-annotation-label="soap-no">
-                                    <div class="scrolly-chart-annotation-arrow"></div>
-                                    <div class="scrolly-chart-annotation-label">No soap</div>
-                                </div>
-
-                                <div class="scrolly-chart-annotation" data-chart-annotation-label="dirty-seat">
-                                    <div class="scrolly-chart-annotation-arrow"></div>
-                                    <div class="scrolly-chart-annotation-label">Dirty seat</div>
-                                </div>
-
-
                                 <canvas id="lp"></canvas>
 
                                 <div class="scrolly-chart-label-container">
@@ -154,15 +107,6 @@
                         </div>
                         <div class="scrolly-col">
                             <div class="scrolly-chart-container">
-
-                                <div class="scrolly-chart-annotation" data-chart-annotation-label="both">
-                                    <div class="scrolly-chart-annotation-arrow"></div>
-                                    <div class="scrolly-chart-annotation-label">Both</div>
-                                </div>
-                                <div class="scrolly-chart-annotation" data-chart-annotation-label="dirty-wall">
-                                    <div class="scrolly-chart-annotation-arrow"></div>
-                                    <div class="scrolly-chart-annotation-label">Dirty wall</div>
-                                </div>
 
                                 <canvas id="kzn"></canvas>
 
@@ -178,14 +122,6 @@
             <div class="scrolly-annotation scrolly-chart-2">
                 <div class="scrolly-annotation-inner">
                     <div class="scrolly-chart-container">
-                        <div class="scrolly-chart-annotation" data-chart-annotation-label="male">
-                            <div class="scrolly-chart-annotation-arrow"></div>
-                            <div class="scrolly-chart-annotation-label">Male</div>
-                        </div>
-                        <div class="scrolly-chart-annotation" data-chart-annotation-label="female">
-                            <div class="scrolly-chart-annotation-arrow"></div>
-                            <div class="scrolly-chart-annotation-label">Female</div>
-                        </div>
                         <canvas id="population-chart"></canvas>
                     </div>
                 </div>
@@ -193,27 +129,36 @@
 
             <div class="scrolly-annotation scrolly-chart-3">
                 <div class="scrolly-annotation-inner">
-                    <canvas id="queues-chart"></canvas>
+                    <div class="scrolly-chart-container">
+                        <canvas id="queues-chart"></canvas>
+                    </div> 
                 </div>
             </div>
 
             <div class="scrolly-annotation scrolly-chart-4">
                 <div class="scrolly-annotation-inner">
-                    <canvas id="safety-chart"></canvas>
+                    <div class="scrolly-chart-container">
+                        <canvas id="safety-chart"></canvas>
+                    </div>
                 </div>
             </div>
 
             <div class="scrolly-annotation scrolly-chart-5">
                 <div class="scrolly-annotation-inner">
-                    <canvas id="women-safety-chart"></canvas>
+                    <div class="scrolly-chart-container">
+                        <canvas id="women-safety-chart"></canvas>
+                    </div>
                 </div>
             </div>
 
             <div class="scrolly-annotation scrolly-chart-6">
                 <div class="scrolly-annotation-inner">
-                    <canvas id="return-visit-chart"></canvas>
+                    <div class="scrolly-chart-container">
+                        <canvas id="return-visit-chart"></canvas>
+                    </div>
                 </div>
             </div>
+
         </div>
         <!-- END CANVAS ANNOTATIONS -->
     </div>
@@ -226,29 +171,32 @@
 
         <div class="scrolly-section" data-section-label="start">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" style="opacity: 0">
+                <div class="scrolly-caption-box">
                     <h1 class="scrolly-secondary">What we did</h1>
                     <p>To better understand the state of <span class="scrolly-secondary scrolly-fw-500">sanitation in our primary healthcare system</span>, we asked our network of <span class="scrolly-secondary scrolly-fw-500">community journalists</span> to tell us what the bathrooms are like in their local clinics. We also also asked them to interview people who had recently used the clinics.</p>
                 </div>
             </div>
         </div>
 
-        <div class="scrolly-section" data-section-label="start2" data-background="https://openupsa.github.io/health-e-news-scrolly/img/toilets1.jpg"></div>
+        <div class="scrolly-section" data-section-label="start2"></div>
 
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/map-base.jpg" data-section-label="they-visited">
+        <div class="scrolly-section" data-section-label="they-visited">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" style="opacity: 0">
+                <div class="scrolly-caption-box">
                     <p>They visited <span class="scrolly-secondary scrolly-fw-500 scrolly-big">31 clinics</span><br />in <span class="scrolly-secondary scrolly-fw-500 scrolly-big">3 provinces</span></p>
                 </div>
             </div>
         </div>
 
-        <div class="scrolly-section" data-section-label="they-visited2"></div>
+        <div class="scrolly-section" data-section-label="they-visited2" data-background="img/map.jpg"></div>
+        <div class="scrolly-section" data-section-label="they-visited3"></div>
+        <div class="scrolly-section" data-section-label="they-visited4"></div>
+        <div class="scrolly-section" data-section-label="they-visited5"></div>
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/map.jpg" data-section-label="313-users">
+        <div class="scrolly-section" data-section-label="313-users">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" style="opacity: 0">
+                <div class="scrolly-caption-box">
                     <p>And interviewed<br /><span class="scrolly-secondary scrolly-fw-500 scrolly-big">313 recent users</span><br />of those clinics.</p>
                 </div>
             </div>
@@ -258,74 +206,73 @@
 
         <!-- GENDER -->
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/toilets-gender1.jpg" data-section-label="gender-breakdown">
+        <div class="scrolly-section" data-background="img/toilets-gender1.jpg" data-section-label="gender-breakdown" data-section-color="scrolly-bg-2">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" data-annotation-label="gender-breakdown" style="opacity: 0">
+                <div class="scrolly-caption-box" data-annotation-label="gender-breakdown">
                     <p>Interviewees were fairly <span class="scrolly-secondary scrolly-fw-500 scrolly-big">evenly split between age and gender</span>.</p>
                 </div>
             </div>
         </div>
 
-        <div class="scrolly-section scrolly-section-shorter" data-section-label="gender-breakdown2"></div>
-        <div class="scrolly-section scrolly-section-shorter" data-section-label="gender-breakdown3"></div>
-        <div class="scrolly-section scrolly-section-shorter" data-section-label="gender-breakdown4"></div>
-        <div class="scrolly-section scrolly-section-shorter" data-section-label="gender-breakdown5"></div>
+        <div class="scrolly-section" data-section-label="gender-breakdown2"></div>
+        <div class="scrolly-section" data-section-label="gender-breakdown3"></div>
+        <div class="scrolly-section" data-section-label="gender-breakdown4"></div>
+        <div class="scrolly-section" data-section-label="gender-breakdown5"></div>
+        <div class="scrolly-section" data-section-label="gender-breakdown6"></div>
 
         <!-- OUTDOOR -->
 
         <div class="scrolly-section" data-section-label="outdoor-facilities">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" data-annotation-label="outdoor-facilities" style="opacity: 0">
+                <div class="scrolly-caption-box" data-annotation-label="outdoor-facilities"">
                     <p>Many clinics in Limpopo and KZN rely on <span class="scrolly-secondary scrolly-fw-500 scrolly-big">outdoor facilities</span>.</p>
                 </div>
             </div>
         </div>
 
-        <div class="scrolly-section scrolly-section-shorter" data-section-label="outdoor-facilities2"></div>
+        <div class="scrolly-section" data-section-label="outdoor-facilities2"></div>
 
-        <div class="scrolly-section scrolly-section-shorter" data-section-label="outdoor-facilities3"></div>
+        <div class="scrolly-section" data-section-label="outdoor-facilities3"></div>
 
-        <div class="scrolly-section scrolly-section-shorter" data-section-label="outdoor-facilities4"></div>
+        <div class="scrolly-section" data-section-label="outdoor-facilities4"></div>
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/pit-latrine1.jpg" data-section-label="pit-latrine"></div>
+        <div class="scrolly-section" data-section-label="pit-latrine"></div>
 
         <!-- DISABLED -->
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/disabled.jpg" data-section-label="disabled-access">
+        <div class="scrolly-section" data-section-label="disabled-access">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" data-annotation-label="disabled-access" style="opacity: 0">
+                <div class="scrolly-caption-box" data-annotation-label="disabled-access">
                     <p>But while all the clinics we visited in the <span class="scrolly-secondary scrolly-fw-500">Free State</span> had bathrooms inside the clinics, they were also the <span class="scrolly-secondary scrolly-fw-500 scrolly-big">least accessible to patients with a disability</span>.</p>
                 </div>
             </div>
         </div>
 
-        <div class="scrolly-section scrolly-section-shorter" data-section-label="disabled-access2"></div>
+        <div class="scrolly-section" data-section-label="disabled-access2"></div>
 
-        <div class="scrolly-section scrolly-section-shorter" data-section-label="disabled-access3"></div>
+        <div class="scrolly-section" data-section-label="disabled-access3"></div>
 
         <!-- BROKEN TOILETS -->
 
         <div class="scrolly-section" data-section-label="broken-toilets">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" data-annotation-label="broken-toilets" style="opacity: 0">
+                <div class="scrolly-caption-box" data-annotation-label="broken-toilets">
                     <p><span class="scrolly-secondary scrolly-fw-500 scrolly-big">75.4%</span> of people we spoke to said that at some point, <span class="scrolly-secondary scrolly-fw-500 scrolly-big">the toilets had been out of order</span> when then visited the clinic.</p>
                 </div>
             </div>
         </div>
 
-        <div class="scrolly-section scrolly-section-shorter" data-section-label="broken-toilets2"></div>
-
-        <div class="scrolly-section scrolly-section-shorter" data-section-label="broken-toilets3"></div>
-
+        <div class="scrolly-section" data-section-label="broken-toilets2"></div>
+        <div class="scrolly-section" data-section-label="broken-toilets3"></div>
         <div class="scrolly-section" data-section-label="broken-toilets-kzn-lp"></div>
 
-        <div class="scrolly-section scrolly-section-shorter" data-section-label="broken-toilets-kzn-lp2"></div>
+        <div class="scrolly-section" data-section-label="broken-toilets-kzn-lp2"></div>
 
         <!-- NOT STOCKED -->
 
         <div class="scrolly-section" data-section-label="not-stocked">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" data-annotation-label="not-stocked" style="opacity: 0">
+                <div class="scrolly-caption-box" data-annotation-label="not-stocked">
                     <p>Even when patients could visit the bathroom, however, both male and female toilets were <span class="scrolly-secondary scrolly-fw-500 scrolly-big">unlikely to be stocked with basics such as toilet paper or soap</span>.</p>
                 </div>
             </div>
@@ -333,105 +280,94 @@
 
         <!-- NO TOILET PAPER -->
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/no-toilet-paper.jpg" data-section-label="no-toilet-paper"></div>
-
-        <div class="scrolly-section scrolly-section-shorter" data-background="https://openupsa.github.io/health-e-news-scrolly/img/no-toilet-paper.jpg" data-section-label="no-toilet-paper2"></div>
-
-        <div class="scrolly-section scrolly-section-shorter" data-background="https://openupsa.github.io/health-e-news-scrolly/img/no-toilet-paper.jpg" data-section-label="no-toilet-paper3"></div>
+        <div class="scrolly-section" data-section-label="no-toilet-paper"></div>
+        <div class="scrolly-section" data-section-label="no-toilet-paper2"></div>
+        <div class="scrolly-section" data-section-label="no-toilet-paper3"></div>
 
         <!-- NO SANITISER -->
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/no-toilet-paper.jpg" data-section-label="no-sanitiser"></div>
-
-        <div class="scrolly-section scrolly-section-shorter" data-background="https://openupsa.github.io/health-e-news-scrolly/img/no-toilet-paper.jpg" data-section-label="no-sanitiser2"></div>
-
-        <div class="scrolly-section scrolly-section-shorter" data-background="https://openupsa.github.io/health-e-news-scrolly/img/no-toilet-paper.jpg" data-section-label="no-sanitiser3"></div>
+        <div class="scrolly-section" data-section-label="no-sanitiser"></div>
+        <div class="scrolly-section" data-section-label="no-sanitiser2"></div>
+        <div class="scrolly-section" data-section-label="no-sanitiser3"></div>
 
         <!-- UNHYGENIC TOILETS -->
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/dirty-toilets.jpg" data-section-label="unhygenic-toilets">
+        <div class="scrolly-section" data-background="img/dirty-toilets.jpg" data-section-label="unhygenic-toilets">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" data-annotation-label="unhygenic-toilets" style="opacity: 0">
+                <div class="scrolly-caption-box" data-annotation-label="unhygenic-toilets">
                     <p>Unsurprising, then, that our CJs found the state of the toilets to be <span class="scrolly-secondary scrolly-fw-500 scrolly-big">very unhygienic</span>, with urine or feacal matter on the seats in 13 clinics, including nine in Limpopo.</p>
                 </div>
             </div>
         </div>
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/dirty-toilets.jpg" data-section-label="unhygenic-toilets2"></div>
-
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/dirty-toilets.jpg" data-section-label="unhygenic-toilets3"></div>
-
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/dirty-toilets.jpg" data-section-label="unhygenic-toilets4"></div>
+        <div class="scrolly-section" data-section-label="unhygenic-toilets2"></div>
+        <div class="scrolly-section" data-section-label="unhygenic-toilets3"></div>
+        <div class="scrolly-section" data-section-label="unhygenic-toilets4"></div>
 
         <!-- QUEUES -->
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/queue.jpg" data-section-label="queues">
+        <div class="scrolly-section" data-section-label="queues" data-section-color="scrolly-bg-3">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" data-annotation-label="queues" style="opacity: 0">
+                <div class="scrolly-caption-box" data-annotation-label="queues">
                     <p>In addition to the basic state of hygiene, in some larger facilities our reporters witnessed <span class="scrolly-secondary scrolly-fw-500 scrolly-big">people queuing for up to an hour</span> to use the bathroom.</p>
                 </div>
             </div>
         </div>
 
-        <div class="scrolly-section scrolly-section-shorter" data-background="https://openupsa.github.io/health-e-news-scrolly/img/queue.jpg" data-section-label="queues2"></div>
-
-        <div class="scrolly-section scrolly-section-shorter" data-background="https://openupsa.github.io/health-e-news-scrolly/img/queue.jpg" data-section-label="queues3"></div>
+        <div class="scrolly-section" data-section-label="queues2"></div>
+        <div class="scrolly-section" data-section-label="queues3"></div>
 
         <!--SAFETY-->
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/no-lock.jpg" data-section-label="unsafe">
+        <div class="scrolly-section" data-section-label="unsafe">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" data-annotation-label="unsafe" style="opacity: 0">
+                <div class="scrolly-caption-box" data-annotation-label="unsafe">
                     <p>No wonder then that so many people told us that they <span class="scrolly-secondary scrolly-fw-500 scrolly-big">didn’t feel safe using the toilets.</span></p>
                 </div>
             </div>
         </div>
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/no-lock.jpg" data-section-label="unsafe2"></div>
-
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/no-lock.jpg" data-section-label="unsafe3"></div>
+        <div class="scrolly-section" data-section-label="unsafe2"></div>
+        <div class="scrolly-section" data-section-label="unsafe3"></div>
 
         <!-- WOMEN SAFETY -->
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/no-lock.jpg" data-section-label="women-unsafe">
+        <div class="scrolly-section" data-section-label="women-unsafe">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" data-annotation-label="women-unsafe" style="opacity: 0">
+                <div class="scrolly-caption-box" data-annotation-label="women-unsafe">
                     <p>This included <span class="scrolly-secondary scrolly-fw-500 scrolly-big">more than half of all women interviewed</span>. Surprisingly, <span class="scrolly-secondary scrolly-fw-500">two thirds of 18-25-year-olds</span> said they didn’t feel safe, compared to around <span class="scrolly-secondary scrolly-fw-500">40% of those aged 26-40 or older than 60</span>.</p>
                 </div>
             </div>
         </div>
 
-        <div class="scrolly-section scrolly-section-shorter" data-background="https://openupsa.github.io/health-e-news-scrolly/img/no-lock.jpg"data-section-label="women-unsafe2"></div>
-
-        <div class="scrolly-section scrolly-section-shorter" data-background="https://openupsa.github.io/health-e-news-scrolly/img/no-lock.jpg" data-section-label="women-unsafe3"></div>
+        <div class="scrolly-section" data-section-label="women-unsafe2"></div>
+        <div class="scrolly-section" data-section-label="women-unsafe3"></div>
 
         <!-- RETURN VISITS -->
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/people1.jpg" data-section-label="return-visits">
+        <div class="scrolly-section" data-section-label="return-visits">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" data-annotation-label="return-visits" style="opacity: 0">
+                <div class="scrolly-caption-box" data-annotation-label="return-visits">
                     <p>Apart from the obvious implications to health, and our expectations of germ control in a medical centre, <span class="scrolly-secondary scrolly-fw-500 scrolly-big">83 patients</span> we spoke to told us that the state of the bathrooms <span class="scrolly-secondary scrolly-fw-500 scrolly-big">put them off visiting again</span>. The implications of this - people avoiding primary health care facilities - are severe.</p>
                 </div>
             </div>
         </div>
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/people1.jpg" data-section-label="return-visits2"></div>
-
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/people1.jpg" data-section-label="return-visits3"></div>
+        <div class="scrolly-section" data-section-label="return-visits2"></div>
+        <div class="scrolly-section" data-section-label="return-visits3"></div>
 
         <!--CONCLUSION-->
 
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/toilets1.jpg"
-            data-section-label="conclusion">
+        <div class="scrolly-section" data-section-label="conclusion" data-section-color="scrolly-bg-1">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" style="opacity: 0">
+                <div class="scrolly-caption-box">
                     <p>And all for the sake of a <br /><span class="scrolly-secondary scrolly-fw-500 scrolly-big">usable bathroom</span>.</p>
                 </div>
             </div>
         </div>
 
         <!-- END -->
-        <div class="scrolly-section" data-background="https://openupsa.github.io/health-e-news-scrolly/img/toilets1.jpg" data-section-label="end"></div>
+        <div class="scrolly-section" data-background="img/toilets1.jpg" data-section-label="end"></div>
 
     </div>
 

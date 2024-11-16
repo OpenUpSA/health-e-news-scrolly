@@ -33,22 +33,46 @@
     font-size: 11px;
 }
 
+.scrolly-bg-color-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    mix-blend-mode: multiply;
+}
+
 .scrolly .scrolly-background {
     top: 5vh;
     aspect-ratio: 12 / 8;
 }
 
 .scrolly .scrolly-section {
-    aspect-ratio: 12 / 8;
+    aspect-ratio: 12 / 6;
 }
 
+
+/*** COLORS ***/
+
+.scrolly-bg-1 {
+    background-color: #455075;
+}
+
+.scrolly-bg-2 {
+    background-color: #286661;
+}
+
+.scrolly-bg-3 {
+    background-color: #455075;
+}
 
 /*** MORE STYLES ***/
 
 .scrolly-caption-box {
     color: #fff;
     padding: 2em;
-    max-width: 78%;
+    max-width: 90%;
     text-align: left;
 }
 
@@ -68,7 +92,7 @@
 }
 
 .scrolly .scrolly-chart-label {
-    display: inline-block;
+    display: inline-banchor;
     text-align: center;
     font-size: 0.7em;
     margin-top: 1em;
@@ -79,23 +103,134 @@
 
 /*** ANNOTATIONS ***/
 
-.scrolly-chart-annotation-arrow {
-    position: absolute;
-    width: 0px;
-    height: 2px;
-    background-color: #fff;
-    transform: rotate(0deg);
-    top: 100%;
-    left: 50%;
-}
 
-.scrolly .scrolly-chart-annotation[data-chart-annotation-label] {
+.scrolly .scrolly-slide-annotation {
     position: absolute;
     color: #fff;
-    font-size: 1em;
-    font-weight: 600;
     text-wrap: nowrap;
     font-family: "Caveat", sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    display: block;
+    z-index: 999;
+    opacity: 0;
+}
+
+.scrolly .scrolly-slide-annotation::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 2px;
+    background-color: #fff;
+    transform-origin: 0 50%;
+}
+
+/* LINE ANCHOR */
+
+.scrolly .scrolly-anchor-tl::after {
+    top: -20%; 
+    left: 0%;
+}
+
+.scrolly .scrolly-anchor-tc::after {
+    top: -20%; 
+    left: 50%;
+    transform: translateX(-50%); 
+}
+
+.scrolly .scrolly-anchor-tr::after {
+    top: -20%; 
+    left: 100%;
+    transform: translateX(-100%);
+}
+
+/* Middle row */
+.scrolly .scrolly-anchor-ml::after {
+    top: 50%; 
+    left: 0%;
+    transform: translateY(-50%); 
+}
+
+.scrolly .scrolly-anchor-mc::after {
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+.scrolly .scrolly-anchor-mr::after {
+    top: 50%; 
+    left: 100%;
+    transform: translate(-100%, -50%);
+}
+
+/* Bottom row */
+.scrolly .scrolly-anchor-bl::after {
+    top: 100%; 
+    left: 0%;
+    transform: translateY(-100%);
+}
+
+.scrolly .scrolly-anchor-bc::after {
+    top: 100%; 
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
+
+.scrolly .scrolly-anchor-br::after {
+    top: 100%; 
+    left: 100%;
+    transform: translate(-100%, -100%);
+}
+
+/* LINE DIRECTIONS */
+
+.scrolly .scrolly-pointer-12::after {
+    transform: rotate(270deg); 
+}
+
+.scrolly .scrolly-pointer-1::after {
+    transform: rotate(300deg); 
+}
+
+.scrolly .scrolly-pointer-2::after {
+    transform: rotate(330deg); 
+}
+
+.scrolly .scrolly-pointer-3::after {
+    transform: rotate(0deg);
+}
+
+.scrolly .scrolly-pointer-4::after {
+    transform: rotate(30deg); 
+}
+
+.scrolly .scrolly-pointer-5::after {
+    transform: rotate(60deg); 
+}
+
+.scrolly .scrolly-pointer-6::after {
+    transform: rotate(90deg); 
+}
+
+.scrolly .scrolly-pointer-7::after {
+    transform: rotate(120deg); 
+}
+
+.scrolly .scrolly-pointer-8::after {
+    transform: rotate(150deg); 
+}
+
+.scrolly .scrolly-pointer-9::after {
+    transform: rotate(180deg); 
+}
+
+.scrolly .scrolly-pointer-10::after {
+    transform: rotate(210deg); 
+}
+
+.scrolly .scrolly-pointer-11::after {
+    transform: rotate(240deg); 
 }
 
 
@@ -144,7 +279,7 @@
     transform: translateX(-50%);
 }
 
-.scrolly .scrolly-chart-1 .scrolly-annotation-extra-info {
+.scrolly .scrolly-annotation-extra-info {
     font-size: 1em;
     color: #fff;
     position: absolute;
@@ -171,6 +306,63 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
+.scrolly .scrolly-chart-3 .scrolly-annotation-inner {
+    background-image: url('img/bg.png');
+    background-size: cover;
+    bottom: -1em;
+    padding: 4em 0;
+}
+
+
+.scrolly .scrolly-chart-3 .scrolly-chart-container {
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scrolly .scrolly-chart-4 .scrolly-annotation-inner {
+    background-image: url('img/bg.png');
+    background-size: cover;
+    bottom: -1em;
+    padding: 4em 0;
+}
+
+
+.scrolly .scrolly-chart-4 .scrolly-chart-container {
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scrolly .scrolly-chart-5 .scrolly-annotation-inner {
+    background-image: url('img/bg.png');
+    background-size: cover;
+    bottom: -1em;
+    padding: 4em 0;
+}
+
+
+.scrolly .scrolly-chart-5 .scrolly-chart-container {
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scrolly .scrolly-chart-6 .scrolly-annotation-inner {
+    background-image: url('img/bg.png');
+    background-size: cover;
+    bottom: -1em;
+    padding: 4em 0;
+}
+
+.scrolly .scrolly-chart-6 .scrolly-chart-container {
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
 
 
 
@@ -300,212 +492,100 @@
 
     /*** ANNOTATION CUSTMISATIONS ***/
 
-    /* MALE / FEMALE */
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="male"] {
-        top: 20%;
-        right: -2%;
+    .scrolly .scrolly-slide-annotation[data-annotation-label="fs"] {
+        top: 70%;
+        right: 35%
+    }
+    
+    .scrolly .scrolly-slide-annotation[data-annotation-label="lp"] {
+        top: 27%;
+        right: 5%
     }
 
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="male"] .scrolly-chart-annotation-arrow {
-        width: 50px;
-        top: 180%;
-        left: -120%;
-        transform: rotate(-40deg);
+    .scrolly .scrolly-slide-annotation[data-annotation-label="kzn"] {
+        top: 80%;
+        right: 2%
     }
 
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="female"] {
-        top: 20%;
-        left: -8%;
+    .scrolly .scrolly-slide-annotation[data-annotation-label="male"] {
+        top: 60%;
+        right: 8%
     }
 
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="female"] .scrolly-chart-annotation-arrow {
-        width: 50px;
-        top: 180%;
-        left: 110%;
-        transform: rotate(40deg);
+    .scrolly .scrolly-slide-annotation[data-annotation-label="female"] {
+        top: 60%;
+        left: 7%
     }
 
-    /* INSIDE/OUTSIDE */
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="inside"] {
-        top: -15%;
-        left: 0%;
+    .scrolly .scrolly-slide-annotation[data-annotation-label="inside"] {
+        top: 37%;
+        left: 2%
     }
 
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="inside"] .scrolly-chart-annotation-arrow {
-        width: 60px;
-        top: 215%;
-        left: 95%;
-        transform: rotate(60deg);
+    .scrolly .scrolly-slide-annotation[data-annotation-label="outside"] {
+        bottom: 20%;
+        left: 35%
     }
 
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="outside"] {
-        top: 100%;
-        left: -10%;
+    .scrolly .scrolly-slide-annotation[data-annotation-label="both"] {
+        top: 37%;
+        right: 6%
     }
 
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="outside"] .scrolly-chart-annotation-arrow {
-        width: 60px;
-        top: -90%;
-        left: 90%;
-        transform: rotate(120deg);
+    .scrolly .scrolly-slide-annotation[data-annotation-label="disabled-access-yes"] {
+        top: 37%;
+        left: 57%;
     }
 
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="both"] {
-        top: -15%;
-        left: 80%;
+    .scrolly .scrolly-slide-annotation[data-annotation-label="disabled-access-no"] {
+        bottom: 20%;
+        left: 25%;
     }
 
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="both"] .scrolly-chart-annotation-arrow {
-        width: 60px;
-        top: 220%;
-        left: -120%;
-        transform: rotate(-60deg);
+    .scrolly .scrolly-slide-annotation[data-annotation-label="usable"] {
+        top: 37%;
+        left: 25%;
     }
 
-    /* ACCESS */
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="disabled-access-yes"] {
-        top: -15%;
-        left: 80%;
+    .scrolly .scrolly-slide-annotation[data-annotation-label="unusable"] {
+        bottom: 20%;
+        left: 55%;
     }
 
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="disabled-access-yes"] .scrolly-chart-annotation-arrow {
-        width: 60px;
-        top: 215%;
-        left: -70%;
-        transform: rotate(-60deg);
+    .scrolly .scrolly-slide-annotation[data-annotation-label="toilet-paper-yes"] {
+        top: 37%;
+        left: 25%;
     }
 
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="disabled-access-no"] {
-        top: 100%;
-        left: 90%;
+    .scrolly .scrolly-slide-annotation[data-annotation-label="toilet-paper-no"] {
+        bottom: 20%;
+        left: 55%;
     }
 
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="disabled-access-no"] .scrolly-chart-annotation-arrow {
-        width: 60px;
-        top: -90%;
-        left: -70%;
-        transform: rotate(60deg);
+    .scrolly .scrolly-slide-annotation[data-annotation-label="soap-yes"] {
+        top: 37%;
+        left: 25%;
     }
 
-    /* USABLE/NOT USABLE */
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="usable"] {
-        top: -15%;
-        left: 80%;
+    .scrolly .scrolly-slide-annotation[data-annotation-label="soap-no"] {
+        bottom: 20%;
+        left: 55%;
     }
 
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="usable"] .scrolly-chart-annotation-arrow {
-        width: 60px;
-        top: 215%;
-        left: -70%;
-        transform: rotate(-60deg);
+    .scrolly .scrolly-slide-annotation[data-annotation-label="dirty-toilet"] {
+        top: 37%;
+        left: 2%
     }
 
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="unusable"] {
-        top: 100%;
-        left: 90%;
+    .scrolly .scrolly-slide-annotation[data-annotation-label="dirty-seat"] {
+        bottom: 20%;
+        left: 55%;
     }
 
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="unusable"] .scrolly-chart-annotation-arrow {
-        width: 60px;
-        top: -90%;
-        left: -70%;
-        transform: rotate(60deg);
+    .scrolly .scrolly-slide-annotation[data-annotation-label="dirty-wall"] {
+        top: 37%;
+        right: 6%
     }
-
-    /* TOILET PAPER */
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="toilet-paper-yes"] {
-        top: -15%;
-        left: 90%;
-    }
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="toilet-paper-yes"] .scrolly-chart-annotation-arrow {
-        width: 60px;
-        top: 215%;
-        left: -50%;
-        transform: rotate(-60deg);
-    }
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="toilet-paper-no"] {
-        top: 100%;
-        left: -30%;
-    }
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="toilet-paper-no"] .scrolly-chart-annotation-arrow {
-        width: 60px;
-        top: -90%;
-        left: 90%;
-        transform: rotate(120deg);
-    }
-
-    /* SOAP */
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="soap-yes"] {
-        top: -15%;
-        left: 90%;
-    }
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="soap-yes"] .scrolly-chart-annotation-arrow {
-        width: 60px;
-        top: 215%;
-        left: -70%;
-        transform: rotate(-60deg);
-    }
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="soap-no"] {
-        top: 100%;
-        left: -10%;
-    }
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="soap-no"] .scrolly-chart-annotation-arrow {
-        width: 60px;
-        top: -90%;
-        left: 90%;
-        transform: rotate(120deg);
-    }
-
-    /* DIRTY TOILETS */
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="dirty-wall"] {
-        top: -15%;
-        left: -30%;
-    }
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="dirty-wall"] .scrolly-chart-annotation-arrow {
-        width: 60px;
-        top: 215%;
-        left: 95%;
-        transform: rotate(60deg);
-    }
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="dirty-seat"] {
-        top: 100%;
-        left: -30%;
-    }
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="dirty-seat"] .scrolly-chart-annotation-arrow {
-        width: 60px;
-        top: -90%;
-        left: 90%;
-        transform: rotate(120deg);
-    }
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="dirty-toilet"] {
-        top: -15%;
-        left: 80%;
-    }
-
-    .scrolly .scrolly-chart-annotation[data-chart-annotation-label="dirty-toilet"] .scrolly-chart-annotation-arrow {
-        width: 60px;
-        top: 220%;
-        left: -70%;
-        transform: rotate(-60deg);
-    }
-
 
 }
 
@@ -513,6 +593,3 @@
 /*** DEBUG ***/
 
 
-.scrolly-chart-3, .scrolly-chart-4, .scrolly-chart-5, .scrolly-chart-6 {
-    display: none;
-}
