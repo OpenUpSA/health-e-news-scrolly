@@ -90,8 +90,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
+    // THE SCROLLY
+
     document.querySelectorAll('.scrolly-section').forEach((section, index) => {
+
         // DEBUG
+        
         const section_label = section.getAttribute('data-section-label');
 
         if (DEBUG == true) {
@@ -310,9 +314,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    function annotationFadeIn(label, trigger, isExtra = false) {
+    function annotationFadeIn(label, trigger) {
 
-        let selector = !isExtra ? `.scrolly-slide-annotation[data-annotation-label='${label}']` : `.scrolly-annotation-element[data-annotation-label='${label}']`;
+        let selector = `.scrolly-slide-annotation[data-annotation-label='${label}']`;
 
         gsap.fromTo(
             selector,
@@ -336,9 +340,9 @@ document.addEventListener('DOMContentLoaded', function () {
         );
     }
 
-    function annotationFadeOut(label, trigger, isExtra = false) {
+    function annotationFadeOut(label, trigger) {
 
-        let selector = !isExtra ? `.scrolly-slide-annotation[data-annotation-label='${label}']` : `.scrolly-annotation-element[data-annotation-label='${label}']`;
+        let selector = `.scrolly-slide-annotation[data-annotation-label='${label}']`;
 
         gsap.to(
             selector,
@@ -360,62 +364,23 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
+    document.querySelectorAll('.scrolly-slide-annotation[data-annotation-in]').forEach((annotation, index) => {
     
-    // TITLES INS AND OUTS
+        let annotation_label = annotation.getAttribute('data-annotation-label');
+        let annotation_trigger_in = annotation.getAttribute('data-annotation-in');
 
+        annotationFadeIn(annotation_label, annotation_trigger_in);
+    
+    });
 
+    document.querySelectorAll('.scrolly-slide-annotation[data-annotation-out]').forEach((annotation, index) => {
 
-    // CHART ANNOTATIONS
+        let annotation_label = annotation.getAttribute('data-annotation-label');
+        let annotation_trigger_out = annotation.getAttribute('data-annotation-out');
 
-    annotationFadeIn('fs', 'they-visited2');
-    annotationFadeIn('kzn', 'they-visited3');
-    annotationFadeIn('lp', 'they-visited4');
-    annotationFadeOut('fs', 'gender-breakdown');
-    annotationFadeOut('kzn', 'gender-breakdown');
-    annotationFadeOut('lp', 'gender-breakdown');
+        annotationFadeOut(annotation_label, annotation_trigger_out);
 
-    annotationFadeIn('male', 'gender-breakdown4');
-    annotationFadeIn('female', 'gender-breakdown5');
-    annotationFadeOut('male', 'outdoor-facilities');
-    annotationFadeOut('female', 'outdoor-facilities');
-
-
-    annotationFadeIn('inside', 'outdoor-facilities2');
-    annotationFadeIn('outside', 'outdoor-facilities3');
-    annotationFadeIn('both', 'outdoor-facilities4');
-    annotationFadeOut('inside', 'disabled-access');
-    annotationFadeOut('outside', 'disabled-access');
-    annotationFadeOut('both', 'disabled-access');
-
-    annotationFadeIn('pit-latrine', 'pit-latrine', true);
-    annotationFadeOut('pit-latrine', 'disabled-access', true);
-
-    annotationFadeIn('disabled-access-yes', 'disabled-access2');
-    annotationFadeIn('disabled-access-no', 'disabled-access3');
-    annotationFadeOut('disabled-access-yes', 'broken-toilets');
-    annotationFadeOut('disabled-access-no', 'broken-toilets');
-    annotationFadeIn('usable', 'broken-toilets2');
-    annotationFadeIn('unusable', 'broken-toilets3');
-
-    annotationFadeIn('broken-toilets-kzn-lp', 'broken-toilets-kzn-lp', true);
-    annotationFadeOut('broken-toilets-kzn-lp', 'not-stocked', true);
-
-    annotationFadeOut('usable', 'not-stocked');
-    annotationFadeOut('unusable', 'not-stocked');
-    annotationFadeIn('toilet-paper-yes', 'no-toilet-paper2');
-    annotationFadeIn('toilet-paper-no', 'no-toilet-paper3');
-    annotationFadeOut('toilet-paper-yes', 'no-sanitiser');
-    annotationFadeOut('toilet-paper-no', 'no-sanitiser');
-    annotationFadeIn('soap-yes', 'no-sanitiser2');
-    annotationFadeIn('soap-no', 'no-sanitiser3');
-    annotationFadeOut('soap-yes', 'unhygenic-toilets');
-    annotationFadeOut('soap-no', 'unhygenic-toilets');
-    annotationFadeIn('dirty-toilet', 'unhygenic-toilets2');
-    annotationFadeIn('dirty-seat', 'unhygenic-toilets3');
-    annotationFadeIn('dirty-wall', 'unhygenic-toilets4');
-    annotationFadeOut('dirty-toilet', 'queues');
-    annotationFadeOut('dirty-seat', 'queues');
-    annotationFadeOut('dirty-wall', 'queues');
+    });
 
    
 
