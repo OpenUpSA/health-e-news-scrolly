@@ -45,11 +45,11 @@
 
 .scrolly .scrolly-background {
     top: 10vh;
-    aspect-ratio: 12 / 8;
+    aspect-ratio: 12 / 12;
 }
 
 .scrolly .scrolly-section {
-    aspect-ratio: 12 / 5;
+    aspect-ratio: 12 / 12;
     
 }
 
@@ -122,7 +122,7 @@
     content: '';
     display: block;
     position: absolute;
-    width: 40px;
+    width: 20px;
     height: 2px;
     background-color: #fff;
     transform-origin: 0 50%;
@@ -271,7 +271,7 @@
 .scrolly .scrolly-chart-1 .scrolly-annotation-inner {
     background-image: url('img/bg.png');
     background-size: cover;
-    bottom: 3em;
+    bottom: 6em;
     padding: 4em 0;
 }
 
@@ -280,6 +280,8 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
+
 
 .scrolly .scrolly-annotation-extra-info {
     font-size: 1em;
@@ -299,6 +301,8 @@
     font-weight: 400;
 }
 
+
+
 .scrolly .scrolly-annotation-extra-info::after {
     display: none;
     
@@ -307,7 +311,7 @@
 .scrolly .scrolly-chart-2 .scrolly-annotation-inner {
     background-image: url('img/bg.png');
     background-size: cover;
-    bottom: 0em;
+    bottom: 5em;
     padding: 2em 0;
 }
 
@@ -372,6 +376,164 @@
     transform: translateX(-50%);
 }
 
+
+
+/*** ANNOTATION CUSTOMISATIONS ***/
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="fs"] {
+    top: 70%;
+    right: 35%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="lp"] {
+    top: 27%;
+    right: 5%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="kzn"] {
+    top: 80%;
+    right: 2%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="male"] {
+    top: 53%;
+    right: 8%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="female"] {
+    top: 53%;
+    left: 7%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="age"] {
+    top: 32%;
+    left: 43%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="inside"] {
+    top: 70%;
+    left: 20%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="outside"] {
+    top: 45%;
+    left: 35%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="both"] {
+    top: 45%;
+    right: 5%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="disabled-access-yes"] {
+    top: 44%;
+    left: 58%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="disabled-access-no"] {
+    bottom: 26%;
+    left: 25%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="usable"] {
+    top: 44%;
+    left: 25%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="unusable"] {
+    bottom: 25%;
+    left: 56%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="toilet-paper-yes"] {
+    top: 44%;
+    left: 25%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="toilet-paper-no"] {
+    bottom: 25%;
+    left: 56%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="soap-yes"] {
+    top: 44%;
+    left: 25%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="soap-no"] {
+    bottom: 25%;
+    left: 56%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-toilet"] {
+    top: 37%;
+    left: 2%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-seat"] {
+    bottom: 25%;
+    left: 58%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-wall"] {
+    top: 45%;
+    right: 7%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="facility-size"] {
+    bottom: 4%;
+    right: 48%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time"] {
+    top: 36%;
+    left: 12%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="safety-women-yes"] {
+    top: 60%;
+    left: 22%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="safety-women-no"] {
+    top: 45%;
+    right: 8%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-age"] {
+    bottom: 4%;
+    right: 48%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-yes"] {
+    bottom: 55%;
+    right: 41%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-no"] {
+    bottom: 50%;
+    right: 12%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-younger-women"] {
+    top: 52%;
+    left: 3%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-axes"] {
+    bottom: 5%;
+    right: 40%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-male"] {
+    bottom: 50%;
+    left: 24%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-female"] {
+    bottom: 50%;
+    right: 48%
+}
 
 
 
@@ -474,6 +636,12 @@
     margin-bottom: 5em;
 }
 
+.scrolly .mobile-hide {
+    display: none;
+}
+
+
+
 
 /*** RESPONSIVENESS ***/
 
@@ -496,11 +664,48 @@
         font-size: 22px;
     }
 
-}
+    .scrolly-mobile-show {
+        display: none;
+    }
 
-@media (min-width: 1200px) {
+    .scrolly .mobile-hide {
+        display: block;
+    }
+
+    .scrolly .scrolly-background {
+        top: 10vh;
+        aspect-ratio: 12 / 8;
+    }
+    
+    .scrolly .scrolly-section {
+        aspect-ratio: 12 / 8;
+        
+    }
+
+    /*** CHART CUSTOMISATIONS ***/
+
+    .scrolly .scrolly-chart-1 .scrolly-annotation-inner {
+        bottom: 3em;
+        padding: 4em 0;
+    }
+    
+
+    .scrolly .scrolly-chart-2 .scrolly-annotation-inner {
+        bottom: 0em;
+        padding: 2em 0;
+    }
+    
+    .scrolly .scrolly-chart-2 .scrolly-chart-container {
+        width: 80%;
+    }
+
+
 
     /*** ANNOTATION CUSTMISATIONS ***/
+
+    .scrolly .scrolly-slide-annotation::after {
+        width: 40px !important;
+    }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="fs"] {
         top: 70%;
@@ -533,18 +738,19 @@
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="inside"] {
-        top: 37%;
-        left: 2%
+        top: unset;
+        bottom: 16%;
+        left: 20%
     }
-
+    
     .scrolly .scrolly-slide-annotation[data-annotation-label="outside"] {
-        bottom: 20%;
+        top: 36%;
         left: 35%
     }
-
+    
     .scrolly .scrolly-slide-annotation[data-annotation-label="both"] {
-        top: 37%;
-        right: 6%
+        top: 38%;
+        right: 3%
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="disabled-access-yes"] {
@@ -656,6 +862,12 @@
         bottom: 50%;
         right: 48%
     }
+
+}
+
+@media (min-width: 1200px) {
+
+    
 
 }
 

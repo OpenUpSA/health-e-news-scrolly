@@ -25,10 +25,38 @@ let chart_colors = {
 
 }
 
+let responsive_settings = {
+    gender_age_labels: 10,
+    waiting_time_chart_orientation: 'y'
+}
+
 
 
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    // MEDIA QUERIES
+
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+
+    function handleMediaQueryChange(e) {
+        if (e.matches) {
+            console.log('Screen is small (<=768px)');
+
+        } else {
+            console.log('Screen is large (>768px)');
+            responsive_settings.gender_age_labels = 16;
+            responsive_settings.waiting_time_chart_orientation = 'x';
+        }
+    }
+
+    handleMediaQueryChange(mediaQuery);
+
+    mediaQuery.addEventListener('change', handleMediaQueryChange);
+
+
+
+
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -439,7 +467,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         borderRadius: 5,
                         content: ['60+'],
                         font: {
-                            size: 12
+                            size: responsive_settings.gender_age_labels
                         }
                     },
                     text_41_60: {
@@ -451,7 +479,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         borderRadius: 5,
                         content: ['41-60'],
                         font: {
-                            size: 12
+                            size: responsive_settings.gender_age_labels
                         }
                     },
                     text_26_40: {
@@ -463,7 +491,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         borderRadius: 5,
                         content: ['26-40'],
                         font: {
-                            size: 12
+                            size: responsive_settings.gender_age_labels
                         }
                     },
                     text_18_25: {
@@ -475,7 +503,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         borderRadius: 5,
                         content: ['18-25'],
                         font: {
-                            size: 12
+                            size: responsive_settings.gender_age_labels
                         }
                     }
                 }
@@ -568,6 +596,7 @@ document.addEventListener('DOMContentLoaded', function () {
             ]
         },
         options: {
+            indexAxis: 'y',
             scales: {
                 y: {
                     beginAtZero: true,
