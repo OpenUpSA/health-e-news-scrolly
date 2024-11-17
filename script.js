@@ -31,17 +31,17 @@ let chart_colors = {
 document.addEventListener('DOMContentLoaded', function () {
 
     gsap.registerPlugin(ScrollTrigger);
-    
-    const background = document.querySelector('.scrolly-background');
-    
-    const offsetInPixels = window.innerHeight * 0.05;
 
-    let currentBackgroundSrc = null; 
-    let currentBackgroundColorClass = null; 
+    const background = document.querySelector('.scrolly-background');
+
+    const offsetInPixels = window.innerHeight * 0.1;
+
+    let currentBackgroundSrc = null;
+    let currentBackgroundColorClass = null;
     let backgroundColorOverlay = document.querySelector('.scrolly-bg-color-overlay');
 
     function updateBackgroundImage(src) {
-        
+
         if (!src || src === currentBackgroundSrc) {
             return;
         }
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
             duration: 0.5,
             onComplete: () => {
                 bgImage.remove();
-                
+
                 currentBackgroundSrc = src;
             }
         });
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateBackgroundColorClass(newClass) {
         if (newClass === currentBackgroundColorClass) {
-            return; 
+            return;
         }
 
         if (currentBackgroundColorClass) {
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.scrolly-section').forEach((section, index) => {
 
         // DEBUG
-        
+
         const section_label = section.getAttribute('data-section-label');
 
         if (DEBUG == true) {
@@ -158,16 +158,41 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // SMOOTH SCROLL
+
+    document.addEventListener(
+        'wheel',
+        function (event) {
+            // Only vertical scroll
+            if (event.deltaY > 0) {
+                event.preventDefault();
+                smoothScroll(document.documentElement, 200, 500);
+            }
+        },
+        { passive: false } // Specify passive: false to allow preventDefault
+    );
+
+    function smoothScroll(domElement, pixel, delay) {
+        const intervalToRepeat = 10;
+        const step = (intervalToRepeat * pixel) / delay;
+        if (pixel > 0) { // Ensure it only scrolls while pixel is greater than 0
+            domElement.scrollTop += step;
+            setTimeout(function () {
+                smoothScroll(domElement, pixel - step, delay);
+            }, intervalToRepeat);
+        }
+    }
+
     // END SCROLLY. UNSTICK
 
     ScrollTrigger.create({
-        trigger: '.scrolly-section[data-section-label="end"]', 
+        trigger: '.scrolly-section[data-section-label="end"]',
         start: () => {
             const backgroundRect = background.getBoundingClientRect();
             return `top ${offsetInPixels}px`;
         },
         onEnter: () => {
-            
+
             gsap.to('.scrolly-background', {
                 position: 'relative',
                 duration: 0.5,
@@ -175,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         },
         onLeaveBack: () => {
-            
+
             gsap.to('.scrolly-background', {
                 position: 'sticky',
                 duration: 0.5,
@@ -222,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
             pin: `.scrolly-section[data-section-label="${pinSection}"]`,
             pinSpacing: false,
             scrub: true
-        
+
         });
     }
 
@@ -365,12 +390,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.querySelectorAll('.scrolly-slide-annotation[data-annotation-in]').forEach((annotation, index) => {
-    
+
         let annotation_label = annotation.getAttribute('data-annotation-label');
         let annotation_trigger_in = annotation.getAttribute('data-annotation-in');
 
         annotationFadeIn(annotation_label, annotation_trigger_in);
-    
+
     });
 
     document.querySelectorAll('.scrolly-slide-annotation[data-annotation-out]').forEach((annotation, index) => {
@@ -382,10 +407,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-   
 
 
-    
+
+
 
     // CHARTS
 
@@ -664,7 +689,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const lp = new Chart('lp', doughnut_chart_init);
     const kzn = new Chart('kzn', doughnut_chart_init);
 
-    
+
 
     // SAFETY CHART
 
@@ -959,7 +984,7 @@ document.addEventListener('DOMContentLoaded', function () {
         )
         .to(population_chart.data.datasets[0].data, { endArray: female_age_distribution, ease: "none", onUpdate: function () { population_chart.update(); } }, 0)
         .to(population_chart.data.datasets[1].data, { endArray: male_age_distribution, ease: "none", onUpdate: function () { population_chart.update(); } }, 0);
-        
+
 
     fadeOutChart('scrolly-chart-2', 'outdoor-facilities');
 
