@@ -158,30 +158,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // SMOOTH SCROLL
+   
 
-    // document.addEventListener('wheel', function (event) {
-    //     event.preventDefault(); // Prevent default scroll behavior
-      
-    //     // Determine scroll direction and magnitude
-    //     const scrollDirection = event.deltaY > 0 ? 'down' : 'up';
-    //     const scrollAmount = Math.abs(event.deltaY) * 3; // Multiply for fast scrolling
-      
-    //     smoothScroll(document.documentElement, scrollAmount, 300, scrollDirection);
-    //   }, { passive: false });
-      
-    // function smoothScroll(domElement, pixel, delay, direction) {
-    //     const intervalToRepeat = 5; // Fast updates
-    //     const step = (intervalToRepeat * pixel) / delay;
-        
-    //     if (pixel > 0) {
-    //         domElement.scrollTop += (direction === 'down' ? step : -step); // Scroll up or down
-        
-    //         setTimeout(function () {
-    //         smoothScroll(domElement, pixel - step, delay, direction);
-    //         }, intervalToRepeat);
-    //     }
-    // }
     
     
       
@@ -254,19 +232,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    pinSection('start', 'start', 'they-visited');
-    pinSection('they-visited', 'they-visited', '313-users');
-    pinSection('313-users', '313-users', 'gender-breakdown');
-    pinSection('gender-breakdown', 'gender-breakdown', 'outdoor-facilities');
-    pinSection('outdoor-facilities', 'outdoor-facilities', 'disabled-access');
-    pinSection('disabled-access', 'disabled-access', 'broken-toilets');
-    pinSection('broken-toilets', 'broken-toilets', 'not-stocked');
-    pinSection('not-stocked', 'not-stocked', 'unhygenic-toilets');
-    pinSection('unhygenic-toilets', 'unhygenic-toilets', 'queues');
-    pinSection('queues', 'queues', 'unsafe');
-    pinSection('unsafe', 'unsafe', 'women-unsafe');
-    pinSection('women-unsafe', 'women-unsafe', 'return-visits');
-    pinSection('return-visits', 'return-visits', 'conclusion');
+    document.querySelectorAll('.scrolly-section[data-unpin-section]').forEach((section, index) => {
+
+        let section_label = section.getAttribute('data-section-label');
+        let endTrigger = section.getAttribute('data-unpin-section');
+
+        pinSection(section_label, section_label, endTrigger);
+
+    });
+
+    
+    
+   
 
     ScrollTrigger.create({
         trigger: '.scrolly-section[data-section-label="conclusion"]',
@@ -629,7 +606,10 @@ document.addEventListener('DOMContentLoaded', function () {
             responsive: true,
             plugins: {
                 legend: {
-                    display: false,
+                    display: true,
+                    labels: {
+                        color: 'rgba(255,255,255,1)',
+                    }
                 },
                 title: {
                     display: false
@@ -749,6 +729,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     ticks: {
                         color: 'rgba(255,255,255,1)',
+                        font: {
+                            size: 16
+                        }
                     }
                 }
             },
@@ -825,6 +808,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     ticks: {
                         color: 'rgba(255,255,255,1)',
+                        font: {
+                            size: 16
+                        }
                     }
                 }
             },
@@ -872,6 +858,8 @@ document.addEventListener('DOMContentLoaded', function () {
             scales: {
                 y: {
                     beginAtZero: true,
+                    min: 0,
+                    max: 90,
                     title: {
                         display: false
                     },
@@ -898,6 +886,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     ticks: {
                         color: 'rgba(255,255,255,1)',
+                        font: {
+                            size: 16
+                        }
                     }
                 }
             },
