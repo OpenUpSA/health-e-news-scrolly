@@ -56,7 +56,7 @@
 /*** COLORS ***/
 
 .scrolly-bg-1 {
-    background-color: #455075;
+    background-color: #367196;
 }
 
 .scrolly-bg-2 {
@@ -74,6 +74,7 @@
     padding: 2em;
     max-width: 90%;
     text-align: left;
+    opacity: 0;
 }
 
 .scrolly-caption-box-overlay {
@@ -292,6 +293,14 @@
     transform: translateX(-50%);
     z-index: 8;
     width: 80%;
+    font-family: 'Balto', sans-serif;
+    text-wrap: wrap;
+    font-weight: 400;
+}
+
+.scrolly .scrolly-annotation-extra-info::after {
+    display: none;
+    
 }
 
 .scrolly .scrolly-chart-2 .scrolly-annotation-inner {
@@ -330,7 +339,7 @@
 
 
 .scrolly .scrolly-chart-4 .scrolly-chart-container {
-    width: 80%;
+    width: 60%;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -357,7 +366,7 @@
 }
 
 .scrolly .scrolly-chart-6 .scrolly-chart-container {
-    width: 80%;
+    width: 60%;
     left: 50%;
     transform: translateX(-50%);
 }

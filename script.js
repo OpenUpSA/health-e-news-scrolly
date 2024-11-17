@@ -160,28 +160,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // SMOOTH SCROLL
 
-    document.addEventListener(
-        'wheel',
-        function (event) {
-            // Only vertical scroll
-            if (event.deltaY > 0) {
-                event.preventDefault();
-                smoothScroll(document.documentElement, 200, 500);
-            }
-        },
-        { passive: false } // Specify passive: false to allow preventDefault
-    );
-
-    function smoothScroll(domElement, pixel, delay) {
-        const intervalToRepeat = 10;
-        const step = (intervalToRepeat * pixel) / delay;
-        if (pixel > 0) { // Ensure it only scrolls while pixel is greater than 0
-            domElement.scrollTop += step;
-            setTimeout(function () {
-                smoothScroll(domElement, pixel - step, delay);
-            }, intervalToRepeat);
-        }
-    }
+    // document.addEventListener('wheel', function (event) {
+    //     event.preventDefault(); // Prevent default scroll behavior
+      
+    //     // Determine scroll direction and magnitude
+    //     const scrollDirection = event.deltaY > 0 ? 'down' : 'up';
+    //     const scrollAmount = Math.abs(event.deltaY) * 3; // Multiply for fast scrolling
+      
+    //     smoothScroll(document.documentElement, scrollAmount, 300, scrollDirection);
+    //   }, { passive: false });
+      
+    // function smoothScroll(domElement, pixel, delay, direction) {
+    //     const intervalToRepeat = 5; // Fast updates
+    //     const step = (intervalToRepeat * pixel) / delay;
+        
+    //     if (pixel > 0) {
+    //         domElement.scrollTop += (direction === 'down' ? step : -step); // Scroll up or down
+        
+    //         setTimeout(function () {
+    //         smoothScroll(domElement, pixel - step, delay, direction);
+    //         }, intervalToRepeat);
+    //     }
+    // }
+    
+    
+      
 
     // END SCROLLY. UNSTICK
 
@@ -311,6 +314,7 @@ document.addEventListener('DOMContentLoaded', function () {
     zoomAndPan('start', 'they-visited', 1, 0, 0, 1.1, 0, 0);
     zoomAndPan('they-visited', '313-users', 1, 0, 0, 1.4, -100, 0);
     zoomAndPan('gender-breakdown', 'outdoor-facilities', 1.4, 0, 0, 1, 0, 0);
+    zoomAndPan('outdoor-facilities', 'disabled-access', 1.2, 0, 0, 1, 0, 0);
 
 
     /// ANNOTATIONS
@@ -549,6 +553,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // WAITING TIME CHART
 
+    
 
     const queues_chart = new Chart('queues-chart', {
         type: 'bar',
@@ -557,28 +562,28 @@ document.addEventListener('DOMContentLoaded', function () {
             datasets: [
                 {
                     label: '0-10 mins',
-                    data: [1, 1, 3, 0],
+                    data: [0, 0, 0, 0],
                     backgroundColor: chart_colors.queue_0_10,
                     borderColor: chart_colors.queue_0_10,
                     borderWidth: 0
                 },
                 {
                     label: '10-20 mins',
-                    data: [6, 10, 8, 11],
+                    data: [0, 0, 0, 0],
                     backgroundColor: chart_colors.queue_10_20,
                     borderColor: chart_colors.queue_10_20,
                     borderWidth: 0
                 },
                 {
                     label: '20-40 mins',
-                    data: [2, 2, 2, 10],
+                    data: [0, 0, 0, 0],
                     backgroundColor: chart_colors.queue_20_40,
                     borderColor: chart_colors.queue_20_40,
                     borderWidth: 0
                 },
                 {
                     label: '40-60 mins',
-                    data: [0, 1, 1, 2],
+                    data: [0, 0, 0, 0],
                     backgroundColor: chart_colors.queue_40_60,
                     borderColor: chart_colors.queue_40_60,
                     borderWidth: 0
@@ -590,56 +595,54 @@ document.addEventListener('DOMContentLoaded', function () {
                 y: {
                     beginAtZero: true,
                     title: {
-                        display: true,
-                        text: 'Number of People',
-                        color: 'rgba(255,255,255,1)'
+                        display: false,
                     },
                     border: {
-                        color: 'rgba(255,255,255,1)',
-                        width: 2,
+                        display: false,
                     },
                     grid: {
-                        color: 'rgba(255,255,255,0.2)',
-                        lineWidth: 1,
-                        borderDash: [5, 5],
+                        display: false,
                     },
                     ticks: {
-                        color: 'rgba(255,255,255,1)',
+                        display: false,
                     }
                 },
                 x: {
                     title: {
-                        display: true,
-                        text: 'People Count Range',
-                        color: 'rgba(255,255,255,1)',
+                        display: false,
                     },
                     border: {
                         color: 'rgba(255,255,255,1)',
                         width: 2,
                     },
                     grid: {
-                        color: 'rgba(255,255,255,0.2)',
-                        lineWidth: 1,
-                        borderDash: [5, 5],
+                        display: false
                     },
                     ticks: {
                         color: 'rgba(255,255,255,1)',
+                        font: {
+                            size: 16
+                        }
                     }
                 }
             },
             responsive: true,
             plugins: {
                 legend: {
-                    position: 'top',
-                    labels: {
-                        color: 'rgba(255,255,255,1)',
-                    }
+                    display: false,
                 },
                 title: {
                     display: false
+                },
+                datalabels: {
+                    color: '#fff',
+                    anchor: 'end',
+                    align: 'top',
+                    formatter: (value) => value 
                 }
             }
-        }
+        },
+        plugins: [ChartDataLabels]
     });
 
 
@@ -693,6 +696,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // SAFETY CHART
 
+   
+
     const safety_chart = new Chart('safety-chart', {
         type: 'bar',
         data: {
@@ -700,14 +705,14 @@ document.addEventListener('DOMContentLoaded', function () {
             datasets: [
                 {
                     label: 'Male',
-                    data: [1, 1, 3, 0],
+                    data: [0, 0, 0, 0],
                     backgroundColor: chart_colors.safety_yes,
                     borderColor: chart_colors.safety_yes,
                     borderWidth: 0
                 },
                 {
                     label: 'Female',
-                    data: [6, 10, 8, 11],
+                    data: [0, 0, 0, 0],
                     backgroundColor: chart_colors.safety_no,
                     borderColor: chart_colors.safety_no,
                     borderWidth: 0
@@ -719,37 +724,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 y: {
                     beginAtZero: true,
                     title: {
-                        display: true,
-                        text: 'Number of People',
-                        color: 'rgba(255,255,255,1)'
+                        display: false,
                     },
                     border: {
-                        color: 'rgba(255,255,255,1)',
-                        width: 2,
+                        display: false,
                     },
                     grid: {
-                        color: 'rgba(255,255,255,0.2)',
-                        lineWidth: 1,
-                        borderDash: [5, 5],
+                        display: false,
                     },
                     ticks: {
-                        color: 'rgba(255,255,255,1)',
+                        display: false
                     }
                 },
                 x: {
                     title: {
-                        display: true,
-                        text: 'People Count Range',
-                        color: 'rgba(255,255,255,1)',
+                        display: false,
                     },
                     border: {
                         color: 'rgba(255,255,255,1)',
                         width: 2,
                     },
                     grid: {
-                        color: 'rgba(255,255,255,0.2)',
-                        lineWidth: 1,
-                        borderDash: [5, 5],
+                        display: false
                     },
                     ticks: {
                         color: 'rgba(255,255,255,1)',
@@ -759,16 +755,21 @@ document.addEventListener('DOMContentLoaded', function () {
             responsive: true,
             plugins: {
                 legend: {
-                    position: 'top',
-                    labels: {
-                        color: 'rgba(255,255,255,1)',
-                    }
+                    display: false,
                 },
                 title: {
                     display: false
+                },
+                datalabels: {
+                    color: '#fff',
+                    anchor: 'end',
+                    align: 'top',
+                    formatter: (value) => value 
                 }
+
             }
-        }
+        },
+        plugins: [ChartDataLabels]
     });
 
     // WOMEN SAFETY CHART
@@ -780,14 +781,14 @@ document.addEventListener('DOMContentLoaded', function () {
             datasets: [
                 {
                     label: 'Yes',
-                    data: [13, 46, 27, 36],
+                    data: [0, 0, 0, 0],
                     backgroundColor: chart_colors.women_safety_yes,
                     borderColor: chart_colors.women_safety_yes,
                     borderWidth: 0
                 },
                 {
                     label: 'No',
-                    data: [24, 29, 32, 26],
+                    data: [0, 0, 0, 0],
                     backgroundColor: chart_colors.women_safety_no,
                     borderColor: chart_colors.women_safety_no,
                     borderWidth: 0
@@ -799,37 +800,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 y: {
                     beginAtZero: true,
                     title: {
-                        display: true,
-                        text: 'Number of People',
-                        color: 'rgba(255,255,255,1)'
+                        display: false,
                     },
                     border: {
-                        color: 'rgba(255,255,255,1)',
-                        width: 2,
+                        display: false,
                     },
                     grid: {
-                        color: 'rgba(255,255,255,0.2)',
-                        lineWidth: 1,
-                        borderDash: [5, 5],
+                        display: false,
                     },
                     ticks: {
-                        color: 'rgba(255,255,255,1)',
+                        display: false,
                     }
                 },
                 x: {
                     title: {
-                        display: true,
-                        text: 'Feels safe',
-                        color: 'rgba(255,255,255,1)',
+                        display: false,
                     },
                     border: {
                         color: 'rgba(255,255,255,1)',
                         width: 2,
                     },
                     grid: {
-                        color: 'rgba(255,255,255,0.2)',
-                        lineWidth: 1,
-                        borderDash: [5, 5],
+                        display: false,
                     },
                     ticks: {
                         color: 'rgba(255,255,255,1)',
@@ -839,19 +831,25 @@ document.addEventListener('DOMContentLoaded', function () {
             responsive: true,
             plugins: {
                 legend: {
-                    position: 'top',
-                    labels: {
-                        color: 'rgba(255,255,255,1)',
-                    }
+                    display: false,
                 },
                 title: {
                     display: false
+                },
+                datalabels: {
+                    color: '#fff',
+                    anchor: 'end',
+                    align: 'top',
+                    formatter: (value) => value 
                 }
             }
-        }
+        },
+        plugins: [ChartDataLabels]
     });
 
     // RETURN VISIT
+
+    
 
     const return_visit_chart = new Chart('return-visit-chart', {
         type: 'bar',
@@ -860,12 +858,12 @@ document.addEventListener('DOMContentLoaded', function () {
             datasets: [
                 {
                     label: 'Female',
-                    data: [73, 39],
+                    data: [0, 0],
                     backgroundColor: chart_colors.return_visits_female,
                 },
                 {
                     label: 'Male',
-                    data: [76, 44],
+                    data: [0, 0],
                     backgroundColor: chart_colors.return_visits_male
                 }
             ]
@@ -875,37 +873,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 y: {
                     beginAtZero: true,
                     title: {
-                        display: true,
-                        text: 'Number of People',
-                        color: 'rgba(255,255,255,1)'
+                        display: false
                     },
                     border: {
-                        color: 'rgba(255,255,255,1)',
-                        width: 2,
+                        display: false
                     },
                     grid: {
-                        color: 'rgba(255,255,255,0.2)',
-                        lineWidth: 1,
-                        borderDash: [5, 5],
+                        display: false
                     },
                     ticks: {
-                        color: 'rgba(255,255,255,1)',
+                        display: false,
                     }
                 },
                 x: {
                     title: {
-                        display: true,
-                        text: 'Feels safe',
-                        color: 'rgba(255,255,255,1)',
+                        display: false,
                     },
                     border: {
                         color: 'rgba(255,255,255,1)',
                         width: 2,
                     },
                     grid: {
-                        color: 'rgba(255,255,255,0.2)',
-                        lineWidth: 1,
-                        borderDash: [5, 5],
+                        display: false,
                     },
                     ticks: {
                         color: 'rgba(255,255,255,1)',
@@ -915,16 +904,20 @@ document.addEventListener('DOMContentLoaded', function () {
             responsive: true,
             plugins: {
                 legend: {
-                    position: 'top',
-                    labels: {
-                        color: 'rgba(255,255,255,1)',
-                    }
+                    display: false,
                 },
                 title: {
                     display: false
+                },
+                datalabels: {
+                    color: '#fff',
+                    anchor: 'end',
+                    align: 'top',
+                    formatter: (value) => value 
                 }
             }
-        }
+        },
+        plugins: [ChartDataLabels]
     });
 
 
@@ -956,6 +949,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const fs_dirty_toilets = [2, 3, 0];
     const lp_dirty_toilets = [9, 8, 3];
     const kzn_dirty_toilets = [2, 4, 2];
+
+    const queues_0_10 = [1, 1, 3, 0];
+    const queues_10_20 = [6, 10, 8, 11];
+    const queues_20_40 = [2, 2, 2, 10];
+    const queues_40_60 = [0, 1, 1, 2];
+
+    const safety_yes = [1, 1, 3, 0];
+    const safety_no = [6, 10, 8, 11];
+
+    const women_safety_yes = [13, 46, 27, 36];
+    const women_safety_no = [24, 29, 32, 26];
+
+    const return_visit_female = [73, 39];
+    const return_visit_male = [76, 44];
+
+    
 
     // GENDER BREAKDOWN
 
@@ -1147,7 +1156,11 @@ document.addEventListener('DOMContentLoaded', function () {
             ".scrolly-chart-3",
             { opacity: 0 },
             { opacity: 1, ease: "none" }
-        );
+        )
+        .to(queues_chart.data.datasets[0].data, { endArray: queues_0_10, ease: "none", onUpdate: function () { queues_chart.update(); } }, 0)
+        .to(queues_chart.data.datasets[1].data, { endArray: queues_10_20, ease: "none", onUpdate: function () { queues_chart.update(); } }, 0)
+        .to(queues_chart.data.datasets[2].data, { endArray: queues_20_40, ease: "none", onUpdate: function () { queues_chart.update(); } }, 0)
+        .to(queues_chart.data.datasets[3].data, { endArray: queues_40_60, ease: "none", onUpdate: function () { queues_chart.update(); } }, 0);
 
     fadeOutChart('scrolly-chart-3', 'unsafe');
 
@@ -1172,7 +1185,9 @@ document.addEventListener('DOMContentLoaded', function () {
             ".scrolly-chart-4",
             { opacity: 0 },
             { opacity: 1, ease: "none" }
-        );
+        )
+        .to(safety_chart.data.datasets[0].data, { endArray: safety_yes, ease: "none", onUpdate: function () { safety_chart.update(); } }, 0)
+        .to(safety_chart.data.datasets[1].data, { endArray: safety_no, ease: "none", onUpdate: function () { safety_chart.update(); } }, 0);
 
     fadeOutChart('scrolly-chart-4', 'women-unsafe');
 
@@ -1197,7 +1212,9 @@ document.addEventListener('DOMContentLoaded', function () {
             ".scrolly-chart-5",
             { opacity: 0 },
             { opacity: 1, ease: "none" }
-        );
+        )
+        .to(women_safety_chart.data.datasets[0].data, { endArray: women_safety_yes, ease: "none", onUpdate: function () { women_safety_chart.update(); } }, 0)
+        .to(women_safety_chart.data.datasets[1].data, { endArray: women_safety_no, ease: "none", onUpdate: function () { women_safety_chart.update(); } }, 0);
 
     fadeOutChart('scrolly-chart-5', 'return-visits');
 
@@ -1223,7 +1240,9 @@ document.addEventListener('DOMContentLoaded', function () {
             ".scrolly-chart-6",
             { opacity: 0 },
             { opacity: 1, ease: "none" }
-        );
+        )
+        .to(return_visit_chart.data.datasets[0].data, { endArray: return_visit_female, ease: "none", onUpdate: function () { return_visit_chart.update(); } }, 0)
+        .to(return_visit_chart.data.datasets[1].data, { endArray: return_visit_male, ease: "none", onUpdate: function () { return_visit_chart.update(); } }, 0);
 
     fadeOutChart('scrolly-chart-6', 'conclusion');
 

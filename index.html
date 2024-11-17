@@ -76,7 +76,7 @@
                 <p><span class="scrolly-secondary scrolly-fw-500 scrolly-big">Seven</span> clinics in Limpopo had some sort of <span class="scrolly-secondary scrolly-fw-500 scrolly-big">pit latrine</span>.</p>
             </div>
 
-            <div class="scrolly-slide-annotation scrolly-annotation-extra-info" data-annotation-label="broken-toilets-kzn-lp" data-annotation-in="pit-latrine" data-annotation-out="disabled-access">
+            <div class="scrolly-slide-annotation scrolly-annotation-extra-info" data-annotation-label="broken-toilets-kzn-lp" data-annotation-in="broken-toilets-kzn-lp" data-annotation-out="not-stocked">
                 <p>Broken bathrooms were experienced much more in <span class="scrolly-secondary scrolly-fw-500">KZN</span> and <span class="scrolly-secondary scrolly-fw-500">Limpopo</span> than in the Free State.</p>
             </div>
 
@@ -222,9 +222,9 @@
 
         <!-- OUTDOOR -->
 
-        <div class="scrolly-section" data-section-label="outdoor-facilities">
+        <div class="scrolly-section" data-section-label="outdoor-facilities" data-background="img/outdoor-toilets.jpg">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" data-annotation-label="outdoor-facilities"">
+                <div class="scrolly-caption-box" data-annotation-label="outdoor-facilities">
                     <p>Many clinics in Limpopo and KZN rely on <span class="scrolly-secondary scrolly-fw-500 scrolly-big">outdoor facilities</span>.</p>
                 </div>
             </div>
@@ -238,11 +238,13 @@
 
         <div class="scrolly-section" data-section-label="pit-latrine"></div>
 
+        <div class="scrolly-section" data-section-label="pit-latrine2"></div>
+
         <!-- DISABLED -->
 
-        <div class="scrolly-section" data-section-label="disabled-access">
+        <div class="scrolly-section" data-section-label="disabled-access" data-background="img/disabled.jpg">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" data-annotation-label="disabled-access">
+                <div class="scrolly-caption-box">
                     <p>But while all the clinics we visited in the <span class="scrolly-secondary scrolly-fw-500">Free State</span> had bathrooms inside the clinics, they were also the <span class="scrolly-secondary scrolly-fw-500 scrolly-big">least accessible to patients with a disability</span>.</p>
                 </div>
             </div>
@@ -256,7 +258,7 @@
 
         <div class="scrolly-section" data-section-label="broken-toilets">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" data-annotation-label="broken-toilets">
+                <div class="scrolly-caption-box">
                     <p><span class="scrolly-secondary scrolly-fw-500 scrolly-big">75.4%</span> of people we spoke to said that at some point, <span class="scrolly-secondary scrolly-fw-500 scrolly-big">the toilets had been out of order</span> when then visited the clinic.</p>
                 </div>
             </div>
@@ -272,7 +274,7 @@
 
         <div class="scrolly-section" data-section-label="not-stocked">
             <div class="scrolly-slide-inner">
-                <div class="scrolly-caption-box" data-annotation-label="not-stocked">
+                <div class="scrolly-caption-box">
                     <p>Even when patients could visit the bathroom, however, both male and female toilets were <span class="scrolly-secondary scrolly-fw-500 scrolly-big">unlikely to be stocked with basics such as toilet paper or soap</span>.</p>
                 </div>
             </div>
@@ -374,6 +376,7 @@
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
     <!-- scrollsmoother -->
