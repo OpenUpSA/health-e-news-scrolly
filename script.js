@@ -154,6 +154,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // END SCROLLY. UNSTICK
+
     ScrollTrigger.create({
         trigger: '.scrolly-section[data-section-label="end"]', 
         start: () => {
@@ -178,10 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-
-    
-
-  
+    // SCROLLY CAPTIONS FADE INS
 
     gsap.utils.toArray('.scrolly-section .scrolly-caption-box').forEach((caption) => {
         gsap.to(caption, {
