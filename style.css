@@ -53,6 +53,15 @@
     
 }
 
+.scrolly .scrolly-section-50 {
+    aspect-ratio: 12/6;
+}
+
+.scrolly .scrolly-section-25 {
+    aspect-ratio: 12/3;
+}
+
+
 
 /*** COLORS ***/
 
@@ -129,13 +138,10 @@
     transform-origin: 0 50%;
 }
 
-.scrolly .scrolly-slide-annotation-tester {
-    position: absolute;
-    color: #fff;
-    right: 0;
-    top: 0;
-    opacity: 0;
+.scrolly .scrolly-slide-annotation.scrolly-pointer-long::after {
+    width: 40px !important;
 }
+
 
 /* LINE ANCHOR */
 
@@ -270,6 +276,9 @@
 .scrolly-annotation-inner {
     position: absolute;
     width: 100%;
+    background-image: url('img/bg.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 
@@ -278,8 +287,6 @@
 /*** CHART CUSTIOMISATIONS ***/
 
 .scrolly .scrolly-chart-1 .scrolly-annotation-inner {
-    background-image: url('img/bg.png');
-    background-size: cover;
     bottom: 6em;
     padding: 4em 0;
 }
@@ -318,8 +325,6 @@
 }
 
 .scrolly .scrolly-chart-2 .scrolly-annotation-inner {
-    background-image: url('img/bg.png');
-    background-size: cover;
     bottom: 5em;
     padding: 2em 0;
 }
@@ -331,8 +336,6 @@
 }
 
 .scrolly .scrolly-chart-3 .scrolly-annotation-inner {
-    background-image: url('img/bg.png');
-    background-size: cover;
     top: 7em;
     padding: 4em 0;
 }
@@ -345,8 +348,6 @@
 }
 
 .scrolly .scrolly-chart-4 .scrolly-annotation-inner {
-    background-image: url('img/bg.png');
-    background-size: cover;
     top: 6em;
     padding: 4em 0;
 }
@@ -359,8 +360,6 @@
 }
 
 .scrolly .scrolly-chart-5 .scrolly-annotation-inner {
-    background-image: url('img/bg.png');
-    background-size: cover;
     bottom: -1em;
     padding: 4em 0;
 }
@@ -373,10 +372,8 @@
 }
 
 .scrolly .scrolly-chart-6 .scrolly-annotation-inner {
-    background-image: url('img/bg.png');
-    background-size: cover;
-    top: 7em;
-    padding: 3em 0;
+    bottom: 4em;
+    padding: 4em 0;
 }
 
 .scrolly .scrolly-chart-6 .scrolly-chart-container {
@@ -386,10 +383,8 @@
 }
 
 .scrolly .scrolly-chart-7 .scrolly-annotation-inner {
-    background-image: url('img/bg.png');
-    background-size: cover;
-    top: 6em;
-    padding: 5em 0;
+    top: 8em;
+    padding: 3em 0;
 }
 
 .scrolly .scrolly-chart-7 .scrolly-chart-container {
@@ -401,161 +396,6 @@
 
 
 /*** ANNOTATION CUSTOMISATIONS ***/
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="fs"] {
-    top: 70%;
-    right: 35%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="lp"] {
-    top: 27%;
-    right: 5%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="kzn"] {
-    top: 80%;
-    right: 2%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="male"] {
-    top: 53%;
-    right: 8%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="female"] {
-    top: 53%;
-    left: 7%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="age"] {
-    top: 32%;
-    left: 43%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="inside"] {
-    top: 70%;
-    left: 20%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="outside"] {
-    top: 45%;
-    left: 35%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="both"] {
-    top: 45%;
-    right: 5%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="disabled-access-yes"] {
-    top: 44%;
-    left: 58%;
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="disabled-access-no"] {
-    bottom: 26%;
-    left: 25%;
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="usable"] {
-    top: 44%;
-    left: 25%;
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="unusable"] {
-    bottom: 25%;
-    left: 56%;
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="toilet-paper-yes"] {
-    top: 44%;
-    left: 25%;
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="toilet-paper-no"] {
-    bottom: 25%;
-    left: 56%;
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="soap-yes"] {
-    top: 44%;
-    left: 25%;
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="soap-no"] {
-    bottom: 25%;
-    left: 56%;
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-toilet"] {
-    top: 37%;
-    left: 2%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-seat"] {
-    bottom: 25%;
-    left: 58%;
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-wall"] {
-    top: 45%;
-    right: 7%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="facility-size"] {
-    bottom: 4%;
-    right: 48%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time"] {
-    top: 36%;
-    left: 12%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="safety-women-yes"] {
-    top: 60%;
-    left: 22%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="safety-women-no"] {
-    top: 45%;
-    right: 8%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-age"] {
-    bottom: 4%;
-    right: 48%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-yes"] {
-    bottom: 55%;
-    right: 41%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-no"] {
-    bottom: 50%;
-    right: 12%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-younger-women"] {
-    top: 52%;
-    left: 3%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-axes"] {
-    bottom: 5%;
-    right: 40%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-male"] {
-    bottom: 50%;
-    left: 24%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-female"] {
-    bottom: 50%;
-    right: 48%
-}
 
 
 
@@ -704,6 +544,14 @@
         
     }
 
+    .scrolly .scrolly-section-50 {
+        aspect-ratio: 12/4;
+    }
+    
+    .scrolly .scrolly-section-25 {
+        aspect-ratio: 12/2;
+    }
+
     /*** CHART CUSTOMISATIONS ***/
 
     .scrolly .scrolly-chart-1 .scrolly-annotation-inner {
@@ -727,6 +575,10 @@
 
     .scrolly .scrolly-slide-annotation::after {
         width: 40px !important;
+    }
+
+    .scrolly .scrolly-slide-annotation.scrolly-pointer-long::after {
+        width: 120px !important;
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="fs"] {
@@ -760,8 +612,7 @@
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="inside"] {
-        top: unset;
-        bottom: 16%;
+        top: 80%;
         left: 20%
     }
     
@@ -781,7 +632,7 @@
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="disabled-access-no"] {
-        bottom: 20%;
+        top: 78%;
         left: 25%;
     }
 
@@ -791,7 +642,7 @@
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="unusable"] {
-        bottom: 20%;
+        top: 80%;
         left: 55%;
     }
 
@@ -801,7 +652,7 @@
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="toilet-paper-no"] {
-        bottom: 20%;
+        top: 80%;
         left: 55%;
     }
 
@@ -811,58 +662,63 @@
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="soap-no"] {
-        bottom: 20%;
+        top: 80%;
         left: 55%;
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="dirty-toilet"] {
-        top: 79%;
-        left: 17%
+        top: 82%;
+        left: 27%
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="dirty-seat"] {
-        top: 79%;
+        top: 82%;
         left: 57%;
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="dirty-wall"] {
-        top: 65%;
-        right: 10%
+        top: 60%;
+        right: 16%
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="facility-size"] {
-        bottom: 4%;
-        right: 48%
+        top: 30%;
+        right: 22%
     }
 
-    .scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time"] {
-        top: 36%;
-        left: 12%
+    .scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time-over-20"] {
+        top: 68%;
+        left: 70%
     }
 
-    .scrolly .scrolly-slide-annotation[data-annotation-label="safety-women-yes"] {
-        top: 60%;
-        left: 22%
+    .scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time-under-20"] {
+        top: 68%;
+        left: 17%
     }
 
-    .scrolly .scrolly-slide-annotation[data-annotation-label="safety-women-no"] {
-        top: 45%;
-        right: 8%
+    .scrolly .scrolly-slide-annotation[data-annotation-label="safety-yes"] {
+        top: 28%;
+        left: 63%
+    }
+
+    .scrolly .scrolly-slide-annotation[data-annotation-label="safety-no"] {
+        top: 72%;
+        left: 30%
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-age"] {
-        bottom: 4%;
-        right: 48%
+        top: 92%;
+        right: 45%
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-yes"] {
-        bottom: 55%;
-        right: 41%
+        top: 26%;
+        left: 25%
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-no"] {
-        bottom: 50%;
-        right: 12%
+        top: 35%;
+        right: 20%
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-younger-women"] {
@@ -870,20 +726,11 @@
         left: 3%
     }
 
-    .scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-axes"] {
-        bottom: 5%;
-        right: 40%
+    .scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-less-likey"] {
+        top: 42%;
+        right: 24%
     }
 
-    .scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-male"] {
-        bottom: 50%;
-        left: 24%
-    }
-
-    .scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-female"] {
-        bottom: 50%;
-        right: 48%
-    }
 
 }
 

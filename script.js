@@ -32,7 +32,8 @@ let chart_colors = {
 
 let responsive_settings = {
     gender_age_labels: 10,
-    waiting_time_chart_orientation: 'y'
+    dirty_toilets_labels: 10
+
 }
 
 
@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             console.log('Screen is large (>768px)');
             responsive_settings.gender_age_labels = 16;
-            responsive_settings.waiting_time_chart_orientation = 'x';
+            responsive_settings.dirty_toilets_labels = 16;
         }
     }
 
@@ -372,7 +373,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         let timeInOffset = timeInSlide.getBoundingClientRect().top;
 
-        
+        const backgroundRect = background.getBoundingClientRect();
 
         gsap.fromTo(
             selector,
@@ -382,8 +383,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 ease: "none",
                 scrollTrigger: {
                     scrub: true,
-                    start: `${timeInOffset + offset}`, 
-                    end: `${timeInOffset + offset + speed}`,  
+                    start: `${timeInOffset + offset} ${offsetInPixels + backgroundRect.height}`, 
+                    end: `${timeInOffset + offset + speed} ${offsetInPixels}`,  
                 }
             }
         );
@@ -394,8 +395,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let selector = `.scrolly-slide-annotation[data-annotation-label='${label}']`;
 
-        
-
         let timeOutSlide = document.querySelector(`.scrolly-section[data-section-label='${timeOut}']`);
 
         if(timeOutSlide == null) {
@@ -403,6 +402,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         let timeOutOffset = timeOutSlide.getBoundingClientRect().top;
+
+        const backgroundRect = background.getBoundingClientRect();
 
         // Fade out
         gsap.fromTo(
@@ -413,8 +414,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 ease: "none",
                 scrollTrigger: {
                     scrub: true,
-                    start: `${timeOutOffset + offset}`, 
-                    end: `${timeOutOffset + offset + speed}`,  
+                    start: `${timeOutOffset + offset} ${offsetInPixels + backgroundRect.height}`, 
+                    end: `${timeOutOffset + offset + speed} ${offsetInPixels}`,  
                 },
                 immediateRender: false 
             }
@@ -451,6 +452,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // CHARTS
+
+    Chart.defaults.animation.duration = 300;
+
     
 
     // POPULATION CHART
@@ -590,6 +594,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // UNHYGENIC TOILETS
 
+    
+
     const unhygenic_toilets = new Chart('unhygenic-toilets-chart', {
         type: 'bar',
         data: {
@@ -597,17 +603,17 @@ document.addEventListener('DOMContentLoaded', function () {
             datasets: [
                 {
                     label: 'Seat',
-                    data: [2, 2, 9],
+                    data: [0, 0, 0],
                     backgroundColor: chart_colors.unhygenic_seat
                 },
                 {
                     label: 'Toilet bowl',
-                    data: [3, 4, 8],
+                    data: [0, 0, 0],
                     backgroundColor: chart_colors.unhygenic_bowl
                 },
                 {
                     label: 'Wall',
-                    data: [0, 2, 3],
+                    data: [0, 0, 0],
                     backgroundColor: chart_colors.unhygenic_wall
                 }
             ]
@@ -620,16 +626,26 @@ document.addEventListener('DOMContentLoaded', function () {
                     intersect: false
                 },
                 legend: {
-                    display: true
+                    display: false
                 }
             },
             responsive: true,
             scales: {
                 x: {
-                    stacked: true
+                    stacked: true,
+                    ticks: {
+                        display: false
+                    }
                 },
                 y: {
-                    stacked: true
+                    stacked: true,
+                    ticks: {
+                        color: 'rgba(255,255,255,1)',
+                        font: {
+                            size: responsive_settings.dirty_toilets_labels,
+                            weight: 'bold'
+                        }
+                    }
                 }
             }
         }
@@ -718,15 +734,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const queues_chart_51_70 = new Chart('queues-chart-51-70', doughnut_chart_waiting_time_init);
     const queues_chart_71_100 = new Chart('queues-chart-71-100', doughnut_chart_waiting_time_init);
     const queues_chart_100 = new Chart('queues-chart-100', doughnut_chart_waiting_time_init);
-
-
-
-
-
-
-    
-   
-
     
 
     // WOMEN SAFETY CHART
@@ -800,7 +807,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     color: '#fff',
                     anchor: 'end',
                     align: 'top',
-                    formatter: (value) => value 
+                    formatter: (value) => parseInt(value) 
                 }
             }
         },
@@ -839,9 +846,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const lp_no_sanitiser = [0, 2, 18];
     const kzn_no_sanitiser = [0, 7, 13];
 
-    const fs_dirty_toilets = [2, 3, 0];
-    const lp_dirty_toilets = [9, 8, 3];
-    const kzn_dirty_toilets = [2, 4, 2];
+    const unhygenic_toilets_seat = [2, 2, 9];
+    const unhygenic_toilets_bowl = [3, 4, 8];
+    const unhygenic_toilets_wall = [0, 2, 3];  
 
     const queues_21_50 = [7, 2];
     const queues_51_70 = [11, 3];
@@ -875,8 +882,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
             },
             scrub: true
-
-
         }
     })
         .fromTo(
@@ -888,7 +893,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .to(population_chart.data.datasets[1].data, { endArray: male_age_distribution, ease: "none", onUpdate: function () { population_chart.update(); } }, 0);
 
 
-    fadeOutChart('scrolly-chart-2', 'outdoor-facilities');
+    fadeOutChart('scrolly-chart-2', 'gender-breakdown4');
 
     // PROVINCE BREAKDOWN CHART ANIMATION
 
@@ -1003,6 +1008,9 @@ document.addEventListener('DOMContentLoaded', function () {
         .to(lp.data.datasets[0].data, { endArray: lp_no_sanitiser, ease: "none", onUpdate: function () { lp.update(); } }, 0)
         .to(kzn.data.datasets[0].data, { endArray: kzn_no_sanitiser, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
 
+
+    fadeOutChart('scrolly-chart-1', 'not-stocked2');   
+
     // DIRTY TOILETS
 
     gsap
@@ -1024,13 +1032,16 @@ document.addEventListener('DOMContentLoaded', function () {
             ".scrolly-chart-7",
             { opacity: 0 },
             { opacity: 1, ease: "none" }
-        );
+        )
+        .to(unhygenic_toilets.data.datasets[0].data, { endArray: unhygenic_toilets_seat, ease: "none", onUpdate: function () { unhygenic_toilets.update(); } }, 0)
+        .to(unhygenic_toilets.data.datasets[1].data, { endArray: unhygenic_toilets_bowl, ease: "none", onUpdate: function () { unhygenic_toilets.update(); } }, 0)
+        .to(unhygenic_toilets.data.datasets[2].data, { endArray: unhygenic_toilets_wall, ease: "none", onUpdate: function () { unhygenic_toilets.update(); } }, 0);
        
 
     // FADE OUT PROVINCE CHART
 
-    fadeOutChart('scrolly-chart-1', 'unhygenic-toilets');
-    fadeOutChart('scrolly-chart-7', 'unhygenic-toilets3');
+    
+    fadeOutChart('scrolly-chart-7', 'unhygenic-toilets4');
 
     // QUEUES CHART
 
@@ -1059,7 +1070,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .to(queues_chart_71_100.data.datasets[0].data, { endArray: queues_71_100, ease: "none", onUpdate: function () { queues_chart_71_100.update(); } }, 0)
         .to(queues_chart_100.data.datasets[0].data, { endArray: queues_100, ease: "none", onUpdate: function () { queues_chart_100.update(); } }, 0);
 
-    fadeOutChart('scrolly-chart-3', 'unsafe');
+    fadeOutChart('scrolly-chart-3', 'queues4');
 
     // SAFETY
 
