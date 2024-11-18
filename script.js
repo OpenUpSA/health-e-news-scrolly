@@ -1,4 +1,4 @@
-DEBUG = false;
+DEBUG = true;
 
 let chart_colors = {
     gender_male: '#ff3d3b',
@@ -8,16 +8,12 @@ let chart_colors = {
     prov_inside: '#ffd06c',
     prov_outside: '#ff3d3b',
 
-    queue_0_10: '#FFF1DB',
-    queue_10_20: '#D4BDAC',
-    queue_20_40: '#536493',
-    queue_40_60: '#EF5A6F',
-
+  
     safety_yes: '#ffd06c',
     safety_no: '#ff3d3b',
 
-    women_safety_yes: '#D4BDAC',
-    women_safety_no: '#EF5A6F',
+    women_safety_yes: '#FFD06C',
+    women_safety_no: '#FF3D3B',
 
     unhygenic_seat: '#FFD06C',
     unhygenic_bowl: '#FF3D3B',
@@ -332,10 +328,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
-    zoomAndPan('start', 'they-visited', 1, 0, 0, 1.1, 0, 0);
-    zoomAndPan('they-visited', '313-users', 1, 0, 0, 1.4, -100, 0);
-    zoomAndPan('gender-breakdown', 'outdoor-facilities', 1.4, 0, 0, 1, 0, 0);
-    zoomAndPan('outdoor-facilities', 'disabled-access', 1.2, 0, 0, 1, 0, 0);
+    // zoomAndPan('start', 'they-visited', 1, 0, 0, 1.1, 0, 0);
+    // zoomAndPan('they-visited', '313-users', 1, 0, 0, 1.4, -100, 0);
+    // zoomAndPan('gender-breakdown', 'outdoor-facilities', 1.4, 0, 0, 1, 0, 0);
+    // zoomAndPan('outdoor-facilities', 'disabled-access', 1.2, 0, 0, 1, 0, 0);
 
 
     /// ANNOTATIONS

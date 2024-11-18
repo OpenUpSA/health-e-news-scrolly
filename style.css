@@ -816,18 +816,18 @@
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="dirty-toilet"] {
-        top: 37%;
-        left: 2%
+        top: 79%;
+        left: 17%
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="dirty-seat"] {
-        bottom: 20%;
+        top: 79%;
         left: 57%;
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="dirty-wall"] {
-        top: 37%;
-        right: 7%
+        top: 65%;
+        right: 10%
     }
 
     .scrolly .scrolly-slide-annotation[data-annotation-label="facility-size"] {
