@@ -1,4 +1,4 @@
-DEBUG = true;
+DEBUG = false;
 
 let chart_colors = {
     gender_male: '#ff3d3b',
