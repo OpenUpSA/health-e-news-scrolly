@@ -1,4 +1,4 @@
-DEBUG = true;
+DEBUG = false;
 
 let chart_colors = {
     gender_male: '#ff3d3b',
@@ -365,8 +365,14 @@ document.addEventListener('DOMContentLoaded', function () {
         let selector = `.scrolly-slide-annotation[data-annotation-label='${label}']`;
 
         let timeInSlide = document.querySelector(`.scrolly-section[data-section-label='${timeIn}']`);
+
+        if(timeInSlide == null) {
+            console.log('Slide not found: ' + timeIn);
+        }
         
         let timeInOffset = timeInSlide.getBoundingClientRect().top;
+
+        
 
         gsap.fromTo(
             selector,
@@ -388,7 +394,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let selector = `.scrolly-slide-annotation[data-annotation-label='${label}']`;
 
+        
+
         let timeOutSlide = document.querySelector(`.scrolly-section[data-section-label='${timeOut}']`);
+
+        if(timeOutSlide == null) {
+            console.log('Slide not found: ' + timeOut);
+        }
 
         let timeOutOffset = timeOutSlide.getBoundingClientRect().top;
 
