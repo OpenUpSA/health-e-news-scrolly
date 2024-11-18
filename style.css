@@ -139,7 +139,7 @@
 }
 
 .scrolly .scrolly-slide-annotation.scrolly-pointer-long::after {
-    width: 40px !important;
+    width: 60px !important;
 }
 
 
@@ -281,24 +281,6 @@
     background-repeat: no-repeat;
 }
 
-
-
-
-/*** CHART CUSTIOMISATIONS ***/
-
-.scrolly .scrolly-chart-1 .scrolly-annotation-inner {
-    bottom: 6em;
-    padding: 4em 0;
-}
-
-.scrolly .scrolly-chart-1 .scrolly-chart-container {
-    width: 80%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-
-
 .scrolly .scrolly-annotation-extra-info {
     font-size: 1em;
     color: #fff;
@@ -317,12 +299,16 @@
     font-weight: 400;
 }
 
-
-
 .scrolly .scrolly-annotation-extra-info::after {
     display: none;
     
 }
+
+
+
+
+/*** CHART CUSTIOMISATIONS ***/
+
 
 .scrolly .scrolly-chart-2 .scrolly-annotation-inner {
     bottom: 5em;
@@ -335,8 +321,32 @@
     transform: translateX(-50%);
 }
 
+.scrolly .scrolly-chart-1 .scrolly-annotation-inner {
+    bottom: 6em;
+    padding: 4em 0;
+}
+
+.scrolly .scrolly-chart-1 .scrolly-chart-container {
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+
+.scrolly .scrolly-chart-7 .scrolly-annotation-inner {
+    bottom: 6em;
+    padding: 3em 0;
+}
+
+.scrolly .scrolly-chart-7 .scrolly-chart-container {
+    width: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .scrolly .scrolly-chart-3 .scrolly-annotation-inner {
-    top: 7em;
+    bottom: 7em;
     padding: 4em 0;
 }
 
@@ -348,7 +358,7 @@
 }
 
 .scrolly .scrolly-chart-4 .scrolly-annotation-inner {
-    top: 6em;
+    bottom: 6em;
     padding: 4em 0;
 }
 
@@ -372,7 +382,7 @@
 }
 
 .scrolly .scrolly-chart-6 .scrolly-annotation-inner {
-    bottom: 4em;
+    bottom: 7em;
     padding: 4em 0;
 }
 
@@ -382,20 +392,162 @@
     transform: translateX(-50%);
 }
 
-.scrolly .scrolly-chart-7 .scrolly-annotation-inner {
-    top: 8em;
-    padding: 3em 0;
+
+
+
+
+/*** ANNOTATION CUSTMISATIONS ***/
+
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="fs"] {
+    top: 70%;
+    right: 35%
 }
 
-.scrolly .scrolly-chart-7 .scrolly-chart-container {
-    width: 60%;
-    left: 50%;
-    transform: translateX(-50%);
+.scrolly .scrolly-slide-annotation[data-annotation-label="lp"] {
+    top: 27%;
+    right: 5%
 }
 
+.scrolly .scrolly-slide-annotation[data-annotation-label="kzn"] {
+    top: 80%;
+    right: 2%
+}
 
+.scrolly .scrolly-slide-annotation[data-annotation-label="male"] {
+    top: 56%;
+    right: 8%
+}
 
-/*** ANNOTATION CUSTOMISATIONS ***/
+.scrolly .scrolly-slide-annotation[data-annotation-label="female"] {
+    top: 56%;
+    left: 7%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="age"] {
+    top: 35%;
+    left: 43%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="inside"] {
+    top: 75%;
+    left: 20%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="outside"] {
+    top: 46%;
+    left: 35%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="both"] {
+    top: 46%;
+    right: 5%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="disabled-access-yes"] {
+    top: 48%;
+    left: 57%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="disabled-access-no"] {
+    top: 73%;
+    left: 25%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="usable"] {
+    top: 48%;
+    left: 25%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="unusable"] {
+    top: 74%;
+    left: 55%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="toilet-paper-yes"] {
+    top: 48%;
+    left: 25%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="toilet-paper-no"] {
+    top: 74%;
+    left: 55%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="soap-yes"] {
+    top: 48%;
+    left: 25%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="soap-no"] {
+    top: 74%;
+    left: 55%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-toilet"] {
+    top: 75%;
+    left: 27%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-seat"] {
+    top: 75%;
+    left: 57%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-wall"] {
+    top: 60%;
+    right: 14%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="facility-size"] {
+    top: 45%;
+    right: 14%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time-over-20"] {
+    top: 73%;
+    left: 65%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time-under-20"] {
+    top: 73%;
+    left: 17%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="safety-yes"] {
+    top: 43%;
+    left: 60%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="safety-no"] {
+    top: 74%;
+    left: 30%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-age"] {
+    top: 92%;
+    right: 48%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-yes"] {
+    top: 47%;
+    left: 25%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-no"] {
+    top: 49%;
+    right: 19%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-younger-women"] {
+    top: 52%;
+    left: 3%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-less-likey"] {
+    top: 49%;
+    right: 24%
+}
 
 
 
@@ -554,6 +706,12 @@
 
     /*** CHART CUSTOMISATIONS ***/
 
+    
+    
+    .scrolly .scrolly-chart-1 .scrolly-chart-container {
+        width: 80%;
+    }
+
     .scrolly .scrolly-chart-1 .scrolly-annotation-inner {
         bottom: 3em;
         padding: 4em 0;
@@ -565,9 +723,66 @@
         padding: 2em 0;
     }
     
-    .scrolly .scrolly-chart-2 .scrolly-chart-container {
-        width: 80%;
+    .scrolly .scrolly-chart-3 .scrolly-annotation-inner {
+        top: 7em;
+        padding: 4em 0;
     }
+    
+    
+    .scrolly .scrolly-chart-3 .scrolly-chart-container {
+        width: 80%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .scrolly .scrolly-chart-4 .scrolly-annotation-inner {
+        top: 6em;
+        padding: 4em 0;
+    }
+    
+    
+    .scrolly .scrolly-chart-4 .scrolly-chart-container {
+        width: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .scrolly .scrolly-chart-5 .scrolly-annotation-inner {
+        bottom: -1em;
+        padding: 4em 0;
+    }
+    
+    
+    .scrolly .scrolly-chart-5 .scrolly-chart-container {
+        width: 80%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .scrolly .scrolly-chart-6 .scrolly-annotation-inner {
+        bottom: 4em;
+        padding: 4em 0;
+    }
+    
+    .scrolly .scrolly-chart-6 .scrolly-chart-container {
+        width: 60%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .scrolly .scrolly-chart-7 .scrolly-annotation-inner {
+        top: 8em;
+        padding: 3em 0;
+    }
+    
+    .scrolly .scrolly-chart-7 .scrolly-chart-container {
+        width: 60%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+
+   
 
 
 
