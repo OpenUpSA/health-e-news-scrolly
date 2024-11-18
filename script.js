@@ -1,4 +1,4 @@
-DEBUG = false;
+DEBUG = true;
 
 let chart_colors = {
     gender_male: '#ff3d3b',
@@ -762,6 +762,7 @@ document.addEventListener('DOMContentLoaded', function () {
         options: {
             scales: {
                 y: {
+                    max: 60,
                     beginAtZero: true,
                     title: {
                         display: false,

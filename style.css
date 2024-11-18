@@ -139,7 +139,7 @@
 }
 
 .scrolly .scrolly-slide-annotation.scrolly-pointer-long::after {
-    width: 60px !important;
+    width: 40px !important;
 }
 
 
@@ -312,7 +312,7 @@
 
 .scrolly .population-chart .scrolly-annotation-inner {
     top: 50%;
-    padding: 2em;
+    padding: 2em 0;
     transform: translateY(-50%);
 }
 
@@ -322,12 +322,63 @@
     transform: translateX(-50%);
 }
 
+.scrolly .province-chart .scrolly-annotation-inner {
+    top: 50%;
+    padding: 4em 0;
+    transform: translateY(-50%);
+}
+
+.scrolly .unhygenic-chart .scrolly-annotation-inner {
+    top: 50%;
+    padding: 3em 0;
+    transform: translateY(-50%);
+}
+
+.scrolly .unhygenic-chart .scrolly-chart-container {
+    width: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scrolly .queues-charts .scrolly-annotation-inner {
+    top: 50%;
+    padding: 3em 0;
+    transform: translateY(-50%);
+}
+
+.scrolly .queues-charts .scrolly-chart-container {
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scrolly .safety-chart .scrolly-annotation-inner {
+    top: 50%;
+    padding: 3em 6em;
+    transform: translateY(-50%);
+}
+
+.scrolly .women-safety-chart .scrolly-annotation-inner {
+    top: 50%;
+    padding: 3em 4em;
+    transform: translateY(-50%);
+}
+
+.scrolly .return-visits-chart .scrolly-annotation-inner {
+    top: 60%;
+    padding: 4em 3em;
+    transform: translateY(-50%);
+}
+
+
+
+
 
 
 /*** ANNOTATION CUSTMISATIONS ***/
 
 
-.scrolly .scrolly-slide-annotation[data-annotation-label="fs"] {
+/* .scrolly .scrolly-slide-annotation[data-annotation-label="fs"] {
     top: 70%;
     right: 35%
 }
@@ -340,7 +391,7 @@
 .scrolly .scrolly-slide-annotation[data-annotation-label="kzn"] {
     top: 80%;
     right: 2%
-}
+} */
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="male"] {
     top: 58%;
@@ -358,123 +409,119 @@
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="inside"] {
-    top: 75%;
-    left: 20%
+    top: 100%;
+    left: 80%
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="outside"] {
-    top: 46%;
-    left: 35%
+    top: -15%;
+    left: 6%
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="both"] {
-    top: 46%;
-    right: 5%
+    top: -10%;
+    right: 4%
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="disabled-access-yes"] {
-    top: 48%;
-    left: 57%;
+    top: -8%;
+    left: 75%;
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="disabled-access-no"] {
-    top: 73%;
-    left: 25%;
+    top: 100%;
+    left: 70%;
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="usable"] {
-    top: 48%;
-    left: 25%;
+    top: -8%;
+    left: 75%;
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="unusable"] {
-    top: 74%;
-    left: 55%;
+    top: 100%;
+    left: 70%;
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="toilet-paper-yes"] {
-    top: 48%;
-    left: 25%;
+    top: -8%;
+    left: 75%;
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="toilet-paper-no"] {
-    top: 74%;
-    left: 55%;
+    top: 100%;
+    left: 70%;
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="soap-yes"] {
-    top: 48%;
-    left: 25%;
+    top: -8%;
+    left: 75%;
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="soap-no"] {
-    top: 74%;
-    left: 55%;
+    top: 100%;
+    left: 70%;
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="dirty-toilet"] {
-    top: 75%;
-    left: 27%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-seat"] {
-    top: 75%;
-    left: 57%;
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-wall"] {
-    top: 60%;
-    right: 14%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="facility-size"] {
-    top: 45%;
-    right: 14%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time-over-20"] {
-    top: 73%;
-    left: 65%
-}
-
-.scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time-under-20"] {
-    top: 73%;
+    top: 95%;
     left: 17%
 }
 
+.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-seat"] {
+    top: 95%;
+    left: 67%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-wall"] {
+    top: 55%;
+    right: -13%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="facility-size"] {
+    top: -25%;
+    right: -60%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time-over-20"] {
+    top: 105%;
+    left: -95%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time-under-20"] {
+    top: 105%;
+    left: 90%
+}
+
 .scrolly .scrolly-slide-annotation[data-annotation-label="safety-yes"] {
-    top: 43%;
-    left: 60%
+    top: -10%;
+    left: -10%
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="safety-no"] {
-    top: 74%;
-    left: 30%
+    top: 110%;
+    left: 60%
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-age"] {
-    top: 92%;
+    top: 108%;
     right: 48%
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-yes"] {
-    top: 47%;
-    left: 25%
+    top: 0%;
+    left: 18%
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-no"] {
-    top: 49%;
-    right: 19%
+    top: 5%;
+    right: 12%
 }
 
-.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-younger-women"] {
-    top: 52%;
-    left: 3%
-}
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-less-likey"] {
-    top: 49%;
-    right: 24%
+    top: -15%;
+    left: -85%
 }
 
 
@@ -538,6 +585,10 @@
     max-width: 50% !important
 }
 
+.scrolly .scrolly-row-4-up .scrolly-col {
+    max-width: 25% !important
+}
+
 .scrolly .scrolly-mt-1 {
     margin-top: 1em;
 }
@@ -589,8 +640,14 @@
 
 /* MOBILE LANDSCAPE */
 
-@media (orientation: landscape) and (max-width: 767px) {
-}
+/* @media (orientation: landscape) and (max-width: 767px) {
+} */
+
+/* @media (min-width: 600px) {
+    .scrolly {
+        font-size: 14px;
+    }
+} */
 
 @media (min-width: 768px) {
     .scrolly {
@@ -640,6 +697,13 @@
         transform: translateX(-50%);
     }
    
+    .scrolly .province-chart .scrolly-annotation-inner {
+        padding: 4em 2em;
+    }
+
+    .scrolly .queues-charts .scrolly-annotation-inner {
+        padding: 3em 2em;
+    }
    
     
 
@@ -650,12 +714,52 @@
     /*** ANNOTATION CUSTMISATIONS ***/
 
     .scrolly .scrolly-slide-annotation::after {
-        width: 40px !important;
+        width: 30px !important;
     }
 
     .scrolly .scrolly-slide-annotation.scrolly-pointer-long::after {
-        width: 120px !important;
+        width: 80px !important;
     }
+
+    .scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time-over-20"] {
+        top: 105%;
+        left: -35%
+    }
+
+    .scrolly .scrolly-slide-annotation[data-annotation-label="facility-size"] {
+        top: -25%;
+        right: -40%
+    }
+
+    .scrolly .scrolly-slide-annotation[data-annotation-label="safety-yes"] {
+        top: -2%;
+        left: -10%
+    }
+
+    .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-age"] {
+        top: 100%;
+        right: 45%
+    }
+    
+
+    .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-yes"] {
+        top: 10%;
+        left: 18%
+    }
+    
+    .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-no"] {
+        top: 13%;
+        right: 12%
+    }
+
+    .scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-less-likey"] {
+        top: -15%;
+        left: -45%
+    }
+    
+    
+
+   
 
    
 
