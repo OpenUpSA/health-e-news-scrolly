@@ -422,8 +422,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // CHARTS
+    
 
     // POPULATION CHART
+
+    
 
     var data = {
         labels: ["18-25", "26-40", "41-60", "60+"],
@@ -596,7 +599,7 @@ document.addEventListener('DOMContentLoaded', function () {
             ]
         },
         options: {
-            indexAxis: 'y',
+            indexAxis: responsive_settings.waiting_time_chart_orientation,
             scales: {
                 y: {
                     beginAtZero: true,
