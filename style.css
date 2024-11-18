@@ -378,20 +378,20 @@
 /*** ANNOTATION CUSTMISATIONS ***/
 
 
-/* .scrolly .scrolly-slide-annotation[data-annotation-label="fs"] {
-    top: 70%;
-    right: 35%
+.scrolly .scrolly-slide-annotation[data-annotation-label="fs"] {
+    top: 60%;
+    right: 30%
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="lp"] {
-    top: 27%;
+    top: 37%;
     right: 5%
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="kzn"] {
-    top: 80%;
+    top: 70%;
     right: 2%
-} */
+}
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="male"] {
     top: 58%;
