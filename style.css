@@ -116,6 +116,7 @@
     display: block;
     z-index: 999;
     opacity: 0;
+    /* display: none; */
 }
 
 .scrolly .scrolly-slide-annotation::after {
@@ -126,6 +127,14 @@
     height: 2px;
     background-color: #fff;
     transform-origin: 0 50%;
+}
+
+.scrolly .scrolly-slide-annotation-tester {
+    position: absolute;
+    color: #fff;
+    right: 0;
+    top: 0;
+    opacity: 0;
 }
 
 /* LINE ANCHOR */
@@ -324,7 +333,7 @@
 .scrolly .scrolly-chart-3 .scrolly-annotation-inner {
     background-image: url('img/bg.png');
     background-size: cover;
-    bottom: -1em;
+    top: 7em;
     padding: 4em 0;
 }
 
@@ -338,13 +347,13 @@
 .scrolly .scrolly-chart-4 .scrolly-annotation-inner {
     background-image: url('img/bg.png');
     background-size: cover;
-    bottom: -1em;
+    top: 6em;
     padding: 4em 0;
 }
 
 
 .scrolly .scrolly-chart-4 .scrolly-chart-container {
-    width: 60%;
+    width: 50%;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -366,11 +375,24 @@
 .scrolly .scrolly-chart-6 .scrolly-annotation-inner {
     background-image: url('img/bg.png');
     background-size: cover;
-    bottom: 0em;
+    top: 7em;
     padding: 3em 0;
 }
 
 .scrolly .scrolly-chart-6 .scrolly-chart-container {
+    width: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scrolly .scrolly-chart-7 .scrolly-annotation-inner {
+    background-image: url('img/bg.png');
+    background-size: cover;
+    top: 6em;
+    padding: 5em 0;
+}
+
+.scrolly .scrolly-chart-7 .scrolly-chart-container {
     width: 60%;
     left: 50%;
     transform: translateX(-50%);

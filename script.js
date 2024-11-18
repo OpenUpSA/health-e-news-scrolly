@@ -13,14 +13,23 @@ let chart_colors = {
     queue_20_40: '#536493',
     queue_40_60: '#EF5A6F',
 
-    safety_yes: '#D4BDAC',
-    safety_no: '#EF5A6F',
+    safety_yes: '#ffd06c',
+    safety_no: '#ff3d3b',
 
     women_safety_yes: '#D4BDAC',
     women_safety_no: '#EF5A6F',
 
-    return_visits_female: '#D4BDAC',
-    return_visits_male: '#EF5A6F'
+    unhygenic_seat: '#FFD06C',
+    unhygenic_bowl: '#FF3D3B',
+    unhygenic_wall: '#999999',
+
+    return_visits_yes: '#ff3d3b',
+    return_visits_no: '#FFD06C',
+
+    queues_over_20: '#ff3d3b',
+    queues_under_20: '#FFD06C'
+
+
 
 
 }
@@ -118,6 +127,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
+    let sections_count = document.querySelectorAll('.scrolly-section').length;
+
+    console.log(sections_count);
+
     // THE SCROLLY
 
     document.querySelectorAll('.scrolly-section').forEach((section, index) => {
@@ -129,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (DEBUG == true) {
             let label = section.appendChild(document.createElement('div'));
             label.classList.add('scrolly-section-label');
-            label.textContent = section_label;
+            label.textContent = index+1 + ': ' + section_label;
             section.classList.add('debug');
         }
 
@@ -148,13 +161,16 @@ document.addEventListener('DOMContentLoaded', function () {
             },
 
             onEnter: () => {
-                if (section_label == 'start') {
-                    document.body.classList.add('scrolly-showing');
-                }
 
-                if (section_label == 'conclusion') {
-                    document.body.classList.remove('scrolly-showing');
-                }
+                // BACKGROUND TO BLACK
+
+                // if (section_label == 'start') {
+                //     document.body.classList.add('scrolly-showing');
+                // }
+
+                // if (section_label == 'conclusion') {
+                //     document.body.classList.remove('scrolly-showing');
+                // }
 
                 if (bg_src) {
                     updateBackgroundImage(bg_src);
@@ -346,11 +362,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
     }
+   
 
-
-    function annotationFadeIn(label, trigger) {
+    function annotationFadeIn(label, timeIn, offset, speed) {
 
         let selector = `.scrolly-slide-annotation[data-annotation-label='${label}']`;
+
+        let timeInSlide = document.querySelector(`.scrolly-section[data-section-label='${timeIn}']`);
+        
+        let timeInOffset = timeInSlide.getBoundingClientRect().top;
 
         gsap.fromTo(
             selector,
@@ -360,61 +380,62 @@ document.addEventListener('DOMContentLoaded', function () {
                 ease: "none",
                 scrollTrigger: {
                     scrub: true,
-                    trigger: `.scrolly-section[data-section-label='${trigger}']`,
-                    start: () => {
-                        const backgroundRect = background.getBoundingClientRect();
-                        return `top ${backgroundRect.height + offsetInPixels}px`;
-                    },
-                    end: () => {
-                        const backgroundRect = background.getBoundingClientRect();
-                        return `top ${backgroundRect.height + offsetInPixels}px`;
-                    }
+                    start: `${timeInOffset + offset}`, 
+                    end: `${timeInOffset + offset + speed}`,  
                 }
             }
         );
+
     }
 
-    function annotationFadeOut(label, trigger) {
+    function annotationFadeOut(label, timeOut, offset, speed) {
 
         let selector = `.scrolly-slide-annotation[data-annotation-label='${label}']`;
 
-        gsap.to(
+        let timeOutSlide = document.querySelector(`.scrolly-section[data-section-label='${timeOut}']`);
+
+        let timeOutOffset = timeOutSlide.getBoundingClientRect().top;
+
+        // Fade out
+        gsap.fromTo(
             selector,
+            { opacity: 1 }, 
             {
                 opacity: 0,
                 ease: "none",
                 scrollTrigger: {
                     scrub: true,
-                    trigger: `.scrolly-section[data-section-label='${trigger}']`,
-                    start: () => {
-                        const backgroundRect = background.getBoundingClientRect();
-                        return `top ${backgroundRect.height + offsetInPixels}px`;
-                    },
-                    end: () => {
-                        const backgroundRect = background.getBoundingClientRect();
-                        return `top ${backgroundRect.height + offsetInPixels}px`;
-                    }
-                }
-            });
+                    start: `${timeOutOffset + offset}`, 
+                    end: `${timeOutOffset + offset + speed}`,  
+                },
+                immediateRender: false 
+            }
+        );
+
     }
 
     document.querySelectorAll('.scrolly-slide-annotation[data-annotation-in]').forEach((annotation, index) => {
 
         let annotation_label = annotation.getAttribute('data-annotation-label');
-        let annotation_trigger_in = annotation.getAttribute('data-annotation-in');
+        let annotation_time_in = annotation.getAttribute('data-annotation-in');
+        let annotation_offset = annotation.getAttribute('data-annotation-offset') ? parseFloat(annotation.getAttribute('data-annotation-offset')) : 0;
+        let annotation_speed = annotation.getAttribute('data-annotation-speed') ? parseFloat(annotation.getAttribute('data-annotation-speed')) : 0;
 
-        annotationFadeIn(annotation_label, annotation_trigger_in);
+        annotationFadeIn(annotation_label, annotation_time_in, annotation_offset, annotation_speed);
 
     });
 
-    document.querySelectorAll('.scrolly-slide-annotation[data-annotation-out]').forEach((annotation, index) => {
+    document.querySelectorAll('.scrolly-slide-annotation[data-annotation-in]').forEach((annotation, index) => {
 
         let annotation_label = annotation.getAttribute('data-annotation-label');
-        let annotation_trigger_out = annotation.getAttribute('data-annotation-out');
+        let annotation_time_out = annotation.getAttribute('data-annotation-out');
+        let annotation_offset_out = annotation.getAttribute('data-annotation-offset-out') ? parseFloat(annotation.getAttribute('data-annotation-offset-out')) : 0;
+        let annotation_speed_out = annotation.getAttribute('data-annotation-speed-out') ? parseFloat(annotation.getAttribute('data-annotation-speed-out')) : 0;
 
-        annotationFadeOut(annotation_label, annotation_trigger_out);
+        annotationFadeOut(annotation_label, annotation_time_out, annotation_offset_out, annotation_speed_out);
 
     });
+        
 
 
 
@@ -559,106 +580,60 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    // WAITING TIME CHART
+    // UNHYGENIC TOILETS
 
-    
-
-    const queues_chart = new Chart('queues-chart', {
+    const unhygenic_toilets = new Chart('unhygenic-toilets-chart', {
         type: 'bar',
         data: {
-            labels: ['21-50', '51-70', '71-100', '100+'],
+            labels: ['FS', 'KZN', 'LP'],
             datasets: [
                 {
-                    label: '0-10 mins',
-                    data: [0, 0, 0, 0],
-                    backgroundColor: chart_colors.queue_0_10,
-                    borderColor: chart_colors.queue_0_10,
-                    borderWidth: 0
+                    label: 'Seat',
+                    data: [2, 2, 9],
+                    backgroundColor: chart_colors.unhygenic_seat
                 },
                 {
-                    label: '10-20 mins',
-                    data: [0, 0, 0, 0],
-                    backgroundColor: chart_colors.queue_10_20,
-                    borderColor: chart_colors.queue_10_20,
-                    borderWidth: 0
+                    label: 'Toilet bowl',
+                    data: [3, 4, 8],
+                    backgroundColor: chart_colors.unhygenic_bowl
                 },
                 {
-                    label: '20-40 mins',
-                    data: [0, 0, 0, 0],
-                    backgroundColor: chart_colors.queue_20_40,
-                    borderColor: chart_colors.queue_20_40,
-                    borderWidth: 0
-                },
-                {
-                    label: '40-60 mins',
-                    data: [0, 0, 0, 0],
-                    backgroundColor: chart_colors.queue_40_60,
-                    borderColor: chart_colors.queue_40_60,
-                    borderWidth: 0
+                    label: 'Wall',
+                    data: [0, 2, 3],
+                    backgroundColor: chart_colors.unhygenic_wall
                 }
             ]
         },
         options: {
-            indexAxis: responsive_settings.waiting_time_chart_orientation,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: false,
-                    },
-                    border: {
-                        display: false,
-                    },
-                    grid: {
-                        display: false,
-                    },
-                    ticks: {
-                        display: false,
-                    }
+            indexAxis: 'y',
+            plugins: {
+                tooltip: {
+                    mode: 'index',
+                    intersect: false
                 },
-                x: {
-                    title: {
-                        display: false,
-                    },
-                    border: {
-                        color: 'rgba(255,255,255,1)',
-                        width: 2,
-                    },
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        color: 'rgba(255,255,255,1)',
-                        font: {
-                            size: 16
-                        }
-                    }
+                legend: {
+                    display: true
                 }
             },
             responsive: true,
-            plugins: {
-                legend: {
-                    display: true,
-                    labels: {
-                        color: 'rgba(255,255,255,1)',
-                    }
+            scales: {
+                x: {
+                    stacked: true
                 },
-                title: {
-                    display: false
-                },
-                datalabels: {
-                    color: '#fff',
-                    anchor: 'end',
-                    align: 'top',
-                    formatter: (value) => value 
+                y: {
+                    stacked: true
                 }
             }
-        },
-        plugins: [ChartDataLabels]
+        }
     });
 
 
-    // PROVINCE CHARTS
+    
+
+    
+
+
+    // DOUGHNUT CHARTS
 
     const doughnut_chart_options = {
         responsive: true,
@@ -666,23 +641,6 @@ document.addEventListener('DOMContentLoaded', function () {
         plugins: {
             legend: {
                 display: false
-            },
-            aannotation: {
-                annotations: {
-                    textAnnotation: {
-                        type: 'label',
-                        xValue: '50%',
-                        yValue: '90%',
-                        content: ['Important Segment'],
-                        color: 'rgba(255, 255, 255, 0.9)',
-                        font: {
-                            size: 14,
-                            weight: 'bold',
-                        },
-                        padding: 6,
-                        borderRadius: 4
-                    }
-                }
             }
         },
         borderWidth: 0
@@ -700,92 +658,68 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    const doughnut_chart_safety_init = {
+        type: 'doughnut',
+        options: doughnut_chart_options,
+        data: {
+            labels: ['No', 'Yes'],
+            datasets: [{
+                data: [0, 0],
+                backgroundColor: [chart_colors.safety_no, chart_colors.safety_yes]
+            }]
+        }
+    }
+
+    const doughnut_chart_return_visits_init = {
+        type: 'doughnut',
+        options: doughnut_chart_options,
+        data: {
+            labels: ['No', 'Yes'],
+            datasets: [{
+                data: [0, 0],
+                backgroundColor: [chart_colors.return_visits_no, chart_colors.return_visits_yes]
+            }]
+        }
+    }
+
+    const doughnut_chart_waiting_time_init = {
+        type: 'doughnut',
+        options: doughnut_chart_options,
+        data: {
+            labels: ['Under 20 minutes', 'Over 20 minutes'],
+            datasets: [{
+                data: [0, 0],
+                backgroundColor: [chart_colors.queues_under_20, chart_colors.queues_over_20]
+            }]
+        }
+    }
+
+
     const fs = new Chart('fs', doughnut_chart_init);
     const lp = new Chart('lp', doughnut_chart_init);
     const kzn = new Chart('kzn', doughnut_chart_init);
 
+    const safety_male = new Chart('safety-chart-male', doughnut_chart_safety_init);
+    const safety_female = new Chart('safety-chart-female', doughnut_chart_safety_init);
+
+    const return_visits_chart_fs = new Chart('return-visits-chart-fs', doughnut_chart_return_visits_init);
+    const return_visits_chart_lp = new Chart('return-visits-chart-lp', doughnut_chart_return_visits_init);
+    const return_visits_chart_kzn = new Chart('return-visits-chart-kzn', doughnut_chart_return_visits_init);
+
+    const queues_chart_21_50 = new Chart('queues-chart-21-50', doughnut_chart_waiting_time_init);
+    const queues_chart_51_70 = new Chart('queues-chart-51-70', doughnut_chart_waiting_time_init);
+    const queues_chart_71_100 = new Chart('queues-chart-71-100', doughnut_chart_waiting_time_init);
+    const queues_chart_100 = new Chart('queues-chart-100', doughnut_chart_waiting_time_init);
 
 
-    // SAFETY CHART
 
+
+
+
+    
    
 
-    const safety_chart = new Chart('safety-chart', {
-        type: 'bar',
-        data: {
-            labels: ['Yes', 'No'],
-            datasets: [
-                {
-                    label: 'Male',
-                    data: [0, 0, 0, 0],
-                    backgroundColor: chart_colors.safety_yes,
-                    borderColor: chart_colors.safety_yes,
-                    borderWidth: 0
-                },
-                {
-                    label: 'Female',
-                    data: [0, 0, 0, 0],
-                    backgroundColor: chart_colors.safety_no,
-                    borderColor: chart_colors.safety_no,
-                    borderWidth: 0
-                }
-            ]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: false,
-                    },
-                    border: {
-                        display: false,
-                    },
-                    grid: {
-                        display: false,
-                    },
-                    ticks: {
-                        display: false
-                    }
-                },
-                x: {
-                    title: {
-                        display: false,
-                    },
-                    border: {
-                        color: 'rgba(255,255,255,1)',
-                        width: 2,
-                    },
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        color: 'rgba(255,255,255,1)',
-                        font: {
-                            size: 16
-                        }
-                    }
-                }
-            },
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: false,
-                },
-                title: {
-                    display: false
-                },
-                datalabels: {
-                    color: '#fff',
-                    anchor: 'end',
-                    align: 'top',
-                    formatter: (value) => value 
-                }
-
-            }
-        },
-        plugins: [ChartDataLabels]
-    });
+    
 
     // WOMEN SAFETY CHART
 
@@ -869,79 +803,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     
 
-    const return_visit_chart = new Chart('return-visit-chart', {
-        type: 'bar',
-        data: {
-            labels: ['Yes', 'No'],
-            datasets: [
-                {
-                    label: 'Female',
-                    data: [0, 0],
-                    backgroundColor: chart_colors.return_visits_female,
-                },
-                {
-                    label: 'Male',
-                    data: [0, 0],
-                    backgroundColor: chart_colors.return_visits_male
-                }
-            ]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    min: 0,
-                    max: 90,
-                    title: {
-                        display: false
-                    },
-                    border: {
-                        display: false
-                    },
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        display: false,
-                    }
-                },
-                x: {
-                    title: {
-                        display: false,
-                    },
-                    border: {
-                        color: 'rgba(255,255,255,1)',
-                        width: 2,
-                    },
-                    grid: {
-                        display: false,
-                    },
-                    ticks: {
-                        color: 'rgba(255,255,255,1)',
-                        font: {
-                            size: 16
-                        }
-                    }
-                }
-            },
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: false,
-                },
-                title: {
-                    display: false
-                },
-                datalabels: {
-                    color: '#fff',
-                    anchor: 'end',
-                    align: 'top',
-                    formatter: (value) => value 
-                }
-            }
-        },
-        plugins: [ChartDataLabels]
-    });
+    
 
 
     // CHART DATA
@@ -973,20 +835,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const lp_dirty_toilets = [9, 8, 3];
     const kzn_dirty_toilets = [2, 4, 2];
 
-    const queues_0_10 = [1, 1, 3, 0];
-    const queues_10_20 = [6, 10, 8, 11];
-    const queues_20_40 = [2, 2, 2, 10];
-    const queues_40_60 = [0, 1, 1, 2];
+    const queues_21_50 = [7, 2];
+    const queues_51_70 = [11, 3];
+    const queues_71_100 = [11, 3];
+    const queues_100 = [11, 12];
 
-    const safety_yes = [1, 1, 3, 0];
-    const safety_no = [6, 10, 8, 11];
+    const safety_chart_female = [78, 69];
+    const safety_chart_male = [67, 98];
 
     const women_safety_yes = [13, 46, 27, 36];
     const women_safety_no = [24, 29, 32, 26];
 
-    const return_visit_female = [73, 39];
-    const return_visit_male = [76, 44];
-
+    const return_visits_fs = [72, 37];
+    const return_visits_lp = [64, 37];
+    const return_visits_kzn = [13, 10];
     
 
     // GENDER BREAKDOWN
@@ -1150,13 +1012,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 scrub: true
             }
         })
-        .to(fs.data.datasets[0].data, { endArray: fs_dirty_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-        .to(lp.data.datasets[0].data, { endArray: lp_dirty_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-        .to(kzn.data.datasets[0].data, { endArray: kzn_dirty_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+        .fromTo(
+            ".scrolly-chart-7",
+            { opacity: 0 },
+            { opacity: 1, ease: "none" }
+        );
+       
 
     // FADE OUT PROVINCE CHART
 
-    fadeOutChart('scrolly-chart-1', 'queues');
+    fadeOutChart('scrolly-chart-1', 'unhygenic-toilets');
+    fadeOutChart('scrolly-chart-7', 'unhygenic-toilets3');
 
     // QUEUES CHART
 
@@ -1180,10 +1046,10 @@ document.addEventListener('DOMContentLoaded', function () {
             { opacity: 0 },
             { opacity: 1, ease: "none" }
         )
-        .to(queues_chart.data.datasets[0].data, { endArray: queues_0_10, ease: "none", onUpdate: function () { queues_chart.update(); } }, 0)
-        .to(queues_chart.data.datasets[1].data, { endArray: queues_10_20, ease: "none", onUpdate: function () { queues_chart.update(); } }, 0)
-        .to(queues_chart.data.datasets[2].data, { endArray: queues_20_40, ease: "none", onUpdate: function () { queues_chart.update(); } }, 0)
-        .to(queues_chart.data.datasets[3].data, { endArray: queues_40_60, ease: "none", onUpdate: function () { queues_chart.update(); } }, 0);
+        .to(queues_chart_21_50.data.datasets[0].data, { endArray: queues_21_50, ease: "none", onUpdate: function () { queues_chart_21_50.update(); } }, 0)
+        .to(queues_chart_51_70.data.datasets[0].data, { endArray: queues_51_70, ease: "none", onUpdate: function () { queues_chart_51_70.update(); } }, 0)
+        .to(queues_chart_71_100.data.datasets[0].data, { endArray: queues_71_100, ease: "none", onUpdate: function () { queues_chart_71_100.update(); } }, 0)
+        .to(queues_chart_100.data.datasets[0].data, { endArray: queues_100, ease: "none", onUpdate: function () { queues_chart_100.update(); } }, 0);
 
     fadeOutChart('scrolly-chart-3', 'unsafe');
 
@@ -1209,8 +1075,8 @@ document.addEventListener('DOMContentLoaded', function () {
             { opacity: 0 },
             { opacity: 1, ease: "none" }
         )
-        .to(safety_chart.data.datasets[0].data, { endArray: safety_yes, ease: "none", onUpdate: function () { safety_chart.update(); } }, 0)
-        .to(safety_chart.data.datasets[1].data, { endArray: safety_no, ease: "none", onUpdate: function () { safety_chart.update(); } }, 0);
+        .to(safety_male.data.datasets[0].data, { endArray: safety_chart_male, ease: "none", onUpdate: function () { safety_male.update(); } }, 0)
+        .to(safety_female.data.datasets[0].data, { endArray: safety_chart_female, ease: "none", onUpdate: function () { safety_female.update(); } }, 0);
 
     fadeOutChart('scrolly-chart-4', 'women-unsafe');
 
@@ -1264,8 +1130,9 @@ document.addEventListener('DOMContentLoaded', function () {
             { opacity: 0 },
             { opacity: 1, ease: "none" }
         )
-        .to(return_visit_chart.data.datasets[0].data, { endArray: return_visit_female, ease: "none", onUpdate: function () { return_visit_chart.update(); } }, 0)
-        .to(return_visit_chart.data.datasets[1].data, { endArray: return_visit_male, ease: "none", onUpdate: function () { return_visit_chart.update(); } }, 0);
+        .to(return_visits_chart_fs.data.datasets[0].data, { endArray: return_visits_fs, ease: "none", onUpdate: function () { return_visits_chart_fs.update(); } }, 0)
+        .to(return_visits_chart_lp.data.datasets[0].data, { endArray: return_visits_lp, ease: "none", onUpdate: function () { return_visits_chart_lp.update(); } }, 0)
+        .to(return_visits_chart_kzn.data.datasets[0].data, { endArray: return_visits_kzn, ease: "none", onUpdate: function () { return_visits_chart_kzn.update(); } }, 0);
 
     fadeOutChart('scrolly-chart-6', 'conclusion');
 
