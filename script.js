@@ -885,7 +885,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     })
         .fromTo(
-            ".scrolly-chart-2",
+            ".population-chart",
             { opacity: 0 },
             { opacity: 1, ease: "none" }
         )
@@ -893,7 +893,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .to(population_chart.data.datasets[1].data, { endArray: male_age_distribution, ease: "none", onUpdate: function () { population_chart.update(); } }, 0);
 
 
-    fadeOutChart('scrolly-chart-2', 'gender-breakdown4');
+    fadeOutChart('population-chart', 'gender-breakdown4');
 
     // PROVINCE BREAKDOWN CHART ANIMATION
 
@@ -915,7 +915,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .fromTo(
-            ".scrolly-chart-1",
+            ".province-chart",
             { opacity: 0 },
             { opacity: 1, ease: "none" }
         )
@@ -1009,7 +1009,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .to(kzn.data.datasets[0].data, { endArray: kzn_no_sanitiser, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
 
 
-    fadeOutChart('scrolly-chart-1', 'not-stocked2');   
+    fadeOutChart('province-chart', 'not-stocked2');   
 
     // DIRTY TOILETS
 
@@ -1029,7 +1029,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .fromTo(
-            ".scrolly-chart-7",
+            ".unhygenic-chart",
             { opacity: 0 },
             { opacity: 1, ease: "none" }
         )
@@ -1041,7 +1041,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // FADE OUT PROVINCE CHART
 
     
-    fadeOutChart('scrolly-chart-7', 'unhygenic-toilets4');
+    fadeOutChart('unhygenic-chart', 'unhygenic-toilets4');
 
     // QUEUES CHART
 
@@ -1061,7 +1061,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .fromTo(
-            ".scrolly-chart-3",
+            ".queues-charts",
             { opacity: 0 },
             { opacity: 1, ease: "none" }
         )
@@ -1070,7 +1070,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .to(queues_chart_71_100.data.datasets[0].data, { endArray: queues_71_100, ease: "none", onUpdate: function () { queues_chart_71_100.update(); } }, 0)
         .to(queues_chart_100.data.datasets[0].data, { endArray: queues_100, ease: "none", onUpdate: function () { queues_chart_100.update(); } }, 0);
 
-    fadeOutChart('scrolly-chart-3', 'queues4');
+    fadeOutChart('queues-charts', 'queues4');
 
     // SAFETY
 
@@ -1090,14 +1090,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .fromTo(
-            ".scrolly-chart-4",
+            ".safety-chart",
             { opacity: 0 },
             { opacity: 1, ease: "none" }
         )
         .to(safety_male.data.datasets[0].data, { endArray: safety_chart_male, ease: "none", onUpdate: function () { safety_male.update(); } }, 0)
         .to(safety_female.data.datasets[0].data, { endArray: safety_chart_female, ease: "none", onUpdate: function () { safety_female.update(); } }, 0);
 
-    fadeOutChart('scrolly-chart-4', 'women-unsafe');
+    fadeOutChart('safety-chart', 'women-unsafe');
 
     // WOMEN SAFETY
 
@@ -1117,14 +1117,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .fromTo(
-            ".scrolly-chart-5",
+            ".women-safety-chart",
             { opacity: 0 },
             { opacity: 1, ease: "none" }
         )
         .to(women_safety_chart.data.datasets[0].data, { endArray: women_safety_yes, ease: "none", onUpdate: function () { women_safety_chart.update(); } }, 0)
         .to(women_safety_chart.data.datasets[1].data, { endArray: women_safety_no, ease: "none", onUpdate: function () { women_safety_chart.update(); } }, 0);
 
-    fadeOutChart('scrolly-chart-5', 'return-visits');
+    fadeOutChart('women-safety-chart', 'return-visits');
 
 
     // RETURN VISITS
@@ -1145,7 +1145,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .fromTo(
-            ".scrolly-chart-6",
+            ".return-visits-chart",
             { opacity: 0 },
             { opacity: 1, ease: "none" }
         )
@@ -1153,6 +1153,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .to(return_visits_chart_lp.data.datasets[0].data, { endArray: return_visits_lp, ease: "none", onUpdate: function () { return_visits_chart_lp.update(); } }, 0)
         .to(return_visits_chart_kzn.data.datasets[0].data, { endArray: return_visits_kzn, ease: "none", onUpdate: function () { return_visits_chart_kzn.update(); } }, 0);
 
-    fadeOutChart('scrolly-chart-6', 'conclusion');
+    fadeOutChart('return-visits-chart', 'conclusion');
 
 })
