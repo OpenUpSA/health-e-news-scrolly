@@ -30,7 +30,7 @@
 
 .scrolly {
     font-family: 'Balto', sans-serif;
-    font-size: 11px;
+    font-size: 14px;
 }
 
 .scrolly-bg-color-overlay {
@@ -82,7 +82,7 @@
 .scrolly-caption-box {
     color: #fff;
     padding: 2em;
-    max-width: 90%;
+    max-width: 100%;
     text-align: left;
     opacity: 0;
 }
@@ -359,7 +359,7 @@
 }
 
 .scrolly .women-safety-chart .scrolly-annotation-inner {
-    top: 50%;
+    top: 60%;
     padding: 3em 4em;
     transform: translateY(-50%);
 }
@@ -415,7 +415,7 @@
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="outside"] {
     top: -15%;
-    left: 6%
+    left: 0%
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="both"] {
@@ -479,8 +479,8 @@
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="facility-size"] {
-    top: -25%;
-    right: -60%
+    top: -40%;
+    right: -75%
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time-over-20"] {
@@ -494,13 +494,13 @@
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="safety-yes"] {
-    top: -10%;
-    left: -10%
+    top: -20%;
+    left: -30%
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="safety-no"] {
     top: 110%;
-    left: 60%
+    left: 70%
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-age"] {
@@ -510,18 +510,18 @@
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-yes"] {
     top: 0%;
-    left: 18%
+    left: 14%
 }
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-no"] {
     top: 5%;
-    right: 12%
+    right: 6%
 }
 
 
 .scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-less-likey"] {
-    top: -15%;
-    left: -85%
+    top: -30%;
+    left: -120%
 }
 
 
@@ -661,6 +661,10 @@
     .scrolly {
         max-width: 832px;
         font-size: 18px;
+    }
+
+    .scrolly-caption-box {
+        max-width: 90%;
     }
 
     .scrolly-mobile-show {
