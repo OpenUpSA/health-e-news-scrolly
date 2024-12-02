@@ -1,6 +1,6 @@
-DEBUG = false;
+// DEBUG = false;
 
-let scrolly_chart_colors = {
+const scrolly_chart_colors = {
     gender_male: '#ff3d3b',
     gender_female: '#ffd06c',
 
