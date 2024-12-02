@@ -25,7 +25,6 @@
 
         }
 
-        /* Optional: Style the chart container */
         #chart {
             width: 600px;
             margin: auto;
@@ -60,7 +59,7 @@
 
     <script>
 
-        function drawChart(id, data) {
+        function drawChart(id, data, colors = ['#1f77b4', '#ff7f0e']) {
 
             const container = d3.select(`#${id}`);
             const width = parseInt(container.style('width'));
@@ -71,7 +70,7 @@
             // Set color scale
             const color = d3.scaleOrdinal()
                 .domain(data.map(d => d.label))
-                .range(['#1f77b4', '#ff7f0e']);
+                .range(colors);
 
             // Check if SVG exists
             let svg = container.select('svg');
@@ -104,38 +103,39 @@
             const arcs = svg.selectAll('.arc')
                 .data(pie(data), d => d.data.label);
 
-            // Handle exit selection
-            arcs.exit().remove();
+            arcs.exit()
+                .transition()
+                .duration(750)
+                .style('opacity', 0)
+                .remove();
 
-            // Handle enter selection
             const arcsEnter = arcs.enter()
                 .append('g')
-                .attr('class', 'arc')
-                .attr('class', d => d.data.label.replace(/\s+/g, '-').toLowerCase());
+                .attr('class', d => `arc ${d.data.label.replace(/\s+/g, '-').toLowerCase()}`);
 
             arcsEnter.append('path')
                 .attr('fill', d => color(d.data.label))
                 .each(function (d) { this._current = d; })
                 .attr('d', arc);
 
-            // Merge enter and update selections
             const arcsMerge = arcsEnter.merge(arcs);
 
-            // Update existing arcs
             arcsMerge.select('path')
                 .transition()
-                .duration(750)
+                .duration(1000) 
                 .attrTween('d', function (d) {
                     const interpolate = d3.interpolate(this._current, d);
                     this._current = interpolate(1);
-                    return t => arc(interpolate(t));
+                    return function (t) {
+                        return arc(interpolate(t));
+                    };
                 });
 
             // Update points
+            
             arcsMerge.each(function (d) {
                 const numPoints = 5;
 
-                // Generate points data
                 const pointsData = [];
                 for (let i = 1; i <= numPoints; i++) {
                     const t = i / (numPoints + 1);
@@ -154,23 +154,19 @@
                     pointsGroup = d3.select(this).append('g').attr('class', 'points-group');
                 }
 
-                // Bind points data to circles
                 const circles = pointsGroup.selectAll('circle')
                     .data(pointsData);
 
-                // Handle exit selection
                 circles.exit().remove();
 
-                // Handle enter selection
                 circles.enter()
                     .append('circle')
                     .attr('class', (d,i) => `point-${i}`)
-                    .attr('r', 0)
+                    .attr('r', 1)
                     .attr('fill', '#000')
                     .attr('cx', d => d.x)
                     .attr('cy', d => d.y);
 
-                // Update existing circles
                 circles.transition()
                     .duration(750)
                     .attr('cx', d => d.x)
@@ -251,35 +247,26 @@
                 .style('text-align', text_config_set.align)
                 .html(text);
         }
-
-       
-
-
-
         
-        let data = [
+        let datar = [
             { label: 'Category A', value: 30 },
             { label: 'Category B', value: 70 }
         ];
-
         
-        drawChart('chart1', data);
-        drawChart('chart2', data);
-        drawChart('chart3', data);
-
+        drawChart('chart1', datar);
+       
         
-        /*setTimeout(() => {
-            data = [
+        setTimeout(() => {
+            datar = [
                 { label: 'Category A', value: 50 },
                 { label: 'Category B', value: 50 }
             ];
 
-            drawChart('chart1', data);
-        }, 2000)*/
+            drawChart('chart1', datar);
+        }, 2000)
 
         add_label('chart1', 'category-b', 4, 11, 'tr', 'text here<br/>how are you?', {}, {align: 'right'});
-        add_label('chart2', 'category-b', 2, 7, 'tr', 'text here<br/>how are you?', {}, {align: 'right'});
-        add_label('chart3', 'category-a', 4, 4, 'tl', 'text here<br/>how are you?', {}, {});
+      
 
 
     </script>

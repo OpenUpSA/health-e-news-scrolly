@@ -62,7 +62,6 @@
 }
 
 
-
 /*** COLORS ***/
 
 .scrolly-bg-1 {
@@ -84,7 +83,7 @@
     padding: 2em;
     max-width: 100%;
     text-align: left;
-    opacity: 0;
+    /* opacity: 0; */
 }
 
 .scrolly-caption-box-overlay {
@@ -115,7 +114,7 @@
 /*** ANNOTATIONS ***/
 
 
-.scrolly .scrolly-slide-annotation {
+.scrolly .scrolly-slide-annotation { 
     position: absolute;
     color: #fff;
     text-wrap: nowrap;
@@ -127,6 +126,14 @@
     opacity: 0;
     /* display: none; */
 }
+
+.scrolly .scrolly-annotation-text {
+    font-family: "Caveat", sans-serif;
+    text-wrap: nowrap;
+    z-index: 9999;
+}
+
+
 
 .scrolly .scrolly-slide-annotation::after {
     content: '';

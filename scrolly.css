@@ -7,7 +7,7 @@ body {
 }
 
 .scrolly * {
-    all: unset;
+    
     box-sizing: border-box;
     display: block;
 }

@@ -8,6 +8,10 @@ let chart_colors = {
     prov_inside: '#ffd06c',
     prov_outside: '#ff3d3b',
 
+    donut1: '#999999',
+    donut2: '#ffd06c',
+    donut3: '#ff3d3b',
+
   
     safety_yes: '#ffd06c',
     safety_no: '#ff3d3b',
@@ -124,9 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
-    let sections_count = document.querySelectorAll('.scrolly-section').length;
-
-    console.log(sections_count);
+   
 
     // THE SCROLLY
 
@@ -233,24 +235,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // SCROLLY CAPTIONS FADE INS
 
-    gsap.utils.toArray('.scrolly-section .scrolly-caption-box').forEach((caption) => {
-        gsap.to(caption, {
-            opacity: 1,
-            duration: 0.2,
-            scrollTrigger: {
-                trigger: caption,
-                start: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `top ${backgroundRect.height + offsetInPixels}px`;
-                },
-                end: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `top ${offsetInPixels + backgroundRect.height / 2}px`;
-                },
-                scrub: true
-            }
-        });
-    });
+    // gsap.utils.toArray('.scrolly-section .scrolly-caption-box').forEach((caption) => {
+    //     gsap.to(caption, {
+    //         opacity: 1,
+    //         duration: 0.2,
+    //         scrollTrigger: {
+    //             trigger: caption,
+    //             start: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `top ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             end: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `top ${offsetInPixels + backgroundRect.height / 2}px`;
+    //             },
+    //             scrub: true
+    //         }
+    //     });
+    // });
 
 
 
@@ -453,204 +455,243 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // CHARTS
 
-    Chart.defaults.animation.duration = 300;
+    // Chart.defaults.animation.duration = 300;
 
     
 
     // POPULATION CHART
+    
+    
+    function drawChart(id, data, title, colors = [chart_colors.donut1, chart_colors.donut2, chart_colors.donut3]) {
 
+        const container = d3.select(`#${id}`);
+        const rect = container.node().getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const margin = { top: 0, right: 0, bottom: 0, left: 0 };
+        const radius = Math.min(width, height) / 2 - Math.max(margin.top, margin.right);
+
+        // Set color scale
+        const color = d3.scaleOrdinal()
+            .domain(data.map(d => d.label))
+            .range(colors);
+
+        // Check if SVG exists
+        let svg = container.select('svg');
+        if (svg.empty()) {
+            // Create SVG element
+            svg = container
+                .append('svg')
+                .attr('width', '100%')
+                .attr('height', '100%')
+                .attr('viewBox', `0 0 ${width} ${height}`)
+                .attr('preserveAspectRatio', 'xMinYMin meet')
+                .append('g')
+                .attr('transform', `translate(${width / 2}, ${height / 2})`);
+        } else {
+            svg = svg.select('g');
+            svg.attr('transform', `translate(${width / 2}, ${height / 2})`);
+        }
+
+        // Generate the pie
+        const pie = d3.pie()
+            .value(d => d.value)
+            .sort(null);
+
+        // add a label in the middle of the donut
+        svg.append('text')
+            .attr('text-anchor', 'middle')
+            .attr('fill', '#fff')
+            .attr('font-size', '0.9em')
+            .attr('dy', '0.5em')
+            .attr('font-weight', 'bold')
+            .text(title);
+
+
+        // Generate the arcs
+        const arc = d3.arc()
+            .innerRadius(radius * 0.5)
+            .outerRadius(radius);
+
+        // Bind data to arcs
+        const arcs = svg.selectAll('.arc')
+            .data(pie(data), d => d.data.label);
+
+        arcs.exit()
+            .transition()
+            .duration(750)
+            .style('opacity', 0)
+            .remove();
+
+        const arcsEnter = arcs.enter()
+            .append('g')
+            .attr('class', d => `arc ${d.data.label.replace(/\s+/g, '-').toLowerCase()}`);
+
+        arcsEnter.append('path')
+            .attr('fill', d => color(d.data.label))
+            .each(function (d) { this._current = d; })
+            .attr('d', arc);
+
+        const arcsMerge = arcsEnter.merge(arcs);
+
+        arcsMerge.select('path')
+            .transition()
+            .duration(1000) 
+            .attrTween('d', function (d) {
+                const interpolate = d3.interpolate(this._current, d);
+                this._current = interpolate(1);
+                return function (t) {
+                    return arc(interpolate(t));
+                };
+            });
+
+        // Update points
+        
+        arcsMerge.each(function (d) {
+            const numPoints = 5;
+
+            const pointsData = [];
+            for (let i = 1; i <= numPoints; i++) {
+                const t = i / (numPoints + 1);
+                const angle = d.startAngle + t * (d.endAngle - d.startAngle);
+                const innerRadius = arc.innerRadius()(d);
+                const outerRadius = arc.outerRadius()(d);
+                const middleRadius = (innerRadius + outerRadius) / 2;
+                const x = middleRadius * Math.cos(angle - Math.PI / 2);
+                const y = middleRadius * Math.sin(angle - Math.PI / 2);
+                pointsData.push({ x, y });
+            }
+
+            // Select the points group or create it if it doesn't exist
+            let pointsGroup = d3.select(this).select('.points-group');
+            if (pointsGroup.empty()) {
+                pointsGroup = d3.select(this).append('g').attr('class', 'points-group');
+            }
+
+            const circles = pointsGroup.selectAll('circle')
+                .data(pointsData);
+
+            circles.exit().remove();
+
+            circles.enter()
+                .append('circle')
+                .attr('class', (d,i) => `point-${i}`)
+                .attr('r', 1)
+                .attr('fill', '#000')
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y);
+
+            circles.transition()
+                .duration(750)
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y);
+        });
+    }
+
+   
+
+    function add_label(chart, slice_id, point_id, hour, anchor, text, line_config = {}, text_config = {}) {
+
+        let line_config_set = {
+            class_name: line_config.class_name || '', 
+            length: line_config.length || 80,
+            color: line_config.color || 'black',
+            thickness: line_config.thickness || 1
+        }
+    
+        let text_config_set = {
+            class_name: text_config.class_name || '',
+            color: text_config.color || 'black',
+            align: text_config.align || 'left'
+        }
+        
+        // Get the point element
+        let point = d3.select(`#${chart} .${slice_id} .point-${point_id}`);
+    
+        // Get the bounding box of the point relative to the chart container
+        let chartNode = d3.select(`#${chart}`).node();
+        let chartRect = chartNode.getBoundingClientRect();
+        let pointRect = point.node().getBoundingClientRect();
+    
+        // Calculate the position relative to the chart container
+        let relativeX = pointRect.left - chartRect.left;
+        let relativeY = pointRect.top - chartRect.top;
+    
+        // Existing line code
+        let angleDeg = (hour * 30) - 90; 
+        let length = line_config_set.length; 
+        let angleRad = angleDeg * (Math.PI / 180); 
+        let dx = length * Math.cos(angleRad);
+        let dy = length * Math.sin(angleRad);
+        let endX = relativeX + dx;
+        let endY = relativeY + dy;
+    
+        let anchors = {
+            'tl': '0%, 0%',
+            'tc': '-50%, 0%',
+            'tr': '-100%, 0%',
+            'bl': '0%, -100%',
+            'bc': '-50%, -100%',
+            'br': '-100%, -100%'
+        }; 
+    
+        // Append the line to the chart container
+        d3.select(`#${chart}`).append('div')
+            .attr('class', `scrolly-annotation-line ${line_config_set.class_name}`)
+            .style('top', `${relativeY}px`)
+            .style('left', `${relativeX}px`)
+            .style('width', `${line_config_set.length}px`)
+            .style('height', `${line_config_set.thickness}px`)
+            .style('background-color', line_config_set.color)
+            .style('position', 'absolute')
+            .style('transform-origin', 'top left')
+            .style('transform', `rotate(${angleDeg}deg)`);
+    
+        // Calculate text position with offset
+        let textOffset = 5; 
+        let textX = endX + textOffset * Math.cos(angleRad);
+        let textY = endY + textOffset * Math.sin(angleRad);
+    
+        // Append the text to the chart container
+        d3.select(`#${chart}`).append('div')
+            .attr('class', `scrolly-annotation-text ${text_config_set.class_name}`)
+            .style('position', 'absolute')
+            .style('left', `${textX}px`)
+            .style('top', `${textY}px`)
+            .style('color', text_config_set.color)
+            .style('transform', `translate(${anchors[anchor]})`)
+            .style('text-align', text_config_set.align)
+            .html(text);
+    }
     
 
-    var data = {
-        labels: ["18-25", "26-40", "41-60", "60+"],
-        datasets: [
-            {
-                label: "Female",
-                stack: "Stack 0",
-                backgroundColor: chart_colors.gender_female,
-                data: [0, 0, 0, 0].map((k) => -k),
-            },
-            {
-                label: "Male",
-                stack: "Stack 0",
-                backgroundColor: chart_colors.gender_male,
-                data: [0, 0, 0, 0],
-            },
-        ],
-    };
+    let datar = [
+        { label: 'Category A', value: 30 },
+        { label: 'Category B', value: 70 },
+    ];
 
-    var options = {
-        indexAxis: 'y',
-        plugins: {
-            tooltip: {
-                callbacks: {
-                    label: (c) => {
-                        const value = Number(c.raw);
-                        const positiveOnly = value < 0 ? -value : value;
-                        return `${c.dataset.label}: ${positiveOnly.toString()}`;
-                    },
-                },
-            },
-            legend: false,
-            annotation: {
-                annotations: {
-                    text_60: {
-                        type: 'label',
-                        xValue: 0,
-                        yValue: '60+',
-                        backgroundColor: 'rgba(0,0,0,0.8)',
-                        color: 'white',
-                        borderRadius: 5,
-                        content: ['60+'],
-                        font: {
-                            size: responsive_settings.gender_age_labels
-                        }
-                    },
-                    text_41_60: {
-                        type: 'label',
-                        xValue: 0,
-                        yValue: '41-60',
-                        backgroundColor: 'rgba(0,0,0,0.8)',
-                        color: 'white',
-                        borderRadius: 5,
-                        content: ['41-60'],
-                        font: {
-                            size: responsive_settings.gender_age_labels
-                        }
-                    },
-                    text_26_40: {
-                        type: 'label',
-                        xValue: 0,
-                        yValue: '26-40',
-                        backgroundColor: 'rgba(0,0,0,0.8)',
-                        color: 'white',
-                        borderRadius: 5,
-                        content: ['26-40'],
-                        font: {
-                            size: responsive_settings.gender_age_labels
-                        }
-                    },
-                    text_18_25: {
-                        type: 'label',
-                        xValue: 0,
-                        yValue: '18-25',
-                        backgroundColor: 'rgba(0,0,0,0.8)',
-                        color: 'white',
-                        borderRadius: 5,
-                        content: ['18-25'],
-                        font: {
-                            size: responsive_settings.gender_age_labels
-                        }
-                    }
-                }
-            }
-        },
-        scales: {
-            x: {
-                min: -60,
-                max: 60,
-                ticks: {
-                    stepSize: 10,
-                    callback: (v) => (v < 0 ? -v : v),
-                    color: 'rgba(255,255,255,1)',
-                },
-                border: {
-                    color: 'rgba(255,255,255,1)',
-                    width: 2,
-                },
-                grid: {
-                    color: 'rgba(255,255,255,0.2)',
-                    lineWidth: 1,
-                    borderDash: [5, 5],
-                },
-                title: {
-                    display: false,
-                },
-            },
-            y: {
-                grid: {
-                    display: false,
-                },
-                ticks: {
-                    display: false,
-                },
-                border: {
-                    color: 'rgba(255,255,255,1)',
-                    width: 0,
-                },
-                title: {
-                    display: false,
-                },
-            },
-        },
-    };
-
-    const population_chart = new Chart('population-chart', {
-        type: 'bar',
-        options: options,
-        data: data,
-    });
+    let datar2 = [
+        { label: 'Category A', value: 30 },
+        { label: 'Category B', value: 20 },
+        { label: 'Category C', value: 50 },
+    ];
+    
+    
+    drawChart('fs', datar, 'FS');
+    add_label('fs', 'category-a', 2, 2, 'bl', 'text here<br/>how are you?', {color: '#fff'}, {align: 'left', color: '#fff'});
+   
+    drawChart('lp', datar, 'LP');
+    add_label('lp', 'category-a', 3, 4, 'tl', 'text here<br/>how are you?', {color: '#fff'}, {align: 'left', color: '#fff'});
+   
+    drawChart('kzn', datar2, 'KZN');
+    add_label('kzn', 'category-a', 3, 4, 'tl', 'text here<br/>how are you?', {color: '#fff'}, {align: 'left', color: '#fff'});
 
 
     // UNHYGENIC TOILETS
 
     
 
-    const unhygenic_toilets = new Chart('unhygenic-toilets-chart', {
-        type: 'bar',
-        data: {
-            labels: ['FS', 'KZN', 'LP'],
-            datasets: [
-                {
-                    label: 'Seat',
-                    data: [0, 0, 0],
-                    backgroundColor: chart_colors.unhygenic_seat
-                },
-                {
-                    label: 'Toilet bowl',
-                    data: [0, 0, 0],
-                    backgroundColor: chart_colors.unhygenic_bowl
-                },
-                {
-                    label: 'Wall',
-                    data: [0, 0, 0],
-                    backgroundColor: chart_colors.unhygenic_wall
-                }
-            ]
-        },
-        options: {
-            indexAxis: 'y',
-            plugins: {
-                tooltip: {
-                    mode: 'index',
-                    intersect: false
-                },
-                legend: {
-                    display: false
-                }
-            },
-            responsive: true,
-            scales: {
-                x: {
-                    stacked: true,
-                    ticks: {
-                        display: false
-                    }
-                },
-                y: {
-                    stacked: true,
-                    ticks: {
-                        color: 'rgba(255,255,255,1)',
-                        font: {
-                            size: responsive_settings.dirty_toilets_labels,
-                            weight: 'bold'
-                        }
-                    }
-                }
-            }
-        }
-    });
-
+    
 
     
 
@@ -659,162 +700,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // DOUGHNUT CHARTS
 
-    const doughnut_chart_options = {
-        responsive: true,
-        maintainAspectRatio: true,
-        plugins: {
-            legend: {
-                display: false
-            }
-        },
-        borderWidth: 0
-    };
-
-    const doughnut_chart_init = {
-        type: 'doughnut',
-        options: doughnut_chart_options,
-        data: {
-            labels: ['Both', 'Inside', 'Outside'],
-            datasets: [{
-                data: [0, 0, 0],
-                backgroundColor: [chart_colors.prov_both, chart_colors.prov_inside, chart_colors.prov_outside]
-            }]
-        }
-    }
-
-    const doughnut_chart_safety_init = {
-        type: 'doughnut',
-        options: doughnut_chart_options,
-        data: {
-            labels: ['No', 'Yes'],
-            datasets: [{
-                data: [0, 0],
-                backgroundColor: [chart_colors.safety_no, chart_colors.safety_yes]
-            }]
-        }
-    }
-
-    const doughnut_chart_return_visits_init = {
-        type: 'doughnut',
-        options: doughnut_chart_options,
-        data: {
-            labels: ['No', 'Yes'],
-            datasets: [{
-                data: [0, 0],
-                backgroundColor: [chart_colors.return_visits_no, chart_colors.return_visits_yes]
-            }]
-        }
-    }
-
-    const doughnut_chart_waiting_time_init = {
-        type: 'doughnut',
-        options: doughnut_chart_options,
-        data: {
-            labels: ['Under 20 minutes', 'Over 20 minutes'],
-            datasets: [{
-                data: [0, 0],
-                backgroundColor: [chart_colors.queues_under_20, chart_colors.queues_over_20]
-            }]
-        }
-    }
-
-
-    const fs = new Chart('fs', doughnut_chart_init);
-    const lp = new Chart('lp', doughnut_chart_init);
-    const kzn = new Chart('kzn', doughnut_chart_init);
-
-    const safety_male = new Chart('safety-chart-male', doughnut_chart_safety_init);
-    const safety_female = new Chart('safety-chart-female', doughnut_chart_safety_init);
-
-    const return_visits_chart_fs = new Chart('return-visits-chart-fs', doughnut_chart_return_visits_init);
-    const return_visits_chart_lp = new Chart('return-visits-chart-lp', doughnut_chart_return_visits_init);
-    const return_visits_chart_kzn = new Chart('return-visits-chart-kzn', doughnut_chart_return_visits_init);
-
-    const queues_chart_21_50 = new Chart('queues-chart-21-50', doughnut_chart_waiting_time_init);
-    const queues_chart_51_70 = new Chart('queues-chart-51-70', doughnut_chart_waiting_time_init);
-    const queues_chart_71_100 = new Chart('queues-chart-71-100', doughnut_chart_waiting_time_init);
-    const queues_chart_100 = new Chart('queues-chart-100', doughnut_chart_waiting_time_init);
+    
     
 
     // WOMEN SAFETY CHART
 
-    const women_safety_chart = new Chart('women-safety-chart', {
-        type: 'bar',
-        data: {
-            labels: ['18-25', '26-40', '41-60', '60+'],
-            datasets: [
-                {
-                    label: 'Yes',
-                    data: [0, 0, 0, 0],
-                    backgroundColor: chart_colors.women_safety_yes,
-                    borderColor: chart_colors.women_safety_yes,
-                    borderWidth: 0
-                },
-                {
-                    label: 'No',
-                    data: [0, 0, 0, 0],
-                    backgroundColor: chart_colors.women_safety_no,
-                    borderColor: chart_colors.women_safety_no,
-                    borderWidth: 0
-                }
-            ]
-        },
-        options: {
-            scales: {
-                y: {
-                    max: 60,
-                    beginAtZero: true,
-                    title: {
-                        display: false,
-                    },
-                    border: {
-                        display: false,
-                    },
-                    grid: {
-                        display: false,
-                    },
-                    ticks: {
-                        display: false,
-                    }
-                },
-                x: {
-                    title: {
-                        display: false,
-                    },
-                    border: {
-                        color: 'rgba(255,255,255,1)',
-                        width: 2,
-                    },
-                    grid: {
-                        display: false,
-                    },
-                    ticks: {
-                        color: 'rgba(255,255,255,1)',
-                        font: {
-                            size: 16
-                        }
-                    }
-                }
-            },
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: false,
-                },
-                title: {
-                    display: false
-                },
-                datalabels: {
-                    color: '#fff',
-                    anchor: 'end',
-                    align: 'top',
-                    formatter: (value) => parseInt(value) 
-                }
-            }
-        },
-        plugins: [ChartDataLabels]
-    });
-
+    
     // RETURN VISIT
 
     
@@ -870,31 +761,31 @@ document.addEventListener('DOMContentLoaded', function () {
     // GENDER BREAKDOWN
 
 
-    gsap.timeline({
+    // gsap.timeline({
 
-        scrollTrigger: {
-            trigger: ".scrolly-section[data-section-label='gender-breakdown']",
-            start: () => {
-                const backgroundRect = background.getBoundingClientRect();
-                return `center ${backgroundRect.height + offsetInPixels}px`;
-            },
-            end: () => {
-                const backgroundRect = background.getBoundingClientRect();
-                return `bottom ${backgroundRect.height + offsetInPixels}px`;
-            },
-            scrub: true
-        }
-    })
-        .fromTo(
-            ".population-chart",
-            { opacity: 0 },
-            { opacity: 1, ease: "none" }
-        )
-        .to(population_chart.data.datasets[0].data, { endArray: female_age_distribution, ease: "none", onUpdate: function () { population_chart.update(); } }, 0)
-        .to(population_chart.data.datasets[1].data, { endArray: male_age_distribution, ease: "none", onUpdate: function () { population_chart.update(); } }, 0);
+    //     scrollTrigger: {
+    //         trigger: ".scrolly-section[data-section-label='gender-breakdown']",
+    //         start: () => {
+    //             const backgroundRect = background.getBoundingClientRect();
+    //             return `center ${backgroundRect.height + offsetInPixels}px`;
+    //         },
+    //         end: () => {
+    //             const backgroundRect = background.getBoundingClientRect();
+    //             return `bottom ${backgroundRect.height + offsetInPixels}px`;
+    //         },
+    //         scrub: true
+    //     }
+    // })
+    //     .fromTo(
+    //         ".population-chart",
+    //         { opacity: 0 },
+    //         { opacity: 1, ease: "none" }
+    //     )
+    //     .to(population_chart.data.datasets[0].data, { endArray: female_age_distribution, ease: "none", onUpdate: function () { population_chart.update(); } }, 0)
+    //     .to(population_chart.data.datasets[1].data, { endArray: male_age_distribution, ease: "none", onUpdate: function () { population_chart.update(); } }, 0);
 
 
-    fadeOutChart('population-chart', 'gender-breakdown4');
+    // fadeOutChart('population-chart', 'gender-breakdown4');
 
     // PROVINCE BREAKDOWN CHART ANIMATION
 
@@ -919,241 +810,263 @@ document.addEventListener('DOMContentLoaded', function () {
             ".province-chart",
             { opacity: 0 },
             { opacity: 1, ease: "none" }
-        )
-        .to(fs.data.datasets[0].data, { endArray: fs_inside_outside, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-        .to(lp.data.datasets[0].data, { endArray: lp_inside_outside, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-        .to(kzn.data.datasets[0].data, { endArray: kzn_inside_outside, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+        );
+        
+
+    // gsap
+    //     .timeline({
+    //         scrollTrigger: {
+    //             trigger: ".scrolly-section[data-section-label='outdoor-facilities']",
+    //             start: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             end: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             scrub: true
+    //         }
+    //     })
+    //     .fromTo(
+    //         ".province-chart",
+    //         { opacity: 0 },
+    //         { opacity: 1, ease: "none" }
+    //     )
+    //     .to(fs.data.datasets[0].data, { endArray: fs_inside_outside, ease: "none", onUpdate: function () { fs.update(); } }, 0)
+    //     .to(lp.data.datasets[0].data, { endArray: lp_inside_outside, ease: "none", onUpdate: function () { lp.update(); } }, 0)
+    //     .to(kzn.data.datasets[0].data, { endArray: kzn_inside_outside, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
 
 
     // DISABLED
 
-    gsap
-        .timeline({
-            scrollTrigger: {
-                trigger: ".scrolly-section[data-section-label='disabled-access']",
-                start: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `center ${backgroundRect.height + offsetInPixels}px`;
-                },
-                end: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `bottom ${backgroundRect.height + offsetInPixels}px`;
-                },
-                scrub: true
-            }
-        })
-        .to(fs.data.datasets[0].data, { endArray: fs_disabled_access, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-        .to(lp.data.datasets[0].data, { endArray: lp_disabled_access, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-        .to(kzn.data.datasets[0].data, { endArray: kzn_disabled_access, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+    // gsap
+    //     .timeline({
+    //         scrollTrigger: {
+    //             trigger: ".scrolly-section[data-section-label='disabled-access']",
+    //             start: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             end: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             scrub: true
+    //         }
+    //     })
+    //     .to(fs.data.datasets[0].data, { endArray: fs_disabled_access, ease: "none", onUpdate: function () { fs.update(); } }, 0)
+    //     .to(lp.data.datasets[0].data, { endArray: lp_disabled_access, ease: "none", onUpdate: function () { lp.update(); } }, 0)
+    //     .to(kzn.data.datasets[0].data, { endArray: kzn_disabled_access, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
 
     // UNUSABLE
 
-    gsap
-        .timeline({
-            scrollTrigger: {
-                trigger: ".scrolly-section[data-section-label='broken-toilets']",
-                start: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `center ${backgroundRect.height + offsetInPixels}px`;
-                },
-                end: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `bottom ${backgroundRect.height + offsetInPixels}px`;
-                },
-                scrub: true
-            }
-        })
-        .to(fs.data.datasets[0].data, { endArray: fs_unusable_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-        .to(lp.data.datasets[0].data, { endArray: lp_unusable_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-        .to(kzn.data.datasets[0].data, { endArray: kzn_unusable_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+    // gsap
+    //     .timeline({
+    //         scrollTrigger: {
+    //             trigger: ".scrolly-section[data-section-label='broken-toilets']",
+    //             start: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             end: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             scrub: true
+    //         }
+    //     })
+    //     .to(fs.data.datasets[0].data, { endArray: fs_unusable_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
+    //     .to(lp.data.datasets[0].data, { endArray: lp_unusable_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
+    //     .to(kzn.data.datasets[0].data, { endArray: kzn_unusable_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
 
     // TOILET PAPER
 
-    gsap
-        .timeline({
-            scrollTrigger: {
-                trigger: ".scrolly-section[data-section-label='no-toilet-paper']",
-                start: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `center ${backgroundRect.height + offsetInPixels}px`;
-                },
-                end: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `bottom ${backgroundRect.height + offsetInPixels}px`;
-                },
-                scrub: true
-            }
-        })
-        .to(fs.data.datasets[0].data, { endArray: fs_toilet_paper, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-        .to(lp.data.datasets[0].data, { endArray: lp_toilet_paper, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-        .to(kzn.data.datasets[0].data, { endArray: kzn_toilet_paper, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+    // gsap
+    //     .timeline({
+    //         scrollTrigger: {
+    //             trigger: ".scrolly-section[data-section-label='no-toilet-paper']",
+    //             start: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             end: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             scrub: true
+    //         }
+    //     })
+    //     .to(fs.data.datasets[0].data, { endArray: fs_toilet_paper, ease: "none", onUpdate: function () { fs.update(); } }, 0)
+    //     .to(lp.data.datasets[0].data, { endArray: lp_toilet_paper, ease: "none", onUpdate: function () { lp.update(); } }, 0)
+    //     .to(kzn.data.datasets[0].data, { endArray: kzn_toilet_paper, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
 
     // SANITISER
 
-    gsap
-        .timeline({
-            scrollTrigger: {
-                trigger: ".scrolly-section[data-section-label='no-sanitiser']",
-                start: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `center ${backgroundRect.height + offsetInPixels}px`;
-                },
-                end: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `bottom ${backgroundRect.height + offsetInPixels}px`;
-                },
-                scrub: true
-            }
-        })
-        .to(fs.data.datasets[0].data, { endArray: fs_no_sanitiser, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-        .to(lp.data.datasets[0].data, { endArray: lp_no_sanitiser, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-        .to(kzn.data.datasets[0].data, { endArray: kzn_no_sanitiser, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+    // gsap
+    //     .timeline({
+    //         scrollTrigger: {
+    //             trigger: ".scrolly-section[data-section-label='no-sanitiser']",
+    //             start: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             end: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             scrub: true
+    //         }
+    //     })
+    //     .to(fs.data.datasets[0].data, { endArray: fs_no_sanitiser, ease: "none", onUpdate: function () { fs.update(); } }, 0)
+    //     .to(lp.data.datasets[0].data, { endArray: lp_no_sanitiser, ease: "none", onUpdate: function () { lp.update(); } }, 0)
+    //     .to(kzn.data.datasets[0].data, { endArray: kzn_no_sanitiser, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
 
 
-    fadeOutChart('province-chart', 'not-stocked2');   
+    // fadeOutChart('province-chart', 'not-stocked2');   
 
     // DIRTY TOILETS
 
-    gsap
-        .timeline({
-            scrollTrigger: {
-                trigger: ".scrolly-section[data-section-label='unhygenic-toilets']",
-                start: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `center ${backgroundRect.height + offsetInPixels}px`;
-                },
-                end: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `bottom ${backgroundRect.height + offsetInPixels}px`;
-                },
-                scrub: true
-            }
-        })
-        .fromTo(
-            ".unhygenic-chart",
-            { opacity: 0 },
-            { opacity: 1, ease: "none" }
-        )
-        .to(unhygenic_toilets.data.datasets[0].data, { endArray: unhygenic_toilets_seat, ease: "none", onUpdate: function () { unhygenic_toilets.update(); } }, 0)
-        .to(unhygenic_toilets.data.datasets[1].data, { endArray: unhygenic_toilets_bowl, ease: "none", onUpdate: function () { unhygenic_toilets.update(); } }, 0)
-        .to(unhygenic_toilets.data.datasets[2].data, { endArray: unhygenic_toilets_wall, ease: "none", onUpdate: function () { unhygenic_toilets.update(); } }, 0);
+    // gsap
+    //     .timeline({
+    //         scrollTrigger: {
+    //             trigger: ".scrolly-section[data-section-label='unhygenic-toilets']",
+    //             start: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             end: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             scrub: true
+    //         }
+    //     })
+    //     .fromTo(
+    //         ".unhygenic-chart",
+    //         { opacity: 0 },
+    //         { opacity: 1, ease: "none" }
+    //     )
+    //     .to(unhygenic_toilets.data.datasets[0].data, { endArray: unhygenic_toilets_seat, ease: "none", onUpdate: function () { unhygenic_toilets.update(); } }, 0)
+    //     .to(unhygenic_toilets.data.datasets[1].data, { endArray: unhygenic_toilets_bowl, ease: "none", onUpdate: function () { unhygenic_toilets.update(); } }, 0)
+    //     .to(unhygenic_toilets.data.datasets[2].data, { endArray: unhygenic_toilets_wall, ease: "none", onUpdate: function () { unhygenic_toilets.update(); } }, 0);
        
 
     // FADE OUT PROVINCE CHART
 
     
-    fadeOutChart('unhygenic-chart', 'unhygenic-toilets4');
+    // fadeOutChart('unhygenic-chart', 'unhygenic-toilets4');
 
     // QUEUES CHART
 
-    gsap
-        .timeline({
-            scrollTrigger: {
-                trigger: ".scrolly-section[data-section-label='queues']",
-                start: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `center ${backgroundRect.height + offsetInPixels}px`;
-                },
-                end: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `bottom ${backgroundRect.height + offsetInPixels}px`;
-                },
-                scrub: true
-            }
-        })
-        .fromTo(
-            ".queues-charts",
-            { opacity: 0 },
-            { opacity: 1, ease: "none" }
-        )
-        .to(queues_chart_21_50.data.datasets[0].data, { endArray: queues_21_50, ease: "none", onUpdate: function () { queues_chart_21_50.update(); } }, 0)
-        .to(queues_chart_51_70.data.datasets[0].data, { endArray: queues_51_70, ease: "none", onUpdate: function () { queues_chart_51_70.update(); } }, 0)
-        .to(queues_chart_71_100.data.datasets[0].data, { endArray: queues_71_100, ease: "none", onUpdate: function () { queues_chart_71_100.update(); } }, 0)
-        .to(queues_chart_100.data.datasets[0].data, { endArray: queues_100, ease: "none", onUpdate: function () { queues_chart_100.update(); } }, 0);
+    // gsap
+    //     .timeline({
+    //         scrollTrigger: {
+    //             trigger: ".scrolly-section[data-section-label='queues']",
+    //             start: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             end: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             scrub: true
+    //         }
+    //     })
+    //     .fromTo(
+    //         ".queues-charts",
+    //         { opacity: 0 },
+    //         { opacity: 1, ease: "none" }
+    //     )
+    //     .to(queues_chart_21_50.data.datasets[0].data, { endArray: queues_21_50, ease: "none", onUpdate: function () { queues_chart_21_50.update(); } }, 0)
+    //     .to(queues_chart_51_70.data.datasets[0].data, { endArray: queues_51_70, ease: "none", onUpdate: function () { queues_chart_51_70.update(); } }, 0)
+    //     .to(queues_chart_71_100.data.datasets[0].data, { endArray: queues_71_100, ease: "none", onUpdate: function () { queues_chart_71_100.update(); } }, 0)
+    //     .to(queues_chart_100.data.datasets[0].data, { endArray: queues_100, ease: "none", onUpdate: function () { queues_chart_100.update(); } }, 0);
 
-    fadeOutChart('queues-charts', 'queues4');
+    // fadeOutChart('queues-charts', 'queues4');
 
     // SAFETY
 
-    gsap
-        .timeline({
-            scrollTrigger: {
-                trigger: ".scrolly-section[data-section-label='unsafe']",
-                start: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `center ${backgroundRect.height + offsetInPixels}px`;
-                },
-                end: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `bottom ${backgroundRect.height + offsetInPixels}px`;
-                },
-                scrub: true
-            }
-        })
-        .fromTo(
-            ".safety-chart",
-            { opacity: 0 },
-            { opacity: 1, ease: "none" }
-        )
-        .to(safety_male.data.datasets[0].data, { endArray: safety_chart_male, ease: "none", onUpdate: function () { safety_male.update(); } }, 0)
-        .to(safety_female.data.datasets[0].data, { endArray: safety_chart_female, ease: "none", onUpdate: function () { safety_female.update(); } }, 0);
+    // gsap
+    //     .timeline({
+    //         scrollTrigger: {
+    //             trigger: ".scrolly-section[data-section-label='unsafe']",
+    //             start: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             end: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             scrub: true
+    //         }
+    //     })
+    //     .fromTo(
+    //         ".safety-chart",
+    //         { opacity: 0 },
+    //         { opacity: 1, ease: "none" }
+    //     )
+    //     .to(safety_male.data.datasets[0].data, { endArray: safety_chart_male, ease: "none", onUpdate: function () { safety_male.update(); } }, 0)
+    //     .to(safety_female.data.datasets[0].data, { endArray: safety_chart_female, ease: "none", onUpdate: function () { safety_female.update(); } }, 0);
 
-    fadeOutChart('safety-chart', 'women-unsafe');
+    // fadeOutChart('safety-chart', 'women-unsafe');
 
     // WOMEN SAFETY
 
-    gsap
-        .timeline({
-            scrollTrigger: {
-                trigger: ".scrolly-section[data-section-label='women-unsafe']",
-                start: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `center ${backgroundRect.height + offsetInPixels}px`;
-                },
-                end: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `bottom ${backgroundRect.height + offsetInPixels}px`;
-                },
-                scrub: true
-            }
-        })
-        .fromTo(
-            ".women-safety-chart",
-            { opacity: 0 },
-            { opacity: 1, ease: "none" }
-        )
-        .to(women_safety_chart.data.datasets[0].data, { endArray: women_safety_yes, ease: "none", onUpdate: function () { women_safety_chart.update(); } }, 0)
-        .to(women_safety_chart.data.datasets[1].data, { endArray: women_safety_no, ease: "none", onUpdate: function () { women_safety_chart.update(); } }, 0);
+    // gsap
+    //     .timeline({
+    //         scrollTrigger: {
+    //             trigger: ".scrolly-section[data-section-label='women-unsafe']",
+    //             start: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             end: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             scrub: true
+    //         }
+    //     })
+    //     .fromTo(
+    //         ".women-safety-chart",
+    //         { opacity: 0 },
+    //         { opacity: 1, ease: "none" }
+    //     )
+    //     .to(women_safety_chart.data.datasets[0].data, { endArray: women_safety_yes, ease: "none", onUpdate: function () { women_safety_chart.update(); } }, 0)
+    //     .to(women_safety_chart.data.datasets[1].data, { endArray: women_safety_no, ease: "none", onUpdate: function () { women_safety_chart.update(); } }, 0);
 
-    fadeOutChart('women-safety-chart', 'return-visits');
+    // fadeOutChart('women-safety-chart', 'return-visits');
 
 
     // RETURN VISITS
 
-    gsap
-        .timeline({
-            scrollTrigger: {
-                trigger: ".scrolly-section[data-section-label='return-visits']",
-                start: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `center ${backgroundRect.height + offsetInPixels}px`;
-                },
-                end: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `bottom ${backgroundRect.height + offsetInPixels}px`;
-                },
-                scrub: true
-            }
-        })
-        .fromTo(
-            ".return-visits-chart",
-            { opacity: 0 },
-            { opacity: 1, ease: "none" }
-        )
-        .to(return_visits_chart_fs.data.datasets[0].data, { endArray: return_visits_fs, ease: "none", onUpdate: function () { return_visits_chart_fs.update(); } }, 0)
-        .to(return_visits_chart_lp.data.datasets[0].data, { endArray: return_visits_lp, ease: "none", onUpdate: function () { return_visits_chart_lp.update(); } }, 0)
-        .to(return_visits_chart_kzn.data.datasets[0].data, { endArray: return_visits_kzn, ease: "none", onUpdate: function () { return_visits_chart_kzn.update(); } }, 0);
+    // gsap
+    //     .timeline({
+    //         scrollTrigger: {
+    //             trigger: ".scrolly-section[data-section-label='return-visits']",
+    //             start: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             end: () => {
+    //                 const backgroundRect = background.getBoundingClientRect();
+    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
+    //             },
+    //             scrub: true
+    //         }
+    //     })
+    //     .fromTo(
+    //         ".return-visits-chart",
+    //         { opacity: 0 },
+    //         { opacity: 1, ease: "none" }
+    //     )
+    //     .to(return_visits_chart_fs.data.datasets[0].data, { endArray: return_visits_fs, ease: "none", onUpdate: function () { return_visits_chart_fs.update(); } }, 0)
+    //     .to(return_visits_chart_lp.data.datasets[0].data, { endArray: return_visits_lp, ease: "none", onUpdate: function () { return_visits_chart_lp.update(); } }, 0)
+    //     .to(return_visits_chart_kzn.data.datasets[0].data, { endArray: return_visits_kzn, ease: "none", onUpdate: function () { return_visits_chart_kzn.update(); } }, 0);
 
-    fadeOutChart('return-visits-chart', 'conclusion');
+    // fadeOutChart('return-visits-chart', 'conclusion');
 
 })
