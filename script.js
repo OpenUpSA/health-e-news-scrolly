@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     DEBUG = false;
 
+    let population_chart;
+
     let scrolly_chart_colors = {
         gender_male: '#ff3d3b',
         gender_female: '#ffd06c',
@@ -582,7 +584,12 @@ document.addEventListener('DOMContentLoaded', function () {
         },
     };
 
-    const population_chart = new Chart('population-chart', {
+    if (population_chart) {
+        console.log('Destroying existing chart');
+        population_chart.destroy(); // Destroy the previous chart if it exists
+    }
+
+    population_chart = new Chart('population-chart', {
         type: 'bar',
         options: options,
         data: data,
