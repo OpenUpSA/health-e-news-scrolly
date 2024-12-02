@@ -584,12 +584,9 @@ document.addEventListener('DOMContentLoaded', function () {
         },
     };
 
-    if (population_chart) {
-        console.log('Destroying existing chart');
-        population_chart.destroy(); // Destroy the previous chart if it exists
-    }
-
-    population_chart = new Chart('population-chart', {
+    
+    const population_chart_ctx = document.getElementById('population-chart').getContext('2d');
+    population_chart = new Chart(population_chart_ctx, {
         type: 'bar',
         options: options,
         data: data,
