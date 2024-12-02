@@ -1,6 +1,6 @@
 DEBUG = false;
 
-let chart_colors = {
+let scrolly_chart_colors = {
     gender_male: '#ff3d3b',
     gender_female: '#ffd06c',
 
@@ -467,13 +467,13 @@ document.addEventListener('DOMContentLoaded', function () {
             {
                 label: "Female",
                 stack: "Stack 0",
-                backgroundColor: chart_colors.gender_female,
+                backgroundColor: scrolly_chart_colors.gender_female,
                 data: [0, 0, 0, 0].map((k) => -k),
             },
             {
                 label: "Male",
                 stack: "Stack 0",
-                backgroundColor: chart_colors.gender_male,
+                backgroundColor: scrolly_chart_colors.gender_male,
                 data: [0, 0, 0, 0],
             },
         ],
@@ -604,17 +604,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 {
                     label: 'Seat',
                     data: [0, 0, 0],
-                    backgroundColor: chart_colors.unhygenic_seat
+                    backgroundColor: scrolly_chart_colors.unhygenic_seat
                 },
                 {
                     label: 'Toilet bowl',
                     data: [0, 0, 0],
-                    backgroundColor: chart_colors.unhygenic_bowl
+                    backgroundColor: scrolly_chart_colors.unhygenic_bowl
                 },
                 {
                     label: 'Wall',
                     data: [0, 0, 0],
-                    backgroundColor: chart_colors.unhygenic_wall
+                    backgroundColor: scrolly_chart_colors.unhygenic_wall
                 }
             ]
         },
@@ -677,7 +677,7 @@ document.addEventListener('DOMContentLoaded', function () {
             labels: ['Both', 'Inside', 'Outside'],
             datasets: [{
                 data: [0, 0, 0],
-                backgroundColor: [chart_colors.prov_both, chart_colors.prov_inside, chart_colors.prov_outside]
+                backgroundColor: [scrolly_chart_colors.prov_both, scrolly_chart_colors.prov_inside, scrolly_chart_colors.prov_outside]
             }]
         }
     }
@@ -689,7 +689,7 @@ document.addEventListener('DOMContentLoaded', function () {
             labels: ['No', 'Yes'],
             datasets: [{
                 data: [0, 0],
-                backgroundColor: [chart_colors.safety_no, chart_colors.safety_yes]
+                backgroundColor: [scrolly_chart_colors.safety_no, scrolly_chart_colors.safety_yes]
             }]
         }
     }
@@ -701,7 +701,7 @@ document.addEventListener('DOMContentLoaded', function () {
             labels: ['No', 'Yes'],
             datasets: [{
                 data: [0, 0],
-                backgroundColor: [chart_colors.return_visits_no, chart_colors.return_visits_yes]
+                backgroundColor: [scrolly_chart_colors.return_visits_no, scrolly_chart_colors.return_visits_yes]
             }]
         }
     }
@@ -713,7 +713,7 @@ document.addEventListener('DOMContentLoaded', function () {
             labels: ['Under 20 minutes', 'Over 20 minutes'],
             datasets: [{
                 data: [0, 0],
-                backgroundColor: [chart_colors.queues_under_20, chart_colors.queues_over_20]
+                backgroundColor: [scrolly_chart_colors.queues_under_20, scrolly_chart_colors.queues_over_20]
             }]
         }
     }
@@ -746,15 +746,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 {
                     label: 'Yes',
                     data: [0, 0, 0, 0],
-                    backgroundColor: chart_colors.women_safety_yes,
-                    borderColor: chart_colors.women_safety_yes,
+                    backgroundColor: scrolly_chart_colors.women_safety_yes,
+                    borderColor: scrolly_chart_colors.women_safety_yes,
                     borderWidth: 0
                 },
                 {
                     label: 'No',
                     data: [0, 0, 0, 0],
-                    backgroundColor: chart_colors.women_safety_no,
-                    borderColor: chart_colors.women_safety_no,
+                    backgroundColor: scrolly_chart_colors.women_safety_no,
+                    borderColor: scrolly_chart_colors.women_safety_no,
                     borderWidth: 0
                 }
             ]
