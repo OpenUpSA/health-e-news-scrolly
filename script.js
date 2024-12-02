@@ -1,45 +1,42 @@
-DEBUG = false;
-
-let scrolly_chart_colors = {
-    gender_male: '#ff3d3b',
-    gender_female: '#ffd06c',
-
-    prov_both: '#999999',
-    prov_inside: '#ffd06c',
-    prov_outside: '#ff3d3b',
-
-  
-    safety_yes: '#ffd06c',
-    safety_no: '#ff3d3b',
-
-    women_safety_yes: '#FFD06C',
-    women_safety_no: '#FF3D3B',
-
-    unhygenic_seat: '#FFD06C',
-    unhygenic_bowl: '#FF3D3B',
-    unhygenic_wall: '#999999',
-
-    return_visits_yes: '#ff3d3b',
-    return_visits_no: '#FFD06C',
-
-    queues_over_20: '#ff3d3b',
-    queues_under_20: '#FFD06C'
-
-
-
-
-}
-
-let responsive_settings = {
-    gender_age_labels: 10,
-    dirty_toilets_labels: 10
-
-}
-
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
+
+    DEBUG = false;
+
+    let scrolly_chart_colors = {
+        gender_male: '#ff3d3b',
+        gender_female: '#ffd06c',
+
+        prov_both: '#999999',
+        prov_inside: '#ffd06c',
+        prov_outside: '#ff3d3b',
+
+    
+        safety_yes: '#ffd06c',
+        safety_no: '#ff3d3b',
+
+        women_safety_yes: '#FFD06C',
+        women_safety_no: '#FF3D3B',
+
+        unhygenic_seat: '#FFD06C',
+        unhygenic_bowl: '#FF3D3B',
+        unhygenic_wall: '#999999',
+
+        return_visits_yes: '#ff3d3b',
+        return_visits_no: '#FFD06C',
+
+        queues_over_20: '#ff3d3b',
+        queues_under_20: '#FFD06C'
+
+
+
+
+    }
+
+    let responsive_settings = {
+        gender_age_labels: 10,
+        dirty_toilets_labels: 10
+
+    }
 
     // MEDIA QUERIES
 
