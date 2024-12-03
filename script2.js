@@ -234,24 +234,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // SCROLLY CAPTIONS FADE INS
 
-        gsap.utils.toArray('.scrolly-section .scrolly-caption-box').forEach((caption) => {
-            gsap.to(caption, {
-                opacity: 1,
-                duration: 0.2,
-                scrollTrigger: {
-                    trigger: caption,
-                    start: () => {
-                        const backgroundRect = background.getBoundingClientRect();
-                        return `top ${backgroundRect.height + offsetInPixels}px`;
-                    },
-                    end: () => {
-                        const backgroundRect = background.getBoundingClientRect();
-                        return `top ${offsetInPixels + backgroundRect.height / 2}px`;
-                    },
-                    scrub: true
-                }
-            });
-        });
+        // gsap.utils.toArray('.scrolly-section .scrolly-caption-box').forEach((caption) => {
+        //     gsap.to(caption, {
+        //         opacity: 1,
+        //         duration: 0.2,
+        //         scrollTrigger: {
+        //             trigger: caption,
+        //             start: () => {
+        //                 const backgroundRect = background.getBoundingClientRect();
+        //                 return `top ${backgroundRect.height + offsetInPixels}px`;
+        //             },
+        //             end: () => {
+        //                 const backgroundRect = background.getBoundingClientRect();
+        //                 return `top ${offsetInPixels + backgroundRect.height / 2}px`;
+        //             },
+        //             scrub: true
+        //         }
+        //     });
+        // });
 
 
 
