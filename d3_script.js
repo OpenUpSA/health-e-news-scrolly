@@ -1051,7 +1051,7 @@ window.addEventListener('load', function () {
                 trigger: ".scrolly-section[data-section-label='outdoor-facilities']",
                 start: "center center",
                 end: "bottom center",
-                scrub: false,
+                scrub: true,
                 onEnter: () => {
                     console.log('outdoor - onEnter triggered');
                     fadeChart('.province-chart', 1);
@@ -1080,7 +1080,7 @@ window.addEventListener('load', function () {
                 trigger: ".scrolly-section[data-section-label='disabled-access']",
                 start: "center center",
                 end: "bottom center",
-                scrub: false,
+                scrub: true,
                 onEnter: () => {
                     console.log('disabled - onEnter triggered');
                     activeData.fs = fs_disabled_access;
