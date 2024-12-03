@@ -965,11 +965,15 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             
             
-            drawChart('fs', inside_outside_blank, 'FS');
-        
-            drawChart('lp', inside_outside_blank, 'LP');
-        
-            drawChart('kzn', inside_outside_blank, 'KZN');
+            setTimeout(() => {
+
+                drawChart('fs', inside_outside_blank, 'FS');
+            
+                drawChart('lp', inside_outside_blank, 'LP');
+            
+                drawChart('kzn', inside_outside_blank, 'KZN');
+
+            }, 5000);
 
 
             // add_label('kzn', 'category-a', 3, 4, 'tl', 'text here<br/>how are you?', {color: '#fff'}, {align: 'left', color: '#fff'});
