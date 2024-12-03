@@ -1053,7 +1053,7 @@ window.addEventListener('load', function () {
                 end: "bottom center",
                 scrub: false,
                 onEnter: () => {
-
+                    console.log('here here here');
                     fadeChart('.province-chart', 1);
                     activeData.fs = fs_inside_outside;
                     activeData.lp = lp_inside_outside;
