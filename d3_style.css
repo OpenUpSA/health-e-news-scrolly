@@ -1,0 +1,793 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
+@font-face {
+    font-family: 'Balto';
+    src: url('https://openupsa.github.io/health-e-news-scrolly/fonts/Balto-Book.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Balto';
+    src: url('https://openupsa.github.io/health-e-news-scrolly/fonts/Balto-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Balto';
+    src: url('https://openupsa.github.io/health-e-news-scrolly/fonts/Balto-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Balto';
+    src: url('https://openupsa.github.io/health-e-news-scrolly/fonts/Balto-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+
+.scrolly {
+    font-family: 'Balto', sans-serif;
+    font-size: 14px;
+}
+
+.scrolly-bg-color-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    mix-blend-mode: multiply;
+}
+
+.scrolly .scrolly-background {
+    top: 10vh;
+    aspect-ratio: 12 / 12;
+}
+
+.scrolly .scrolly-section {
+    aspect-ratio: 12 / 12;
+    
+}
+
+.scrolly .scrolly-section-50 {
+    aspect-ratio: 12/12;
+}
+
+.scrolly .scrolly-section-25 {
+    aspect-ratio: 12/12;
+}
+
+
+/*** COLORS ***/
+
+.scrolly-bg-1 {
+    background-color: #367196;
+}
+
+.scrolly-bg-2 {
+    background-color: #286661;
+}
+
+.scrolly-bg-3 {
+    background-color: #455075;
+}
+
+/*** MORE STYLES ***/
+
+.scrolly-caption-box {
+    color: #fff;
+    padding: 2em;
+    max-width: 100%;
+    text-align: left;
+    /* opacity: 0; */
+}
+
+.scrolly-caption-box-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+}
+
+/*** CHARTS ***/
+
+.scrolly .scrolly-chart-label-container {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.scrolly .scrolly-chart-label {
+    display: inline-banchor;
+    text-align: center;
+    font-size: 0.7em;
+    margin-top: 1em;
+    font-weight: 700;
+    color: #fff;
+    padding: 0.5em 1em;
+}
+
+/*** ANNOTATIONS ***/
+
+
+.scrolly .scrolly-slide-annotation { 
+    position: absolute;
+    color: #fff;
+    text-wrap: nowrap;
+    font-family: "Caveat", sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    display: block;
+    z-index: 999;
+    opacity: 0;
+    /* display: none; */
+}
+
+.scrolly .scrolly-annotation-text {
+    font-family: "Caveat", sans-serif;
+    text-wrap: nowrap;
+    z-index: 9999;
+}
+
+
+
+.scrolly .scrolly-slide-annotation::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background-color: #fff;
+    transform-origin: 0 50%;
+}
+
+.scrolly .scrolly-slide-annotation.scrolly-pointer-long::after {
+    width: 40px !important;
+}
+
+
+/* LINE ANCHOR */
+
+.scrolly .scrolly-anchor-tl::after {
+    top: -20%; 
+    left: 0%;
+}
+
+.scrolly .scrolly-anchor-tc::after {
+    top: -20%; 
+    left: 50%;
+    transform: translateX(-50%); 
+}
+
+.scrolly .scrolly-anchor-tr::after {
+    top: -20%; 
+    left: 100%;
+    transform: translateX(-100%);
+}
+
+/* Middle row */
+.scrolly .scrolly-anchor-ml::after {
+    top: 50%; 
+    left: 0%;
+    transform: translateY(-50%); 
+}
+
+.scrolly .scrolly-anchor-mc::after {
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+.scrolly .scrolly-anchor-mr::after {
+    top: 50%; 
+    left: 100%;
+    transform: translate(-100%, -50%);
+}
+
+/* Bottom row */
+.scrolly .scrolly-anchor-bl::after {
+    top: 100%; 
+    left: 0%;
+    transform: translateY(-100%);
+}
+
+.scrolly .scrolly-anchor-bc::after {
+    top: 100%; 
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
+
+.scrolly .scrolly-anchor-br::after {
+    top: 100%; 
+    left: 100%;
+    transform: translate(-100%, -100%);
+}
+
+/* LINE DIRECTIONS */
+
+.scrolly .scrolly-pointer-12::after {
+    transform: rotate(270deg); 
+}
+
+.scrolly .scrolly-pointer-1::after {
+    transform: rotate(300deg); 
+}
+
+.scrolly .scrolly-pointer-2::after {
+    transform: rotate(330deg); 
+}
+
+.scrolly .scrolly-pointer-3::after {
+    transform: rotate(0deg);
+}
+
+.scrolly .scrolly-pointer-4::after {
+    transform: rotate(30deg); 
+}
+
+.scrolly .scrolly-pointer-5::after {
+    transform: rotate(60deg); 
+}
+
+.scrolly .scrolly-pointer-6::after {
+    transform: rotate(90deg); 
+}
+
+.scrolly .scrolly-pointer-7::after {
+    transform: rotate(120deg); 
+}
+
+.scrolly .scrolly-pointer-8::after {
+    transform: rotate(150deg); 
+}
+
+.scrolly .scrolly-pointer-9::after {
+    transform: rotate(180deg); 
+}
+
+.scrolly .scrolly-pointer-10::after {
+    transform: rotate(210deg); 
+}
+
+.scrolly .scrolly-pointer-11::after {
+    transform: rotate(240deg); 
+}
+
+
+
+/*** CHARTS ***/
+
+.scrolly .scrolly-chart-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.scrolly-annotation {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+}
+
+.scrolly-chart-annotation {
+    opacity: 0;
+}
+
+.scrolly-annotation-inner {
+    position: absolute;
+    width: 100%;
+    background-image: url('img/bg.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.scrolly .scrolly-annotation-extra-info {
+    font-size: 1em;
+    color: #fff;
+    position: absolute;
+    bottom: 1em;
+    padding: 0.8em;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 3px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.6);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 8;
+    width: 80%;
+    font-family: 'Balto', sans-serif;
+    text-wrap: wrap;
+    font-weight: 400;
+}
+
+.scrolly .scrolly-annotation-extra-info::after {
+    display: none;
+    
+}
+
+
+
+
+/*** CHART CUSTIOMISATIONS ***/
+
+
+
+.scrolly .population-chart .scrolly-annotation-inner {
+    top: 50%;
+    padding: 2em 0;
+    transform: translateY(-50%);
+}
+
+.scrolly .population-chart .scrolly-chart-container {
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scrolly .province-chart .scrolly-annotation-inner {
+    top: 50%;
+    padding: 4em 0;
+    transform: translateY(-50%);
+}
+
+.scrolly .unhygenic-chart .scrolly-annotation-inner {
+    top: 50%;
+    padding: 3em 0;
+    transform: translateY(-50%);
+}
+
+.scrolly .unhygenic-chart .scrolly-chart-container {
+    width: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scrolly .queues-charts .scrolly-annotation-inner {
+    top: 50%;
+    padding: 3em 0;
+    transform: translateY(-50%);
+}
+
+.scrolly .queues-charts .scrolly-chart-container {
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scrolly .safety-chart .scrolly-annotation-inner {
+    top: 50%;
+    padding: 3em 6em;
+    transform: translateY(-50%);
+}
+
+.scrolly .women-safety-chart .scrolly-annotation-inner {
+    top: 60%;
+    padding: 3em 4em;
+    transform: translateY(-50%);
+}
+
+.scrolly .return-visits-chart .scrolly-annotation-inner {
+    top: 60%;
+    padding: 4em 3em;
+    transform: translateY(-50%);
+}
+
+.scrolly .scrolly-chart-container .svg-container {
+    margin: 0 auto;
+}
+
+
+
+
+
+
+/*** ANNOTATION CUSTMISATIONS ***/
+
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="fs"] {
+    top: 60%;
+    right: 30%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="lp"] {
+    top: 37%;
+    right: 5%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="kzn"] {
+    top: 70%;
+    right: 2%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="male"] {
+    top: 58%;
+    right: 7%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="female"] {
+    top: 58%;
+    left: 9%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="age"] {
+    top: -10%;
+    left: 43%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="inside"] {
+    top: 100%;
+    left: 80%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="outside"] {
+    top: -15%;
+    left: 0%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="both"] {
+    top: -10%;
+    right: 4%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="disabled-access-yes"] {
+    top: -8%;
+    left: 75%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="disabled-access-no"] {
+    top: 100%;
+    left: 70%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="usable"] {
+    top: -8%;
+    left: 75%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="unusable"] {
+    top: 100%;
+    left: 70%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="toilet-paper-yes"] {
+    top: -8%;
+    left: 75%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="toilet-paper-no"] {
+    top: 100%;
+    left: 70%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="soap-yes"] {
+    top: -8%;
+    left: 75%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="soap-no"] {
+    top: 100%;
+    left: 70%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-toilet"] {
+    top: 95%;
+    left: 17%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-seat"] {
+    top: 95%;
+    left: 67%;
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="dirty-wall"] {
+    top: 55%;
+    right: -13%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="facility-size"] {
+    top: -40%;
+    right: -75%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time-over-20"] {
+    top: 105%;
+    left: -95%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time-under-20"] {
+    top: 105%;
+    left: 90%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="safety-yes"] {
+    top: -20%;
+    left: -30%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="safety-no"] {
+    top: 110%;
+    left: 70%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-age"] {
+    top: 108%;
+    right: 48%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-yes"] {
+    top: 0%;
+    left: 14%
+}
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-no"] {
+    top: 5%;
+    right: 6%
+}
+
+
+.scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-less-likey"] {
+    top: -30%;
+    left: -120%
+}
+
+
+
+
+
+
+/*** HELPER CLASSES ***/
+
+.scrolly .scrolly-primary {
+    color: #F45946;
+}
+
+.scrolly .scrolly-secondary {
+    color: #FFC107;
+}
+
+.scrolly h1 {
+    font-size: 1.5em;
+    margin: unset;
+    margin-bottom: 0.8em;
+    padding: unset;
+    font-weight: 500;
+    line-height: unset;
+}
+
+.scrolly .scrolly-fw-500 {
+    font-weight: 500;
+    display: inline;
+}
+
+.scrolly .scrolly-big {
+    font-size: 1.5em;
+}
+
+.scrolly p {
+    line-height: 1.3em;
+}
+
+.scrolly p:first-child {
+    margin-top: 0;
+}
+
+.scrolly p:last-child {
+    margin-bottom: 0;
+}
+
+
+.scrolly .scrolly-row {
+    display: flex;
+    width: 100%;
+}
+
+.scrolly .scrolly-col {
+    flex: 1;
+    max-width: 33%;
+    padding: 0 15px;
+}
+
+.scrolly .scrolly-row-2-up .scrolly-col {
+    max-width: 50% !important
+}
+
+.scrolly .scrolly-row-4-up .scrolly-col {
+    max-width: 25% !important
+}
+
+.scrolly .scrolly-mt-1 {
+    margin-top: 1em;
+}
+
+.scrolly .scrolly-mt-2 {
+    margin-top: 2em;
+}
+
+.scrolly .scrolly-mt-3 {
+    margin-top: 3em;
+}
+
+.scrolly .scrolly-mt-4 {
+    margin-top: 4em;
+}
+
+.scrolly .scrolly-mt-5 {
+    margin-top: 5em;
+}
+
+.scrolly .scrolly-mb-1 {
+    margin-bottom: 1em;
+}
+
+.scrolly .scrolly-mb-2 {
+    margin-bottom: 2em;
+}
+
+.scrolly .scrolly-mb-3 {
+    margin-bottom: 3em;
+}
+
+.scrolly .scrolly-mb-4 {
+    margin-bottom: 4em;
+}
+
+.scrolly .scrolly-mb-5 {
+    margin-bottom: 5em;
+}
+
+.scrolly .mobile-hide {
+    display: none;
+}
+
+
+
+
+/*** RESPONSIVENESS ***/
+
+/* MOBILE LANDSCAPE */
+
+/* @media (orientation: landscape) and (max-width: 767px) {
+} */
+
+/* @media (min-width: 600px) {
+    .scrolly {
+        font-size: 14px;
+    }
+} */
+
+@media (min-width: 768px) {
+    .scrolly {
+        font-size: 16px;
+    }
+}
+
+
+@media (min-width: 800px) {
+
+    .scrolly {
+        max-width: 832px;
+        font-size: 18px;
+    }
+
+    .scrolly-caption-box {
+        max-width: 90%;
+    }
+
+    .scrolly-mobile-show {
+        display: none;
+    }
+
+    .scrolly .mobile-hide {
+        display: block;
+    }
+
+    .scrolly .scrolly-background {
+        top: 10vh;
+        aspect-ratio: 12 / 8;
+    }
+    
+    .scrolly .scrolly-section {
+        aspect-ratio: 12 / 8;
+    }
+
+    .scrolly .scrolly-section-50 {
+        aspect-ratio: 12/8;
+    }
+    
+    .scrolly .scrolly-section-25 {
+        aspect-ratio: 12/8;
+    }
+
+    /*** CHART CUSTOMISATIONS ***/
+
+    
+    .scrolly .population-chart .scrolly-chart-container {
+        width: 70%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+   
+    .scrolly .province-chart .scrolly-annotation-inner {
+        padding: 4em 2em;
+    }
+
+    .scrolly .queues-charts .scrolly-annotation-inner {
+        padding: 3em 2em;
+    }
+   
+    
+
+   
+
+
+
+    /*** ANNOTATION CUSTMISATIONS ***/
+
+    .scrolly .scrolly-slide-annotation::after {
+        width: 30px !important;
+    }
+
+    .scrolly .scrolly-slide-annotation.scrolly-pointer-long::after {
+        width: 80px !important;
+    }
+
+    .scrolly .scrolly-slide-annotation[data-annotation-label="waiting-time-over-20"] {
+        top: 105%;
+        left: -35%
+    }
+
+    .scrolly .scrolly-slide-annotation[data-annotation-label="facility-size"] {
+        top: -25%;
+        right: -40%
+    }
+
+    .scrolly .scrolly-slide-annotation[data-annotation-label="safety-yes"] {
+        top: -2%;
+        left: -10%
+    }
+
+    .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-age"] {
+        top: 100%;
+        right: 45%
+    }
+    
+
+    .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-yes"] {
+        top: 10%;
+        left: 18%
+    }
+    
+    .scrolly .scrolly-slide-annotation[data-annotation-label="women-unsafe-no"] {
+        top: 13%;
+        right: 12%
+    }
+
+    .scrolly .scrolly-slide-annotation[data-annotation-label="return-visits-less-likey"] {
+        top: -15%;
+        left: -45%
+    }
+    
+    
+
+   
+
+   
+
+}
+
+@media (min-width: 1200px) {
+
+    
+
+}
+
+
+/*** DEBUG ***/
+
+
