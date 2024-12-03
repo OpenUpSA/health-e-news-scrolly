@@ -1098,104 +1098,104 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             // Disabled Access Dataset
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='disabled-access']",
-                start: "center center",
-                end: "bottom center",
-                scrub: false,
-                onEnter: () => {
-                    activeData.fs = fs_disabled_access;
-                    activeData.lp = lp_disabled_access;
-                    activeData.kzn = kzn_disabled_access;
-                    updateAllCharts();
+            // ScrollTrigger.create({
+            //     trigger: ".scrolly-section[data-section-label='disabled-access']",
+            //     start: "center center",
+            //     end: "bottom center",
+            //     scrub: false,
+            //     onEnter: () => {
+            //         activeData.fs = fs_disabled_access;
+            //         activeData.lp = lp_disabled_access;
+            //         activeData.kzn = kzn_disabled_access;
+            //         updateAllCharts();
                     
 
-                },
-                onLeaveBack: () => {
-                    console.log('onLeaveBack triggered');
-                    activeData.fs = fs_inside_outside;
-                    activeData.lp = lp_inside_outside;
-                    activeData.kzn = kzn_inside_outside;
-                    updateAllCharts();
+            //     },
+            //     onLeaveBack: () => {
+            //         console.log('onLeaveBack triggered');
+            //         activeData.fs = fs_inside_outside;
+            //         activeData.lp = lp_inside_outside;
+            //         activeData.kzn = kzn_inside_outside;
+            //         updateAllCharts();
                     
 
-                }
-            });
+            //     }
+            // });
 
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='broken-toilets']",
-                start: "center center",
-                end: "bottom center",
-                scrub: false,
-                onEnter: () => {
-                    activeData.fs = fs_unusable_toilets;
-                    activeData.lp = lp_unusable_toilets;
-                    activeData.kzn = kzn_unusable_toilets;
-                    updateAllCharts();
+            // ScrollTrigger.create({
+            //     trigger: ".scrolly-section[data-section-label='broken-toilets']",
+            //     start: "center center",
+            //     end: "bottom center",
+            //     scrub: false,
+            //     onEnter: () => {
+            //         activeData.fs = fs_unusable_toilets;
+            //         activeData.lp = lp_unusable_toilets;
+            //         activeData.kzn = kzn_unusable_toilets;
+            //         updateAllCharts();
                     
 
-                },
-                onLeaveBack: () => {
-                    console.log('onLeaveBack triggered');
-                    activeData.fs = fs_disabled_access;
-                    activeData.lp = lp_disabled_access;
-                    activeData.kzn = kzn_disabled_access;
-                    updateAllCharts();
+            //     },
+            //     onLeaveBack: () => {
+            //         console.log('onLeaveBack triggered');
+            //         activeData.fs = fs_disabled_access;
+            //         activeData.lp = lp_disabled_access;
+            //         activeData.kzn = kzn_disabled_access;
+            //         updateAllCharts();
                     
 
-                }
-            });
+            //     }
+            // });
 
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='no-toilet-paper']",
-                start: "center center",
-                end: "bottom center",
-                scrub: false,
-                onEnter: () => {
-                    activeData.fs = fs_toilet_paper;
-                    activeData.lp = lp_toilet_paper;
-                    activeData.kzn = kzn_toilet_paper;
-                    updateAllCharts();
+            // ScrollTrigger.create({
+            //     trigger: ".scrolly-section[data-section-label='no-toilet-paper']",
+            //     start: "center center",
+            //     end: "bottom center",
+            //     scrub: false,
+            //     onEnter: () => {
+            //         activeData.fs = fs_toilet_paper;
+            //         activeData.lp = lp_toilet_paper;
+            //         activeData.kzn = kzn_toilet_paper;
+            //         updateAllCharts();
                     
 
-                },
-                onLeaveBack: () => {
-                    console.log('onLeaveBack triggered');
-                    activeData.fs = fs_unusable_toilets;
-                    activeData.lp = lp_unusable_toilets;
-                    activeData.kzn = kzn_unusable_toilets;
-                    updateAllCharts();
+            //     },
+            //     onLeaveBack: () => {
+            //         console.log('onLeaveBack triggered');
+            //         activeData.fs = fs_unusable_toilets;
+            //         activeData.lp = lp_unusable_toilets;
+            //         activeData.kzn = kzn_unusable_toilets;
+            //         updateAllCharts();
                     
 
-                }
-            });
+            //     }
+            // });
 
-            ScrollTrigger.create({
-                trigger: ".scrolly-section[data-section-label='no-sanitiser']",
-                start: "center center",
-                end: "bottom center",
-                scrub: false,
-                onEnter: () => {
-                    activeData.fs = fs_no_sanitiser;
-                    activeData.lp = lp_no_sanitiser;
-                    activeData.kzn = kzn_no_sanitiser;
-                    updateAllCharts();
+            // ScrollTrigger.create({
+            //     trigger: ".scrolly-section[data-section-label='no-sanitiser']",
+            //     start: "center center",
+            //     end: "bottom center",
+            //     scrub: false,
+            //     onEnter: () => {
+            //         activeData.fs = fs_no_sanitiser;
+            //         activeData.lp = lp_no_sanitiser;
+            //         activeData.kzn = kzn_no_sanitiser;
+            //         updateAllCharts();
                     
 
-                },
-                onLeaveBack: () => {
-                    console.log('onLeaveBack triggered');
-                    activeData.fs = fs_toilet_paper;
-                    activeData.lp = lp_toilet_paper;
-                    activeData.kzn = kzn_toilet_paper;
-                    updateAllCharts();
+            //     },
+            //     onLeaveBack: () => {
+            //         console.log('onLeaveBack triggered');
+            //         activeData.fs = fs_toilet_paper;
+            //         activeData.lp = lp_toilet_paper;
+            //         activeData.kzn = kzn_toilet_paper;
+            //         updateAllCharts();
                     
 
-                }
-            });
+            //     }
+            // });
 
 
-            fadeOutChart('province-chart', 'not-stocked2');   
+            // fadeOutChart('province-chart', 'not-stocked2');   
 
             
 
@@ -1390,6 +1390,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         if (bg_color_class) {
                             updateBackgroundColorClass(bg_color_class);
+                        }
+
+
+                        if (section_label == 'outdoor-facilities') {
+                            
+                            fadeChart('.province-chart', 1);
+                            activeData.fs = fs_inside_outside;
+                            activeData.lp = lp_inside_outside;
+                            activeData.kzn = kzn_inside_outside;
+                            updateAllCharts();
                         }
 
                         
