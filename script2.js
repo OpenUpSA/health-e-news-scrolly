@@ -42,6 +42,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         }
 
+
+        // INIT SHOW CAPTIONS
+
+        document.querySelectorAll('.scrolly-section .scrolly-caption-box').forEach((caption) => {
+            caption.style.opacity = 1;
+        });
+
         // MEDIA QUERIES
 
         const mediaQuery = window.matchMedia('(max-width: 768px)');
