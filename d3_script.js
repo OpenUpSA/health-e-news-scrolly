@@ -2,7 +2,7 @@ window.addEventListener('load', function () {
 
     
 
-    
+        let scrollyInitialized = false;
 
         DEBUG = true;
 
@@ -247,89 +247,89 @@ window.addEventListener('load', function () {
 
 
 
-            function fadeOutChart(label, trigger) {
-                gsap.to(
-                    `.${label} .scrolly-annotation-inner`,
-                    {
-                        opacity: 0,
-                        ease: "none",
-                        scrollTrigger: {
-                            scrub: true,
-                            trigger: `.scrolly-section[data-section-label='${trigger}']`,
-                            start: () => {
-                                const backgroundRect = background.getBoundingClientRect();
-                                return `top ${backgroundRect.height + offsetInPixels}px`;
-                            },
-                            end: () => {
-                                const backgroundRect = background.getBoundingClientRect();
-                                return `top ${offsetInPixels}px`;
-                            }
-                        }
-                    });
-            }
+            // function fadeOutChart(label, trigger) {
+            //     gsap.to(
+            //         `.${label} .scrolly-annotation-inner`,
+            //         {
+            //             opacity: 0,
+            //             ease: "none",
+            //             scrollTrigger: {
+            //                 scrub: true,
+            //                 trigger: `.scrolly-section[data-section-label='${trigger}']`,
+            //                 start: () => {
+            //                     const backgroundRect = background.getBoundingClientRect();
+            //                     return `top ${backgroundRect.height + offsetInPixels}px`;
+            //                 },
+            //                 end: () => {
+            //                     const backgroundRect = background.getBoundingClientRect();
+            //                     return `top ${offsetInPixels}px`;
+            //                 }
+            //             }
+            //         });
+            // }
         
 
-            function annotationFadeIn(label, timeIn, offset, speed) {
+            // function annotationFadeIn(label, timeIn, offset, speed) {
 
-                let selector = `.scrolly-slide-annotation[data-annotation-label='${label}']`;
+            //     let selector = `.scrolly-slide-annotation[data-annotation-label='${label}']`;
 
-                let timeInSlide = document.querySelector(`.scrolly-section[data-section-label='${timeIn}']`);
+            //     let timeInSlide = document.querySelector(`.scrolly-section[data-section-label='${timeIn}']`);
 
-                if(timeInSlide == null) {
-                    console.log('Slide not found: ' + timeIn);
-                }
+            //     if(timeInSlide == null) {
+            //         console.log('Slide not found: ' + timeIn);
+            //     }
                 
-                let timeInOffset = timeInSlide.getBoundingClientRect().top;
+            //     let timeInOffset = timeInSlide.getBoundingClientRect().top;
 
-                const backgroundRect = background.getBoundingClientRect();
+            //     const backgroundRect = background.getBoundingClientRect();
 
-                gsap.fromTo(
-                    selector,
-                    { opacity: 0 },
-                    {
-                        opacity: 1,
-                        ease: "none",
-                        scrollTrigger: {
-                            scrub: true,
-                            start: `${timeInOffset + offset} ${offsetInPixels + backgroundRect.height}`, 
-                            end: `${timeInOffset + offset + speed} ${offsetInPixels}`,  
-                        }
-                    }
-                );
+            //     gsap.fromTo(
+            //         selector,
+            //         { opacity: 0 },
+            //         {
+            //             opacity: 1,
+            //             ease: "none",
+            //             scrollTrigger: {
+            //                 scrub: true,
+            //                 start: `${timeInOffset + offset} ${offsetInPixels + backgroundRect.height}`, 
+            //                 end: `${timeInOffset + offset + speed} ${offsetInPixels}`,  
+            //             }
+            //         }
+            //     );
 
-            }
+            // }
 
-            function annotationFadeOut(label, timeOut, offset, speed) {
+            // function annotationFadeOut(label, timeOut, offset, speed) {
 
-                let selector = `.scrolly-slide-annotation[data-annotation-label='${label}']`;
+            //     let selector = `.scrolly-slide-annotation[data-annotation-label='${label}']`;
 
-                let timeOutSlide = document.querySelector(`.scrolly-section[data-section-label='${timeOut}']`);
+            //     let timeOutSlide = document.querySelector(`.scrolly-section[data-section-label='${timeOut}']`);
 
-                if(timeOutSlide == null) {
-                    console.log('Slide not found: ' + timeOut);
-                }
+            //     if(timeOutSlide == null) {
+            //         console.log('Slide not found: ' + timeOut);
+            //     }
 
-                let timeOutOffset = timeOutSlide.getBoundingClientRect().top;
+            //     let timeOutOffset = timeOutSlide.getBoundingClientRect().top;
 
-                const backgroundRect = background.getBoundingClientRect();
+            //     const backgroundRect = background.getBoundingClientRect();
 
-                // Fade out
-                gsap.fromTo(
-                    selector,
-                    { opacity: 1 }, 
-                    {
-                        opacity: 0,
-                        ease: "none",
-                        scrollTrigger: {
-                            scrub: true,
-                            start: `${timeOutOffset + offset} ${offsetInPixels + backgroundRect.height}`, 
-                            end: `${timeOutOffset + offset + speed} ${offsetInPixels}`,  
-                        },
-                        immediateRender: false 
-                    }
-                );
+            //     // Fade out
+            //     gsap.fromTo(
+            //         selector,
+            //         { opacity: 1 }, 
+            //         {
+            //             opacity: 0,
+            //             ease: "none",
+            //             scrollTrigger: {
+            //                 scrub: true,
+            //                 start: `${timeOutOffset + offset} ${offsetInPixels + backgroundRect.height}`, 
+            //                 end: `${timeOutOffset + offset + speed} ${offsetInPixels}`,  
+            //             },
+            //             immediateRender: false 
+            //         }
+            //     );
 
-            }
+            // }
 
             // document.querySelectorAll('.scrolly-slide-annotation[data-annotation-in]').forEach((annotation, index) => {
 
@@ -615,12 +615,12 @@ window.addEventListener('load', function () {
 
                 const container = d3.select(`#${id}`);
                 const rect = container.node().getBoundingClientRect();
-                const width = 200;
-                const height = 200;
+                const width = rect.width;
+                const height = rect.height;
                 const margin = { top: 0, right: 0, bottom: 0, left: 0 };
                 const radius = Math.min(width, height) / 2 - Math.max(margin.top, margin.right);
 
-                
+                console.log('drawing', rect, width, height, radius);
 
             
                 // Set color scale
@@ -936,11 +936,7 @@ window.addEventListener('load', function () {
             
             
 
-            drawChart('fs', inside_outside_blank, 'FS');
-        
-            drawChart('lp', inside_outside_blank, 'LP');
-        
-            drawChart('kzn', inside_outside_blank, 'KZN');
+            
 
             
 
@@ -1057,6 +1053,7 @@ window.addEventListener('load', function () {
                 end: "bottom center",
                 scrub: false,
                 onEnter: () => {
+
                     fadeChart('.province-chart', 1);
                     activeData.fs = fs_inside_outside;
                     activeData.lp = lp_inside_outside;
@@ -1349,6 +1346,16 @@ window.addEventListener('load', function () {
                     },
 
                     onEnter: () => {
+
+                        if (section_label == 'start' && scrollyInitialized == false) {
+                            drawChart('fs', inside_outside_blank, 'FS');
+        
+                            drawChart('lp', inside_outside_blank, 'LP');
+        
+                            drawChart('kzn', inside_outside_blank, 'KZN');
+
+                            scrollyInitialized = true;
+                        }
 
                         
 
