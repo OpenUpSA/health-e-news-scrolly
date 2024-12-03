@@ -167,6 +167,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     onEnter: () => {
 
+                        console.log(section_label);
+
                         // BACKGROUND TO BLACK
 
                         // if (section_label == 'start') {
@@ -186,6 +188,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     },
                     onLeaveBack: () => {
+
+                        console.log(section_label);
+
                         if (section_label == 'start' || section_label == 'conclusion') {
                             if (section_label == 'start') {
                                 document.body.classList.remove('scrolly-showing');
