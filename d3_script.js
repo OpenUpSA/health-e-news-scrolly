@@ -621,7 +621,7 @@ window.addEventListener('load', function () {
                 const radius = Math.min(width, height) / 2 - Math.max(margin.top, margin.right);
 
                 
-                console.log(container);
+                console.log(container.node());
             
                 // Set color scale
                 let color = d3.scaleOrdinal()
