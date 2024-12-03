@@ -54,11 +54,11 @@
 }
 
 .scrolly .scrolly-section-50 {
-    aspect-ratio: 12/6;
+    aspect-ratio: 12/12;
 }
 
 .scrolly .scrolly-section-25 {
-    aspect-ratio: 12/3;
+    aspect-ratio: 12/12;
 }
 
 
@@ -317,6 +317,7 @@
 /*** CHART CUSTIOMISATIONS ***/
 
 
+
 .scrolly .population-chart .scrolly-annotation-inner {
     top: 50%;
     padding: 2em 0;
@@ -375,6 +376,10 @@
     top: 60%;
     padding: 4em 3em;
     transform: translateY(-50%);
+}
+
+.scrolly .scrolly-chart-container .svg-container {
+    margin: 0 auto;
 }
 
 
@@ -692,11 +697,11 @@
     }
 
     .scrolly .scrolly-section-50 {
-        aspect-ratio: 12/4;
+        aspect-ratio: 12/8;
     }
     
     .scrolly .scrolly-section-25 {
-        aspect-ratio: 12/2;
+        aspect-ratio: 12/8;
     }
 
     /*** CHART CUSTOMISATIONS ***/

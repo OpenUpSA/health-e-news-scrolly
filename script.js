@@ -1,4 +1,6 @@
-DEBUG = false;
+DEBUG = true;
+
+
 
 let chart_colors = {
     gender_male: '#ff3d3b',
@@ -44,6 +46,8 @@ let responsive_settings = {
 
 
 document.addEventListener('DOMContentLoaded', function () {
+
+
 
     // MEDIA QUERIES
 
@@ -455,27 +459,268 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // CHARTS
 
-    // Chart.defaults.animation.duration = 300;
+    // CHART DATA
 
+    const female_age_distribution = [21, 57, 36, 33].map((k) => -k);
+    const male_age_distribution = [27, 55, 45, 38];
+
+   
+
+    const inside_outside_blank = [
+        {
+            label: '1',
+            value: 0
+        },
+        {
+            label: '2',
+            value: 0
+        },
+        {
+            label: '3',
+            value: 0
+        }
+    ]
+
+    const fs_inside_outside = [
+        {
+            label: '1',
+            value: 0
+        }, {
+            label: '2',
+            value: 20, 
+        },{
+            label: '3',
+            value: 0
+        }
+    ];
+
+    const lp_inside_outside = [
+        {
+            label: '1',
+            value: 8
+        }, {
+            label: '2',
+            value: 0, 
+        },{
+            label: '3',
+            value: 12
+        }
+    ];
+
+    const kzn_inside_outside = [
+        {
+            label: '1',
+            value: 9
+        }, {
+            label: '2',
+            value: 7, 
+        },{
+            label: '3',
+            value: 4
+        }
+    ];
+
+    const fs_disabled_access = [
+        {
+            label: '1',
+            value: 0
+        }, {
+            label: '2',
+            value: 4, 
+        },{
+            label: '3',
+            value: 16
+        }
+    ];
+
+    const lp_disabled_access = [
+        {
+            label: '1',
+            value: 0
+        }, {
+            label: '2',
+            value: 16,
+        },{
+            label: '3',
+            value: 6
+        }
+    ];
+
+    const kzn_disabled_access = [
+        {
+            label: '1',
+            value: 0
+        }, {
+            label: '2',
+            value: 16,
+        },{
+            label: '3',
+            value: 4
+        }
+    ];
+
+    const fs_unusable_toilets = [
+        {
+            label: '1',
+            value: 0
+        }, {
+            label: '2',
+            value: 44,
+        },{
+            label: '3',
+            value: 65
+        }
+    ];
+
+    const lp_unusable_toilets = [
+        {
+            label: '1',
+            value: 0
+        }, {
+            label: '2',
+            value: 6,
+        },{
+            label: '3',
+            value: 95
+        }
+    ];
+
+    const kzn_unusable_toilets = [
+        {
+            label: '',
+            value: 0
+        }, {
+            label: 'Yes',
+            value: 27,
+        },{
+            label: 'No',
+            value: 76
+        }
+    ];
+
+    const fs_toilet_paper = [
+        {
+            label: '',
+            value: 0
+        }, {
+            label: 'Yes',
+            value: 3,
+        },{
+            label: 'No',
+            value: 7
+        }
+    ];
+
+    const lp_toilet_paper = [
+        {
+            label: '',
+            value: 0
+        }, {
+            label: 'Yes',
+            value: 0,
+        },{
+            label: 'No',
+            value: 10
+        }
+    ];
+
+    const kzn_toilet_paper = [
+        {
+            label: '',
+            value: 0
+        }, {
+            label: 'Yes',
+            value: 3,
+        },{
+            label: 'No',
+            value: 7
+        }
+    ];
+
+    const fs_no_sanitiser = [
+        {
+            label: '',
+            value: 0
+        }, {
+            label: 'Yes',
+            value: 6,
+        },{
+            label: 'No',
+            value: 14
+        }
+    ];
+
+    const lp_no_sanitiser = [
+        {
+            label: '',
+            value: 0
+        }, {
+            label: 'Yes',
+            value: 2,
+        },{
+            label: 'No',
+            value: 18
+        }
+    ];
+
+    const kzn_no_sanitiser = [
+        {
+            label: '',
+            value: 0
+        }, {
+            label: 'Yes',
+            value: 7,
+        },{
+            label: 'No',
+            value: 13
+        }
+    ];
+
+
+ 
+
+    const unhygenic_toilets_seat = [2, 2, 9];
+    const unhygenic_toilets_bowl = [3, 4, 8];
+    const unhygenic_toilets_wall = [0, 2, 3];  
+
+    const queues_21_50 = [7, 2];
+    const queues_51_70 = [11, 3];
+    const queues_71_100 = [11, 3];
+    const queues_100 = [11, 12];
+
+    const safety_chart_female = [78, 69];
+    const safety_chart_male = [67, 98];
+
+    const women_safety_yes = [13, 46, 27, 36];
+    const women_safety_no = [24, 29, 32, 26];
+
+    const return_visits_fs = [72, 37];
+    const return_visits_lp = [64, 37];
+    const return_visits_kzn = [13, 10];
+
+    let activeData = {
+        fs: fs_inside_outside,
+        lp: lp_inside_outside,
+        kzn: kzn_inside_outside
+    };
     
 
     // POPULATION CHART
     
     
     function drawChart(id, data, title, colors = [chart_colors.donut1, chart_colors.donut2, chart_colors.donut3]) {
-
         const container = d3.select(`#${id}`);
         const rect = container.node().getBoundingClientRect();
         const width = rect.width;
         const height = rect.height;
         const margin = { top: 0, right: 0, bottom: 0, left: 0 };
         const radius = Math.min(width, height) / 2 - Math.max(margin.top, margin.right);
-
+    
         // Set color scale
-        const color = d3.scaleOrdinal()
+        let color = d3.scaleOrdinal()
             .domain(data.map(d => d.label))
             .range(colors);
-
+    
         // Check if SVG exists
         let svg = container.select('svg');
         if (svg.empty()) {
@@ -488,55 +733,51 @@ document.addEventListener('DOMContentLoaded', function () {
                 .attr('preserveAspectRatio', 'xMinYMin meet')
                 .append('g')
                 .attr('transform', `translate(${width / 2}, ${height / 2})`);
+    
+            // Add title
+            svg.append('text')
+                .attr('class', 'chart-title')
+                .attr('text-anchor', 'middle')
+                .attr('fill', '#fff')
+                .attr('font-size', '0.9em')
+                .attr('dy', '0.5em')
+                .attr('font-weight', 'bold')
+                .text(title);
         } else {
             svg = svg.select('g');
             svg.attr('transform', `translate(${width / 2}, ${height / 2})`);
         }
-
-        // Generate the pie
+    
+        // Generate the pie and arcs
         const pie = d3.pie()
             .value(d => d.value)
             .sort(null);
-
-        // add a label in the middle of the donut
-        svg.append('text')
-            .attr('text-anchor', 'middle')
-            .attr('fill', '#fff')
-            .attr('font-size', '0.9em')
-            .attr('dy', '0.5em')
-            .attr('font-weight', 'bold')
-            .text(title);
-
-
-        // Generate the arcs
+    
         const arc = d3.arc()
             .innerRadius(radius * 0.5)
             .outerRadius(radius);
-
+    
         // Bind data to arcs
         const arcs = svg.selectAll('.arc')
             .data(pie(data), d => d.data.label);
-
+    
+        // Exit
         arcs.exit()
-            .transition()
-            .duration(750)
-            .style('opacity', 0)
             .remove();
-
+    
+        // Enter
         const arcsEnter = arcs.enter()
             .append('g')
-            .attr('class', d => `arc ${d.data.label.replace(/\s+/g, '-').toLowerCase()}`);
-
+            .attr('class', 'arc');
+    
         arcsEnter.append('path')
             .attr('fill', d => color(d.data.label))
-            .each(function (d) { this._current = d; })
-            .attr('d', arc);
-
-        const arcsMerge = arcsEnter.merge(arcs);
-
-        arcsMerge.select('path')
+            .each(function (d) { this._current = d; });
+    
+        // Update
+        arcsEnter.merge(arcs).select('path')
             .transition()
-            .duration(1000) 
+            .duration(750)
             .attrTween('d', function (d) {
                 const interpolate = d3.interpolate(this._current, d);
                 this._current = interpolate(1);
@@ -544,49 +785,86 @@ document.addEventListener('DOMContentLoaded', function () {
                     return arc(interpolate(t));
                 };
             });
-
-        // Update points
-        
-        arcsMerge.each(function (d) {
-            const numPoints = 5;
-
-            const pointsData = [];
-            for (let i = 1; i <= numPoints; i++) {
-                const t = i / (numPoints + 1);
-                const angle = d.startAngle + t * (d.endAngle - d.startAngle);
-                const innerRadius = arc.innerRadius()(d);
-                const outerRadius = arc.outerRadius()(d);
-                const middleRadius = (innerRadius + outerRadius) / 2;
-                const x = middleRadius * Math.cos(angle - Math.PI / 2);
-                const y = middleRadius * Math.sin(angle - Math.PI / 2);
-                pointsData.push({ x, y });
-            }
-
-            // Select the points group or create it if it doesn't exist
-            let pointsGroup = d3.select(this).select('.points-group');
-            if (pointsGroup.empty()) {
-                pointsGroup = d3.select(this).append('g').attr('class', 'points-group');
-            }
-
-            const circles = pointsGroup.selectAll('circle')
-                .data(pointsData);
-
-            circles.exit().remove();
-
-            circles.enter()
-                .append('circle')
-                .attr('class', (d,i) => `point-${i}`)
-                .attr('r', 1)
-                .attr('fill', '#000')
-                .attr('cx', d => d.x)
-                .attr('cy', d => d.y);
-
-            circles.transition()
-                .duration(750)
-                .attr('cx', d => d.x)
-                .attr('cy', d => d.y);
-        });
     }
+    
+    function updateChart(id, newData, radius, colors = [chart_colors.donut1, chart_colors.donut2, chart_colors.donut3]) {
+        const container = d3.select(`#${id}`);
+        const svg = container.select('svg').select('g');
+    
+        // Set color scale
+        const color = d3.scaleOrdinal()
+            .domain(newData.map(d => d.label))
+            .range(colors);
+    
+        // Generate the pie
+        const pie = d3.pie()
+            .value(d => d.value)
+            .sort(null);
+    
+        // Generate the arcs
+        const arc = d3.arc()
+            .innerRadius(radius * 0.5)
+            .outerRadius(radius);
+    
+        // Bind data
+        const arcs = svg.selectAll('.arc')
+            .data(pie(newData), d => d.data.label);
+    
+        // Enter new arcs
+        const arcsEnter = arcs.enter()
+            .append('g')
+            .attr('class', 'arc');
+    
+        arcsEnter.append('path')
+            .attr('fill', d => color(d.data.label))
+            .each(function (d) {
+                this._current = { startAngle: d.startAngle, endAngle: d.startAngle };
+            });
+    
+        // Handle updating arcs
+        arcsEnter.merge(arcs).select('path')
+            .transition()
+            .duration(750)
+            .attrTween('d', function (d) {
+                const interpolate = d3.interpolate(this._current, d);
+                this._current = interpolate(1); 
+                return function (t) {
+                    return arc(interpolate(t));
+                };
+            })
+            .attr('fill', d => color(d.data.label));
+    }
+    
+    
+    
+    
+    
+    function updateAllCharts() {
+        const rect = d3.select('#fs').node().getBoundingClientRect();
+        const radius = Math.min(rect.width, rect.height) / 2;
+    
+        updateChart('fs', activeData.fs, radius);
+        updateChart('lp', activeData.lp, radius);
+        updateChart('kzn', activeData.kzn, radius);
+    }
+
+    // on pressing a keyboard key (for debugging)
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowRight') {
+            console.log('hey');
+            const rect = d3.select('#fs').node().getBoundingClientRect();
+            const radius = Math.min(rect.width, rect.height) / 2;
+
+            console.log(fs_inside_outside);
+
+            updateChart('fs', fs_inside_outside, radius);
+            updateChart('lp', lp_inside_outside, radius);
+            updateChart('kzn', kzn_inside_outside, radius);
+        }
+    });
+
+    
+    
 
    
 
@@ -664,27 +942,15 @@ document.addEventListener('DOMContentLoaded', function () {
             .html(text);
     }
     
-
-    let datar = [
-        { label: 'Category A', value: 30 },
-        { label: 'Category B', value: 70 },
-    ];
-
-    let datar2 = [
-        { label: 'Category A', value: 30 },
-        { label: 'Category B', value: 20 },
-        { label: 'Category C', value: 50 },
-    ];
     
-    
-    drawChart('fs', datar, 'FS');
-    add_label('fs', 'category-a', 2, 2, 'bl', 'text here<br/>how are you?', {color: '#fff'}, {align: 'left', color: '#fff'});
+    drawChart('fs', inside_outside_blank, 'FS');
    
-    drawChart('lp', datar, 'LP');
-    add_label('lp', 'category-a', 3, 4, 'tl', 'text here<br/>how are you?', {color: '#fff'}, {align: 'left', color: '#fff'});
+    drawChart('lp', inside_outside_blank, 'LP');
    
-    drawChart('kzn', datar2, 'KZN');
-    add_label('kzn', 'category-a', 3, 4, 'tl', 'text here<br/>how are you?', {color: '#fff'}, {align: 'left', color: '#fff'});
+    drawChart('kzn', inside_outside_blank, 'KZN');
+
+
+    // add_label('kzn', 'category-a', 3, 4, 'tl', 'text here<br/>how are you?', {color: '#fff'}, {align: 'left', color: '#fff'});
 
 
     // UNHYGENIC TOILETS
@@ -713,217 +979,143 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
 
-    // CHART DATA
-
-    const female_age_distribution = [21, 57, 36, 33].map((k) => -k);
-    const male_age_distribution = [27, 55, 45, 38];
-
-    const fs_inside_outside = [0, 20, 0];
-    const lp_inside_outside = [8, 0, 12];
-    const kzn_inside_outside = [9, 7, 4];
-
-    const fs_disabled_access = [0, 4, 16];
-    const lp_disabled_access = [0, 16, 6];
-    const kzn_disabled_access = [0, 16, 4];
-
-    const fs_unusable_toilets = [0, 44, 65];
-    const lp_unusable_toilets = [0, 6, 95];
-    const kzn_unusable_toilets = [0, 27, 76];
-
-    const fs_toilet_paper = [0, 3, 7];
-    const lp_toilet_paper = [0, 0, 10];
-    const kzn_toilet_paper = [0, 3, 7];
-
-    const fs_no_sanitiser = [0, 6, 14];
-    const lp_no_sanitiser = [0, 2, 18];
-    const kzn_no_sanitiser = [0, 7, 13];
-
-    const unhygenic_toilets_seat = [2, 2, 9];
-    const unhygenic_toilets_bowl = [3, 4, 8];
-    const unhygenic_toilets_wall = [0, 2, 3];  
-
-    const queues_21_50 = [7, 2];
-    const queues_51_70 = [11, 3];
-    const queues_71_100 = [11, 3];
-    const queues_100 = [11, 12];
-
-    const safety_chart_female = [78, 69];
-    const safety_chart_male = [67, 98];
-
-    const women_safety_yes = [13, 46, 27, 36];
-    const women_safety_no = [24, 29, 32, 26];
-
-    const return_visits_fs = [72, 37];
-    const return_visits_lp = [64, 37];
-    const return_visits_kzn = [13, 10];
     
-
-    // GENDER BREAKDOWN
-
-
-    // gsap.timeline({
-
-    //     scrollTrigger: {
-    //         trigger: ".scrolly-section[data-section-label='gender-breakdown']",
-    //         start: () => {
-    //             const backgroundRect = background.getBoundingClientRect();
-    //             return `center ${backgroundRect.height + offsetInPixels}px`;
-    //         },
-    //         end: () => {
-    //             const backgroundRect = background.getBoundingClientRect();
-    //             return `bottom ${backgroundRect.height + offsetInPixels}px`;
-    //         },
-    //         scrub: true
-    //     }
-    // })
-    //     .fromTo(
-    //         ".population-chart",
-    //         { opacity: 0 },
-    //         { opacity: 1, ease: "none" }
-    //     )
-    //     .to(population_chart.data.datasets[0].data, { endArray: female_age_distribution, ease: "none", onUpdate: function () { population_chart.update(); } }, 0)
-    //     .to(population_chart.data.datasets[1].data, { endArray: male_age_distribution, ease: "none", onUpdate: function () { population_chart.update(); } }, 0);
-
-
-    // fadeOutChart('population-chart', 'gender-breakdown4');
+    
 
     // PROVINCE BREAKDOWN CHART ANIMATION
 
-    // INSIDE/OUTSIDE
-
-    gsap
-        .timeline({
-            scrollTrigger: {
-                trigger: ".scrolly-section[data-section-label='outdoor-facilities']",
-                start: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `center ${backgroundRect.height + offsetInPixels}px`;
-                },
-                end: () => {
-                    const backgroundRect = background.getBoundingClientRect();
-                    return `bottom ${backgroundRect.height + offsetInPixels}px`;
-                },
-                scrub: true
-            }
-        })
-        .fromTo(
-            ".province-chart",
-            { opacity: 0 },
-            { opacity: 1, ease: "none" }
-        );
-        
-
-    // gsap
-    //     .timeline({
-    //         scrollTrigger: {
-    //             trigger: ".scrolly-section[data-section-label='outdoor-facilities']",
-    //             start: () => {
-    //                 const backgroundRect = background.getBoundingClientRect();
-    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
-    //             },
-    //             end: () => {
-    //                 const backgroundRect = background.getBoundingClientRect();
-    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
-    //             },
-    //             scrub: true
-    //         }
-    //     })
-    //     .fromTo(
-    //         ".province-chart",
-    //         { opacity: 0 },
-    //         { opacity: 1, ease: "none" }
-    //     )
-    //     .to(fs.data.datasets[0].data, { endArray: fs_inside_outside, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-    //     .to(lp.data.datasets[0].data, { endArray: lp_inside_outside, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-    //     .to(kzn.data.datasets[0].data, { endArray: kzn_inside_outside, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+    function fadeChart(chartId, opacity) {
+        d3.select(`${chartId}`)
+            .transition()
+            .duration(500)
+            .style('opacity', opacity);
+    }
 
 
-    // DISABLED
+    // Inside/Outside Dataset
+    ScrollTrigger.create({
+        trigger: ".scrolly-section[data-section-label='outdoor-facilities']",
+        start: "center center",
+        end: "bottom center",
+        scrub: false,
+        onEnter: () => {
+            fadeChart('.province-chart', 1);
+            activeData.fs = fs_inside_outside;
+            activeData.lp = lp_inside_outside;
+            activeData.kzn = kzn_inside_outside;
+            updateAllCharts();
+           
+        },
+        onLeaveBack: () => {
+            console.log('onLeaveBack triggered');
+            fadeChart('.province-chart', 0);
+            activeData.fs = fs_inside_outside;
+            activeData.lp = lp_inside_outside;
+            activeData.kzn = kzn_inside_outside;
+            updateAllCharts();
+            
+        }
+    });
 
-    // gsap
-    //     .timeline({
-    //         scrollTrigger: {
-    //             trigger: ".scrolly-section[data-section-label='disabled-access']",
-    //             start: () => {
-    //                 const backgroundRect = background.getBoundingClientRect();
-    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
-    //             },
-    //             end: () => {
-    //                 const backgroundRect = background.getBoundingClientRect();
-    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
-    //             },
-    //             scrub: true
-    //         }
-    //     })
-    //     .to(fs.data.datasets[0].data, { endArray: fs_disabled_access, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-    //     .to(lp.data.datasets[0].data, { endArray: lp_disabled_access, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-    //     .to(kzn.data.datasets[0].data, { endArray: kzn_disabled_access, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+    // Disabled Access Dataset
+    ScrollTrigger.create({
+        trigger: ".scrolly-section[data-section-label='disabled-access']",
+        start: "center center",
+        end: "bottom center",
+        scrub: false,
+        onEnter: () => {
+            activeData.fs = fs_disabled_access;
+            activeData.lp = lp_disabled_access;
+            activeData.kzn = kzn_disabled_access;
+            updateAllCharts();
+            
 
-    // UNUSABLE
+        },
+        onLeaveBack: () => {
+            console.log('onLeaveBack triggered');
+            activeData.fs = fs_inside_outside;
+            activeData.lp = lp_inside_outside;
+            activeData.kzn = kzn_inside_outside;
+            updateAllCharts();
+            
 
-    // gsap
-    //     .timeline({
-    //         scrollTrigger: {
-    //             trigger: ".scrolly-section[data-section-label='broken-toilets']",
-    //             start: () => {
-    //                 const backgroundRect = background.getBoundingClientRect();
-    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
-    //             },
-    //             end: () => {
-    //                 const backgroundRect = background.getBoundingClientRect();
-    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
-    //             },
-    //             scrub: true
-    //         }
-    //     })
-    //     .to(fs.data.datasets[0].data, { endArray: fs_unusable_toilets, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-    //     .to(lp.data.datasets[0].data, { endArray: lp_unusable_toilets, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-    //     .to(kzn.data.datasets[0].data, { endArray: kzn_unusable_toilets, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+        }
+    });
 
-    // TOILET PAPER
+    ScrollTrigger.create({
+        trigger: ".scrolly-section[data-section-label='broken-toilets']",
+        start: "center center",
+        end: "bottom center",
+        scrub: false,
+        onEnter: () => {
+            activeData.fs = fs_unusable_toilets;
+            activeData.lp = lp_unusable_toilets;
+            activeData.kzn = kzn_unusable_toilets;
+            updateAllCharts();
+            
 
-    // gsap
-    //     .timeline({
-    //         scrollTrigger: {
-    //             trigger: ".scrolly-section[data-section-label='no-toilet-paper']",
-    //             start: () => {
-    //                 const backgroundRect = background.getBoundingClientRect();
-    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
-    //             },
-    //             end: () => {
-    //                 const backgroundRect = background.getBoundingClientRect();
-    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
-    //             },
-    //             scrub: true
-    //         }
-    //     })
-    //     .to(fs.data.datasets[0].data, { endArray: fs_toilet_paper, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-    //     .to(lp.data.datasets[0].data, { endArray: lp_toilet_paper, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-    //     .to(kzn.data.datasets[0].data, { endArray: kzn_toilet_paper, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+        },
+        onLeaveBack: () => {
+            console.log('onLeaveBack triggered');
+            activeData.fs = fs_disabled_access;
+            activeData.lp = lp_disabled_access;
+            activeData.kzn = kzn_disabled_access;
+            updateAllCharts();
+            
 
-    // SANITISER
+        }
+    });
 
-    // gsap
-    //     .timeline({
-    //         scrollTrigger: {
-    //             trigger: ".scrolly-section[data-section-label='no-sanitiser']",
-    //             start: () => {
-    //                 const backgroundRect = background.getBoundingClientRect();
-    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
-    //             },
-    //             end: () => {
-    //                 const backgroundRect = background.getBoundingClientRect();
-    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
-    //             },
-    //             scrub: true
-    //         }
-    //     })
-    //     .to(fs.data.datasets[0].data, { endArray: fs_no_sanitiser, ease: "none", onUpdate: function () { fs.update(); } }, 0)
-    //     .to(lp.data.datasets[0].data, { endArray: lp_no_sanitiser, ease: "none", onUpdate: function () { lp.update(); } }, 0)
-    //     .to(kzn.data.datasets[0].data, { endArray: kzn_no_sanitiser, ease: "none", onUpdate: function () { kzn.update(); } }, 0);
+    ScrollTrigger.create({
+        trigger: ".scrolly-section[data-section-label='no-toilet-paper']",
+        start: "center center",
+        end: "bottom center",
+        scrub: false,
+        onEnter: () => {
+            activeData.fs = fs_toilet_paper;
+            activeData.lp = lp_toilet_paper;
+            activeData.kzn = kzn_toilet_paper;
+            updateAllCharts();
+            
+
+        },
+        onLeaveBack: () => {
+            console.log('onLeaveBack triggered');
+            activeData.fs = fs_unusable_toilets;
+            activeData.lp = lp_unusable_toilets;
+            activeData.kzn = kzn_unusable_toilets;
+            updateAllCharts();
+            
+
+        }
+    });
+
+    ScrollTrigger.create({
+        trigger: ".scrolly-section[data-section-label='no-sanitiser']",
+        start: "center center",
+        end: "bottom center",
+        scrub: false,
+        onEnter: () => {
+            activeData.fs = fs_no_sanitiser;
+            activeData.lp = lp_no_sanitiser;
+            activeData.kzn = kzn_no_sanitiser;
+            updateAllCharts();
+            
+
+        },
+        onLeaveBack: () => {
+            console.log('onLeaveBack triggered');
+            activeData.fs = fs_toilet_paper;
+            activeData.lp = lp_toilet_paper;
+            activeData.kzn = kzn_toilet_paper;
+            updateAllCharts();
+            
+
+        }
+    });
 
 
-    // fadeOutChart('province-chart', 'not-stocked2');   
+    fadeOutChart('province-chart', 'not-stocked2');   
 
     // DIRTY TOILETS
 
