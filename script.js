@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    if(typeof scrolly_chart_colors === "undefined") {
+    if (!window.scrollyInitialized) {
+
+        window.scrollyInitialized = true;
 
         DEBUG = false;
 
