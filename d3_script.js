@@ -1101,8 +1101,7 @@ window.addEventListener('load', function () {
                 onLeaveBack: () => {
                     console.log('disabled - onLeaveBack triggered');
                     
-                },
-                markers: true
+                }
 
             });
 
