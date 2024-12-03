@@ -136,81 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         
 
-            // THE SCROLLY
-
-            document.querySelectorAll('.scrolly-section').forEach((section, index) => {
-
-                // DEBUG
-
-                const section_label = section.getAttribute('data-section-label');
-
-                if (DEBUG == true) {
-                    let label = section.appendChild(document.createElement('div'));
-                    label.classList.add('scrolly-section-label');
-                    label.textContent = index+1 + ': ' + section_label;
-                    section.classList.add('debug');
-                }
-
-                const bg_src = section.getAttribute('data-background');
-                const bg_color_class = section.getAttribute('data-section-color');
-
-                ScrollTrigger.create({
-                    trigger: section,
-                    start: () => {
-                        const backgroundRect = background.getBoundingClientRect();
-                        return `top ${backgroundRect.height + offsetInPixels}px`;
-                    },
-                    end: () => {
-                        const backgroundRect = background.getBoundingClientRect();
-                        return `top ${offsetInPixels + backgroundRect.height / 2}px`;
-                    },
-
-                    onEnter: () => {
-
-                        console.log(section_label);
-
-                        // BACKGROUND TO BLACK
-
-                        // if (section_label == 'start') {
-                        //     document.body.classList.add('scrolly-showing');
-                        // }
-
-                        // if (section_label == 'conclusion') {
-                        //     document.body.classList.remove('scrolly-showing');
-                        // }
-
-                        if (bg_src) {
-                            updateBackgroundImage(bg_src);
-                        }
-
-                        if (bg_color_class) {
-                            updateBackgroundColorClass(bg_color_class);
-                        }
-                    },
-                    onLeaveBack: () => {
-
-                        console.log(section_label);
-
-                        if (section_label == 'start' || section_label == 'conclusion') {
-                            if (section_label == 'start') {
-                                document.body.classList.remove('scrolly-showing');
-                            }
-                        }
-
-                        const prevSection = document.querySelectorAll('.scrolly-section')[index - 1];
-                        const prevBackground = prevSection ? prevSection.getAttribute('data-background') : null;
-                        const prevColorClass = prevSection ? prevSection.getAttribute('data-section-color') : null;
-
-                        if (prevBackground) {
-                            updateBackgroundImage(prevBackground);
-                        }
-
-                        if (prevColorClass) {
-                            updateBackgroundColorClass(prevColorClass);
-                        }
-                    }
-                });
-            });
+            
 
         
 
@@ -1412,6 +1338,88 @@ document.addEventListener('DOMContentLoaded', function () {
             //     .to(return_visits_chart_kzn.data.datasets[0].data, { endArray: return_visits_kzn, ease: "none", onUpdate: function () { return_visits_chart_kzn.update(); } }, 0);
 
             // fadeOutChart('return-visits-chart', 'conclusion');
+
+
+
+            // THE SCROLLY
+
+            document.querySelectorAll('.scrolly-section').forEach((section, index) => {
+
+                // DEBUG
+
+                const section_label = section.getAttribute('data-section-label');
+
+                if (DEBUG == true) {
+                    let label = section.appendChild(document.createElement('div'));
+                    label.classList.add('scrolly-section-label');
+                    label.textContent = index+1 + ': ' + section_label;
+                    section.classList.add('debug');
+                }
+
+                const bg_src = section.getAttribute('data-background');
+                const bg_color_class = section.getAttribute('data-section-color');
+
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `top ${backgroundRect.height + offsetInPixels}px`;
+                    },
+                    end: () => {
+                        const backgroundRect = background.getBoundingClientRect();
+                        return `top ${offsetInPixels + backgroundRect.height / 2}px`;
+                    },
+
+                    onEnter: () => {
+
+                        console.log(section_label);
+
+                        // BACKGROUND TO BLACK
+
+                        // if (section_label == 'start') {
+                        //     document.body.classList.add('scrolly-showing');
+                        // }
+
+                        // if (section_label == 'conclusion') {
+                        //     document.body.classList.remove('scrolly-showing');
+                        // }
+
+                        if (bg_src) {
+                            updateBackgroundImage(bg_src);
+                        }
+
+                        if (bg_color_class) {
+                            updateBackgroundColorClass(bg_color_class);
+                        }
+
+                        
+
+
+                    },
+                    onLeaveBack: () => {
+
+                        console.log(section_label);
+
+                        if (section_label == 'start' || section_label == 'conclusion') {
+                            if (section_label == 'start') {
+                                document.body.classList.remove('scrolly-showing');
+                            }
+                        }
+
+                        const prevSection = document.querySelectorAll('.scrolly-section')[index - 1];
+                        const prevBackground = prevSection ? prevSection.getAttribute('data-background') : null;
+                        const prevColorClass = prevSection ? prevSection.getAttribute('data-section-color') : null;
+
+                        if (prevBackground) {
+                            updateBackgroundImage(prevBackground);
+                        }
+
+                        if (prevColorClass) {
+                            updateBackgroundColorClass(prevColorClass);
+                        }
+                    }
+                });
+            });
 
         
     });
