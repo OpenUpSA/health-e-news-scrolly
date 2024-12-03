@@ -1053,7 +1053,7 @@ window.addEventListener('load', function () {
                 end: "bottom center",
                 scrub: false,
                 onEnter: () => {
-                    console.log('here here here');
+                    console.log('outdoor - onEnter triggered');
                     fadeChart('.province-chart', 1);
                     activeData.fs = fs_inside_outside;
                     activeData.lp = lp_inside_outside;
@@ -1062,14 +1062,15 @@ window.addEventListener('load', function () {
                 
                 },
                 onLeave: () => {
-                    console.log('onLeave triggered');
+                    console.log('outdoor - onLeave triggered');
                 },
                 onEnterBack: () => {
-                    console.log('onEnterBack triggered');
+                    console.log('outdoor - onEnterBack triggered');
                 },
                 onLeaveBack: () => {
-                    console.log('onLeaveBack triggered');
-                }
+                    console.log('outdoor - onLeaveBack triggered');
+                },
+                markers: true
                 
                 
             });
@@ -1081,6 +1082,7 @@ window.addEventListener('load', function () {
                 end: "bottom center",
                 scrub: false,
                 onEnter: () => {
+                    console.log('disabled - onEnter triggered');
                     activeData.fs = fs_disabled_access;
                     activeData.lp = lp_disabled_access;
                     activeData.kzn = kzn_disabled_access;
@@ -1089,17 +1091,18 @@ window.addEventListener('load', function () {
 
                 },
                 onLeave: () => {
-                    console.log('onLeave triggered');
+                    console.log('disabled - onLeave triggered');
                    
                 },
                 onEnterBack: () => {
-                    console.log('onEnterBack triggered');
+                    console.log('disabled - onEnterBack triggered');
                    
                 },
                 onLeaveBack: () => {
-                    console.log('onLeaveBack triggered');
+                    console.log('disabled - onLeaveBack triggered');
                     
-                }
+                },
+                markers: true
 
             });
 
