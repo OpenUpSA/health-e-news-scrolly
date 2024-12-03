@@ -241,40 +241,7 @@ window.addEventListener('load', function () {
 
             /// ZOOMS AND PANS
 
-            function zoomAndPan(startTrigger, endTrigger, startZoom, startX, startY, endZoom, endX, endY) {
-
-                gsap.timeline({
-                    scrollTrigger: {
-                        trigger: `.scrolly-section[data-section-label='${startTrigger}']`,
-                        start: () => {
-                            const backgroundRect = background.getBoundingClientRect();
-                            return `top ${backgroundRect.height + offsetInPixels}px`;
-                        },
-                        endTrigger: `.scrolly-section[data-section-label='${endTrigger}']`,
-                        end: 'top center',
-                        scrub: true
-                    }
-                })
-                    .from('.scrolly-bg-container', {
-                        scale: startZoom,
-                        x: startX,
-                        y: startY,
-                        duration: 0
-                    })
-                    .to('.scrolly-bg-container', {
-                        scale: endZoom,
-                        x: endX,
-                        y: endY,
-                        duration: 10
-                    });
-
-            }
-
-            // zoomAndPan('start', 'they-visited', 1, 0, 0, 1.1, 0, 0);
-            // zoomAndPan('they-visited', '313-users', 1, 0, 0, 1.4, -100, 0);
-            // zoomAndPan('gender-breakdown', 'outdoor-facilities', 1.4, 0, 0, 1, 0, 0);
-            // zoomAndPan('outdoor-facilities', 'disabled-access', 1.2, 0, 0, 1, 0, 0);
-
+            
 
             /// ANNOTATIONS
 
@@ -364,27 +331,27 @@ window.addEventListener('load', function () {
 
             }
 
-            document.querySelectorAll('.scrolly-slide-annotation[data-annotation-in]').forEach((annotation, index) => {
+            // document.querySelectorAll('.scrolly-slide-annotation[data-annotation-in]').forEach((annotation, index) => {
 
-                let annotation_label = annotation.getAttribute('data-annotation-label');
-                let annotation_time_in = annotation.getAttribute('data-annotation-in');
-                let annotation_offset = annotation.getAttribute('data-annotation-offset') ? parseFloat(annotation.getAttribute('data-annotation-offset')) : 0;
-                let annotation_speed = annotation.getAttribute('data-annotation-speed') ? parseFloat(annotation.getAttribute('data-annotation-speed')) : 0;
+            //     let annotation_label = annotation.getAttribute('data-annotation-label');
+            //     let annotation_time_in = annotation.getAttribute('data-annotation-in');
+            //     let annotation_offset = annotation.getAttribute('data-annotation-offset') ? parseFloat(annotation.getAttribute('data-annotation-offset')) : 0;
+            //     let annotation_speed = annotation.getAttribute('data-annotation-speed') ? parseFloat(annotation.getAttribute('data-annotation-speed')) : 0;
 
-                annotationFadeIn(annotation_label, annotation_time_in, annotation_offset, annotation_speed);
+            //     annotationFadeIn(annotation_label, annotation_time_in, annotation_offset, annotation_speed);
 
-            });
+            // });
 
-            document.querySelectorAll('.scrolly-slide-annotation[data-annotation-in]').forEach((annotation, index) => {
+            // document.querySelectorAll('.scrolly-slide-annotation[data-annotation-in]').forEach((annotation, index) => {
 
-                let annotation_label = annotation.getAttribute('data-annotation-label');
-                let annotation_time_out = annotation.getAttribute('data-annotation-out');
-                let annotation_offset_out = annotation.getAttribute('data-annotation-offset-out') ? parseFloat(annotation.getAttribute('data-annotation-offset-out')) : 0;
-                let annotation_speed_out = annotation.getAttribute('data-annotation-speed-out') ? parseFloat(annotation.getAttribute('data-annotation-speed-out')) : 0;
+            //     let annotation_label = annotation.getAttribute('data-annotation-label');
+            //     let annotation_time_out = annotation.getAttribute('data-annotation-out');
+            //     let annotation_offset_out = annotation.getAttribute('data-annotation-offset-out') ? parseFloat(annotation.getAttribute('data-annotation-offset-out')) : 0;
+            //     let annotation_speed_out = annotation.getAttribute('data-annotation-speed-out') ? parseFloat(annotation.getAttribute('data-annotation-speed-out')) : 0;
 
-                annotationFadeOut(annotation_label, annotation_time_out, annotation_offset_out, annotation_speed_out);
+            //     annotationFadeOut(annotation_label, annotation_time_out, annotation_offset_out, annotation_speed_out);
 
-            });
+            // });
                 
 
 
@@ -1108,30 +1075,30 @@ window.addEventListener('load', function () {
                 }
             });
 
-            // Disabled Access Dataset
-            // ScrollTrigger.create({
-            //     trigger: ".scrolly-section[data-section-label='disabled-access']",
-            //     start: "center center",
-            //     end: "bottom center",
-            //     scrub: false,
-            //     onEnter: () => {
-            //         activeData.fs = fs_disabled_access;
-            //         activeData.lp = lp_disabled_access;
-            //         activeData.kzn = kzn_disabled_access;
-            //         updateAllCharts();
+            
+            ScrollTrigger.create({
+                trigger: ".scrolly-section[data-section-label='disabled-access']",
+                start: "center center",
+                end: "bottom center",
+                scrub: false,
+                onEnter: () => {
+                    activeData.fs = fs_disabled_access;
+                    activeData.lp = lp_disabled_access;
+                    activeData.kzn = kzn_disabled_access;
+                    updateAllCharts();
                     
 
-            //     },
-            //     onLeaveBack: () => {
-            //         console.log('onLeaveBack triggered');
-            //         activeData.fs = fs_inside_outside;
-            //         activeData.lp = lp_inside_outside;
-            //         activeData.kzn = kzn_inside_outside;
-            //         updateAllCharts();
+                },
+                onLeaveBack: () => {
+                    console.log('onLeaveBack triggered');
+                    activeData.fs = fs_inside_outside;
+                    activeData.lp = lp_inside_outside;
+                    activeData.kzn = kzn_inside_outside;
+                    updateAllCharts();
                     
 
-            //     }
-            // });
+                }
+            });
 
             // ScrollTrigger.create({
             //     trigger: ".scrolly-section[data-section-label='broken-toilets']",
