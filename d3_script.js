@@ -1051,7 +1051,7 @@ window.addEventListener('load', function () {
                 trigger: ".scrolly-section[data-section-label='outdoor-facilities']",
                 start: "center center",
                 end: "bottom center",
-                scrub: false,
+                scrub: true,
                 onEnter: () => {
                     console.log('here here here');
                     fadeChart('.province-chart', 1);
@@ -1061,16 +1061,7 @@ window.addEventListener('load', function () {
                     updateAllCharts();
                 
                 },
-                
-                onEnterBack: () => {
-                    console.log('onLeaveBack triggered');
-                    fadeChart('.province-chart', 0);
-                    activeData.fs = fs_inside_outside;
-                    activeData.lp = lp_inside_outside;
-                    activeData.kzn = kzn_inside_outside;
-                    updateAllCharts();
-                    
-                }
+               
             });
 
             
@@ -1087,15 +1078,7 @@ window.addEventListener('load', function () {
                     
 
                 },
-                onEnterBack: () => {
-                    console.log('onLeaveBack triggered');
-                    activeData.fs = fs_disabled_access;
-                    activeData.lp = lp_disabled_access;
-                    activeData.kzn = kzn_disabled_access;
-                    updateAllCharts();
-                    
-
-                }
+               
             });
 
             // ScrollTrigger.create({
