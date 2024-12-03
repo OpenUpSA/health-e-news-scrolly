@@ -960,7 +960,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             
             
-            drawChart('fs', inside_outside_blank, 'FS');
+            
         
             drawChart('lp', inside_outside_blank, 'LP');
         
@@ -1396,6 +1396,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (section_label == 'outdoor-facilities') {
 
                             console.log(section_label);
+
+                            drawChart('fs', inside_outside_blank, 'FS');
                             
                             fadeChart('.province-chart', 1);
                             activeData.fs = fs_inside_outside;
