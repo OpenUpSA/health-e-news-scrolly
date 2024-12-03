@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    if(!window.scrollyInitialized) {
-
-        window.scrollyInitialized = true;
+    
 
         DEBUG = true;
 
@@ -1410,5 +1408,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // fadeOutChart('return-visits-chart', 'conclusion');
 
-        }
+        
     });
