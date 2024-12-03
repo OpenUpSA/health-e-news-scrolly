@@ -571,6 +571,7 @@
 
 .scrolly p {
     line-height: 1.3em;
+    color: #fff;
 }
 
 .scrolly p:first-child {
