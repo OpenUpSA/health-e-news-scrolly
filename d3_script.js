@@ -1,4 +1,4 @@
-webflow.script.ready(() => {
+window.addEventListener('load', function () {
 
     
 
