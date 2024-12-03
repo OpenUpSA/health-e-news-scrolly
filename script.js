@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    if(scrolly_chart_colors == undefined) {
+   
 
         DEBUG = false;
 
@@ -1161,6 +1161,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         fadeOutChart('return-visits-chart', 'conclusion');
 
-    }
+    
 
 })
