@@ -785,7 +785,48 @@ document.addEventListener('DOMContentLoaded', function () {
                     return arc(interpolate(t));
                 };
             });
+    
+        // Add and update points
+        arcsEnter.merge(arcs).each(function (d) {
+            const numPoints = 5;
+    
+            const pointsData = [];
+            for (let i = 1; i <= numPoints; i++) {
+                const t = i / (numPoints + 1);
+                const angle = d.startAngle + t * (d.endAngle - d.startAngle);
+                const innerRadius = arc.innerRadius()(d);
+                const outerRadius = arc.outerRadius()(d);
+                const middleRadius = (innerRadius + outerRadius) / 2;
+                const x = middleRadius * Math.cos(angle - Math.PI / 2);
+                const y = middleRadius * Math.sin(angle - Math.PI / 2);
+                pointsData.push({ x, y });
+            }
+    
+            let pointsGroup = d3.select(this).select('.points-group');
+            if (pointsGroup.empty()) {
+                pointsGroup = d3.select(this).append('g').attr('class', 'points-group');
+            }
+    
+            const circles = pointsGroup.selectAll('circle')
+                .data(pointsData);
+    
+            circles.exit().remove();
+    
+            circles.enter()
+                .append('circle')
+                .attr('class', (d, i) => `point-${i}`)
+                .attr('r', 1)
+                .attr('fill', '#000')
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y);
+    
+            circles.transition()
+                .duration(750)
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y);
+        });
     }
+    
     
     function updateChart(id, newData, radius, colors = [chart_colors.donut1, chart_colors.donut2, chart_colors.donut3]) {
         const container = d3.select(`#${id}`);
@@ -810,7 +851,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const arcs = svg.selectAll('.arc')
             .data(pie(newData), d => d.data.label);
     
-        // Enter new arcs
+        // Exit
+        arcs.exit().remove();
+    
+        // Enter
         const arcsEnter = arcs.enter()
             .append('g')
             .attr('class', 'arc');
@@ -821,19 +865,59 @@ document.addEventListener('DOMContentLoaded', function () {
                 this._current = { startAngle: d.startAngle, endAngle: d.startAngle };
             });
     
-        // Handle updating arcs
+        // Update
         arcsEnter.merge(arcs).select('path')
             .transition()
             .duration(750)
             .attrTween('d', function (d) {
                 const interpolate = d3.interpolate(this._current, d);
-                this._current = interpolate(1); 
+                this._current = interpolate(1);
                 return function (t) {
                     return arc(interpolate(t));
                 };
-            })
-            .attr('fill', d => color(d.data.label));
+            });
+    
+        // Add and update points
+        arcsEnter.merge(arcs).each(function (d) {
+            const numPoints = 5;
+    
+            const pointsData = [];
+            for (let i = 1; i <= numPoints; i++) {
+                const t = i / (numPoints + 1);
+                const angle = d.startAngle + t * (d.endAngle - d.startAngle);
+                const innerRadius = arc.innerRadius()(d);
+                const outerRadius = arc.outerRadius()(d);
+                const middleRadius = (innerRadius + outerRadius) / 2;
+                const x = middleRadius * Math.cos(angle - Math.PI / 2);
+                const y = middleRadius * Math.sin(angle - Math.PI / 2);
+                pointsData.push({ x, y });
+            }
+    
+            let pointsGroup = d3.select(this).select('.points-group');
+            if (pointsGroup.empty()) {
+                pointsGroup = d3.select(this).append('g').attr('class', 'points-group');
+            }
+    
+            const circles = pointsGroup.selectAll('circle')
+                .data(pointsData);
+    
+            circles.exit().remove();
+    
+            circles.enter()
+                .append('circle')
+                .attr('class', (d, i) => `point-${i}`)
+                .attr('r', 1)
+                .attr('fill', '#000')
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y);
+    
+            circles.transition()
+                .duration(750)
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y);
+        });
     }
+    
     
     
     
@@ -956,7 +1040,70 @@ document.addEventListener('DOMContentLoaded', function () {
     // UNHYGENIC TOILETS
 
     
+    const toilet_data = [
+        {label: 'FS', Seat: 0, "Toilet bowl": 0, Wall: 0},
+        {label: 'KZN', Seat: 0, "Toilet bowl": 0, Wall: 0},
+        {label: 'LP', Seat: 0, "Toilet bowl": 0, Wall: 0}
+    ];
 
+    const colors = {
+        Seat: '#ff5733', // Replace with scrolly_chart_colors.unhygenic_seat
+        "Toilet bowl": '#33cfff', // Replace with scrolly_chart_colors.unhygenic_bowl
+        Wall: '#bada55' // Replace with scrolly_chart_colors.unhygenic_wall
+    };
+
+    const margin = {top: 20, right: 20, bottom: 20, left: 100};
+    const width = 800 - margin.left - margin.right;
+    const height = 400 - margin.top - margin.bottom;
+
+    const svg = d3.select('#unhygenic-toilets-chart')
+        .append('svg')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const yScale = d3.scaleBand()
+        .domain(toilet_data.map(d => d.label))
+        .range([0, height])
+        .padding(0.1);
+
+    const xScale = d3.scaleLinear()
+        .domain([0, d3.max(toilet_data, d => d.Seat + d["Toilet bowl"] + d.Wall)])
+        .range([0, width]);
+
+    const stack = d3.stack()
+        .keys(['Seat', 'Toilet bowl', 'Wall'])
+        .order(d3.stackOrderNone)
+        .offset(d3.stackOffsetNone);
+
+    const stackedData = stack(toilet_data);
+
+    const groups = svg.selectAll('.group')
+        .data(stackedData)
+        .enter()
+        .append('g')
+        .attr('fill', d => colors[d.key]);
+
+    groups.selectAll('rect')
+        .data(d => d)
+        .enter()
+        .append('rect')
+        .attr('y', d => yScale(d.data.label))
+        .attr('x', d => xScale(d[0]))
+        .attr('width', d => xScale(d[1]) - xScale(d[0]))
+        .attr('height', yScale.bandwidth());
+
+    svg.append('g')
+        .call(d3.axisLeft(yScale))
+        .selectAll('text')
+        .style('font-size', '14px');
+
+    svg.append('g')
+        .attr('transform', `translate(0,${height})`)
+        .call(d3.axisBottom(xScale))
+        .selectAll('text')
+        .style('display', 'none');
     
 
     
@@ -1117,32 +1264,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
     fadeOutChart('province-chart', 'not-stocked2');   
 
+    
+
     // DIRTY TOILETS
 
-    // gsap
-    //     .timeline({
-    //         scrollTrigger: {
-    //             trigger: ".scrolly-section[data-section-label='unhygenic-toilets']",
-    //             start: () => {
-    //                 const backgroundRect = background.getBoundingClientRect();
-    //                 return `center ${backgroundRect.height + offsetInPixels}px`;
-    //             },
-    //             end: () => {
-    //                 const backgroundRect = background.getBoundingClientRect();
-    //                 return `bottom ${backgroundRect.height + offsetInPixels}px`;
-    //             },
-    //             scrub: true
-    //         }
-    //     })
-    //     .fromTo(
-    //         ".unhygenic-chart",
-    //         { opacity: 0 },
-    //         { opacity: 1, ease: "none" }
-    //     )
-    //     .to(unhygenic_toilets.data.datasets[0].data, { endArray: unhygenic_toilets_seat, ease: "none", onUpdate: function () { unhygenic_toilets.update(); } }, 0)
-    //     .to(unhygenic_toilets.data.datasets[1].data, { endArray: unhygenic_toilets_bowl, ease: "none", onUpdate: function () { unhygenic_toilets.update(); } }, 0)
-    //     .to(unhygenic_toilets.data.datasets[2].data, { endArray: unhygenic_toilets_wall, ease: "none", onUpdate: function () { unhygenic_toilets.update(); } }, 0);
-       
+    gsap
+        .timeline({
+            scrollTrigger: {
+                trigger: ".scrolly-section[data-section-label='unhygenic-toilets']",
+                start: () => {
+                    const backgroundRect = background.getBoundingClientRect();
+                    return `center ${backgroundRect.height + offsetInPixels}px`;
+                },
+                end: () => {
+                    const backgroundRect = background.getBoundingClientRect();
+                    return `bottom ${backgroundRect.height + offsetInPixels}px`;
+                },
+                scrub: true
+            }
+        })
+        .fromTo(
+            ".unhygenic-chart",
+            { opacity: 0 },
+            { opacity: 1, ease: "none" }
+        );       
 
     // FADE OUT PROVINCE CHART
 

@@ -3,273 +3,513 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>D3 Donut Chart with Manual Annotations</title>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrolly Story</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
-
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .annotation-line {
-            stroke: black;
-            stroke-width: 1px;
-        }
-
-        .annotation-text {
-            font-size: 12px;
-            fill: black;
-            position: absolute;
-
-        }
-
-        #chart {
-            width: 600px;
-            margin: auto;
-        }
-    </style>
+    <link rel="stylesheet" href="scrolly.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <p>lorem</p>
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="chart-container">
-                    <div id="chart1"></div>
+<style>
+    .container {
+        width: 100%;
+        max-width: 832px;
+        margin: 0 auto;
+    }
+</style>
+
+<div class="container">
+<div class="row">
+<div class="col">
+<div class="scrolly-container">
+
+
+<!-- START SCROLLY -->
+<div class="scrolly">
+
+    <!-- CANVAS BACKGROUND -->
+    <div class="scrolly-background">
+        <div class="scrolly-bg-color-overlay scrolly-bg-1"></div>
+        <div class="scrolly-bg-container">
+            <img src="img/toilets1.jpg" alt="Health-E News" class="scrolly-bg-image">
+        </div>
+        
+        <!-- CANVAS ANNOTATIONS -->
+        <div class="scrolly-annotations">
+
+            <!-- ANNOTATIONS -->
+
+            <!-- <div class="scrolly-slide-annotation scrolly-pointer-2 scrolly-anchor-tr" data-annotation-label="fs" data-annotation-in="they-visited2" data-annotation-out="313-users2">Free State</div>
+            <div class="scrolly-slide-annotation scrolly-pointer-8 scrolly-anchor-bl" data-annotation-label="lp" data-annotation-in="they-visited2" data-annotation-out="313-users2">Limpopo</div>
+            <div class="scrolly-slide-annotation scrolly-pointer-11 scrolly-anchor-tl" data-annotation-label="kzn" data-annotation-in="they-visited2" data-annotation-out="313-users2">Kwazulu Natal</div> -->
+
+            
+            <div class="scrolly-slide-annotation scrolly-annotation-extra-info" data-annotation-label="pit-latrine" data-annotation-in="pit-latrine" data-annotation-out="outdoor-facilities3">
+                <p><span class="scrolly-secondary scrolly-fw-500 scrolly-big">Seven</span> clinics in Limpopo had some sort of <span class="scrolly-secondary scrolly-fw-500 scrolly-big">pit latrine</span>.</p>
+            </div>
+            
+
+            <div class="scrolly-slide-annotation scrolly-annotation-extra-info" data-annotation-label="broken-toilets-kzn-lp" data-annotation-in="broken-toilets-kzn-lp" data-annotation-out="no-toilet-paper">
+                <p>Broken bathrooms were experienced much more in <span class="scrolly-secondary scrolly-fw-500">KZN</span> and <span class="scrolly-secondary scrolly-fw-500">Limpopo</span> than in the Free State.</p>
+            </div>
+
+           
+
+
+            <!-- CHARTS -->
+
+            <!-- POPULATION -->
+            <div class="scrolly-annotation population-chart">
+                <div class="scrolly-annotation-inner">
+                    <div class="scrolly-chart-container">
+                        <canvas id="population-chart"></canvas>
+                        <div class="scrolly-slide-annotation scrolly-pointer-10 scrolly-anchor-tl" data-annotation-label="male" data-annotation-in="gender-breakdown2" data-annotation-out="gender-breakdown4" data-annotation-offset="0">Male</div>
+                        <div class="scrolly-slide-annotation scrolly-pointer-2 scrolly-anchor-tr" data-annotation-label="female" data-annotation-in="gender-breakdown2" data-annotation-offset="0" data-annotation-out="gender-breakdown4">Female</div>
+                        <div class="scrolly-slide-annotation scrolly-pointer-4 scrolly-anchor-br" data-annotation-label="age" data-annotation-in="gender-breakdown2" data-annotation-offset="0" data-annotation-out="gender-breakdown4">Age</div>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="chart-container">
-                    <div id="chart2"></div>
+
+
+            <!-- PROVINCE CHARTS -->
+            <div class="scrolly-annotation province-chart">
+                <div class="scrolly-annotation-inner">
+                    <div class="scrolly-row">
+                        <div class="scrolly-col">
+                            <div class="scrolly-chart-container">
+                                
+                                
+                                
+                                <div id="fs" class="svg-container" style="width: 150px; height: 150px"></div>
+                                
+
+                                
+                            </div>
+                        </div>
+                        <div class="scrolly-col">
+                            <div class="scrolly-chart-container">
+                               
+                                <div id="lp" class="svg-container" style="width: 150px; height: 150px"></div>
+
+                               
+                            </div>
+                        </div>
+                        <div class="scrolly-col">
+                            <div class="scrolly-chart-container">
+                                
+                                <div id="kzn" class="svg-container" style="width: 150px; height: 150px"></div>
+
+                               
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="chart-container">
-                    <div id="chart3"></div>
+
+            <!-- UNHYGENIC -->
+            <div class="scrolly-annotation unhygenic-chart">
+                <div class="scrolly-annotation-inner">
+                    <div class="scrolly-chart-container">
+                        <!-- <div class="scrolly-slide-annotation scrolly-pointer-1 scrolly-anchor-tr" data-annotation-label="dirty-toilet" data-annotation-in="unhygenic-toilets2" data-annotation-out="unhygenic-toilets4">Dirty toilet</div>
+                        <div class="scrolly-slide-annotation scrolly-pointer-11 scrolly-anchor-tl" data-annotation-label="dirty-seat" data-annotation-in="unhygenic-toilets2" data-annotation-out="unhygenic-toilets4">Dirty seat</div>
+                        <div class="scrolly-slide-annotation scrolly-pointer-7 scrolly-anchor-bl" data-annotation-label="dirty-wall" data-annotation-in="unhygenic-toilets2" data-annotation-out="unhygenic-toilets4">Dirty wall</div>
+                        <canvas id="unhygenic-toilets-chart"></canvas> -->
+
+                        <div id="unhygenic-toilets-chart" class="svg-container" style="width: 300px; height: 150px"></div>
+                    </div> 
+                </div>
+            </div>
+
+            <!-- QUEUES -->
+            <div class="scrolly-annotation queues-charts">
+                <div class="scrolly-annotation-inner">
+                    
+                    <div class="scrolly-row scrolly-row-4-up">
+
+                        <div class="scrolly-col">
+                            <div class="scrolly-chart-container">
+                                <div class="scrolly-slide-annotation scrolly-pointer-11 scrolly-anchor-tl" data-annotation-label="waiting-time-under-20" data-annotation-in="queues2" data-annotation-out="queues4">Under 20 minutes</div>
+
+                                <canvas id="queues-chart-21-50"></canvas>
+
+                                <div class="scrolly-chart-label-container">
+                                    <div class="scrolly-chart-label">21-50</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="scrolly-col">
+                            <div class="scrolly-chart-container">
+                                <canvas id="queues-chart-51-70"></canvas>
+
+                                <div class="scrolly-chart-label-container">
+                                    <div class="scrolly-chart-label">51-70</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="scrolly-col">
+                            <div class="scrolly-chart-container">
+
+                                <div class="scrolly-slide-annotation scrolly-pointer-7 scrolly-anchor-bl scrolly-pointer-long" data-annotation-label="facility-size" data-annotation-in="queues2" data-annotation-out="queues4">Size of facility</div>
+
+                                <canvas id="queues-chart-71-100"></canvas>
+
+                                <div class="scrolly-chart-label-container">
+                                    <div class="scrolly-chart-label">71-100</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="scrolly-col">
+                            <div class="scrolly-chart-container">
+
+                                <div class="scrolly-slide-annotation scrolly-pointer-1 scrolly-anchor-tr" data-annotation-label="waiting-time-over-20" data-annotation-in="queues2" data-annotation-out="queues4">Over 20 minutes</div>
+
+                                <canvas id="queues-chart-100"></canvas>
+
+                                <div class="scrolly-chart-label-container">
+                                    <div class="scrolly-chart-label">100+</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAFETY -->
+            <div class="scrolly-annotation safety-chart">
+                <div class="scrolly-annotation-inner">
+                    <div class="scrolly-row scrolly-row-2-up">
+                        <div class="scrolly-col">
+                            <div class="scrolly-chart-container">
+                                <div class="scrolly-slide-annotation scrolly-pointer-11 scrolly-anchor-tl" data-annotation-label="safety-no" data-annotation-in="unsafe2" data-annotation-out="unsafe4">Feel unsafe</div>
+                                <canvas id="safety-chart-female"></canvas>
+                                <div class="scrolly-chart-label-container">
+                                    <div class="scrolly-chart-label">Female</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scrolly-col">
+                            <div class="scrolly-chart-container">
+                                <div class="scrolly-slide-annotation scrolly-pointer-5 scrolly-anchor-br" data-annotation-label="safety-yes" data-annotation-in="unsafe2" data-annotation-out="unsafe4">Feel Safe</div>
+                                <canvas id="safety-chart-male"></canvas>
+                                <div class="scrolly-chart-label-container">
+                                    <div class="scrolly-chart-label">Male</div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+
+            <!-- WOMEN SAFETY -->
+            <div class="scrolly-annotation women-safety-chart">
+                <div class="scrolly-annotation-inner">
+                    <div class="scrolly-chart-container">
+                        <div class="scrolly-slide-annotation scrolly-pointer-1 scrolly-anchor-tr" data-annotation-label="women-unsafe-age" data-annotation-in="women-unsafe2" data-annotation-out="women-unsafe4">Age</div>
+
+                        <div class="scrolly-slide-annotation scrolly-pointer-5 scrolly-anchor-br" data-annotation-label="women-unsafe-yes" data-annotation-in="women-unsafe2" data-annotation-out="women-unsafe4">Feel safe</div>
+
+                        <div class="scrolly-slide-annotation scrolly-pointer-7 scrolly-pointer-long scrolly-anchor-bl" data-annotation-label="women-unsafe-no" data-annotation-in="women-unsafe2" data-annotation-out="women-unsafe4">Feel unsafe</div>
+                        <canvas id="women-safety-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RETURN VISITS -->
+            <div class="scrolly-annotation return-visits-chart">
+                <div class="scrolly-annotation-inner">
+
+                    <div class="scrolly-row">
+                        <div class="scrolly-col">
+                            <div class="scrolly-chart-container">
+                                <canvas id="return-visits-chart-fs"></canvas>
+
+                                <div class="scrolly-chart-label-container">
+                                    <div class="scrolly-chart-label">FS</div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="scrolly-col">
+                            <div class="scrolly-chart-container">
+                                <canvas id="return-visits-chart-lp"></canvas>
+
+                                <div class="scrolly-chart-label-container">
+                                    <div class="scrolly-chart-label">LP</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="scrolly-col">
+                            <div class="scrolly-chart-container">
+                                <div class="scrolly-slide-annotation scrolly-pointer-5 scrolly-anchor-br" data-annotation-label="return-visits-less-likey" data-annotation-in="return-visits2" data-annotation-out="return-visits4">Less likely to return</div>
+
+                                <canvas id="return-visits-chart-kzn"></canvas>
+
+                                <div class="scrolly-chart-label-container">
+                                    <div class="scrolly-chart-label">KZN</div>
+                                </div>
+                            </div>
+                           
+                        </div>
+
+                    </div>
+
+                    
+                </div>
+            </div>
+
+        </div>
+        <!-- END CANVAS ANNOTATIONS -->
+    </div>
+    <!-- END CANVAS BACKGROUND -->
+
+    <!-- SCROLLY SECTIONS -->
+    <div class="scrolly-sections-container">
+
+        <!-- INTRO -->
+
+        <div class="scrolly-section" data-section-label="start" data-unpin-section="they-visited">
+            <div class="scrolly-slide-inner">
+                <div class="scrolly-caption-box">
+                    <h1 class="scrolly-secondary">What we did</h1>
+                    <p>To better understand the state of <span class="scrolly-secondary scrolly-fw-500">sanitation in our primary healthcare system</span>, we asked our network of <span class="scrolly-secondary scrolly-fw-500">community journalists</span> to tell us what the bathrooms are like in their local clinics. We also also asked them to interview people who had recently used the clinics.</p>
                 </div>
             </div>
         </div>
-    </div>
 
-
-
-    <script>
-
-        function drawChart(id, data, colors = ['#1f77b4', '#ff7f0e']) {
-
-            const container = d3.select(`#${id}`);
-            const width = parseInt(container.style('width'));
-            const height = width;
-            const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-            const radius = Math.min(width, height) / 2 - Math.max(margin.top, margin.right);
-
-            // Set color scale
-            const color = d3.scaleOrdinal()
-                .domain(data.map(d => d.label))
-                .range(colors);
-
-            // Check if SVG exists
-            let svg = container.select('svg');
-            if (svg.empty()) {
-                // Create SVG element
-                svg = container
-                    .append('svg')
-                    .attr('width', '100%')
-                    .attr('height', '100%')
-                    .attr('viewBox', `0 0 ${width} ${height}`)
-                    .attr('preserveAspectRatio', 'xMinYMin meet')
-                    .append('g')
-                    .attr('transform', `translate(${width / 2}, ${height / 2})`);
-            } else {
-                svg = svg.select('g');
-                svg.attr('transform', `translate(${width / 2}, ${height / 2})`);
-            }
-
-            // Generate the pie
-            const pie = d3.pie()
-                .value(d => d.value)
-                .sort(null);
-
-            // Generate the arcs
-            const arc = d3.arc()
-                .innerRadius(radius * 0.5)
-                .outerRadius(radius);
-
-            // Bind data to arcs
-            const arcs = svg.selectAll('.arc')
-                .data(pie(data), d => d.data.label);
-
-            arcs.exit()
-                .transition()
-                .duration(750)
-                .style('opacity', 0)
-                .remove();
-
-            const arcsEnter = arcs.enter()
-                .append('g')
-                .attr('class', d => `arc ${d.data.label.replace(/\s+/g, '-').toLowerCase()}`);
-
-            arcsEnter.append('path')
-                .attr('fill', d => color(d.data.label))
-                .each(function (d) { this._current = d; })
-                .attr('d', arc);
-
-            const arcsMerge = arcsEnter.merge(arcs);
-
-            arcsMerge.select('path')
-                .transition()
-                .duration(1000) 
-                .attrTween('d', function (d) {
-                    const interpolate = d3.interpolate(this._current, d);
-                    this._current = interpolate(1);
-                    return function (t) {
-                        return arc(interpolate(t));
-                    };
-                });
-
-            // Update points
-            
-            arcsMerge.each(function (d) {
-                const numPoints = 5;
-
-                const pointsData = [];
-                for (let i = 1; i <= numPoints; i++) {
-                    const t = i / (numPoints + 1);
-                    const angle = d.startAngle + t * (d.endAngle - d.startAngle);
-                    const innerRadius = arc.innerRadius()(d);
-                    const outerRadius = arc.outerRadius()(d);
-                    const middleRadius = (innerRadius + outerRadius) / 2;
-                    const x = middleRadius * Math.cos(angle - Math.PI / 2);
-                    const y = middleRadius * Math.sin(angle - Math.PI / 2);
-                    pointsData.push({ x, y });
-                }
-
-                // Select the points group or create it if it doesn't exist
-                let pointsGroup = d3.select(this).select('.points-group');
-                if (pointsGroup.empty()) {
-                    pointsGroup = d3.select(this).append('g').attr('class', 'points-group');
-                }
-
-                const circles = pointsGroup.selectAll('circle')
-                    .data(pointsData);
-
-                circles.exit().remove();
-
-                circles.enter()
-                    .append('circle')
-                    .attr('class', (d,i) => `point-${i}`)
-                    .attr('r', 1)
-                    .attr('fill', '#000')
-                    .attr('cx', d => d.x)
-                    .attr('cy', d => d.y);
-
-                circles.transition()
-                    .duration(750)
-                    .attr('cx', d => d.x)
-                    .attr('cy', d => d.y);
-            });
-        }
-
-
-        function add_label(chart, slice_id, point_id, hour, anchor, text, line_config = {}, text_config = {}) {
-
-            
-            let line_config_set = {
-                class_name: line_config.class_name ? line_config.class_name : '', 
-                length: line_config.length ? line_config.length : 80,
-                color: line_config.color ? line_config.color : 'black',
-                thickness: line_config.thickness ? line_config.thickness : 1
-            }
-
-
-            let text_config_set = {
-                class_name: text_config.class_name ? text_config.class_name : '',
-                color: text_config.color ? text_config.color : 'black',
-                align: text_config.align ? text_config.align : 'left'
-            }
-            
-            // get the boundingbox of the point
-            let point = d3.select(`#${chart} .${slice_id} .point-${point_id}`);
-
-            // get the boundingrect of the point
-            let point_rect = point.node().getBoundingClientRect();
-
-            console.log(point_rect);
-
-           // Existing line code
-            let angleDeg = (hour * 30) - 90; 
-            let length = line_config_set.length; 
-            let angleRad = angleDeg * (Math.PI / 180); 
-            let dx = length * Math.cos(angleRad);
-            let dy = length * Math.sin(angleRad);
-            let endX = point_rect.left + dx;
-            let endY = point_rect.top + dy;
-
-            let anchors = {
-                'tl': '0%, 0%',
-                'tc': '-50%, 0%',
-                'tr': '-100%, 0%',
-                'bl': '0%, -100%',
-                'bc': '-50%, -100%',
-                'br': '-100%, -100%'
-            }; 
-
-            // Append the line
-            d3.select('body').append('div')
-                .attr('class', 'annotation-line')
-                .attr('class', line_config_set.class_name)
-                .style('top', `${point_rect.top}px`)
-                .style('left', `${point_rect.left}px`)
-                .style('width', `${line_config_set.length}px`)
-                .style('height', `${line_config_set.thickness}px`)
-                .style('background-color', line_config_set.color)
-                .style('position', 'absolute')
-                .style('transform-origin', 'top left')
-                .style('transform', `rotate(${angleDeg}deg)`);
-
-            // Calculate text position with offset
-            let textOffset = 5; 
-            let textX = endX + textOffset * Math.cos(angleRad);
-            let textY = endY + textOffset * Math.sin(angleRad);
-
-            // Append the text
-            d3.select('body').append('div')
-                .attr('class', text_config_set.class_name)
-                .attr('class', 'annotation-text')
-                .style('position', 'absolute')
-                .style('left', `${textX}px`)
-                .style('top', `${textY}px`)
-                .style('transform', `translate(${anchors[anchor]})`)
-                .style('text-align', text_config_set.align)
-                .html(text);
-        }
         
-        let datar = [
-            { label: 'Category A', value: 30 },
-            { label: 'Category B', value: 70 }
-        ];
-        
-        drawChart('chart1', datar);
+
+        <div class="scrolly-section" data-section-label="they-visited" data-background="img/map.jpg" data-unpin-section="313-users">
+            <div class="scrolly-slide-inner">
+                <div class="scrolly-caption-box">
+                    <p>They visited <span class="scrolly-secondary scrolly-fw-500 scrolly-big">31 clinics</span><br />in <span class="scrolly-secondary scrolly-fw-500 scrolly-big">3 provinces</span><br/>- <span class="scrolly-secondary scrolly-fw-500">Free State</span>, <span class="scrolly-secondary scrolly-fw-500">Limpopo</span><br/>and <span class="scrolly-secondary scrolly-fw-500">Kwazulu-Natal</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="scrolly-section scrolly-section-50" data-section-label="they-visited2"></div>
+        <div class="scrolly-section" data-section-label="they-visited3"></div>
+        <div class="scrolly-section scrolly-section-25" data-section-label="they-visited4"></div>
+
        
+       
+
+        <div class="scrolly-section" data-section-label="313-users" data-unpin-section="gender-breakdown">
+            <div class="scrolly-slide-inner">
+                <div class="scrolly-caption-box">
+                    <p>And interviewed<br /><span class="scrolly-secondary scrolly-fw-500 scrolly-big">313 recent users</span><br />of those clinics.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="scrolly-section" data-section-label="313-users2" data-section-color="scrolly-bg-1"></div>
+
+        <!-- GENDER -->
+
+        <div class="scrolly-section" data-background="img/toilets-gender1.jpg" data-section-label="gender-breakdown" data-section-color="scrolly-bg-2" data-unpin-section="outdoor-facilities">
+            <div class="scrolly-slide-inner">
+                <div class="scrolly-caption-box" data-annotation-label="gender-breakdown">
+                    <p>Interviewees were <span class="scrolly-secondary scrolly-fw-500 scrolly-big">evenly split between age and gender</span>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="scrolly-section scrolly-section-50" data-section-label="gender-breakdown2"></div>
+        <div class="scrolly-section" data-section-label="gender-breakdown3"></div>
+        <div class="scrolly-section scrolly-section-25" data-section-label="gender-breakdown4"></div>
+       
+
+        <!-- OUTDOOR -->
+
+        <div class="scrolly-section" data-section-label="outdoor-facilities" data-background="img/outdoor-toilets.jpg" data-unpin-section="disabled-access">
+            <div class="scrolly-slide-inner">
+                <div class="scrolly-caption-box" data-annotation-label="outdoor-facilities">
+                    <p>Many clinics in Limpopo and KZN rely on <span class="scrolly-secondary scrolly-fw-500 scrolly-big">outdoor facilities</span>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="scrolly-section scrolly-section-50" data-section-label="outdoor-facilities2"></div>
+        <div class="scrolly-section" data-section-label="pit-latrine"></div>
+        <div class="scrolly-section scrolly-section-25" data-section-label="outdoor-facilities3"></div>
+
+       
+        <!-- DISABLED -->
+
+        <div class="scrolly-section" data-section-label="disabled-access" data-background="img/disabled.jpg" data-unpin-section="broken-toilets">
+            <div class="scrolly-slide-inner">
+                <div class="scrolly-caption-box">
+                    <p>But while all the clinics we visited in the <span class="scrolly-secondary scrolly-fw-500">Free State</span> had bathrooms inside the clinics, they were also the <span class="scrolly-secondary scrolly-fw-500 scrolly-big">least accessible to patients with a disability</span>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="scrolly-section scrolly-section-50" data-section-label="disabled-access2"></div>
+        <div class="scrolly-section" data-section-label="disabled-access3"></div>
+        <div class="scrolly-section scrolly-section-25" data-section-label="disabled-access4"></div>
+
         
-        setTimeout(() => {
-            datar = [
-                { label: 'Category A', value: 50 },
-                { label: 'Category B', value: 50 }
-            ];
 
-            drawChart('chart1', datar);
-        }, 2000)
+        <!-- BROKEN TOILETS -->
 
-        add_label('chart1', 'category-b', 4, 11, 'tr', 'text here<br/>how are you?', {}, {align: 'right'});
+        <div class="scrolly-section" data-section-label="broken-toilets" data-unpin-section="not-stocked">
+            <div class="scrolly-slide-inner">
+                <div class="scrolly-caption-box">
+                    <p><span class="scrolly-secondary scrolly-fw-500 scrolly-big">75.4%</span> of people we spoke to said that at some point, <span class="scrolly-secondary scrolly-fw-500 scrolly-big">the toilets had been out of order</span> when then visited the clinic.</p>
+                </div>
+            </div>
+        </div>
+       
+        <div class="scrolly-section scrolly-section-50" data-section-label="broken-toilets2"></div>
+        <div class="scrolly-section" data-section-label="broken-toilets-kzn-lp"></div>
+        <div class="scrolly-section scrolly-section-25" data-section-label="broken-toilets3"></div>
       
 
+        <!-- NOT STOCKED -->
 
-    </script>
+        <div class="scrolly-section" data-section-label="not-stocked" data-unpin-section="not-stocked2">
+            <div class="scrolly-slide-inner">
+                <div class="scrolly-caption-box">
+                    <p>Even when patients could visit the bathroom, however, both male and female toilets were <span class="scrolly-secondary scrolly-fw-500 scrolly-big">unlikely to be stocked with basics such as toilet paper or soap</span>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NO TOILET PAPER -->
+
+        <div class="scrolly-section" data-section-label="no-toilet-paper"></div>
+       
+
+        <!-- NO SANITISER -->
+
+        <div class="scrolly-section" data-section-label="no-sanitiser"></div>
+        
+        <div class="scrolly-section scrolly-section-25" data-section-label="not-stocked2"></div>
+       
+
+        <!-- UNHYGENIC TOILETS -->
+
+        <div class="scrolly-section" data-background="img/dirty-toilets.jpg" data-section-label="unhygenic-toilets" data-unpin-section="queues">
+            <div class="scrolly-slide-inner">
+                <div class="scrolly-caption-box" data-annotation-label="unhygenic-toilets">
+                    <p>
+                        Unsurprising, then, that our CJs found the state of the toilets to be <span class="scrolly-secondary scrolly-fw-500 scrolly-big">very unhygienic</span>, with urine or feacal matter on the seats in 13 clinics, including nine in Limpopo.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="scrolly-section scrolly-section-50" data-section-label="unhygenic-toilets2"></div>
+        <div class="scrolly-section" data-section-label="unhygenic-toilets3"></div>
+        <div class="scrolly-section scrolly-section-25" data-section-label="unhygenic-toilets4"></div>
+
+       
+
+        <!-- QUEUES -->
+
+        <div class="scrolly-section" data-section-label="queues" data-section-color="scrolly-bg-3" data-unpin-section="unsafe">
+            <div class="scrolly-slide-inner">
+                <div class="scrolly-caption-box" data-annotation-label="queues">
+                    <p>In addition to the basic state of hygiene, in some larger facilities our reporters witnessed <span class="scrolly-secondary scrolly-fw-500 scrolly-big">people queuing for up to an hour</span> to use the bathroom.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="scrolly-section scrolly-section-50" data-section-label="queues2"></div>
+        <div class="scrolly-section" data-section-label="queues3"></div>
+        <div class="scrolly-section scrolly-section-25" data-section-label="queues4"></div>
+       
+       
+
+        <!--SAFETY-->
+
+        <div class="scrolly-section" data-section-label="unsafe" data-unpin-section="women-unsafe">
+            <div class="scrolly-slide-inner">
+                <div class="scrolly-caption-box" data-annotation-label="unsafe">
+                    <p>No wonder then that so many people told us that they <span class="scrolly-secondary scrolly-fw-500 scrolly-big">didn’t feel safe using the toilets.</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="scrolly-section scrolly-section-50" data-section-label="unsafe2"></div>
+        <div class="scrolly-section" data-section-label="unsafe3"></div>
+        <div class="scrolly-section scrolly-section-25" data-section-label="unsafe4"></div>
+
+     
+
+        <!-- WOMEN SAFETY -->
+
+        <div class="scrolly-section" data-section-label="women-unsafe" data-unpin-section="return-visits">
+            <div class="scrolly-slide-inner">
+                <div class="scrolly-caption-box" data-annotation-label="women-unsafe">
+                    <p>This included <span class="scrolly-secondary scrolly-fw-500 scrolly-big">more than half of all women interviewed</span>. Surprisingly, <span class="scrolly-secondary scrolly-fw-500">two thirds of 18-25-year-olds</span> said they didn’t feel safe, compared to around <span class="scrolly-secondary scrolly-fw-500">40% of those aged 26-40 or older than 60</span>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="scrolly-section scrolly-section-50" data-section-label="women-unsafe2"></div>
+        <div class="scrolly-section" data-section-label="women-unsafe3"></div>
+        <div class="scrolly-section scrolly-section-25" data-section-label="women-unsafe4"></div>
+        
+
+        <!-- RETURN VISITS -->
+
+        <div class="scrolly-section" data-section-label="return-visits" data-unpin-section="conclusion">
+            <div class="scrolly-slide-inner">
+                <div class="scrolly-caption-box" data-annotation-label="return-visits">
+                    <p>Apart from the obvious implications to health, and our expectations of germ control in a medical centre, <span class="scrolly-secondary scrolly-fw-500 scrolly-big">84 patients</span> we spoke to told us that the state of the bathrooms <span class="scrolly-secondary scrolly-fw-500 scrolly-big">put them off visiting again</span>. The implications of this - people avoiding primary health care facilities - are severe.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="scrolly-section scrolly-section-50" data-section-label="return-visits2"></div>
+        <div class="scrolly-section" data-section-label="return-visits3"></div>
+        <div class="scrolly-section scrolly-section-25" data-section-label="return-visits4"></div>
+
+
+        <!--CONCLUSION -->
+
+        <div class="scrolly-section" data-section-label="conclusion" data-section-color="scrolly-bg-1">
+            <div class="scrolly-slide-inner">
+                <div class="scrolly-caption-box">
+                    <p>And all for the sake of a <br /><span class="scrolly-secondary scrolly-fw-500 scrolly-big">usable bathroom</span>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- END -->
+        <div class="scrolly-section" data-background="img/toilets1.jpg" data-section-label="end"></div>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+
+</div>
+
+<!-- END SCROLLY -->
+
+<script src="script.js"></script>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
 </body>
 
 </html>
