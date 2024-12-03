@@ -1078,7 +1078,7 @@ window.addEventListener('load', function () {
             
             ScrollTrigger.create({
                 trigger: ".scrolly-section[data-section-label='disabled-access']",
-                start: "center center",
+                start: "top center",
                 end: "bottom center",
                 scrub: true,
                 onEnter: () => {
