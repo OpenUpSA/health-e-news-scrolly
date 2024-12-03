@@ -1061,7 +1061,8 @@ window.addEventListener('load', function () {
                     updateAllCharts();
                 
                 },
-                onLeaveBack: () => {
+                
+                onEnterBack: () => {
                     console.log('onLeaveBack triggered');
                     fadeChart('.province-chart', 0);
                     activeData.fs = fs_inside_outside;
@@ -1086,11 +1087,11 @@ window.addEventListener('load', function () {
                     
 
                 },
-                onLeaveBack: () => {
+                onEnterBack: () => {
                     console.log('onLeaveBack triggered');
-                    activeData.fs = fs_inside_outside;
-                    activeData.lp = lp_inside_outside;
-                    activeData.kzn = kzn_inside_outside;
+                    activeData.fs = fs_disabled_access;
+                    activeData.lp = lp_disabled_access;
+                    activeData.kzn = kzn_disabled_access;
                     updateAllCharts();
                     
 
