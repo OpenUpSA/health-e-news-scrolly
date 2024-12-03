@@ -615,13 +615,13 @@ window.addEventListener('load', function () {
 
                 const container = d3.select(`#${id}`);
                 const rect = container.node().getBoundingClientRect();
-                const width = 200;
-                const height = 200;
+                const width = rect.width;
+                const height = rect.height;
                 const margin = { top: 0, right: 0, bottom: 0, left: 0 };
                 const radius = Math.min(width, height) / 2 - Math.max(margin.top, margin.right);
 
-                console.log('drawing', rect, width, height, radius);
-
+                
+                console.log(container);
             
                 // Set color scale
                 let color = d3.scaleOrdinal()
