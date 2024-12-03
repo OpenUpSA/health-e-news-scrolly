@@ -1372,7 +1372,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     onEnter: () => {
 
-                        console.log(section_label);
+                        
 
                         // BACKGROUND TO BLACK
 
@@ -1394,6 +1394,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
                         if (section_label == 'outdoor-facilities') {
+
+                            console.log(section_label);
                             
                             fadeChart('.province-chart', 1);
                             activeData.fs = fs_inside_outside;
@@ -1408,7 +1410,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     onLeaveBack: () => {
 
-                        console.log(section_label);
+                        
 
                         if (section_label == 'start' || section_label == 'conclusion') {
                             if (section_label == 'start') {
