@@ -642,12 +642,17 @@ document.addEventListener('DOMContentLoaded', function () {
             
             
             function drawChart(id, data, title, colors = [chart_colors.donut1, chart_colors.donut2, chart_colors.donut3]) {
+
+
                 const container = d3.select(`#${id}`);
                 const rect = container.node().getBoundingClientRect();
                 const width = rect.width;
                 const height = rect.height;
                 const margin = { top: 0, right: 0, bottom: 0, left: 0 };
                 const radius = Math.min(width, height) / 2 - Math.max(margin.top, margin.right);
+
+                console.log('drawing', rect, width, height, radius);
+
             
                 // Set color scale
                 let color = d3.scaleOrdinal()
@@ -960,7 +965,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             
             
-            
+            drawChart('fs', inside_outside_blank, 'FS');
         
             drawChart('lp', inside_outside_blank, 'LP');
         
@@ -1396,8 +1401,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (section_label == 'outdoor-facilities') {
 
                             console.log(section_label);
-
-                            drawChart('fs', inside_outside_blank, 'FS');
                             
                             fadeChart('.province-chart', 1);
                             activeData.fs = fs_inside_outside;
