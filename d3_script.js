@@ -615,8 +615,8 @@ window.addEventListener('load', function () {
 
                 const container = d3.select(`#${id}`);
                 const rect = container.node().getBoundingClientRect();
-                const width = rect.width;
-                const height = rect.height;
+                const width = 200;
+                const height = 200;
                 const margin = { top: 0, right: 0, bottom: 0, left: 0 };
                 const radius = Math.min(width, height) / 2 - Math.max(margin.top, margin.right);
 
@@ -634,8 +634,8 @@ window.addEventListener('load', function () {
                     // Create SVG element
                     svg = container
                         .append('svg')
-                        .attr('width', '100%')
-                        .attr('height', '100%')
+                        .attr('width', '200px')
+                        .attr('height', '200px')
                         .attr('viewBox', `0 0 ${width} ${height}`)
                         .attr('preserveAspectRatio', 'xMinYMin meet')
                         .append('g')
