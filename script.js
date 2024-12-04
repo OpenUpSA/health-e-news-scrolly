@@ -832,7 +832,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const female_age_distribution = [21, 57, 36, 33].map((k) => -k);
         const male_age_distribution = [27, 55, 45, 38];
 
-        const fs_inside_outside = [0, 20, 0];
+        const fs_inside_outside = [0.01, 20, 0.01];
         const lp_inside_outside = [8, 0, 12];
         const kzn_inside_outside = [9, 7, 4];
 
